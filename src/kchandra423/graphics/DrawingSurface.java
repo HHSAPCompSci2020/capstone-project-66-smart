@@ -60,17 +60,6 @@ public class DrawingSurface extends PApplet {
         int halfx = width / 2;
         int halfy = height / 2;
         translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
-//        p1.act(this);
-//        p1.draw(this);
-//        p2.draw(this);
-//        if (p1.getImage().intersects(p2.getImage())) {
-//            fill(255, 0, 0);
-//            text("colliding or something", 500, 500);
-//        }
-//        if (p1.weapon.getImage().intersects(p2.getImage())) {
-//            fill(0, 255, 0);
-//            text("weaponds colliding or something", 500, 600);
-//        }
         room.draw(this);
         popMatrix();
         line(width / 2.0f, 0, width / 2.0f, height);

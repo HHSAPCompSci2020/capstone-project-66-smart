@@ -21,6 +21,9 @@ public class KImage {
     public KImage(Texture t) {
         this(0, 0, false, false, t);
     }
+    public KImage(Texture t, float x, float y) {
+        this(x, y, false, false, t);
+    }
 
     public KImage(float x, float y, boolean reflected, boolean reversed, Texture t) {
         this.x = x;

@@ -17,12 +17,20 @@ public class Room {
     private final Texture background;
 
     public Room() {
-        player = new Player(new KImage(0, 0, false, false, Texture.TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), null);
-        background = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles.jpg");
+
+        background = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/froggy.jpg");
         enemies = new ArrayList<>();
-        enemies.add(new Enemy());
-        bounds = new Rectangle(0, 0, 1000, 1000);
-        background.resize(1000,1000);
+        bounds = new Rectangle(50, 50, 1000, 1000);
+        enemies.add(new Enemy(bounds.x + 10, bounds.y + 10));
+        enemies.add(new Enemy(bounds.x + 500, bounds.y + 500));
+
+        enemies.add(new Enemy(bounds.x + 10, bounds.y + 10));
+        enemies.add(new Enemy(bounds.x + 500, bounds.y + 500));
+
+        enemies.add(new Enemy(bounds.x + 10, bounds.y + 500));
+        enemies.add(new Enemy(bounds.x + 500, bounds.y + 10));
+        player = new Player(new KImage(bounds.x + 50, bounds.y + 50, false, false, Texture.TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), null);
+        background.resize(1000, 1000);
     }
 
 
@@ -40,15 +48,16 @@ public class Room {
     public boolean inBounds(KImage shape) {
         return bounds.contains(shape.getBounds());
     }
+
     public boolean inBounds(float x, float y) {
-        return bounds.contains(x,y);
+        return bounds.contains(x, y);
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
+    public ArrayList<Collideable> getEnemies() {
+        return new ArrayList<>(enemies);
     }
 }

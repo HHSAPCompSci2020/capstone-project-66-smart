@@ -9,8 +9,8 @@ import kchandra423.graphics.textures.Texture;
 public class Enemy extends MovingActor
 {
 
-    public Enemy(){
-        this(new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Goblin.gif")),5,0.7f);
+    public Enemy(float x, float y){
+        this(new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Goblin.gif"),x,y),5,0.7f);
     }
     protected Enemy(KImage image, float maxV, float accel) {
         super(image, maxV, accel);

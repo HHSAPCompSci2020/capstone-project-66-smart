@@ -13,6 +13,11 @@ public abstract class Actor implements Collideable{
         this.image = image;
     }
     public abstract void act(DrawingSurface d, Room room);
+
+    public KImage getImage() {
+        return image;
+    }
+
     public void draw(DrawingSurface d){
         image.draw(d);
     }
