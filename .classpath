@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< Updated upstream
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="libs/core.jar"/>
 	<classpathentry kind="lib" path="libs/files.jar"/>
@@ -21,5 +22,13 @@
 	<classpathentry kind="lib" path="libs/jogl-all-natives-windows-amd64.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all-natives-windows-i586.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/processing_core.jar"/>
+>>>>>>> Stashed changes
 	<classpathentry kind="output" path="bin"/>
 </classpath>
