@@ -8,11 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.*;
-import com.google.firebase.database.*;
 
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
 public class DataBaseCommunication implements ActionListener, ChildEventListener
 {
@@ -20,6 +19,36 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onCancelled(DatabaseError arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onChildAdded(DataSnapshot arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onChildChanged(DataSnapshot arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onChildMoved(DataSnapshot arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onChildRemoved(DataSnapshot arg0) {
 		// TODO Auto-generated method stub
 		
 	}
