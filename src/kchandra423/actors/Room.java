@@ -55,7 +55,7 @@ public class Room {
         return player;
     }
 
-    public ArrayList<Collideable> getEnemies() {
-        return new ArrayList<>(enemies);
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
     }
 }

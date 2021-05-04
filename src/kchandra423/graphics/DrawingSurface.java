@@ -39,7 +39,7 @@ public class DrawingSurface extends PApplet {
     }
 
     public void setup() {
-        frameRate(60);
+        frameRate(1000);
         surface.setTitle("Hello World!");
         surface.setResizable(true);
     }

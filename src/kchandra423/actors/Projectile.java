@@ -30,10 +30,14 @@ public class Projectile extends Actor {
             return;
         }
         if(ally){
-            Collideable intersection = this.intersects(r.getEnemies());
-            if(intersection!= null){
-                ((Enemy) intersection).setActive(false);
-                active = false;
+
+            ArrayList<Enemy> enemies = r.getEnemies();
+            for (Enemy e : enemies) {
+                if (intersects(e)) {
+                    active = false;
+                    e.setActive(false);
+
+                }
             }
         }else{
 

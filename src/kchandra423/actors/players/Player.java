@@ -1,6 +1,5 @@
 package kchandra423.actors.players;
 
-import kchandra423.actors.Collideable;
 import kchandra423.actors.MovingActor;
 import kchandra423.actors.Gun;
 import kchandra423.actors.Room;
@@ -14,7 +13,7 @@ import java.awt.event.KeyEvent;
 public class Player extends MovingActor {
     private final KImage idle;
     private final KImage active;
-    public final Gun weapon;
+    private final Gun weapon;
 
     public Player(KImage idle, KImage active) {
         super(idle, 7, 0.7f);

@@ -1,6 +1,5 @@
 package kchandra423.graphics.textures;
 
-import kchandra423.actors.Collideable;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -12,15 +11,18 @@ import java.util.ArrayList;
 public class KImage {
     private final Texture image;
     private final Area area;
+    private Area mostRecentArea;
     private float x;
     private float y;
     private float angle;
     private boolean reflected;
     private boolean reversed;
+    private boolean upToDate;
 
     public KImage(Texture t) {
         this(0, 0, false, false, t);
     }
+
     public KImage(Texture t, float x, float y) {
         this(x, y, false, false, t);
     }
@@ -33,6 +35,8 @@ public class KImage {
         angle = 0;
         image = t;
         area = KImage.loadArea(image);
+        update();
+        upToDate = true;
     }
 
     public KImage(float x, float y, boolean reflected, boolean reversed, Texture t, Area area) {
@@ -60,6 +64,14 @@ public class KImage {
 
     }
 
+    public boolean isUpToDate() {
+        return upToDate;
+    }
+
+//    public Area getMostRecentArea() {
+//        return mostRecentArea;
+//    }
+
     public void draw(PApplet p) {
         if (!reflected) {
             p.pushMatrix();
@@ -85,16 +97,25 @@ public class KImage {
 
 
     public void translate(float delx, float dely) {
-        x += delx;
-        y += dely;
+        if (delx != 0 || dely != 0) {
+            x += delx;
+            y += dely;
+            upToDate = false;
+        }
     }
 
     public void rotate(float angle) {
-        this.angle += angle;
+        if (angle != 0) {
+            this.angle += angle;
+            upToDate = false;
+        }
     }
 
     public void setReflected(boolean reflected) {
-        this.reflected = reflected;
+        if (this.reflected != reflected) {
+            this.reflected = reflected;
+            upToDate = false;
+        }
     }
 
 
@@ -103,12 +124,18 @@ public class KImage {
     }
 
     public void setAngle(float angle) {
-        this.angle = angle;
+        if (this.angle!= angle) {
+            this.angle = angle;
+            upToDate = false;
+        }
     }
 
     public void moveTo(float x, float y) {
-        this.x = x;
-        this.y = y;
+        if(this.x!= x || this.y!=y) {
+            this.x = x;
+            this.y = y;
+            upToDate = false;
+        }
     }
 
     public float getX() {
@@ -136,43 +163,57 @@ public class KImage {
     }
 
     public void setReversed(boolean reversed) {
-        this.reversed = reversed;
+        if(this.reversed!=reversed) {
+            this.reversed = reversed;
+            upToDate = false;
+        }
     }
 
     public boolean isReversed() {
         return reversed;
     }
 
-    public boolean intersects(ArrayList<KImage> images) {
-        Area orginial = getTransformedArea();
-        for (KImage kImage :
-                images) {
-            Area copy = (Area) orginial.clone();
-            copy.intersect(kImage.getTransformedArea());
-            if (!copy.isEmpty()) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean intersects(ArrayList<KImage> images) {
+//        Area orginial = getTransformedArea();
+//        for (KImage kImage :
+//                images) {
+//            Area copy = (Area) orginial.clone();
+//            copy.intersect(kImage.getTransformedArea());
+//            if (!copy.isEmpty()) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public boolean intersects(KImage other) {
-        Area overLap = getTransformedArea();
-        overLap.intersect(other.getTransformedArea());
-        return !overLap.isEmpty();
+        if(!upToDate){
+            update();
+        }
+        Area myArea = (Area) mostRecentArea.clone();
+        if(!other.upToDate){
+            other.update();
+        }
+        Area otherArea = other.mostRecentArea;
+        myArea.intersect(otherArea);
+        return !myArea.isEmpty();
     }
 
 
     public Rectangle getBounds() {
-        return getTransformedArea().getBounds();
+        if(!upToDate){
+            update();
+        }
+        return mostRecentArea.getBounds();
     }
 
-    public Area getTransformedArea() {
+    private void update() {
+        upToDate = true;
         if (!reflected) {
             AffineTransform transform = new AffineTransform();
             transform.translate(x, y);
             transform.rotate(angle);
-            return area.createTransformedArea(transform);
+            mostRecentArea = area.createTransformedArea(transform);
         } else {
             AffineTransform transform = new AffineTransform();
             transform.scale(-1, 1);
@@ -183,7 +224,7 @@ public class KImage {
                 transform.translate(-(x + image.getWidth()), y);
                 transform.rotate(angle);
             }
-            return area.createTransformedArea(transform);
+            mostRecentArea = area.createTransformedArea(transform);
         }
     }
 }
