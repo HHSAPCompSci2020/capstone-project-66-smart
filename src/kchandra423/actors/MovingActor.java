@@ -28,9 +28,6 @@ public abstract class MovingActor extends Actor {
         vy *= -0.3f;
     }
 
-    public void draw(DrawingSurface d) {
-        image.draw(d);
-    }
 
     public abstract void act(DrawingSurface d, Room r);
 

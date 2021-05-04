@@ -7,10 +7,11 @@ import java.awt.geom.Area;
 import java.util.ArrayList;
 
 public abstract class Actor implements Collideable{
-
+    protected boolean active;
     protected KImage image;
     public Actor(KImage image){
         this.image = image;
+        active = true;
     }
     public abstract void act(DrawingSurface d, Room room);
 
@@ -19,7 +20,11 @@ public abstract class Actor implements Collideable{
     }
 
     public void draw(DrawingSurface d){
-        image.draw(d);
+        if(active) {
+            image.draw(d);
+        }else{
+//            System.out.println("tried to draw while inactive");
+        }
     }
 
     @Override
@@ -35,16 +40,20 @@ public abstract class Actor implements Collideable{
     }
 
     @Override
-    public boolean intersects(ArrayList<Collideable> others) {
+    public Collideable intersects(ArrayList<Collideable> others) {
         Area original = getTransformedArea();
         for (Collideable other :
                 others) {
             Area copy = (Area) original.clone();
             copy.intersect(other.getTransformedArea());
             if (!copy.isEmpty()) {
-                return true;
+                return other;
             }
         }
-        return false;
+        return null;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

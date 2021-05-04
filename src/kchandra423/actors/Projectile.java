@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Projectile extends Actor {
     private boolean ally;
-    private boolean active;
     protected float v;
     protected float angle;
 
@@ -20,7 +19,6 @@ public class Projectile extends Actor {
         image.setAngle(angle);
         this.v = v;
         this.angle = angle;
-        active = true;
     }
     public Rectangle getBounds(){
         return image.getBounds();
@@ -32,7 +30,9 @@ public class Projectile extends Actor {
             return;
         }
         if(ally){
-            if(this.intersects(r.getEnemies())){
+            Collideable intersection = this.intersects(r.getEnemies());
+            if(intersection!= null){
+                ((Enemy) intersection).setActive(false);
                 active = false;
             }
         }else{

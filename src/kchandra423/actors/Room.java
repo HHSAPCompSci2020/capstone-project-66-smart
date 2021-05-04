@@ -24,8 +24,6 @@ public class Room {
         enemies.add(new Enemy(bounds.x + 10, bounds.y + 10));
         enemies.add(new Enemy(bounds.x + 500, bounds.y + 500));
 
-        enemies.add(new Enemy(bounds.x + 10, bounds.y + 10));
-        enemies.add(new Enemy(bounds.x + 500, bounds.y + 500));
 
         enemies.add(new Enemy(bounds.x + 10, bounds.y + 500));
         enemies.add(new Enemy(bounds.x + 500, bounds.y + 10));
