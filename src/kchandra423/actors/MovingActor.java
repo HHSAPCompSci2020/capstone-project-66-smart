@@ -32,6 +32,33 @@ public abstract class MovingActor extends Actor {
 
     public abstract void act(DrawingSurface d, Room r);
 
+    protected void moveX(float angle){
+        float newVx = (float) (vx + Math.cos(angle) * accel);
+        if (Math.abs(newVx) < maxV) {
+            vx = newVx;
+        } else if (newVx < 0) {
+            vx = -maxV;
+        } else {
+            vx = maxV;
+        }
+        vx *= 0.9f;
+
+        image.translate(vx, 0);
+    }
+    protected void moveY(float angle){
+        float newVy = (float) (vy + Math.sin(angle) * accel);
+        if (Math.abs(newVy) < maxV) {
+            vy = newVy;
+        } else if (newVy < 0) {
+            vy = -maxV;
+        } else {
+            vy = maxV;
+        }
+        vy *= 0.9f;
+
+        image.translate(0, vy);
+    }
+
     protected void moveX(boolean[] directions) {
         int left = directions[0] ? -1 : 0;
         int right = directions[1] ? 1 : 0;

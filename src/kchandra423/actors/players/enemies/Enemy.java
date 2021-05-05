@@ -20,12 +20,14 @@ public class Enemy extends MovingActor
 
     @Override
     public void act(DrawingSurface d, Room r) {
-        boolean[] decision = ai.makeDecision(r);
-        moveX(new boolean[]{decision[0],decision[1]});
+        float decision = ai.makeMovementDecision(r);
+//        moveX(new boolean[]{decision[0],decision[1]});
+        moveX(decision);
         if (!r.inBounds(image)) {
             bounceBackX();
         }
-        moveY(new boolean[]{decision[2], decision[3]});
+//        moveY(new boolean[]{decision[2], decision[3]});
+        moveY(decision);
         if (!r.inBounds(image)) {
             bounceBackY();
         }

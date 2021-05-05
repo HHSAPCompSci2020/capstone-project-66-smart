@@ -1,10 +1,11 @@
 package kchandra423.levels;
 
-import kchandra423.actors.players.enemies.Enemy;
 import kchandra423.actors.players.Player;
+import kchandra423.actors.players.enemies.Enemy;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
+import processing.core.PApplet;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ public class Room {
         background.draw(d, bounds.x, bounds.y);
         for (Enemy e :
                 enemies) {
-            e.act(d,this);
+            e.act(d, this);
             e.draw(d);
         }
         player.act(d, this);
         player.draw(d);
         for (int i = 0; i < enemies.size(); i++) {
-            if(!enemies.get(i).isActive()){
+            if (!enemies.get(i).isActive()) {
                 enemies.remove(i);
                 i--;
             }
@@ -63,5 +64,19 @@ public class Room {
 
     public ArrayList<Enemy> getEnemies() {
         return enemies;
+    }
+
+    public Enemy getClosestEnemy(float x, float y) {
+        Enemy min = null;
+        float currentLowest = Float.POSITIVE_INFINITY;
+        for (Enemy e :
+                enemies) {
+            float dist = PApplet.dist(x, y, e.getImage().getX(), e.getImage().getY());
+            if (dist < currentLowest) {
+                min = e;
+                currentLowest = dist;
+            }
+        }
+        return min;
     }
 }

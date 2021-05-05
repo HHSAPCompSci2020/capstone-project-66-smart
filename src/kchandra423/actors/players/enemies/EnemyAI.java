@@ -2,16 +2,19 @@ package kchandra423.actors.players.enemies;
 
 import kchandra423.actors.players.Player;
 import kchandra423.levels.Room;
+import kchandra423.utility.Calculator;
 
 public class EnemyAI {
     private Enemy e;
-    public EnemyAI(Enemy enemy){
+
+    public EnemyAI(Enemy enemy) {
         e = enemy;
     }
-    public boolean[] makeDecision(Room r) {
+
+    public float makeMovementDecision(Room r) {
 //        Random rand = new Random();
 //        return new boolean[]{rand.nextBoolean(), rand.nextBoolean(), rand.nextBoolean(), rand.nextBoolean()};
-        return getDirectionTowardsPlayer(r);
+        return (float) Calculator.calculateAngle(e.getImage().getX(), e.getImage().getY(), r.getPlayer().getImage().getX(), r.getPlayer().getImage().getY());
     }
 
     private boolean[] getDirectionTowardsPlayer(Room room) {

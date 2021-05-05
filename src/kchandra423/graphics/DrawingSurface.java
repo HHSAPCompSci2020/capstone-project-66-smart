@@ -36,8 +36,8 @@ public class DrawingSurface extends PApplet {
     }
 
     public void setup() {
-        frameRate(60);
-        surface.setTitle("Hello World!");
+        frameRate(30);
+        surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
     }
 
@@ -59,8 +59,6 @@ public class DrawingSurface extends PApplet {
         translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
         room.draw(this);
         popMatrix();
-        line(width / 2.0f, 0, width / 2.0f, height);
-        line(0, height / 2.0f, width, height / 2.0f);
         fill(0);
         text((frameRate ) + " : fps", width - 100, height - 100);
 
