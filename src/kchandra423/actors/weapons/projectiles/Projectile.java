@@ -26,23 +26,25 @@ public class Projectile extends Actor {
         return image.getBounds();
     }
     public void act(DrawingSurface d, Room r) {
-        image.translate((float) (v * Math.cos(angle)), (float) (v * Math.sin(angle)));
-        if (!r.inBounds(image)){
-            active = false;
-            return;
-        }
-        if(ally){
-
-            ArrayList<Enemy> enemies = r.getEnemies();
-            for (Enemy e : enemies) {
-                if (intersects(e)) {
-                    active = false;
-                    e.setActive(false);
-
-                }
+        if(active) {
+            image.translate((float) (v * Math.cos(angle)), (float) (v * Math.sin(angle)));
+            if (!r.inBounds(image)) {
+                active = false;
+                return;
             }
-        }else{
+            if (ally) {
 
+                ArrayList<Enemy> enemies = r.getEnemies();
+                for (Enemy e : enemies) {
+                    if (intersects(e)) {
+                        active = false;
+                        e.setActive(false);
+                        return;
+                    }
+                }
+            } else {
+
+            }
         }
     }
 

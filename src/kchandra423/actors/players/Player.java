@@ -1,5 +1,6 @@
 package kchandra423.actors.players;
 
+import kchandra423.actors.players.enemies.Enemy;
 import kchandra423.actors.weapons.Gun;
 import kchandra423.actors.MovingActor;
 import kchandra423.levels.Room;
@@ -9,16 +10,17 @@ import kchandra423.utility.Calculator;
 import processing.core.PApplet;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class Player extends MovingActor {
-    private final KImage idle;
-    private final KImage active;
+    private final KImage idleImage;
+    private final KImage activeImage;
     private final Gun weapon;
 
     public Player(KImage idle, KImage active) {
-        super(idle, 7, 0.7f);
-        this.idle = idle;
-        this.active = active;
+        super(idle, 10, 1f);
+        this.idleImage = idle;
+        this.activeImage = active;
         weapon = new Gun(image.getWidth() / 2.0f, image.getHeight() / 2.0f);
     }
 
@@ -63,6 +65,13 @@ public class Player extends MovingActor {
             bounceBackY();
         }
         weapon.getImage().moveTo(image.getX() + image.getWidth() / 2.0f, image.getY() + image.getHeight() / 2.0f);
+        ArrayList<Enemy> enemies = r.getEnemies();
+        for (Enemy e : enemies) {
+            if (intersects(e)) {
+                System.out.println("you wouldve taken damage");
+                return;
+            }
+        }
     }
 
 
