@@ -1,16 +1,7 @@
 package kchandra423.graphics;
 
-import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
 import processing.core.PImage;
-
-import javax.imageio.ImageIO;
-//import java.awt.*;
-import java.awt.*;
-import java.awt.geom.Area;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class test {
     public static void main (String[] args){

@@ -1,9 +1,5 @@
 package kchandra423.graphics;
-import java.awt.Dimension;
 
-import javax.swing.JFrame;
-
-import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 /**
  * Has the main method

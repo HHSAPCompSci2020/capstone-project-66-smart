@@ -1,9 +1,6 @@
 package kchandra423.graphics;
 
 import kchandra423.actors.Room;
-import kchandra423.actors.players.Player;
-import kchandra423.graphics.textures.KImage;
-import kchandra423.graphics.textures.Texture;
 import processing.core.PApplet;
 
 /**
@@ -39,7 +36,7 @@ public class DrawingSurface extends PApplet {
     }
 
     public void setup() {
-        frameRate(1000);
+        frameRate(60);
         surface.setTitle("Hello World!");
         surface.setResizable(true);
     }

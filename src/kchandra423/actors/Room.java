@@ -33,7 +33,7 @@ public class Room {
 
 
     public void draw(DrawingSurface d) {
-        d.stroke(0);
+//        d.stroke(0);
         background.draw(d, bounds.x, bounds.y);
         for (Enemy e :
                 enemies) {
@@ -41,6 +41,12 @@ public class Room {
         }
         player.act(d, this);
         player.draw(d);
+        for (int i = 0; i < enemies.size(); i++) {
+            if(!enemies.get(i).isActive()){
+                enemies.remove(i);
+                i--;
+            }
+        }
     }
 
     public boolean inBounds(KImage shape) {

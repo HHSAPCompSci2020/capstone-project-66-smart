@@ -1,8 +1,5 @@
 package rlee348.menu;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.lang.Math;
 import processing.core.PApplet;
 
 public class Gui extends PApplet {

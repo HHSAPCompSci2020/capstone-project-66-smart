@@ -23,15 +23,15 @@ SOFTWARE.
  */
 package kchandra423.graphics.textures;
 
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import destiny.gif.GifDecoder;
 import destiny.gif.GifDecoder.GifImage;
 import processing.core.PApplet;
 import processing.core.PImage;
+
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 class PGif extends Texture {
     private Frame[] frames;
