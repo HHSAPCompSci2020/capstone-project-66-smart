@@ -1,6 +1,6 @@
 package kchandra423.graphics;
 
-import kchandra423.actors.Room;
+import kchandra423.levels.Room;
 import processing.core.PApplet;
 
 /**

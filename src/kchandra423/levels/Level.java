@@ -1,7 +1,5 @@
 package kchandra423.levels;
 
-import kchandra423.actors.Room;
-
 public class Level {
     private Room[] rooms;
     int floorNum;

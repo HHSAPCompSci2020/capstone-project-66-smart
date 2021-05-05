@@ -1,6 +1,8 @@
-package kchandra423.actors;
+package kchandra423.actors.weapons.projectiles;
 
-import kchandra423.actors.players.Enemy;
+import kchandra423.actors.Actor;
+import kchandra423.levels.Room;
+import kchandra423.actors.players.enemies.Enemy;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 

@@ -2,6 +2,7 @@ package kchandra423.actors;
 
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
+import kchandra423.levels.Room;
 
 public abstract class MovingActor extends Actor {
     protected float vx, vy;

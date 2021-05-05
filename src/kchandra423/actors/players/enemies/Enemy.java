@@ -1,7 +1,7 @@
-package kchandra423.actors.players;
+package kchandra423.actors.players.enemies;
 
 import kchandra423.actors.MovingActor;
-import kchandra423.actors.Room;
+import kchandra423.levels.Room;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
