@@ -2,8 +2,8 @@ package sye348.database;
 
 public class UserData 
 {
-	private String author;
-	private String password;
+	public String author;
+	public String password;
 	
 	/**
 	 * Creates a account information tab with the given username and password
