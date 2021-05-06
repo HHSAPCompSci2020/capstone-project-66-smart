@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/*
+/**
  * Title: Username
  * Necessary:
  *  Password
@@ -48,7 +48,7 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 
 			FirebaseApp.initializeApp(options);
 			DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-			postsRef = database.child("posts");
+			postsRef = database.child("accounts");
 
 			postsRef.addChildEventListener(this);
 			
@@ -57,6 +57,17 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 		{
 			e.printStackTrace();
 		}
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			      public void run()
+			      {
+			    	  
+			      }
+			    });
+		
+	}
+	
+	private void saveData(UserData data)
+	{
 		
 	}
 	
