@@ -26,7 +26,7 @@ public class DrawingSurface extends PApplet {
      */
     public void settings() {
         size(1500, 1000, P2D);
-        fullScreen();
+//        fullScreen();
     }
 
     /**

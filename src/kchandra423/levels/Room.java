@@ -11,6 +11,10 @@ import processing.core.PApplet;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * A room contains all the enemies and obstacles and boundaries that a player is currently in
+ * @author Kumar Chandra
+ */
 public class Room {
     private ArrayList<Enemy> enemies;
     private ArrayList<Obstacle> obstacles;
@@ -18,6 +22,9 @@ public class Room {
     private final Rectangle bounds;
     private final Texture background;
 
+    /**
+     * Currently just creates a room with some random default enemies and obstacles
+     */
     public Room() {
 
         background = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/froggy.jpg");
@@ -37,7 +44,10 @@ public class Room {
         background.resize(bounds.width, bounds.height);
     }
 
-
+    /**
+     * Draws everything in this room onto the given drawing surface. Also cause the act method of all actors
+     * @param d The drawing surface that actors will be drawn onto
+     */
     public void draw(DrawingSurface d) {
         background.draw(d, bounds.x, bounds.y);
         for (Enemy e :
@@ -60,26 +70,57 @@ public class Room {
         }
     }
 
+    /**
+     * Returns whether or not a KImage is within the boundaries of this room.
+     * Somewhat expensive call, although not as much as intersection
+     * @param shape The Kimage which will have its boundaries checked
+     * @return Returns false if the KImage is not within the bounds of this room, using the rectangles class' definition of insides. Returns true otherwise
+     */
     public boolean inBounds(KImage shape) {
         return bounds.contains(shape.getBounds());
     }
 
+    /**
+     * Returns whether or not a point is within the boundaries of this room
+     * Inexpensive call
+     * @param x The x value of the point
+     * @param y The y value of the point
+     * @return Returns whether or not the x,y point is within the bounds of this room using the rectangle class' definition of insideness
+     */
     public boolean inBounds(float x, float y) {
         return bounds.contains(x, y);
     }
 
+    /**
+     * Returns the player for this room
+     * @return this room's player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Returns all the enemies within this room
+     * @return All enemies contained by this room
+     */
     public ArrayList<Enemy> getEnemies() {
         return enemies;
     }
 
+    /**
+     * Returns all obstacles within this room
+     * @return All obstaacles contained in the room
+     */
     public ArrayList<Obstacle> getObstacles() {
         return obstacles;
     }
 
+    /**
+     * Returns the closest enemy from a given point
+     * @param x The x coordinate of the given point
+     * @param y The y coordinate of the given point
+     * @return The closest enemy from the given point
+     */
     public Enemy getClosestEnemy(float x, float y) {
         Enemy min = null;
         float currentLowest = Float.POSITIVE_INFINITY;
