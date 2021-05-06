@@ -1,5 +1,6 @@
 package kchandra423.actors.players;
 
+import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.players.enemies.Enemy;
 import kchandra423.actors.weapons.Gun;
 import kchandra423.actors.MovingActor;
@@ -35,6 +36,9 @@ public class Player extends MovingActor {
     public void act(DrawingSurface d, Room r) {
         float angle = (float) Calculator.calculateAngle(d.width / 2.0f, d.height / 2.0f,
                 d.mouseX, d.mouseY);
+                if(angle<0){
+            angle+=Math.PI*2;
+        }
         if (!Float.isNaN(angle)) {
             weapon.getImage().setAngle(angle);
         }
@@ -56,22 +60,37 @@ public class Player extends MovingActor {
         boolean left = DrawingSurface.getKey(KeyEvent.VK_A);
         boolean down = DrawingSurface.getKey(KeyEvent.VK_S);
         boolean right = DrawingSurface.getKey(KeyEvent.VK_D);
+
         moveX(new boolean[]{left, right});
+        ArrayList<Obstacle> obstacles = r.getObstacles();
+        for (Obstacle o : obstacles) {
+            if (intersects(o)) {
+                bounceBackX();
+            }
+        }
         if (!r.inBounds(image)) {
             bounceBackX();
         }
         moveY(new boolean[]{up, down});
+        for (Obstacle o : obstacles) {
+            if (intersects(o)) {
+                bounceBackY();
+            }
+        }
         if (!r.inBounds(image)) {
             bounceBackY();
         }
+
+
         weapon.getImage().moveTo(image.getX() + image.getWidth() / 2.0f, image.getY() + image.getHeight() / 2.0f);
         ArrayList<Enemy> enemies = r.getEnemies();
         for (Enemy e : enemies) {
             if (intersects(e)) {
-                System.out.println("you wouldve taken damage");
+//                System.out.println("you wouldve taken damage");
                 return;
             }
         }
+
     }
 
 

@@ -9,14 +9,11 @@ import processing.core.PApplet;
  * @author Kumar Chandra
  */
 public class DrawingSurface extends PApplet {
-
-    //    private PImage background;
-//    private static int currentWidth, currentHeight;
     private static boolean[] keys;
     private Room room;
 
     /**
-     * Creates a new Drawing surface
+     * Creates a new Drawing surface, and initializes the key array
      */
     public DrawingSurface() {
         keys = new boolean[128];
@@ -24,34 +21,28 @@ public class DrawingSurface extends PApplet {
 
     }
 
-    // The statements in the setup() function
-    // execute once when the program begins
-
     /**
-     * doesn't do anything as of right now
+     * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
         size(1500, 1000, P2D);
-//        fullScreen();
+        fullScreen();
     }
 
+    /**
+     * Sets the framerate, the title of the applet, the icon of the applet, and makes the applet resizable
+     */
     public void setup() {
-        frameRate(30);
+        frameRate(60);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
     }
 
-    // The statements in draw() are executed until the
-    // program is stopped. Each statement is executed in
-    // sequence and after the last line is read, the first
-    // line is executed again.
 
     /**
-     * draws everything in the drawing surface
+     * Draws the room and everything in it
      */
     public void draw() {
-//        DrawingSurface.currentWidth = width;
-//        DrawingSurface.currentHeight = height;
         background(255);
         pushMatrix();
         int halfx = width / 2;
@@ -60,10 +51,12 @@ public class DrawingSurface extends PApplet {
         room.draw(this);
         popMatrix();
         fill(0);
-        text((frameRate ) + " : fps", width - 100, height - 100);
-
+        text((frameRate) + " : fps", width - 100, height - 100);
     }
 
+    /**
+     * Sets the key that was pressed in the key array to true
+     */
     public void keyPressed() {
         if (keyCode < 128) {
             keys[keyCode] = true;
@@ -72,6 +65,9 @@ public class DrawingSurface extends PApplet {
 
     }
 
+    /**
+     * Sets the key that was pressed in the key array to false
+     */
     public void keyReleased() {
 
         if (keyCode < 128) {
@@ -81,22 +77,27 @@ public class DrawingSurface extends PApplet {
 
     }
 
+    /**
+     * Returns the values of the first 128 keys
+     *
+     * @return The array of all valid keys pressed
+     */
     public static boolean[] getKeys() {
         return keys;
     }
 
-    //Precondition: keyCode must be less than 128 and greater than 0
+    /**
+     * Returns whether or not a certain key is pressed
+     *
+     * @param keyCode The keycode of the given key to be checked
+     * @return Whether or not that key was pressed
+     * @pre keyCode must be less than 128
+     */
     public static boolean getKey(int keyCode) {
         return keys[keyCode];
 
     }
-//    public static int getCurrentWidth(){
-//        return currentWidth;
-//    }
-//
-//    public static int getCurrentHeight() {
-//        return currentHeight;
-//    }
+
 }
 
 
