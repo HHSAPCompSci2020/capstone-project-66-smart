@@ -11,12 +11,24 @@ import kchandra423.utility.Calculator;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Represents any sort of projectile that moves in a specified direction every frame
+ *
+ * @see kchandra423.actors.Actor
+ * @author Kumar Chandra
+ */
 public class Projectile extends Actor {
     private boolean ally;
     protected float v;
     protected final float initialAngle;
 
 
+    /**
+     * Creates a new Projectile with the specified image, and initial velocity and angle
+     * @param image The specified image
+     * @param v The initial velocity of this projectile
+     * @param angle The initial angle of this projectile
+     */
     public Projectile(KImage image, float v, float angle) {
         super(image);
         ally = true;
@@ -25,11 +37,12 @@ public class Projectile extends Actor {
         this.v = v;
     }
 
-    public Rectangle getBounds() {
-        return image.getBounds();
-    }
-
-    public void act(DrawingSurface d, Room r) {
+    /**
+     * Moves this projectile and does collision detection and handling
+     * @param d The drawing surface to be acted upon
+     * @param room The room the actor is currently in
+     */
+    public void act(DrawingSurface d, Room room) {
         if (active) {
 
 
@@ -51,14 +64,14 @@ public class Projectile extends Actor {
 //                image.rotate(diff / 4);
 //            }
             image.translate((float) (v * Math.cos(image.getAngle())), (float) (v * Math.sin(image.getAngle())));
-            if (!r.inBounds(image)) {
+            if (!room.inBounds(image)) {
                 active = false;
                 return;
             }
             if (ally) {
 
 
-                ArrayList<Enemy> enemies = r.getEnemies();
+                ArrayList<Enemy> enemies = room.getEnemies();
                 for (Enemy e : enemies) {
                     if (intersects(e)) {
                         active = false;
@@ -66,7 +79,7 @@ public class Projectile extends Actor {
                         return;
                     }
                 }
-                ArrayList<Obstacle> obstacles = r.getObstacles();
+                ArrayList<Obstacle> obstacles = room.getObstacles();
                 for (Obstacle o : obstacles) {
                     if (intersects(o)) {
                         active = false;
@@ -80,16 +93,6 @@ public class Projectile extends Actor {
         }
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void draw(DrawingSurface d) {
-        if (active)
-            super.draw(d);
-        else
-            System.out.println("Attempted to draw bullet while inactive");
-    }
 
 
 }

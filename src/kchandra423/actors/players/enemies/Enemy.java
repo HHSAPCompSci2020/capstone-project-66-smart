@@ -9,9 +9,17 @@ import kchandra423.graphics.textures.Texture;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a generic enemy type that attempts to fight the player.
+ *
+ * @see kchandra423.actors.Actor
+ * @see kchandra423.actors.MovingActor
+ * @see EnemyAI
+ * @author Kumar Chandra
+ */
 public class Enemy extends MovingActor
 {
-    private EnemyAI ai;
+    private final EnemyAI ai;
     public Enemy(float x, float y){
         this(new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Goblin.gif"),x,y),5,0.7f);
     }
