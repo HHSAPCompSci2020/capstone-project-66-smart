@@ -51,6 +51,7 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 			postsRef = database.child("posts");
 
 			postsRef.addChildEventListener(this);
+			
 		}
 		catch (IOException e)
 		{
