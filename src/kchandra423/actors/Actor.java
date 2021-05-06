@@ -8,6 +8,7 @@ import kchandra423.levels.Room;
  * An actor represents any thing that can be drawn and repeatedly acts each frame. Uses a Kimage to draw and check collisions
  * Also has a field that determines whether or not the actor is active.
  *
+ * @see KImage
  * @author Kumar Chandra
  */
 public abstract class Actor {
@@ -24,7 +25,7 @@ public abstract class Actor {
     }
 
     /**
-     * Indicates what this actor will do every frame besides drawing
+     * Indicates what this actor will do every frame besides drawing. Usually is just movement and checking collisions
      * @param d The drawing surface to be acted upon
      * @param room The room the actor is currently in
      */

@@ -22,6 +22,9 @@ import java.awt.geom.Area;
  * whether or not when the object is reflected, does its angle reverse to look in the "right" direction, by drawing the angle at Pi- its actual value.
  * However a restriction of this is that unexpected behavior when something is reflected, but not reversed, and it is rotated by a non zero amount.
  *
+ * @see Texture
+ * @see KImage
+ * @see Area
  * @author Kumar Chandra
  */
 public class KImage {

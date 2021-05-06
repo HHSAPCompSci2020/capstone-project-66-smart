@@ -7,6 +7,7 @@ import processing.core.PImage;
  * Represents an image that can be moved around and resized. Supports Gif, jpeg, and png images.
  * Gifs will be properly animated. Uses processing to draw.
  *
+ * @see PImage
  * @author Kumar Chandra
  */
 public abstract class Texture {

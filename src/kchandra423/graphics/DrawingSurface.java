@@ -6,6 +6,7 @@ import processing.core.PApplet;
 /**
  * Represents a drawing surface, which is a type of PApplet
  *
+ * @see processing.core.PApplet
  * @author Kumar Chandra
  */
 public class DrawingSurface extends PApplet {

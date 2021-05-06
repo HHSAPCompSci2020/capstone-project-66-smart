@@ -90,11 +90,11 @@ public class Gun extends Actor {
     }
 
     /**
-     * Creates a new projectile using this images
+     * Creates a new projectile using this images current angle. Applies all effects such as the spread, and velocity and pellets
      */
     public void fire() {
         if(canFire()) {
-            float tempAngle = (float) image.getAngle();
+            float tempAngle = image.getAngle();
                 tempAngle += Math.random() * spread ;
                 tempAngle -= spread / 2;
             projectiles.add(new Projectile(

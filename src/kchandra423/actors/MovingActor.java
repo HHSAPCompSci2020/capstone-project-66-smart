@@ -10,6 +10,7 @@ import kchandra423.levels.Room;
  * This is to ensure that a collision created from the x direction will not affect the y velocity.
  * It is recommended to move in the x direction, check for intersection (if it collides with anything, bounce back in the x direction), and then do the same thing in the y direction
  *
+ * @see kchandra423.actors.Actor
  * @author Kumar Chandra
  */
 public abstract class MovingActor extends Actor {

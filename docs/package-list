@@ -1,5 +1,9 @@
 kchandra423.actors
+kchandra423.actors.obstacles
 kchandra423.actors.players
+kchandra423.actors.players.enemies
+kchandra423.actors.weapons
+kchandra423.actors.weapons.projectiles
 kchandra423.graphics
 kchandra423.graphics.textures
 kchandra423.levels
