@@ -58,19 +58,30 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 		{
 			e.printStackTrace();
 		}
+		/* Might be useful for future reference
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			      public void run()
 			      {
-			    	  
+			    	  //code here runs after the program is shut down
 			      }
 			    });
+		*/ 
 		
 	}
 	
-	private void saveData(UserData data)
+	public UserData getInfo(String username)
 	{
-		
+		DatabaseReference userRef = postsRef.child(username);
+		return null;
 	}
+	
+	public void saveData(UserData data)
+	{
+		DatabaseReference userRef = postsRef.child(data.author);
+		userRef.setValueAsync(data);
+	}
+	
+	
 	
 
 
