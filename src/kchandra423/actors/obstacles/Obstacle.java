@@ -5,8 +5,8 @@ import kchandra423.levels.Room;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 
-public class Obstacles extends Actor {
-    public Obstacles(KImage image) {
+public class Obstacle extends Actor {
+    public Obstacle(KImage image) {
         super(image);
     }
 

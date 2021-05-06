@@ -63,8 +63,6 @@ public class Gun extends Actor {
         d.fill(255);
         for (Projectile p :
                 projectiles) {
-//            Rectangle bounds = p.getBounds();
-//            d.rect(bounds.x,bounds.y, bounds.width, bounds.height);
             p.draw(d);
         }
 
@@ -74,11 +72,8 @@ public class Gun extends Actor {
     public void fire() {
         if(canFire()) {
             float tempAngle = (float) image.getAngle();
-            if (Math.random() >= 0.5) {
-                tempAngle += Math.random() * spread / 2;
-            } else {
-                tempAngle -= Math.random() * spread / 2;
-            }
+                tempAngle += Math.random() * spread ;
+                tempAngle -= spread / 2;
             projectiles.add(new Projectile(
                     new KImage((float) (image.getX() + 60 * Math.cos(image.getAngle())), (float) (image.getY() + 60 * Math.sin(image.getAngle()))
                             , false, false, projectile, projectileArea)

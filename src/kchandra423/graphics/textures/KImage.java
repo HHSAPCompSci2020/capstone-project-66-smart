@@ -21,6 +21,7 @@ import java.awt.geom.Area;
  * the x coordinate of the current location, which is also in the top left. The final transformation, "reversed" simply states
  * whether or not when the object is reflected, does its angle reverse to look in the "right" direction, by drawing the angle at Pi- its actual value.
  * However a restriction of this is that unexpected behavior when something is reflected, but not reversed, and it is rotated by a non zero amount.
+ *
  * @author Kumar Chandra
  */
 public class KImage {
@@ -37,6 +38,7 @@ public class KImage {
     /**
      * Creates a new KImage with the specified texture.
      * Position starts at 0,0, with reflected and reversed being false
+     *
      * @param t A texture that represents what this KImage looks like
      */
     public KImage(Texture t) {
@@ -46,6 +48,7 @@ public class KImage {
     /**
      * Creates a new Kimage with the specified texture and location
      * Reflected and reversed are set to false
+     *
      * @param t The Texture used by this KImage
      * @param x The initial x position
      * @param y The initial y position
@@ -56,11 +59,12 @@ public class KImage {
 
     /**
      * Creates a new Kimage with all the specified fields
-     * @param x The initial x position
-     * @param y The initial y position
+     *
+     * @param x         The initial x position
+     * @param y         The initial y position
      * @param reflected Whether or not the image is reflected
-     * @param reversed Whether or not the image is reversed
-     * @param t The Texture used by this KImage
+     * @param reversed  Whether or not the image is reversed
+     * @param t         The Texture used by this KImage
      */
     public KImage(float x, float y, boolean reflected, boolean reversed, Texture t) {
         this.x = x;
@@ -80,12 +84,13 @@ public class KImage {
      * This will make it so you will only need to load the area once (which can be very slow), and pass in that area
      * to all new KImages. Another scenario in which you may want to specify the area is if the hitbox of this KImage
      * doesnt necessarily correspond to the way it looks, so you want to be able to set it yourself.
-     * @param x The initial x position
-     * @param y The initial y position
+     *
+     * @param x         The initial x position
+     * @param y         The initial y position
      * @param reflected Whether or not the image is reflected
-     * @param reversed Whether or not the image is reversed
-     * @param t The Texture used by this KImage
-     * @param area The specified area to use as a hitbox
+     * @param reversed  Whether or not the image is reversed
+     * @param t         The Texture used by this KImage
+     * @param area      The specified area to use as a hitbox
      */
     public KImage(float x, float y, boolean reflected, boolean reversed, Texture t, Area area) {
         this.x = x;
@@ -101,7 +106,8 @@ public class KImage {
 
     /**
      * Loads an area from a Texture, and returns an area that is composed of all of the pixels that are not transparent.
-     *  THIS CALL IS EXTREMELY SLOW. ATTEMPT TO USE IT SPARINGLY.
+     * THIS CALL IS EXTREMELY SLOW. ATTEMPT TO USE IT SPARINGLY.
+     *
      * @param texture The texture you want to create an area out of
      * @return An area that fits onto all nontransparent pixels of the texture.
      */
@@ -123,6 +129,7 @@ public class KImage {
 
     /**
      * Draws the Texture with all necessary transformations specified by other parameters.
+     *
      * @param p The Papplet to be drawn onto.
      */
     public void draw(PApplet p) {
@@ -151,6 +158,7 @@ public class KImage {
 
     /**
      * Translates the KImage by the specified amounts
+     *
      * @param delx The amount to translate in the x direction
      * @param dely The amount to translate in the y direction
      * @post This image's area is no longer up to date
@@ -165,19 +173,22 @@ public class KImage {
 
     /**
      * Rotates the shape by the specified amount. (Added onto current angle)
+     *
      * @param angle The angle in radians to be rotated by
      * @post This image's area is no longer up to date
      */
     public void rotate(float angle) {
         if (angle != 0) {
             this.angle += angle;
+            this.angle %= Math.PI * 2;
             upToDate = false;
         }
     }
 
     /**
      * Sets whether or not the KImage is reflected about the vertical line that passes through its x coordinate.
-     *  Reflections happen about the top left coordinate of the image.
+     * Reflections happen about the top left coordinate of the image.
+     *
      * @param reflected Whether or not this image is reflected
      * @post This image's area is no longer up to date
      */
@@ -190,6 +201,7 @@ public class KImage {
 
     /**
      * Returns whether or not the shape is being reflected
+     *
      * @return Whether or not the shape is reflected
      */
     public boolean isReflected() {
@@ -198,18 +210,21 @@ public class KImage {
 
     /**
      * Sets the current angle to the specified angle
+     *
      * @param angle The specified angle
      * @post This image's area is no longer up to date
      */
     public void setAngle(float angle) {
         if (this.angle != angle) {
             this.angle = angle;
+            this.angle %= Math.PI * 2;
             upToDate = false;
         }
     }
 
     /**
      * Moves the image to the specified x and y coordinates.
+     *
      * @param x The new x position
      * @param y The new y position
      * @post This image's area is no longer up to date
@@ -224,6 +239,7 @@ public class KImage {
 
     /**
      * Return the current x position
+     *
      * @return The current x position
      */
     public float getX() {
@@ -232,6 +248,7 @@ public class KImage {
 
     /**
      * Returns the current y position
+     *
      * @return The current y position
      */
     public float getY() {
@@ -240,6 +257,7 @@ public class KImage {
 
     /**
      * Returns the current angle
+     *
      * @return the current angle
      */
     public float getAngle() {
@@ -248,6 +266,7 @@ public class KImage {
 
     /**
      * Returns the width of the current image
+     *
      * @return The width of the texture
      */
     public int getWidth() {
@@ -256,6 +275,7 @@ public class KImage {
 
     /**
      * Returns the current height of the image
+     *
      * @return The height of the texture
      */
     public int getHeight() {
@@ -268,6 +288,7 @@ public class KImage {
 
     /**
      * Sets if this image is reversed
+     *
      * @param reversed Whether or not the imagee is reversed
      * @post This image's area is no longer up to date
      */
@@ -280,30 +301,20 @@ public class KImage {
 
     /**
      * Returns whether or not this image is reversed
+     *
      * @return Whether or not this image is reversed
      */
     public boolean isReversed() {
         return reversed;
     }
 
-//    public boolean intersects(ArrayList<KImage> images) {
-//        Area orginial = getTransformedArea();
-//        for (KImage kImage :
-//                images) {
-//            Area copy = (Area) orginial.clone();
-//            copy.intersect(kImage.getTransformedArea());
-//            if (!copy.isEmpty()) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     /**
      * Returns whether or not this shape's area intersects the other shapes area.
+     *
      * @param other The other KImage
-     * @post Both image's areas will be up to date
      * @return Whether or not the shapes intersect
+     * @post Both image's areas will be up to date
      */
     public boolean intersects(KImage other) {
         if (!upToDate) {
@@ -320,8 +331,9 @@ public class KImage {
 
     /**
      * Returns a rectangle representing the boundaries of this area as the most tight rectangle possible
-     * @post This image's area will be up to date
+     *
      * @return The most tighlty bounding rectangle possible
+     * @post This image's area will be up to date
      */
     public Rectangle getBounds() {
         if (!upToDate) {
