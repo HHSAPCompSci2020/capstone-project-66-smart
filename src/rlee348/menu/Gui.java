@@ -1,6 +1,7 @@
 package rlee348.menu;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /**
  * Draws the menu screen for the program, along with some of the other menu
@@ -32,6 +33,10 @@ public class Gui extends PApplet {
 
 	public void setup() {
 
+		PImage img;
+		img = loadImage("res/Images/Backgrounds");
+		background(img);
+		
 		rectColor = color(0);
 		rectHighlight = color(51);
 		circleColor = color(255);
