@@ -1,5 +1,6 @@
 package kchandra423.actors;
 
+import kchandra423.actors.players.ActorState;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
@@ -14,6 +15,7 @@ import kchandra423.levels.Room;
  * @author Kumar Chandra
  */
 public abstract class MovingActor extends Actor {
+    protected ActorState state;
     protected float vx, vy;
     protected float maxV;
     protected float accel;
@@ -30,20 +32,29 @@ public abstract class MovingActor extends Actor {
         vy = 0;
         this.maxV = maxV;
         this.accel = accel;
+        state = ActorState.IDLE;
     }
 
     /**
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackX() {
-        image.translate(-vx, 0);
+        if(vx<0) {
+            image.translate(-vx+5, 0);
+        }else{
+            image.translate(-vx-5, 0);
+        }
         vx *= -0.3f;
     }
     /**
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackY() {
-        image.translate(0, -vy);
+        if(vy<0) {
+            image.translate(0, -vy+5);
+        }else{
+            image.translate(0, -vy-5);
+        }
         vy *= -0.3f;
     }
 
@@ -132,4 +143,6 @@ public abstract class MovingActor extends Actor {
 
         image.translate(0, vy);
     }
+
+    protected abstract void updateState();
 }

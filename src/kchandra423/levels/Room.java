@@ -35,12 +35,12 @@ public class Room {
         obstacles.add(o);
         enemies = new ArrayList<>();
         bounds = new Rectangle(50, 50, 2000, 2000);
-        enemies.add(new Enemy(bounds.x + 10, bounds.y + 10));
-        enemies.add(new Enemy(bounds.x + 500, bounds.y + 500));
+        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 10));
+        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 500));
 
 
-        enemies.add(new Enemy(bounds.x + 10, bounds.y + 500));
-        enemies.add(new Enemy(bounds.x + 500, bounds.y + 10));
+        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 500));
+        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 10));
         player = new Player(new KImage(bounds.x + 50, bounds.y + 50, false, false, Texture.TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), null);
         background.resize(bounds.width, bounds.height);
     }

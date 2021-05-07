@@ -94,4 +94,8 @@ public class Player extends MovingActor {
     }
 
 
+    @Override
+    protected void updateState() {
+
+    }
 }
