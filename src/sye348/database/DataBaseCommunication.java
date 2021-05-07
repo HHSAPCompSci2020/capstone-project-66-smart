@@ -1,14 +1,9 @@
 package sye348.database;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
+
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Scanner;
+
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -31,12 +26,14 @@ import com.google.firebase.database.FirebaseDatabase;
  *
  */
 
-public class DataBaseCommunication implements ActionListener, ChildEventListener
+public class DataBaseCommunication
 {
 	
 	private DatabaseReference postsRef;
 	
 	private final String JSONFILE = "TODO", DATABASEURL = "TODO";
+	
+	private DataSnapshot data;
 	
 	public DataBaseCommunication()
 	{
@@ -51,7 +48,6 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 			DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 			postsRef = database.child("accounts");
 
-			postsRef.addChildEventListener(this);
 			
 		}
 		catch (IOException e)
@@ -72,7 +68,30 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 	public UserData getInfo(String username)
 	{
 		DatabaseReference userRef = postsRef.child(username);
-		return null;
+	
+		
+		userRef.addChildEventListener(new ChildEventListener()
+				{
+					@Override
+					public void onCancelled(DatabaseError arg0) {}
+
+					@Override
+					public void onChildAdded(DataSnapshot arg0, String arg1) {}
+
+					@Override
+					public void onChildChanged(DataSnapshot dataSnap, String arg1) 
+					{
+						data = dataSnap;
+					}
+					@Override
+					public void onChildMoved(DataSnapshot arg0, String arg1) {}					
+					
+					@Override
+					public void onChildRemoved(DataSnapshot arg0) {}
+		
+				});
+		userRef.child("trigger").setValueAsync(false);
+		return data.getValue(UserData.class);
 	}
 	
 	public void saveData(UserData data)
@@ -83,42 +102,5 @@ public class DataBaseCommunication implements ActionListener, ChildEventListener
 	
 	
 	
-
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onCancelled(DatabaseError arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChildAdded(DataSnapshot arg0, String arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChildChanged(DataSnapshot arg0, String arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChildMoved(DataSnapshot arg0, String arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onChildRemoved(DataSnapshot arg0) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
