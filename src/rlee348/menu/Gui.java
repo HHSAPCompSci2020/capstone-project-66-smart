@@ -19,7 +19,8 @@ public class Gui extends PApplet {
 	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
 	boolean rectOver = false;
 	boolean circleOver = false;
-
+	PImage img;
+	
 	/**
 	 * Creates a Gui object
 	 */
@@ -32,9 +33,18 @@ public class Gui extends PApplet {
 	 */
 
 	public void setup() {
-
-		PImage img;
-		img = loadImage("res/Images/Backgrounds");
+		
+		
+		System.out.println(height);
+		System.out.println(width);
+		
+		
+		img = loadImage("res/Images/Backgrounds/MenuBackground.png");
+		img.resize(1024,768);
+		
+		System.out.println(img.height);
+		System.out.println(img.width);
+		
 		background(img);
 		
 		rectColor = color(0);
@@ -56,8 +66,12 @@ public class Gui extends PApplet {
 	 */
 	public void draw() {
 
+//		img.resize(width,height);
+		background(img);
+		
+		
 		update(mouseX, mouseY);
-		background(currentColor);
+	//	background(currentColor);
 
 		if (rectOver) {
 			fill(rectHighlight);
@@ -76,9 +90,13 @@ public class Gui extends PApplet {
 		}
 		stroke(0);
 		ellipse(circleX, circleY, circleSize, circleSize);
-
+   
 	}
 
+	public void settings() {
+		size(1024,768);
+	}
+	
 	/**
 	 * Executes the code using the specific point of the mouse, changes the color of
 	 * the button depending on the mouse position.
