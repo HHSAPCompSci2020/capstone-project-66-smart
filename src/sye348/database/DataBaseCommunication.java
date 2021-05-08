@@ -35,6 +35,9 @@ public class DataBaseCommunication
 	
 	private DataSnapshot data;
 	
+	/**
+	 * Creates a new DataBase Communicator
+	 */
 	public DataBaseCommunication()
 	{
 		FileInputStream refreshToken;
@@ -65,6 +68,11 @@ public class DataBaseCommunication
 		
 	}
 	
+	/**
+	 * Gets the information from the central database
+	 * @param username The username of the account
+	 * @return A UserData object that represents all the saved information on an account
+	 */
 	public UserData getInfo(String username)
 	{
 		DatabaseReference userRef = postsRef.child(username);
@@ -94,6 +102,10 @@ public class DataBaseCommunication
 		return data.getValue(UserData.class);
 	}
 	
+	/**
+	 * Saves the given data to the central Firebase database
+	 * @param data All the information on an account in the form of a object
+	 */
 	public void saveData(UserData data)
 	{
 		DatabaseReference userRef = postsRef.child(data.author);
