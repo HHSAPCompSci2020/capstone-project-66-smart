@@ -1,15 +1,14 @@
-package kchandra423.actors.players.enemies;
+package kchandra423.actors.MovingActors.enemies;
 
-import kchandra423.actors.MovingActor;
-import kchandra423.actors.obstacles.Obstacle;
-import kchandra423.actors.players.ActorState;
+import kchandra423.actors.Damage;
+import kchandra423.actors.MovingActors.ActorState;
+import kchandra423.actors.MovingActors.MovingActor;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
 
 import java.awt.geom.Area;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,7 +17,7 @@ import java.util.TimerTask;
  *
  * @author Kumar Chandra
  * @see kchandra423.actors.Actor
- * @see kchandra423.actors.MovingActor
+ * @see MovingActor
  * @see EnemyAI
  */
 public class Enemy extends MovingActor {
@@ -46,69 +45,58 @@ public class Enemy extends MovingActor {
 
     @Override
     public void act(DrawingSurface d, Room r) {
+        if (getState() != ActorState.ATTACKING) {
+            super.act(d, r);
+            if (getState() != ActorState.ATTACKING) {
+                if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
+                    updateState(ActorState.IDLE);
+                } else {
+                    updateState(ActorState.MOVING);
+                }
+            }
+        }
+
         float decision = ai.makeMovementDecision(r);
+        image.setReflected(Math.abs(decision) > Math.PI / 2);
 
 
-        if (state!=ActorState.ATTACKING) {
-            if (intersects(r.getPlayer())) {
-                state = ActorState.ATTACKING;
-                vx =0;
-                vy =0;
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        state = ActorState.IDLE;
-                    }
-                }, 500L);
-                updateState();
-                return;
-            }
-            ArrayList<Obstacle> obstacles = r.getObstacles();
-            moveX(decision);
-            for (Obstacle o : obstacles) {
-                if (intersects(o)) {
-//                bounceBackX();
-                    if (o.getImage().getX() > image.getX()) {
-                        vx -= 2;
-                    } else {
-                        vx += 2;
-                    }
-                }
-            }
-            if (!r.inBounds(image)) {
-                bounceBackX();
-            }
-            moveY(decision);
-            for (Obstacle o : obstacles) {
-                if (intersects(o)) {
-//                bounceBackY();
-                    if (o.getImage().getY() > image.getY()) {
-                        vy -= 2;
-                    } else {
-                        vy += 2;
-                    }
-                }
-            }
-            if (!r.inBounds(image)) {
-                bounceBackY();
-            }
-            if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
-                state = ActorState.IDLE;
-            } else {
-                state = ActorState.MOVING;
-            }
-
-
-        }
-        if (Math.abs(decision) > Math.PI / 2) {
-            image.setReflected(true);
-        } else {
-            image.setReflected(false);
-
-        }
-
-        updateState();
     }
+
+    @Override
+    protected void makeMoveX(DrawingSurface drawingSurface, Room room) {
+        if (getState() != ActorState.ATTACKING) {
+            float decision = ai.makeMovementDecision(room);
+            moveX(decision);
+        }
+    }
+
+    @Override
+    protected void makeMoveY(DrawingSurface drawingSurface, Room room) {
+        if (getState() != ActorState.ATTACKING) {
+            float decision = ai.makeMovementDecision(room);
+            moveY(decision);
+        }
+    }
+
+    @Override
+    protected MovingActor collidesWOppponent(Room room) {
+        return intersects(room.getPlayer()) ? room.getPlayer() : null;
+    }
+
+    @Override
+    protected void onOpponentCollision(MovingActor opponent) {
+        updateState(ActorState.ATTACKING);
+        opponent.interceptHitBox(new Damage(40));
+        vx = 0;
+        vy = 0;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                updateState(ActorState.IDLE);
+            }
+        }, 500L);
+    }
+
 
     /**
      * Creates a random enemy at a given location. Currently just for testing
@@ -125,9 +113,9 @@ public class Enemy extends MovingActor {
         if (Math.random() < 1) {
             Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
             idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
-            attacking = new KImage(x, y,Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
-            moving = new KImage(x,y ,Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
-            death = new KImage(x,y,Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
+            attacking = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
+            moving = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
+            death = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
         } else {
             idle = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Bat.gif"), x, y);
             attacking = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Bat.gif"), x, y);
@@ -138,8 +126,9 @@ public class Enemy extends MovingActor {
     }
 
     @Override
-    protected void updateState() {
-        switch (state) {
+    protected void updateState(ActorState newState) {
+        super.updateState(newState);
+        switch (newState) {
             case IDLE:
                 idle.setAngle(image.getAngle());
                 idle.setReflected(image.isReflected());

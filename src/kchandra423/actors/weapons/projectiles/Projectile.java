@@ -1,14 +1,13 @@
 package kchandra423.actors.weapons.projectiles;
 
 import kchandra423.actors.Actor;
+import kchandra423.actors.Damage;
 import kchandra423.actors.obstacles.Obstacle;
-import kchandra423.actors.players.enemies.Enemy;
+import kchandra423.actors.MovingActors.enemies.Enemy;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
-import kchandra423.utility.Calculator;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -75,6 +74,7 @@ public class Projectile extends Actor {
                 for (Enemy e : enemies) {
                     if (intersects(e)) {
                         active = false;
+                        e.interceptHitBox(new Damage(10));
 //                        e.setActive(false);
                         return;
                     }

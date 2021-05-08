@@ -1,6 +1,6 @@
-package kchandra423.actors.players.enemies;
+package kchandra423.actors.MovingActors.enemies;
 
-import kchandra423.actors.players.Player;
+import kchandra423.actors.MovingActors.Player;
 import kchandra423.levels.Room;
 import kchandra423.utility.Calculator;
 

@@ -1,11 +1,15 @@
-package kchandra423.actors;
+package kchandra423.actors.MovingActors;
 
-import kchandra423.actors.players.ActorState;
+import kchandra423.actors.Actor;
+import kchandra423.actors.Damage;
+import kchandra423.actors.obstacles.Obstacle;
+import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
+import kchandra423.levels.Room;
 
 /**
  * Moving actors differ from actors in that they have acceleration based physics already built into them.
- * They have a maximum velocity, and an x and y velocity, and an acceleration. All movement is done seperatley on the x and y axis.
+ * They have a maximum velocity, and an x and y velocity, and an acceleration. All movement is done separately on the x and y axis.
  * This is to ensure that a collision created from the x direction will not affect the y velocity.
  * It is recommended to move in the x direction, check for intersection (if it collides with anything, bounce back in the x direction), and then do the same thing in the y direction
  *
@@ -13,10 +17,76 @@ import kchandra423.graphics.textures.KImage;
  * @see kchandra423.actors.Actor
  */
 public abstract class MovingActor extends Actor {
-    protected ActorState state;
+    private ActorState state;
     protected float vx, vy;
     protected float maxV;
     protected float accel;
+    private int health = 100;
+
+    @Override
+    public void act(DrawingSurface d, Room room) {
+        if (health <= 0) {
+            setActive(false);
+        }
+        makeMoveX(d, room);
+        Obstacle collision = collidesWObstacle(room);
+        if (collision != null) {
+            onObstacleCollision(true, collision);
+        }
+        if (!room.inBounds(image)) {
+            bounceBackX();
+        }
+        makeMoveY(d, room);
+        collision = collidesWObstacle(room);
+        if (collision != null) {
+            onObstacleCollision(false, collision);
+        }
+        if (!room.inBounds(image)) {
+            bounceBackY();
+        }
+        MovingActor opponent = collidesWOppponent(room);
+        if (opponent!=null){
+            onOpponentCollision(opponent);
+        }
+
+    }
+
+    protected abstract void makeMoveX(DrawingSurface drawingSurface, Room room);
+
+    protected abstract void makeMoveY(DrawingSurface drawingSurface, Room room);
+
+    private Obstacle collidesWObstacle(Room room) {
+        for (Obstacle o :
+                room.getObstacles()) {
+            if (intersects(o)) {
+                return o;
+            }
+        }
+        return null;
+
+    }
+
+    protected abstract MovingActor collidesWOppponent(Room room);
+
+    protected void onObstacleCollision(boolean isX, Obstacle obstacle) {
+        if (isX) {
+            bounceBackX();
+            if (obstacle.getImage().getX() > image.getX()) {
+                vx -= 3;
+            } else {
+                vx += 3;
+            }
+        } else {
+            bounceBackY();
+            if (obstacle.getImage().getY() > image.getY()) {
+                vy -= 3;
+            } else {
+                vy += 3;
+            }
+        }
+    }
+
+    protected abstract void onOpponentCollision(MovingActor opponent);
 
     /**
      * Creates a new Moving actor with the specified image, acceleration and maximum velocity
@@ -40,7 +110,6 @@ public abstract class MovingActor extends Actor {
     protected void bounceBackX() {
 
         image.translate(-vx, 0);
-//        vx *= -0.3f;
     }
 
     /**
@@ -49,17 +118,8 @@ public abstract class MovingActor extends Actor {
     protected void bounceBackY() {
 
         image.translate(0, -vy);
-//        vy *= -0.3f;
     }
 
-//    protected void bounceBack(float angle){
-//        if(angle<0){
-//            angle+=Math.PI*2;
-//        }
-//        if(angle<Math.PI/4){
-//
-//        }
-//    }
 
     /**
      * Accelerates this actor in the x direction of the specified angle
@@ -76,8 +136,8 @@ public abstract class MovingActor extends Actor {
             vx = maxV;
         }
         vx *= 0.9f;
-        if(Math.abs(vx)<0.1){
-            vx=0;
+        if (Math.abs(vx) < 0.1) {
+            vx = 0;
         }
 
         image.translate(vx, 0);
@@ -98,8 +158,8 @@ public abstract class MovingActor extends Actor {
             vy = maxV;
         }
         vy *= 0.9f;
-        if(Math.abs(vy)<0.1){
-            vy=0;
+        if (Math.abs(vy) < 0.1) {
+            vy = 0;
         }
         image.translate(0, vy);
     }
@@ -125,8 +185,9 @@ public abstract class MovingActor extends Actor {
             vx = -maxV;
         } else {
             vx = maxV;
-        }if(Math.abs(vx)<0.1){
-            vx=0;
+        }
+        if (Math.abs(vx) < 0.1) {
+            vx = 0;
         }
 
         vx *= 0.9f;
@@ -155,12 +216,22 @@ public abstract class MovingActor extends Actor {
             vy = maxV;
         }
         vy *= 0.9f;
-        if(Math.abs(vy)<0.1){
-            vy=0;
+        if (Math.abs(vy) < 0.1) {
+            vy = 0;
         }
 
         image.translate(0, vy);
     }
 
-    protected abstract void updateState();
+
+    protected void updateState(ActorState newState){
+        state =newState;
+    }
+    protected ActorState getState(){
+        return state;
+    }
+
+    public void interceptHitBox(Damage damage) {
+        health -= damage.getAmount();
+    }
 }
