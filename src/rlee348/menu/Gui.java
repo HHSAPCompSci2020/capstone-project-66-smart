@@ -2,6 +2,7 @@ package rlee348.menu;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import g4p_controls.*;
 
 /**
  * Draws the menu screen for the program, along with some of the other menu
@@ -20,6 +21,9 @@ public class Gui extends PApplet {
 	boolean rectOver = false;
 	boolean circleOver = false;
 	PImage img;
+	GButton start;
+	GButton settings;
+	GLabel lblOut;
 	
 	/**
 	 * Creates a Gui object
@@ -59,6 +63,14 @@ public class Gui extends PApplet {
 		rectY = height / 2 - rectSize / 2;
 		ellipseMode(CENTER);
 
+		start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
+		settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
+		
+		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
+		lblOut.setTextAlign(GAlign.CENTER, null);
+		lblOut.setText("Dungeons and Magnums");
+		*/
+		
 	}
 
 	/**
@@ -70,7 +82,7 @@ public class Gui extends PApplet {
 		background(img);
 		
 		
-		update(mouseX, mouseY);
+	/*	update(mouseX, mouseY);
 	//	background(currentColor);
 
 		if (rectOver) {
@@ -90,6 +102,18 @@ public class Gui extends PApplet {
 		}
 		stroke(0);
 		ellipse(circleX, circleY, circleSize, circleSize);
+   
+   	*/
+		pushStyle();
+		
+		fill(0);
+		textSize(60);
+		text("Dungeons and Magnums", width/6, height/5);
+		textSize(20);
+		text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2*width/7, 2*height/7);
+		
+		popStyle();
+		
    
 	}
 
@@ -171,5 +195,19 @@ public class Gui extends PApplet {
 			return false;
 		}
 	}
+	
+	public void handleButtonEvents(GButton button, GEvent event) {
+		// Create the control window?
+		if (button == start && event == GEvent.CLICKED) {
+		//	lblOut.setText("Not Ready Yet");
+			
+		} 
+		
+		else if (button == settings && event == GEvent.CLICKED) {
+		//	lblOut.setText("Not Ready Yet");
+			
 
+		}
+
+	}
 }
