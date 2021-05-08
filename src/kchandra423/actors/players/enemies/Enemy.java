@@ -8,7 +8,10 @@ import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Represents a generic enemy type that attempts to fight the player.
@@ -25,6 +28,7 @@ public class Enemy extends MovingActor {
     private final KImage attack;
     private final KImage death;
     private final EnemyAI ai;
+    private Timer timer;
 
     //    public Enemy(KImage[] images){
 //        this(images[0],5,0.7f);
@@ -36,55 +40,79 @@ public class Enemy extends MovingActor {
         moving = images[1];
         attack = images[2];
         death = images[3];
+        timer = new Timer();
 
     }
 
     @Override
     public void act(DrawingSurface d, Room r) {
         float decision = ai.makeMovementDecision(r);
-//        moveX(new boolean[]{decision[0],decision[1]});
-        if (intersects(r.getPlayer())) {
-            state = ActorState.ATTACKING;
-        } else {
-            state = ActorState.IDLE;
-        }
-        ArrayList<Obstacle> obstacles = r.getObstacles();
-        moveX(decision);
-        if (!r.inBounds(image)) {
-            bounceBackX();
-        }
-        for (Obstacle o :
-                obstacles) {
-            if (intersects(o)) {
+
+
+        if (state!=ActorState.ATTACKING) {
+            if (intersects(r.getPlayer())) {
+                state = ActorState.ATTACKING;
+                vx =0;
+                vy =0;
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        state = ActorState.IDLE;
+                    }
+                }, 500L);
+                updateState();
+                return;
+            }
+            ArrayList<Obstacle> obstacles = r.getObstacles();
+            moveX(decision);
+            for (Obstacle o : obstacles) {
+                if (intersects(o)) {
+//                bounceBackX();
+                    if (o.getImage().getX() > image.getX()) {
+                        vx -= 2;
+                    } else {
+                        vx += 2;
+                    }
+                }
+            }
+            if (!r.inBounds(image)) {
                 bounceBackX();
             }
-        }
-        moveY(decision);
-        if (!r.inBounds(image)) {
-            bounceBackY();
-        }
-        for (Obstacle o :
-                obstacles) {
-            if (intersects(o)) {
+            moveY(decision);
+            for (Obstacle o : obstacles) {
+                if (intersects(o)) {
+//                bounceBackY();
+                    if (o.getImage().getY() > image.getY()) {
+                        vy -= 2;
+                    } else {
+                        vy += 2;
+                    }
+                }
+            }
+            if (!r.inBounds(image)) {
                 bounceBackY();
             }
-        }
+            if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
+                state = ActorState.IDLE;
+            } else {
+                state = ActorState.MOVING;
+            }
 
-        if (vx < 0) {
+
+        }
+        if (Math.abs(decision) > Math.PI / 2) {
             image.setReflected(true);
         } else {
             image.setReflected(false);
+
         }
-        if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
-            state = ActorState.IDLE;
-        } else if (state != ActorState.ATTACKING) {
-            state = ActorState.MOVING;
-        }
+
         updateState();
     }
 
     /**
      * Creates a random enemy at a given location. Currently just for testing
+     *
      * @param x The x coord of the given location
      * @param y The y coord of the given location
      * @return A new Enemy at that location (currently only a bat or goblin)
@@ -94,11 +122,12 @@ public class Enemy extends MovingActor {
         KImage moving;
         KImage attacking;
         KImage death;
-        if (Math.random() < 0.5) {
-            idle = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), x, y);
-            attacking = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), x, y);
-            moving = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), x, y);
-            death = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), x, y);
+        if (Math.random() < 1) {
+            Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
+            idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
+            attacking = new KImage(x, y,Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
+            moving = new KImage(x,y ,Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
+            death = new KImage(x,y,Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
         } else {
             idle = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Bat.gif"), x, y);
             attacking = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Bat.gif"), x, y);
@@ -138,6 +167,7 @@ public class Enemy extends MovingActor {
                 death.setReversed(image.isReversed());
                 death.moveTo(image.getX(), image.getY());
                 image = death;
+                break;
         }
 
     }

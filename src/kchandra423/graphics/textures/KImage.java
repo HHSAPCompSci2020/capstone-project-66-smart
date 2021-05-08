@@ -106,6 +106,29 @@ public class KImage {
         update();
         upToDate = true;
     }
+    /**
+     * Creates a new Kimage with all the specified fields. However the area is also specified,
+     * which can be useful if you are creating multiple KImages and already know what your area will be.
+     * This will make it so you will only need to load the area once (which can be very slow), and pass in that area
+     * to all new KImages. Another scenario in which you may want to specify the area is if the hitbox of this KImage
+     * doesnt necessarily correspond to the way it looks, so you want to be able to set it yourself.
+     *
+     * @param x         The initial x position
+     * @param y         The initial y position
+     * @param t         The Texture used by this KImage
+     * @param area      The specified area to use as a hitbox
+     */
+    public KImage(float x, float y,  Texture t, Area area) {
+        this.x = x;
+        this.reflected = false;
+        this.reversed = false;
+        this.y = y;
+        angle = 0;
+        image = t;
+        this.area = area;
+        update();
+        upToDate = true;
+    }
 
     /**
      * Loads an area from a Texture, and returns an area that is composed of all of the pixels that are not transparent.

@@ -1,9 +1,7 @@
 package kchandra423.actors;
 
 import kchandra423.actors.players.ActorState;
-import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
-import kchandra423.levels.Room;
 
 /**
  * Moving actors differ from actors in that they have acceleration based physics already built into them.
@@ -11,8 +9,8 @@ import kchandra423.levels.Room;
  * This is to ensure that a collision created from the x direction will not affect the y velocity.
  * It is recommended to move in the x direction, check for intersection (if it collides with anything, bounce back in the x direction), and then do the same thing in the y direction
  *
- * @see kchandra423.actors.Actor
  * @author Kumar Chandra
+ * @see kchandra423.actors.Actor
  */
 public abstract class MovingActor extends Actor {
     protected ActorState state;
@@ -22,8 +20,9 @@ public abstract class MovingActor extends Actor {
 
     /**
      * Creates a new Moving actor with the specified image, acceleration and maximum velocity
+     *
      * @param image The specified image
-     * @param maxV This actors maximum velocity
+     * @param maxV  This actors maximum velocity
      * @param accel This actors acceleration
      */
     protected MovingActor(KImage image, float maxV, float accel) {
@@ -39,30 +38,35 @@ public abstract class MovingActor extends Actor {
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackX() {
-        if(vx<0) {
-            image.translate(-vx+5, 0);
-        }else{
-            image.translate(-vx-5, 0);
-        }
-        vx *= -0.3f;
+
+        image.translate(-vx, 0);
+//        vx *= -0.3f;
     }
+
     /**
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackY() {
-        if(vy<0) {
-            image.translate(0, -vy+5);
-        }else{
-            image.translate(0, -vy-5);
-        }
-        vy *= -0.3f;
+
+        image.translate(0, -vy);
+//        vy *= -0.3f;
     }
+
+//    protected void bounceBack(float angle){
+//        if(angle<0){
+//            angle+=Math.PI*2;
+//        }
+//        if(angle<Math.PI/4){
+//
+//        }
+//    }
 
     /**
      * Accelerates this actor in the x direction of the specified angle
+     *
      * @param angle The specified angle
      */
-    protected void moveX(float angle){
+    protected void moveX(float angle) {
         float newVx = (float) (vx + Math.cos(angle) * accel);
         if (Math.abs(newVx) < maxV) {
             vx = newVx;
@@ -72,15 +76,19 @@ public abstract class MovingActor extends Actor {
             vx = maxV;
         }
         vx *= 0.9f;
+        if(Math.abs(vx)<0.1){
+            vx=0;
+        }
 
         image.translate(vx, 0);
     }
 
     /**
      * Accelerates this actor in the y direction of the specified angle
+     *
      * @param angle The specified angle
      */
-    protected void moveY(float angle){
+    protected void moveY(float angle) {
         float newVy = (float) (vy + Math.sin(angle) * accel);
         if (Math.abs(newVy) < maxV) {
             vy = newVy;
@@ -90,7 +98,9 @@ public abstract class MovingActor extends Actor {
             vy = maxV;
         }
         vy *= 0.9f;
-
+        if(Math.abs(vy)<0.1){
+            vy=0;
+        }
         image.translate(0, vy);
     }
 
@@ -98,6 +108,7 @@ public abstract class MovingActor extends Actor {
      * Accelerates this object in the x direction from a boolean array with two values,
      * first of which is whether or not to move left and the second of which is whether or not to move right.
      * If both or neither of these values are false, there will be no movement in the x direction
+     *
      * @param directions A boolean array where the first values specifies whether not to move to the immediate left
      *                   and the second specifies whether or not to move to the immediate right
      */
@@ -114,15 +125,19 @@ public abstract class MovingActor extends Actor {
             vx = -maxV;
         } else {
             vx = maxV;
+        }if(Math.abs(vx)<0.1){
+            vx=0;
         }
 
         vx *= 0.9f;
         image.translate(vx, 0);
     }
+
     /**
      * Accelerates this object in the y direction from a boolean array with two values,
      * first of which is whether or not to move up and the second of which is whether or not to move down.
      * If both or neither of these values are false, there will be no movement in the y direction
+     *
      * @param directions A boolean array where the first values specifies whether not to move directly up
      *                   and the second specifies whether or not to move directly down
      */
@@ -140,6 +155,9 @@ public abstract class MovingActor extends Actor {
             vy = maxV;
         }
         vy *= 0.9f;
+        if(Math.abs(vy)<0.1){
+            vy=0;
+        }
 
         image.translate(0, vy);
     }

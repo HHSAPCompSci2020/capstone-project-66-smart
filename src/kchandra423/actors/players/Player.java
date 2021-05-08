@@ -8,8 +8,10 @@ import kchandra423.levels.Room;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.Calculator;
+import org.w3c.dom.css.Rect;
 import processing.core.PApplet;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -66,6 +68,11 @@ public class Player extends MovingActor {
         for (Obstacle o : obstacles) {
             if (intersects(o)) {
                 bounceBackX();
+                if(o.getImage().getX()> image.getX()){
+                    vx-=2;
+                }else{
+                    vx+=2;
+                }
             }
         }
         if (!r.inBounds(image)) {
@@ -75,6 +82,11 @@ public class Player extends MovingActor {
         for (Obstacle o : obstacles) {
             if (intersects(o)) {
                 bounceBackY();
+                if(o.getImage().getY()> image.getY()){
+                    vy-=2;
+                }else{
+                    vy+=2;
+                }
             }
         }
         if (!r.inBounds(image)) {
