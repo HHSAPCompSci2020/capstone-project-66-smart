@@ -41,7 +41,7 @@ public class Room {
 
 //        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 500));
 //        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 10));
-        player = new Player(new KImage(bounds.x + 50, bounds.y + 50, false, false, Texture.TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), null);
+        player = new Player(new KImage(bounds.x + 50, bounds.y + 50, false, false, Texture.TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")),new KImage(bounds.x + 50, bounds.y + 50, false, false, Texture.TextureBuilder.getTexture("res/Images/Players/MageActive.gif")));
         background.resize(bounds.width, bounds.height);
     }
 

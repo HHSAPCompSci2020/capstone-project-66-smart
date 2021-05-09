@@ -6,7 +6,7 @@ import processing.core.PApplet;
  * @author Kumar Chandra
  *
  */
-public class TwodGameThing{
+public class DungeonsAndMagnums {
 
 
 	/**

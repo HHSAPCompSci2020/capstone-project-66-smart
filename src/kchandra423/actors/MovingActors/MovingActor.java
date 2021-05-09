@@ -6,6 +6,7 @@ import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
+import kchandra423.utility.Calculator;
 
 /**
  * Moving actors differ from actors in that they have acceleration based physics already built into them.
@@ -21,7 +22,34 @@ public abstract class MovingActor extends Actor {
     protected float vx, vy;
     protected float maxV;
     protected float accel;
-    private int health = 100;
+
+    //    public static final int RANGED = 0, MAGIC = 1, MELEE = 2, SHORT = 3, LONG = 4, PHYSDEF = 5, MAGDEF = 6;
+    protected final float[] statMultipliers;
+    protected int health;
+    protected final int maxHealth;
+    protected int shield;
+    protected final int maxShield;
+
+    /**
+     * Creates a new Moving actor with the specified image, acceleration and maximum velocity
+     *
+     * @param image The specified image
+     * @param maxV  This actors maximum velocity
+     * @param accel This actors acceleration
+     */
+    protected MovingActor(KImage image, float maxV, float accel) {
+        super(image);
+        vx = 0;
+        vy = 0;
+        this.maxV = maxV;
+        this.accel = accel;
+        state = ActorState.IDLE;
+        maxHealth = 100;
+        health = maxHealth;
+        maxShield = 100;
+        shield = maxShield;
+        statMultipliers = new float[]{1, 1, 1, 1, 1, 1};
+    }
 
     @Override
     public void act(DrawingSurface d, Room room) {
@@ -45,7 +73,7 @@ public abstract class MovingActor extends Actor {
             bounceBackY();
         }
         MovingActor opponent = collidesWOppponent(room);
-        if (opponent!=null){
+        if (opponent != null) {
             onOpponentCollision(opponent);
         }
 
@@ -88,21 +116,6 @@ public abstract class MovingActor extends Actor {
 
     protected abstract void onOpponentCollision(MovingActor opponent);
 
-    /**
-     * Creates a new Moving actor with the specified image, acceleration and maximum velocity
-     *
-     * @param image The specified image
-     * @param maxV  This actors maximum velocity
-     * @param accel This actors acceleration
-     */
-    protected MovingActor(KImage image, float maxV, float accel) {
-        super(image);
-        vx = 0;
-        vy = 0;
-        this.maxV = maxV;
-        this.accel = accel;
-        state = ActorState.IDLE;
-    }
 
     /**
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
@@ -224,14 +237,70 @@ public abstract class MovingActor extends Actor {
     }
 
 
-    protected void updateState(ActorState newState){
-        state =newState;
+    protected void updateState(ActorState newState) {
+        state = newState;
     }
-    protected ActorState getState(){
+
+    protected ActorState getState() {
         return state;
     }
 
     public void interceptHitBox(Damage damage) {
-        health -= damage.getAmount();
+        health -= Calculator.calculateDamage(damage, statMultipliers);
+    }
+
+
+    public void incrementAllAttackStats(float buff) {
+        for (int i = 0; i < 3; i++) {
+            statMultipliers[i] += buff;
+        }
+    }
+
+    public void incrementAllDefenseStats(float buff) {
+        for (int i = 3; i < 6; i++) {
+            statMultipliers[i] += buff;
+        }
+    }
+
+    public void incrementAllStats(float buff) {
+        for (int i = 0; i < statMultipliers.length; i++) {
+            statMultipliers[i] += buff;
+        }
+    }
+
+    public void incrementStat(Stat stat, float buff) {
+        statMultipliers[stat.getValue()] += buff;
+    }
+
+    public void setStat(Stat stat, float value) {
+        statMultipliers[stat.getValue()] = value;
+    }
+
+    public float getStat(Stat stat) {
+        return statMultipliers[stat.getValue()];
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public int getShield() {
+        return shield;
+    }
+
+    public void setShield(int shield) {
+        this.shield = shield;
+    }
+
+    public int getMaxShield() {
+        return maxShield;
     }
 }

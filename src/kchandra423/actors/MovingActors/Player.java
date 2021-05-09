@@ -2,9 +2,9 @@ package kchandra423.actors.MovingActors;
 
 import kchandra423.actors.MovingActors.enemies.Enemy;
 import kchandra423.actors.weapons.Gun;
-import kchandra423.levels.Room;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
+import kchandra423.levels.Room;
 import kchandra423.utility.Calculator;
 import processing.core.PApplet;
 
@@ -30,11 +30,11 @@ public class Player extends MovingActor {
 
     @Override
     public void act(DrawingSurface d, Room r) {
-        super.act(d,r);
+        super.act(d, r);
         float angle = (float) Calculator.calculateAngle(d.width / 2.0f, d.height / 2.0f,
                 d.mouseX, d.mouseY);
-                if(angle<0){
-            angle+=Math.PI*2;
+        if (angle < 0) {
+            angle += Math.PI * 2;
         }
         if (!Float.isNaN(angle)) {
             weapon.getImage().setAngle(angle);
@@ -51,41 +51,12 @@ public class Player extends MovingActor {
             image.setReflected(false);
             weapon.getImage().setReflected(false);
         }
-
+        if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
+            updateState(ActorState.IDLE);
+        } else {
+            updateState(ActorState.MOVING);
+        }
         weapon.act(d, r);
-//
-//
-//
-//        ArrayList<Obstacle> obstacles = r.getObstacles();
-//        for (Obstacle o : obstacles) {
-//            if (intersects(o)) {
-//                bounceBackX();
-//                if(o.getImage().getX()> image.getX()){
-//                    vx-=2;
-//                }else{
-//                    vx+=2;
-//                }
-//            }
-//        }
-//        if (!r.inBounds(image)) {
-//            bounceBackX();
-//        }
-//
-//        for (Obstacle o : obstacles) {
-//            if (intersects(o)) {
-//                bounceBackY();
-//                if(o.getImage().getY()> image.getY()){
-//                    vy-=2;
-//                }else{
-//                    vy+=2;
-//                }
-//            }
-//        }
-//        if (!r.inBounds(image)) {
-//            bounceBackY();
-//        }
-
-
         weapon.getImage().moveTo(image.getX() + image.getWidth() / 2.0f, image.getY() + image.getHeight() / 2.0f);
 
     }
@@ -108,7 +79,7 @@ public class Player extends MovingActor {
     protected MovingActor collidesWOppponent(Room room) {
         for (Enemy e :
                 room.getEnemies()) {
-            if (intersects(e)){
+            if (intersects(e)) {
                 return e;
             }
         }
@@ -123,10 +94,28 @@ public class Player extends MovingActor {
 
     @Override
     protected void updateState(ActorState newState) {
-        //will eventually switch between idle and moving sprites
+        super.updateState(newState);
+        switch (newState) {
+            case IDLE:
+                idleImage.setAngle(image.getAngle());
+                idleImage.setReflected(image.isReflected());
+                idleImage.setReversed(image.isReversed());
+                idleImage.moveTo(image.getX(), image.getY());
+                image = idleImage;
+                break;
+            case MOVING:
+                activeImage.setAngle(image.getAngle());
+                activeImage.setReflected(image.isReflected());
+                activeImage.setReversed(image.isReversed());
+                activeImage.moveTo(image.getX(), image.getY());
+                image = activeImage;
+                break;
+        }
     }
+
     @Override
-    public void setActive(boolean b){
+    public void setActive(boolean b) {
         //idk how this will work for now, but itll trigger so end of the game
     }
+
 }

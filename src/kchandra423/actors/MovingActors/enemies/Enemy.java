@@ -2,6 +2,7 @@ package kchandra423.actors.MovingActors.enemies;
 
 import kchandra423.actors.Damage;
 import kchandra423.actors.MovingActors.ActorState;
+import kchandra423.actors.MovingActors.DamageTypes;
 import kchandra423.actors.MovingActors.MovingActor;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
@@ -29,9 +30,6 @@ public class Enemy extends MovingActor {
     private final EnemyAI ai;
     private Timer timer;
 
-    //    public Enemy(KImage[] images){
-//        this(images[0],5,0.7f);
-//    }
     private Enemy(KImage[] images, float maxV, float accel) {
         super(images[0], maxV, accel);
         ai = new EnemyAI(this);
@@ -45,9 +43,9 @@ public class Enemy extends MovingActor {
 
     @Override
     public void act(DrawingSurface d, Room r) {
-        if (getState() != ActorState.ATTACKING) {
+        if (getState() != ActorState.ATTACKING && getState() != ActorState.DEAD) {
             super.act(d, r);
-            if (getState() != ActorState.ATTACKING) {
+            if (getState() != ActorState.ATTACKING && getState()!= ActorState.DEAD) {
                 if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
                     updateState(ActorState.IDLE);
                 } else {
@@ -55,9 +53,10 @@ public class Enemy extends MovingActor {
                 }
             }
         }
-
-        float decision = ai.makeMovementDecision(r);
-        image.setReflected(Math.abs(decision) > Math.PI / 2);
+        if (getState() != ActorState.DEAD) {
+            float decision = ai.makeMovementDecision(r);
+            image.setReflected(Math.abs(decision) > Math.PI / 2);
+        }
 
 
     }
@@ -86,7 +85,7 @@ public class Enemy extends MovingActor {
     @Override
     protected void onOpponentCollision(MovingActor opponent) {
         updateState(ActorState.ATTACKING);
-        opponent.interceptHitBox(new Damage(40));
+        opponent.interceptHitBox(new Damage(40, statMultipliers, DamageTypes.MELEE));
         vx = 0;
         vy = 0;
         timer.schedule(new TimerTask() {
@@ -110,17 +109,17 @@ public class Enemy extends MovingActor {
         KImage moving;
         KImage attacking;
         KImage death;
-        if (Math.random() < 1) {
+        if (Math.random() < 0.5) {
             Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
             idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
             attacking = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
             moving = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
-            death = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
+            death = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Goblin.gif"), (Area) a.clone());
         } else {
             idle = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Bat.gif"), x, y);
             attacking = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Bat.gif"), x, y);
             moving = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Bat.gif"), x, y);
-            death = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Bat.gif"), x, y);
+            death = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Bat.gif"), x, y);
         }
         return new Enemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
     }
@@ -160,4 +159,18 @@ public class Enemy extends MovingActor {
         }
 
     }
+
+    @Override
+    public void setActive(boolean active) {
+        if (!active) {
+            updateState(ActorState.DEAD);
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    Enemy.super.setActive(false);
+                }
+            }, 18*100L);
+        }
+    }
+
 }

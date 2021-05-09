@@ -1,13 +1,25 @@
 package kchandra423.actors;
 
-public class Damage {
-    private int amount;
+import kchandra423.actors.MovingActors.DamageTypes;
 
-    public Damage(int amount) {
+public class Damage {
+    private final int amount;
+    private final float[] stats;
+    private final DamageTypes type;
+    public Damage(int amount, float[] stats, DamageTypes type) {
         this.amount = amount;
+        this.stats = stats;
+        this.type = type;
     }
 
     public int getAmount() {
         return amount;
+    }
+    public float[] getStats(){
+        return stats;
+    }
+
+    public DamageTypes getType() {
+        return type;
     }
 }

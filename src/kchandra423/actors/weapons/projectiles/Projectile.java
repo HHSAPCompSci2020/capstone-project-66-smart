@@ -2,6 +2,7 @@ package kchandra423.actors.weapons.projectiles;
 
 import kchandra423.actors.Actor;
 import kchandra423.actors.Damage;
+import kchandra423.actors.MovingActors.DamageTypes;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.MovingActors.enemies.Enemy;
 import kchandra423.graphics.DrawingSurface;
@@ -17,9 +18,11 @@ import java.util.ArrayList;
  * @author Kumar Chandra
  */
 public class Projectile extends Actor {
-    private boolean ally;
-    protected float v;
-    protected final float initialAngle;
+    private final boolean ally;
+    protected final float v;
+    private final float[] stats;
+    private final DamageTypes type;
+//    protected final float initialAngle;
 
 
     /**
@@ -31,9 +34,11 @@ public class Projectile extends Actor {
     public Projectile(KImage image, float v, float angle) {
         super(image);
         ally = true;
-        initialAngle = angle;
         image.setAngle(angle);
         this.v = v;
+        stats = new float[]{1,1,1};
+
+        type = DamageTypes.RANGED;
     }
 
     /**
@@ -74,7 +79,7 @@ public class Projectile extends Actor {
                 for (Enemy e : enemies) {
                     if (intersects(e)) {
                         active = false;
-                        e.interceptHitBox(new Damage(10));
+                        e.interceptHitBox(new Damage(10, stats, type));
 //                        e.setActive(false);
                         return;
                     }
