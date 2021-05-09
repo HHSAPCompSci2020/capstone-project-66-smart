@@ -3,8 +3,8 @@ package kchandra423.actors.weapons.projectiles;
 import kchandra423.actors.Actor;
 import kchandra423.actors.Damage;
 import kchandra423.actors.MovingActors.DamageTypes;
-import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.MovingActors.enemies.Enemy;
+import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 /**
  * Represents any sort of projectile that moves in a specified direction every frame
  *
- * @see kchandra423.actors.Actor
  * @author Kumar Chandra
+ * @see kchandra423.actors.Actor
  */
 public class Projectile extends Actor {
     private final boolean ally;
@@ -27,23 +27,25 @@ public class Projectile extends Actor {
 
     /**
      * Creates a new Projectile with the specified image, and initial velocity and angle
+     *
      * @param image The specified image
-     * @param v The initial velocity of this projectile
+     * @param v     The initial velocity of this projectile
      * @param angle The initial angle of this projectile
      */
-    public Projectile(KImage image, float v, float angle) {
+    public Projectile(KImage image, float v, float angle, boolean ally) {
         super(image);
-        ally = true;
+        this.ally = ally;
         image.setAngle(angle);
         this.v = v;
-        stats = new float[]{1,1,1};
+        stats = new float[]{1, 1, 1};
 
         type = DamageTypes.RANGED;
     }
 
     /**
      * Moves this projectile and does collision detection and handling
-     * @param d The drawing surface to be acted upon
+     *
+     * @param d    The drawing surface to be acted upon
      * @param room The room the actor is currently in
      */
     public void act(DrawingSurface d, Room room) {
@@ -72,6 +74,13 @@ public class Projectile extends Actor {
                 active = false;
                 return;
             }
+            ArrayList<Obstacle> obstacles = room.getObstacles();
+            for (Obstacle o : obstacles) {
+                if (intersects(o)) {
+                    active = false;
+                    return;
+                }
+            }
             if (ally) {
 
 
@@ -84,20 +93,17 @@ public class Projectile extends Actor {
                         return;
                     }
                 }
-                ArrayList<Obstacle> obstacles = room.getObstacles();
-                for (Obstacle o : obstacles) {
-                    if (intersects(o)) {
-                        active = false;
-//                        e.setActive(false);
-                        return;
-                    }
-                }
+
             } else {
 
+                if (intersects(room.getPlayer())) {
+                    active = false;
+                    room.getPlayer().interceptHitBox(new Damage(10, stats, type));
+
+                }
             }
         }
     }
-
 
 
 }

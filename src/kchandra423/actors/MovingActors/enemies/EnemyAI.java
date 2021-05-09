@@ -14,6 +14,7 @@ public class EnemyAI {
 
     /**
      * Creates a new Enemy ai for this enemy
+     *
      * @param enemy The enemy that this Enemy Ai will make decisions for
      */
     public EnemyAI(Enemy enemy) {
@@ -22,13 +23,15 @@ public class EnemyAI {
 
     /**
      * Makes a decision of where this enemy should move
+     *
      * @param r
      * @return
      */
     public float makeMovementDecision(Room r) {
 //        Random rand = new Random();
 //        return new boolean[]{rand.nextBoolean(), rand.nextBoolean(), rand.nextBoolean(), rand.nextBoolean()};
-        return (float) Calculator.calculateAngle(e.getImage().getX(), e.getImage().getY(), r.getPlayer().getImage().getBounds().getCenterX(),  r.getPlayer().getImage().getBounds().getCenterY());
+        return (float) Calculator.calculateAngle(e.getImage().getX(), e.getImage().getY(), r.getPlayer().getImage().getBounds().getCenterX(), r.getPlayer().getImage().getBounds().getCenterY());
+
 
     }
 

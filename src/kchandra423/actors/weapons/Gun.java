@@ -81,12 +81,13 @@ public class Gun extends Actor {
      */
     @Override
     public void draw(DrawingSurface d) {
+
+        super.draw(d);
+
         for (Projectile p :
                 projectiles) {
             p.draw(d);
         }
-
-        super.draw(d);
     }
 
     /**
@@ -98,9 +99,9 @@ public class Gun extends Actor {
                 tempAngle += Math.random() * spread ;
                 tempAngle -= spread / 2;
             projectiles.add(new Projectile(
-                    new KImage((float) (image.getX() + image.getWidth() * Math.cos(image.getAngle())), (float) (image.getY() + image.getHeight()/2 * Math.sin(image.getAngle()))
+                    new KImage((float) (image.getBounds().getCenterX() + image.getWidth() * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getWidth() * Math.sin(image.getAngle()))
                             , false, false, projectile, projectileArea)
-                    , projectileVelocity, tempAngle));
+                    , projectileVelocity, tempAngle, true));
             lastTimeShot = System.currentTimeMillis();
         }
     }
