@@ -80,16 +80,18 @@ public class Enemy extends MovingActor {
 
     @Override
     protected void onOpponentCollision(MovingActor opponent) {
-        updateState(ActorState.ATTACKING);
-        opponent.interceptHitBox(new Damage(40, statMultipliers, DamageTypes.MELEE));
-        vx = 0;
-        vy = 0;
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                updateState(ActorState.IDLE);
-            }
-        }, 500L);
+        if (getState() != ActorState.DEAD) {
+            updateState(ActorState.ATTACKING);
+            opponent.interceptHitBox(new Damage(40, statMultipliers, DamageTypes.MELEE));
+            vx = 0;
+            vy = 0;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    updateState(ActorState.IDLE);
+                }
+            }, 500L);
+        }
     }
 
 
@@ -106,7 +108,7 @@ public class Enemy extends MovingActor {
         KImage attacking;
         KImage death;
         double rand = Math.random();
-        if (rand >0) {
+        if (rand > 0.66) {
             Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
             idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
             attacking = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());

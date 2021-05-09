@@ -99,7 +99,7 @@ public class Gun extends Actor {
                 tempAngle += Math.random() * spread ;
                 tempAngle -= spread / 2;
             projectiles.add(new Projectile(
-                    new KImage((float) (image.getBounds().getCenterX() + image.getWidth() * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getWidth() * Math.sin(image.getAngle()))
+                    new KImage((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle()))
                             , false, false, projectile, projectileArea)
                     , projectileVelocity, tempAngle, true));
             lastTimeShot = System.currentTimeMillis();
