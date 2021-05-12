@@ -10,7 +10,7 @@ import processing.core.PImage;
  * @see PImage
  * @author Kumar Chandra
  */
-public abstract class Texture {
+public abstract class Texture  {
     /**
      * Resizes the textures image to the given width and height
      *
@@ -61,7 +61,7 @@ public abstract class Texture {
          * @return A texture at 0,0 with the image at the pathname
          */
         public static Texture getTexture(String pathName) {
-            if (pathName.substring(pathName.length() - 4, pathName.length()).equals(".gif")) {
+            if (pathName.startsWith(".gif", pathName.length() - 4)) {
                 return new PGif(pathName);
             } else {
                 return new TextureImage(pathName);

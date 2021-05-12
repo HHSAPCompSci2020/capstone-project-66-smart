@@ -8,6 +8,7 @@ import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
+import kchandra423.utility.AssetLoader;
 
 import java.awt.geom.Area;
 import java.util.Timer;
@@ -109,22 +110,29 @@ public class Enemy extends MovingActor {
         KImage death;
         double rand = Math.random();
         if (rand > 0.66) {
-            Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
-            idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
-            attacking = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
-            moving = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
-            death = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Goblin.gif"), (Area) a.clone());
+//            Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
+//            idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
+//            attacking = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
+//            moving = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
+//            death = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Goblin.gif"), (Area) a.clone());
+            idle = AssetLoader.getImage(AssetLoader.GOBLIN_IDLE);
+            attacking = AssetLoader.getImage(AssetLoader.GOBLIN_ATTACK);
+            moving = AssetLoader.getImage(AssetLoader.GOBLIN_MOVING);
+            death = AssetLoader.getImage(AssetLoader.GOBLIN_DEATH);
+            idle.moveTo(x, y);
         } else if (rand > 0.33) {
-            idle = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Bat.gif"), x, y);
-            attacking = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Bat.gif"), x, y);
-            moving = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Bat.gif"), x, y);
-            death = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Bat.gif"), x, y);
+            idle = AssetLoader.getImage(AssetLoader.WITCH_IDLE);
+            attacking = AssetLoader.getImage(AssetLoader.WITCH_ATTACK);
+            moving = AssetLoader.getImage(AssetLoader.WITCH_MOVING);
+            death = AssetLoader.getImage(AssetLoader.WITCH_DEATH);
+            idle.moveTo(x, y);
+            new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
         } else {
-            idle = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Witch.gif"), x, y);
-            attacking = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Witch.gif"), x, y);
-            moving = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Witch.gif"), x, y);
-            death = new KImage(Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Witch.gif"), x, y);
-            return new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
+            idle = AssetLoader.getImage(AssetLoader.BAT_IDLE);
+            attacking = AssetLoader.getImage(AssetLoader.BAT_ATTACK);
+            moving = AssetLoader.getImage(AssetLoader.BAT_MOVING);
+            death = AssetLoader.getImage(AssetLoader.BAT_DEATH);
+            idle.moveTo(x, y);
         }
         return new Enemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
     }
