@@ -19,8 +19,8 @@ import java.util.ArrayList;
  * @see kchandra423.actors.Actor
  */
 public class Room {
-    private ArrayList<Enemy> enemies;
-    private ArrayList<Obstacle> obstacles;
+    private final ArrayList<Enemy> enemies;
+    private final ArrayList<Obstacle> obstacles;
     private final Player player;
     private final Rectangle bounds;
     private final Texture background;
@@ -45,6 +45,15 @@ public class Room {
         enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 10));
         player = new Player(AssetLoader.getImage(AssetLoader.MAGE_IDLE), AssetLoader.getImage(AssetLoader.MAGE_ACTIVE));
         player.getImage().moveTo(bounds.x + 50, bounds.y + 50);
+        background.resize(bounds.width, bounds.height);
+    }
+
+    public Room(Texture background, ArrayList<Obstacle> obstacles, ArrayList<Enemy> enemies, Player p, Rectangle bounds) {
+        this.background = background;
+        this.obstacles = obstacles;
+        this.enemies = enemies;
+        this.bounds = bounds;
+        player = p;
         background.resize(bounds.width, bounds.height);
     }
 
