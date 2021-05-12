@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @see kchandra423.actors.Actor
  * @author Kumar Chandra
  */
-public class Room {
+public class RoomTest {
     private ArrayList<Enemy> enemies;
     private ArrayList<Obstacle> obstacles;
     private final Player player;
@@ -26,7 +26,7 @@ public class Room {
     /**
      * Currently just creates a room with some random default enemies and obstacles
      */
-    public Room() {
+    public RoomTest() {
 
         background = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/froggy.jpg");
         obstacles = new ArrayList<>();
