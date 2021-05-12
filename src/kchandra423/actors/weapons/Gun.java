@@ -2,12 +2,12 @@ package kchandra423.actors.weapons;
 
 import kchandra423.actors.Actor;
 import kchandra423.actors.weapons.projectiles.Projectile;
-import kchandra423.levels.Room;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
+import kchandra423.levels.Room;
+import kchandra423.utility.AssetLoader;
 
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,8 +18,9 @@ import java.util.TimerTask;
  * @author Kumar Chandra
  */
 public class Gun extends Actor {
-    private final Texture projectile;
-    private final Area projectileArea;
+    //    private final Texture projectile;
+//    private final Area projectileArea;
+    private final int projectileId;
     private final float projectileVelocity;
     private final ArrayList<Projectile> projectiles;
     private final float fireRate;
@@ -29,7 +30,7 @@ public class Gun extends Actor {
     private TimerTask reloadTask;
     private Timer reloadTimer;
     private boolean reloading;
-//    private int ammo;
+    //    private int ammo;
 //    private int pellets;
 //    private final int maxAmmo;
     private long lastTimeShot;
@@ -38,27 +39,30 @@ public class Gun extends Actor {
 
     /**
      * Creates a new gun at the specified location. Currently all other values are hardcoded
+     *
      * @param x The x coordinate of the specified location to be created at.
      * @param y The y coordinate of the specified location to be created at.
      */
     public Gun(float x, float y) {
         super(new KImage(x, y, false, true, Texture.TextureBuilder.getTexture("res/Images/Weapons/SMG.png")));
-        projectile = Texture.TextureBuilder.getTexture("res/Images/Projectiles/Bullet.png");
-        fireRate= 0.1f;
+//        projectile = Texture.TextureBuilder.getTexture("res/Images/Projectiles/Bullet.png");
+        projectileId = AssetLoader.BULLET;
+        fireRate = 0.1f;
         reloadTime = 500;
-        magazineSize=30;
-        magazine=magazineSize;
-        reloadTimer= new Timer();
-        spread = (float)(Math.PI/10);
+        magazineSize = 30;
+        magazine = magazineSize;
+        reloadTimer = new Timer();
+        spread = (float) (Math.PI / 10);
         timeSinceReloaded = System.currentTimeMillis();
         projectileVelocity = 20;
-        projectileArea = KImage.loadArea(projectile);
+//        projectileArea = KImage.loadArea(projectile);
         projectiles = new ArrayList<>();
         reloading = false;
     }
 
     /**
      * Makes all the projectiles act. Removes inactive projectiles from this guns list of projectiles
+     *
      * @param d The drawing surface to be acted upon
      * @param r The room the actor is currently in
      */
@@ -77,6 +81,7 @@ public class Gun extends Actor {
 
     /**
      * Draws this actor, as well as all all of its projectiles
+     *
      * @param d The drawing surface to be drawn onto
      */
     @Override
@@ -94,21 +99,23 @@ public class Gun extends Actor {
      * Creates a new projectile using this images current angle. Applies all effects such as the spread, and velocity and pellets
      */
     public void fire() {
-        if(canFire()) {
+        if (canFire()) {
             float tempAngle = image.getAngle();
-                tempAngle += Math.random() * spread ;
-                tempAngle -= spread / 2;
-            projectiles.add(new Projectile(
-                    new KImage((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle()))
-                            , false, false, projectile, projectileArea)
-                    , projectileVelocity, tempAngle, true));
+            tempAngle += Math.random() * spread;
+            tempAngle -= spread / 2;
+            Projectile p = new Projectile(AssetLoader.getImage(projectileId), projectileVelocity, tempAngle, true);
+            p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle())));
+            projectiles.add(p);
+
+//                    new KImage((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle()))
+//                            , false, false, projectile, projectileArea)
             lastTimeShot = System.currentTimeMillis();
         }
     }
 
     private boolean canFire() {
-        if(magazine>0) {
-            if(System.currentTimeMillis()-lastTimeShot>=fireRate*1000) {
+        if (magazine > 0) {
+            if (System.currentTimeMillis() - lastTimeShot >= fireRate * 1000) {
                 return !reloading;
             }
         }

@@ -97,17 +97,11 @@ public class Player extends MovingActor {
         super.updateState(newState);
         switch (newState) {
             case IDLE:
-                idleImage.setAngle(image.getAngle());
-                idleImage.setReflected(image.isReflected());
-                idleImage.setReversed(image.isReversed());
-                idleImage.moveTo(image.getX(), image.getY());
+                idleImage.copyInformation(image);
                 image = idleImage;
                 break;
             case MOVING:
-                activeImage.setAngle(image.getAngle());
-                activeImage.setReflected(image.isReflected());
-                activeImage.setReversed(image.isReversed());
-                activeImage.moveTo(image.getX(), image.getY());
+                activeImage.copyInformation(image);
                 image = activeImage;
                 break;
         }

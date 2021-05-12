@@ -22,12 +22,12 @@ import java.awt.geom.Area;
  * whether or not when the object is reflected, does its angle reverse to look in the "right" direction, by drawing the angle at Pi- its actual value.
  * However a restriction of this is that unexpected behavior when something is reflected, but not reversed, and it is rotated by a non zero amount.
  *
+ * @author Kumar Chandra
  * @see Texture
  * @see KImage
  * @see Area
- * @author Kumar Chandra
  */
-public class KImage {
+public class KImage implements Cloneable {
     private final Texture image;
     private final Area area;
     private Area mostRecentArea;
@@ -37,6 +37,11 @@ public class KImage {
     private boolean reflected;
     private boolean reversed;
     private boolean upToDate;
+
+
+    public KImage(String s) {
+        this(Texture.TextureBuilder.getTexture(s));
+    }
 
     /**
      * Creates a new KImage with the specified texture.
@@ -106,6 +111,7 @@ public class KImage {
         update();
         upToDate = true;
     }
+
     /**
      * Creates a new Kimage with all the specified fields. However the area is also specified,
      * which can be useful if you are creating multiple KImages and already know what your area will be.
@@ -113,12 +119,12 @@ public class KImage {
      * to all new KImages. Another scenario in which you may want to specify the area is if the hitbox of this KImage
      * doesnt necessarily correspond to the way it looks, so you want to be able to set it yourself.
      *
-     * @param x         The initial x position
-     * @param y         The initial y position
-     * @param t         The Texture used by this KImage
-     * @param area      The specified area to use as a hitbox
+     * @param x    The initial x position
+     * @param y    The initial y position
+     * @param t    The Texture used by this KImage
+     * @param area The specified area to use as a hitbox
      */
-    public KImage(float x, float y,  Texture t, Area area) {
+    public KImage(float x, float y, Texture t, Area area) {
         this.x = x;
         this.reflected = false;
         this.reversed = false;
@@ -308,9 +314,12 @@ public class KImage {
         return image.getHeight();
     }
 
-//    public Texture getTexture() {
-//        return image;
-//    }
+    public void copyInformation(KImage other) {
+        moveTo(other.x, other.y);
+        setAngle(other.angle);
+        setReversed(other.reversed);
+        setReflected(other.reflected);
+    }
 
     /**
      * Sets if this image is reversed
@@ -387,6 +396,12 @@ public class KImage {
             }
             mostRecentArea = area.createTransformedArea(transform);
         }
+    }
+
+    @Override
+    public Object clone() {
+        return new KImage(x, y, reflected, reversed, image, area);
+
     }
 }
 
