@@ -2,6 +2,8 @@ package kchandra423.actors.MovingActors;
 
 import kchandra423.actors.Actor;
 import kchandra423.actors.Damage;
+import kchandra423.actors.MovingActors.constants.ActorState;
+import kchandra423.actors.MovingActors.constants.Stat;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
@@ -22,8 +24,6 @@ public abstract class MovingActor extends Actor {
     protected float vx, vy;
     protected float maxV;
     protected float accel;
-
-    //    public static final int RANGED = 0, MAGIC = 1, MELEE = 2, SHORT = 3, LONG = 4, PHYSDEF = 5, MAGDEF = 6;
     protected final float[] statMultipliers;
     protected int health;
     protected final int maxHealth;
@@ -51,6 +51,14 @@ public abstract class MovingActor extends Actor {
         statMultipliers = new float[]{1, 1, 1, 1, 1, 1};
     }
 
+    /**
+     * Acts based on a few conditions. If this actors health is less than 0, it sets itself as inactive.
+     * Then it moves in the x direction. If it collides with an obstacle, it calls the onObstacleCollision method. If it is out
+     * of bounds, it immediately moves back into the room. This process is repeated in the y direction. Finally, if this actor
+     * interacts with its opponent, it calls the onOpponentInteraction method.
+     * @param d The drawing surface to be acted upon
+     * @param room The room the actor is currently in
+     */
     @Override
     public void act(DrawingSurface d, Room room) {
         if (health <= 0) {
@@ -72,9 +80,9 @@ public abstract class MovingActor extends Actor {
         if (!room.inBounds(image)) {
             bounceBackY();
         }
-        MovingActor opponent = collidesWOppponent(room);
+        MovingActor opponent = interactsWOppponent(room);
         if (opponent != null) {
-            onOpponentCollision(opponent);
+            onOpponentInteraction(opponent);
         }
 
     }
@@ -94,7 +102,7 @@ public abstract class MovingActor extends Actor {
 
     }
 
-    protected abstract MovingActor collidesWOppponent(Room room);
+    protected abstract MovingActor interactsWOppponent(Room room);
 
     protected void onObstacleCollision(boolean isX, Obstacle obstacle) {
         if (isX) {
@@ -114,7 +122,7 @@ public abstract class MovingActor extends Actor {
         }
     }
 
-    protected abstract void onOpponentCollision(MovingActor opponent);
+    protected abstract void onOpponentInteraction(MovingActor opponent);
 
 
     /**
@@ -245,62 +253,70 @@ public abstract class MovingActor extends Actor {
         return state;
     }
 
+    /**
+     * Takes damage from the effects of the specific damage.
+     * @param damage The given damage
+     */
     public void interceptHitBox(Damage damage) {
         health -= Calculator.calculateDamage(damage, statMultipliers);
     }
 
 
-    public void incrementAllAttackStats(float buff) {
+    protected void incrementAllAttackStats(float buff) {
         for (int i = 0; i < 3; i++) {
             statMultipliers[i] += buff;
         }
     }
 
-    public void incrementAllDefenseStats(float buff) {
+    protected void incrementAllDefenseStats(float buff) {
         for (int i = 3; i < 6; i++) {
             statMultipliers[i] += buff;
         }
     }
 
-    public void incrementAllStats(float buff) {
+    protected void incrementAllStats(float buff) {
         for (int i = 0; i < statMultipliers.length; i++) {
             statMultipliers[i] += buff;
         }
     }
 
-    public void incrementStat(Stat stat, float buff) {
+    protected void incrementStat(Stat stat, float buff) {
         statMultipliers[stat.getValue()] += buff;
     }
 
-    public void setStat(Stat stat, float value) {
+    protected void setStat(Stat stat, float value) {
         statMultipliers[stat.getValue()] = value;
     }
 
-    public float getStat(Stat stat) {
+    protected float getStat(Stat stat) {
         return statMultipliers[stat.getValue()];
     }
 
+    /**
+     * Returns the health of this current actor
+     * @return The health of this actor
+     */
     public int getHealth() {
         return health;
     }
 
-    public void setHealth(int health) {
+    protected void setHealth(int health) {
         this.health = health;
     }
 
-    public int getMaxHealth() {
+    protected int getMaxHealth() {
         return maxHealth;
     }
 
-    public int getShield() {
+    protected int getShield() {
         return shield;
     }
 
-    public void setShield(int shield) {
+    protected void setShield(int shield) {
         this.shield = shield;
     }
 
-    public int getMaxShield() {
+    protected int getMaxShield() {
         return maxShield;
     }
 }

@@ -1,5 +1,7 @@
 package sye348.levels;
 
+import kchandra423.levels.Room;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +21,7 @@ public class Level
     
     public Level(ArrayList<Room> rooms)
     {
-    	rooms = room;
+    	this.rooms = rooms;
     	roomNumber = 1;
     	currentRoom = rooms.get(0);
     }

@@ -1,7 +1,13 @@
 package kchandra423.utility;
 
 import kchandra423.graphics.textures.KImage;
-
+/**
+ * Loads all assets needed initially and held statically. 
+ * This is to prevent the need to do this throughout runtime, which is extremely time consuming. 
+ * Returns clones of these so as to not have to recalculate, but also be safe to use as separate objects.
+ * @author Kumar Chandra
+ *
+ */
 public class AssetLoader {
     static {
         long start = System.currentTimeMillis();
@@ -64,6 +70,13 @@ public class AssetLoader {
     public static final int SMG = 23;
     public static final int SPELLBOOK = 24;
     public static final int SWORD = 25;
+
+    /**
+     * Gets a clone of the KImage at the given index. All indexes are specified as a constant. For example, to get a Bat attack sprite,
+     *  you would call getImage(BAT_ATTACK);
+     * @param index The index of which image you want
+     * @return A clone of the original image.
+     */
     public static KImage getImage(int index){
         return (KImage) AssetLoader.sprites[index].clone();
     }

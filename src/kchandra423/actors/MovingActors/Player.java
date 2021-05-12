@@ -1,5 +1,6 @@
 package kchandra423.actors.MovingActors;
 
+import kchandra423.actors.MovingActors.constants.ActorState;
 import kchandra423.actors.MovingActors.enemies.Enemy;
 import kchandra423.actors.weapons.Gun;
 import kchandra423.graphics.DrawingSurface;
@@ -10,11 +11,23 @@ import processing.core.PApplet;
 
 import java.awt.event.KeyEvent;
 
+/**
+ * A player represents the users Character avatar that moves and fights the enemies
+ * @author Kumar Chandra
+ * @see kchandra423.actors.Actor
+ * @see kchandra423.actors.MovingActors.MovingActor
+ * @see kchandra423.actors.MovingActors.enemies.Enemy
+ */
 public class Player extends MovingActor {
     private final KImage idleImage;
     private final KImage activeImage;
     private final Gun weapon;
 
+    /**
+     * Creates a player with the specified idle and active animations
+     * @param idle The idle sprite of this player
+     * @param active The active sprite of this player
+     */
     public Player(KImage idle, KImage active) {
         super(idle, 10, 1f);
         this.idleImage = idle;
@@ -76,7 +89,7 @@ public class Player extends MovingActor {
     }
 
     @Override
-    protected MovingActor collidesWOppponent(Room room) {
+    protected MovingActor interactsWOppponent(Room room) {
         for (Enemy e :
                 room.getEnemies()) {
             if (intersects(e)) {
@@ -87,7 +100,7 @@ public class Player extends MovingActor {
     }
 
     @Override
-    protected void onOpponentCollision(MovingActor opponent) {
+    protected void onOpponentInteraction(MovingActor opponent) {
         //pretend something thatll happen, idk it depends how we design it
     }
 

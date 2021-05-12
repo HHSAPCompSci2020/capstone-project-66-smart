@@ -10,6 +10,6 @@ public class LevelThree extends Level
 {
 	public LevelThree(String character)
 	{
-		
+		super(null);
 	}
 }

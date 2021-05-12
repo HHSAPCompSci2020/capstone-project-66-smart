@@ -48,6 +48,14 @@ public class Room {
         background.resize(bounds.width, bounds.height);
     }
 
+    /**
+     * Constructs a room with the given values
+     * @param background The background of this room
+     * @param obstacles The obstacles in this room
+     * @param enemies The enemies in this room
+     * @param p The Player in this room
+     * @param bounds The boundaries of this room
+     */
     public Room(Texture background, ArrayList<Obstacle> obstacles, ArrayList<Enemy> enemies, Player p, Rectangle bounds) {
         this.background = background;
         this.obstacles = obstacles;

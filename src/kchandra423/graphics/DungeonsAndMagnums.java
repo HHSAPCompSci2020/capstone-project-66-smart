@@ -11,7 +11,7 @@ public class DungeonsAndMagnums {
 
 	/**
 	 * Starts the program
-	 * @param args
+	 * @param args The arguments passed in when called initially 
 	 */
 	public static void main(String args[]) {
 		DrawingSurface drawing = new DrawingSurface();

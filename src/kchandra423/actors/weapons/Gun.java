@@ -18,8 +18,6 @@ import java.util.TimerTask;
  * @author Kumar Chandra
  */
 public class Gun extends Actor {
-    //    private final Texture projectile;
-//    private final Area projectileArea;
     private final int projectileId;
     private final float projectileVelocity;
     private final ArrayList<Projectile> projectiles;
@@ -30,9 +28,6 @@ public class Gun extends Actor {
     private TimerTask reloadTask;
     private Timer reloadTimer;
     private boolean reloading;
-    //    private int ammo;
-//    private int pellets;
-//    private final int maxAmmo;
     private long lastTimeShot;
     private final float spread;
     private long timeSinceReloaded;
@@ -45,7 +40,6 @@ public class Gun extends Actor {
      */
     public Gun(float x, float y) {
         super(new KImage(x, y, false, true, Texture.TextureBuilder.getTexture("res/Images/Weapons/SMG.png")));
-//        projectile = Texture.TextureBuilder.getTexture("res/Images/Projectiles/Bullet.png");
         projectileId = AssetLoader.BULLET;
         fireRate = 0.1f;
         reloadTime = 500;
@@ -55,7 +49,6 @@ public class Gun extends Actor {
         spread = (float) (Math.PI / 10);
         timeSinceReloaded = System.currentTimeMillis();
         projectileVelocity = 20;
-//        projectileArea = KImage.loadArea(projectile);
         projectiles = new ArrayList<>();
         reloading = false;
     }
@@ -106,9 +99,6 @@ public class Gun extends Actor {
             Projectile p = new Projectile(AssetLoader.getImage(projectileId), projectileVelocity, tempAngle, true);
             p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle())));
             projectiles.add(p);
-
-//                    new KImage((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle()))
-//                            , false, false, projectile, projectileArea)
             lastTimeShot = System.currentTimeMillis();
         }
     }

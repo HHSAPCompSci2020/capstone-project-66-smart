@@ -37,6 +37,8 @@ public abstract class Texture  {
      * Draws the texture onto the given PApplet
      *
      * @param p The given PApplet to be drawn to
+     * @param x The x coordinate to be drawn from
+     * @param y The y coordinate to be drawn from
      */
     public abstract void draw(PApplet p, int x, int y);
 

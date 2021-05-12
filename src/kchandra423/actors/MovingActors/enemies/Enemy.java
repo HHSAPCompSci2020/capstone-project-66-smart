@@ -1,16 +1,14 @@
 package kchandra423.actors.MovingActors.enemies;
 
 import kchandra423.actors.Damage;
-import kchandra423.actors.MovingActors.ActorState;
-import kchandra423.actors.MovingActors.DamageTypes;
+import kchandra423.actors.MovingActors.constants.ActorState;
+import kchandra423.actors.MovingActors.constants.DamageTypes;
 import kchandra423.actors.MovingActors.MovingActor;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
-import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
 import kchandra423.utility.AssetLoader;
 
-import java.awt.geom.Area;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,12 +73,12 @@ public class Enemy extends MovingActor {
     }
 
     @Override
-    protected MovingActor collidesWOppponent(Room room) {
+    protected MovingActor interactsWOppponent(Room room) {
         return intersects(room.getPlayer()) ? room.getPlayer() : null;
     }
 
     @Override
-    protected void onOpponentCollision(MovingActor opponent) {
+    protected void onOpponentInteraction(MovingActor opponent) {
         if (getState() != ActorState.DEAD) {
             updateState(ActorState.ATTACKING);
             opponent.interceptHitBox(new Damage(40, statMultipliers, DamageTypes.MELEE));
@@ -101,7 +99,7 @@ public class Enemy extends MovingActor {
      *
      * @param x The x coord of the given location
      * @param y The y coord of the given location
-     * @return A new Enemy at that location (currently only a bat or goblin)
+     * @return A new Enemy at that location (currently only a bat, goblin, or witch)
      */
     public static Enemy createEnemy(float x, float y) {
         KImage idle;
@@ -109,12 +107,7 @@ public class Enemy extends MovingActor {
         KImage attacking;
         KImage death;
         double rand = Math.random();
-        if (rand > 0.66) {
-//            Area a = KImage.loadArea(Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"));
-//            idle = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Idle/Goblin.gif"), (Area) a.clone());
-//            attacking = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Attack/Goblin.gif"), (Area) a.clone());
-//            moving = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Moving/Goblin.gif"), (Area) a.clone());
-//            death = new KImage(x, y, Texture.TextureBuilder.getTexture("res/Images/Enemies/Death/Goblin.gif"), (Area) a.clone());
+        if (rand >0.66) {
             idle = AssetLoader.getImage(AssetLoader.GOBLIN_IDLE);
             attacking = AssetLoader.getImage(AssetLoader.GOBLIN_ATTACK);
             moving = AssetLoader.getImage(AssetLoader.GOBLIN_MOVING);
@@ -126,7 +119,7 @@ public class Enemy extends MovingActor {
             moving = AssetLoader.getImage(AssetLoader.WITCH_MOVING);
             death = AssetLoader.getImage(AssetLoader.WITCH_DEATH);
             idle.moveTo(x, y);
-            new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
+            return new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
         } else {
             idle = AssetLoader.getImage(AssetLoader.BAT_IDLE);
             attacking = AssetLoader.getImage(AssetLoader.BAT_ATTACK);

@@ -72,7 +72,7 @@ public abstract class Actor {
      * Sets this actor as active or inactive
      * @param active The new activity of this actor
      */
-    public void setActive(boolean active) {
+    protected void setActive(boolean active) {
         this.active = active;
     }
 }

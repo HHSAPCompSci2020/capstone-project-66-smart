@@ -12,6 +12,10 @@ import kchandra423.graphics.textures.KImage;
  * @author Kumar Chandra
  */
 public class Obstacle extends Actor {
+    /**
+     * Constructs an obstacle with the given image
+     * @param image The image of this actor
+     */
     public Obstacle(KImage image) {
         super(image);
     }

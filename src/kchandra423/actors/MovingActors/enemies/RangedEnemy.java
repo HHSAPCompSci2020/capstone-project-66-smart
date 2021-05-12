@@ -1,6 +1,6 @@
 package kchandra423.actors.MovingActors.enemies;
 
-import kchandra423.actors.MovingActors.ActorState;
+import kchandra423.actors.MovingActors.constants.ActorState;
 import kchandra423.actors.MovingActors.MovingActor;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
@@ -13,7 +13,12 @@ import processing.core.PApplet;
 import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.TimerTask;
-
+/**
+ * Represents an enemy that attacks the player from a range  
+ * 
+ * @author Kumar Chandra
+ *
+ */
 public class RangedEnemy extends Enemy {
     private final float projectileVelocity;
     private final float fireRate;
@@ -34,8 +39,6 @@ public class RangedEnemy extends Enemy {
 
     @Override
     public void draw(DrawingSurface drawingSurface) {
-
-
         super.draw(drawingSurface);
         for (Projectile p :
                 projectiles) {
@@ -58,7 +61,7 @@ public class RangedEnemy extends Enemy {
     }
 
     @Override
-    protected void onOpponentCollision(MovingActor opponent) {
+    protected void onOpponentInteraction(MovingActor opponent) {
         float tempAngle = (float) Calculator.calculateAngle(image.getX(), image.getY(), opponent.getImage().getBounds().getCenterX(), opponent.getImage().getBounds().getCenterY());
         tempAngle += Math.random() * Math.PI / 8;
         tempAngle -= Math.PI / 8 / 2;
@@ -70,7 +73,7 @@ public class RangedEnemy extends Enemy {
     }
 
     @Override
-    protected MovingActor collidesWOppponent(Room room) {
+    protected MovingActor interactsWOppponent(Room room) {
         if ((PApplet.dist(image.getX(), image.getY(), (float) room.getPlayer().getImage().getBounds().getCenterX(), (float) room.getPlayer().getImage().getBounds().getCenterY()) < 500) && canFire() && getState() != ActorState.DEAD) {
             updateState(ActorState.ATTACKING);
             vx = 0;

@@ -2,7 +2,7 @@ package kchandra423.actors.weapons.projectiles;
 
 import kchandra423.actors.Actor;
 import kchandra423.actors.Damage;
-import kchandra423.actors.MovingActors.DamageTypes;
+import kchandra423.actors.MovingActors.constants.DamageTypes;
 import kchandra423.actors.MovingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
@@ -22,7 +22,6 @@ public class Projectile extends Actor {
     protected final float v;
     private final float[] stats;
     private final DamageTypes type;
-//    protected final float initialAngle;
 
 
     /**
@@ -31,6 +30,7 @@ public class Projectile extends Actor {
      * @param image The specified image
      * @param v     The initial velocity of this projectile
      * @param angle The initial angle of this projectile
+     * @param ally Whether or not this projectile belongs to an ally
      */
     public Projectile(KImage image, float v, float angle, boolean ally) {
         super(image);
@@ -89,7 +89,6 @@ public class Projectile extends Actor {
                     if (intersects(e)) {
                         active = false;
                         e.interceptHitBox(new Damage(10, stats, type));
-//                        e.setActive(false);
                         return;
                     }
                 }
