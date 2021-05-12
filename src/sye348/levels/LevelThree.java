@@ -6,9 +6,9 @@ package sye348.levels;
  * @version 0.0.1
  * Last Revised: 5/11/2021
  */
-public class LevelOne extends Level
+public class LevelThree extends Level
 {
-	public LevelOne(String character)
+	public LevelThree(String character)
 	{
 		
 	}
