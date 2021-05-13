@@ -35,8 +35,16 @@ public class LevelRunner extends DrawingSurface {
 	/**
 	 * Creates a LevelRunner object
 	 */
+    
+    public LevelRunner() {
+    	super("");
+    	keys = new boolean[128];
+		room = new Room();
+    }
+    
 	public LevelRunner(String classType) {
 		
+		super("");
 		this.classType = classType;
 		keys = new boolean[128];
 		room = new Room();
@@ -68,8 +76,10 @@ public class LevelRunner extends DrawingSurface {
         pushMatrix();
         int halfx = width / 2;
         int halfy = height / 2;
+      //  translate(-levelOne.getRoom().getPlayer().getImage().getX() + halfx - levelOne.getRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getRoom().getPlayer().getImage().getY() + halfy - levelOne.getRoom().getPlayer().getImage().getHeight() / 2.0f);
+       // levelOne.getRoom().draw(this);
         translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
-        levelTwo.draw(this);
+        room.draw(this);
         popMatrix();
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
