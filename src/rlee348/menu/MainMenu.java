@@ -9,6 +9,10 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import g4p_controls.*;
+
+import jay.jaysound.JayLayer;
+import jay.jaysound.JayLayerListener;
+
 import kchandra423.graphics.DrawingSurface;
 
 /**
@@ -34,6 +38,8 @@ public class MainMenu extends PApplet {
 	private GButton knight;
 	private GButton rogue;
 	private GLabel lblOut;
+	private JayLayer music;
+	
 	
 	/**
 	 * Creates a MainMenu object
@@ -59,6 +65,10 @@ public class MainMenu extends PApplet {
 	//	System.out.println(img.width);
 		
 		background(img);
+		music = new JayLayer("res/","res/",false);
+		music.addSoundEffect("Sounds/MainMenuTheme.mp3");
+		//System.out.println(music.getNumberOfSoundEffect());
+		music.playSoundEffect(0);
 		
 	/*	rectColor = color(0);
 		rectHighlight = color(51);
@@ -129,7 +139,7 @@ public class MainMenu extends PApplet {
 				+ "knight, mage, or rogue.", 2*width/7, 3*height/8);
 		popStyle();
 		
-   
+		
 	}
 
 	public void settings() {
@@ -223,6 +233,9 @@ public class MainMenu extends PApplet {
 		// Create the control window?
 		if (button == mage && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
+			
+			music.stopSong();
+			
 			DrawingSurface drawing = new DrawingSurface("mage");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
@@ -240,6 +253,8 @@ public class MainMenu extends PApplet {
 		} 
 		
 		else if (button == knight && event == GEvent.CLICKED) {
+			
+			music.stopSong();
 			
 			LevelRunner drawing = new LevelRunner("knight");
 			PApplet.runSketch(new String[]{""}, drawing);
@@ -259,6 +274,8 @@ public class MainMenu extends PApplet {
 		
 		else if (button == rogue && event == GEvent.CLICKED) {
 			
+			music.stopSong();
+			
 			LevelRunner drawing = new LevelRunner("rogue");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
@@ -276,6 +293,10 @@ public class MainMenu extends PApplet {
 		}
 		
 		else if (button == settings && event == GEvent.CLICKED) {
+			
+			music.stopSong();
+
+			
 		//	lblOut.setText("Not Ready Yet");
 	//		DrawingSurface drawing = new DrawingSurface();
 			
