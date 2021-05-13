@@ -15,7 +15,8 @@ The primary features of our game includes a menu that allows users to reach the 
 Instructions:[g]
 Throughout the actual game, the player will use the typical movement keys, “W”, “A”, “S’, and “D” to respectively move up, right, down, and left. 
 During the game, the player may click anywhere on the screen to fire the weapon in their hand. Players will use their mouse cursor to aim their weapon, simply by moving it to the direction that they want to aim at. 
-There will be a single start menu that has two buttons, a “settings” button and a “start a game” button. As the title suggests, the “settings” button will lead to a settings area, and the “start a game” button will lead to the actual game.
+There will be a single start menu that has two buttons, a “settings” button and a few other buttons, representing the different player types that the player can choose. 
+To start a game, the user can simply pick a character by clicking the button correlating to that player.
 Once in the game, players can use any controls in any order they wish to control their character.
 
 
@@ -48,9 +49,7 @@ Stretch Features:
 
 
 
-Class List:[m]
-[This section lists the Java classes that make up the program and very briefly describes what each represents. It’s totally fine to put this section in list format and not to use full sentences.]
-
+Class List:
 
 * Entity[n]
    * An entity has a sprite and can be drawn
@@ -58,6 +57,8 @@ Class List:[m]
    * An actor is an entity that can move and has physics that bounce it back when it collides with another object, extends Entity class
 * Enemy
    * Extends Actor
+* Goblin, Witch, Bat
+   * Extends Enemy, each represents a enemy with their own images
 * Player
    * Extends Actor, the player is the user and can interact with the game environment with abilities, weapons, and different classes
 * Knight
@@ -68,6 +69,10 @@ Class List:[m]
    * Extends Player, has class specific abilities, rouge is more tanky than mage, but less tanky that the knight, Rouge has better movement than the other classes
 * Obstacle
    * Extends Entity and implements Collideable, blocks the Player and other Actors from movement and bounces them back when they collide
+* Level
+   * An abstract class that represents a level, it helps provides helper methods and structure the other levels
+* LevelOne, LevelTwo, LevelThree
+   * Extends Level, Classes that represents levels with their own layout of obstacles and unique enemies
 * Room
    * The room contains the Player, Obstacles, enemies, and projectiles, it is where the game is played
 * DrawingSurface
@@ -90,7 +95,14 @@ Class List:[m]
    * Projectile used by RangedWeapon and SemiAutoGun[o][p], has its own sprite, and determines if it comes into contact with an enemy or player, and whether they are killed or not
 * Music Player
    * Plays certain tracks of music
-
+* LevelRunner
+   * A class that runs the program with levels
+* MainMenu
+   * A class that represents the main menu of the program
+* DataBaseCommunicator
+   * Talks to the database to get and send information
+* UserData
+   * A class that represents all the information for a user
 
 Credits[q]:
 * Kumar
@@ -99,7 +111,7 @@ Credits[q]:
    * Created some of the art assets for the project
 * Spencer
    * Created the enemies
-   * Create the enemy decision making
+   * Created levels and the level system.
    * Set up database for saving settings and progress
 * Ryan
    * Create the GUI
