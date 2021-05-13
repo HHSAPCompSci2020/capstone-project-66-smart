@@ -18,7 +18,7 @@ import kchandra423.graphics.DrawingSurface;
  * @author Ryan Lee
  */
 
-public class Gui extends PApplet {
+public class MainMenu extends PApplet {
 
 //	int rectX, rectY; // Position of square button
 //	int circleX, circleY; // Position of circle button
@@ -35,7 +35,7 @@ public class Gui extends PApplet {
 	/**
 	 * Creates a Gui object
 	 */
-	public Gui() {
+	public MainMenu() {
 
 	}
 
@@ -118,7 +118,7 @@ public class Gui extends PApplet {
 		text("Dungeons and Magnums", width/6, height/5);
 		textSize(20);
 		text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2*width/7, 2*height/7);
-		
+		text("Instructions: Use wasd to move your character. \n Use mouse button 2 to fire your weapon. \n The goal of the game is to clear each level by \n killing all the enemies in each room.", 2*width/7, 3*height/8);
 		popStyle();
 		
    

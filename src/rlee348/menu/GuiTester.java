@@ -11,7 +11,7 @@ public class GuiTester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Gui drawing = new Gui();
+		MainMenu drawing = new MainMenu();
 		
 		PApplet.runSketch(new String[]{""}, drawing);
 		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
