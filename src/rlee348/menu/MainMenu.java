@@ -52,6 +52,8 @@ public class MainMenu extends PApplet {
 	 * Runs on setup, initializes any fields needed.
 	 */
 		public void setup() {
+
+		String[] songs = new String[]{"MainMenuTheme.mp3"};
 		
 		
 	//	System.out.println(height);
@@ -65,10 +67,17 @@ public class MainMenu extends PApplet {
 	//	System.out.println(img.width);
 		
 		background(img);
-		music = new JayLayer("res/","res/",false);
-		music.addSoundEffect("Sounds/MainMenuTheme.mp3");
+//		music = new JayLayer("res/","res/",false);
+//		music.addSoundEffect("Sounds/MainMenuTheme.mp3");
 		//System.out.println(music.getNumberOfSoundEffect());
-		music.playSoundEffect(0);
+//		music.playSoundEffect(0);
+
+		music=new JayLayer("res/Sounds/","res/Sounds/",false);
+		music.addPlayList();
+		music.addSongs(0,songs);
+		music.changePlayList(0);
+		music.nextSong();
+		//music.addJayLayerListener(this);
 		
 	/*	rectColor = color(0);
 		rectHighlight = color(51);
@@ -134,7 +143,9 @@ public class MainMenu extends PApplet {
 		text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2*width/7, 2*height/7);
 		text("Instructions: Use wasd to move your character. \n "
 				+ "Use mouse button 2 to fire your weapon. \n "
-				+ "The goal of the game is to clear each level by \n killing all the enemies in each room. \n"
+				+ "The goal of the game is to clear each level by \n "
+				+ "killing all the enemies in each room. \n"
+				+ "Try to avoid dying, as you will lose the game if you do. \n"
 				+ "You can choose your character from 3 classes:\n"
 				+ "knight, mage, or rogue.", 2*width/7, 3*height/8);
 		popStyle();
