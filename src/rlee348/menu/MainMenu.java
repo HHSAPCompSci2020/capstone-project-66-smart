@@ -12,13 +12,13 @@ import g4p_controls.*;
 import kchandra423.graphics.DrawingSurface;
 
 /**
- * Draws the menu screen for the program, along with some of the other menu
- * features like settings, and potentially pause scren.
+ * Draws the menu screen for the program, Displays credits 
+ * and instructions to the game, has working start button.
  *
  * @author Ryan Lee
  */
 
-public class Gui extends PApplet {
+public class MainMenu extends PApplet {
 
 //	int rectX, rectY; // Position of square button
 //	int circleX, circleY; // Position of circle button
@@ -27,34 +27,36 @@ public class Gui extends PApplet {
 //	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
 //	boolean rectOver = false;
 //	boolean circleOver = false;
-	PImage img;
-	GButton start;
-	GButton settings;
-	GLabel lblOut;
+	private PImage img;
+	private GButton start;
+	private GButton settings;
+	private GButton mage;
+	private GButton knight;
+	private GButton rogue;
+	private GLabel lblOut;
 	
 	/**
-	 * Creates a Gui object
+	 * Creates a MainMenu object
 	 */
-	public Gui() {
+	public MainMenu() {
 
 	}
 
 	/**
 	 * Runs on setup, initializes any fields needed.
 	 */
-
-	public void setup() {
+		public void setup() {
 		
 		
-		System.out.println(height);
-		System.out.println(width);
+	//	System.out.println(height);
+	//	System.out.println(width);
 		
 		
 		img = loadImage("res/Images/Backgrounds/MenuBackground.png");
 		img.resize(1024,768);
 		
-		System.out.println(img.height);
-		System.out.println(img.width);
+	//	System.out.println(img.height);
+	//	System.out.println(img.width);
 		
 		background(img);
 		
@@ -70,9 +72,11 @@ public class Gui extends PApplet {
 		rectY = height / 2 - rectSize / 2;
 		ellipseMode(CENTER);
     */
-		start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
+	//	start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
 		settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
-		
+		mage = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "mage");
+		knight = new GButton(this, 3*width/11, height - height/5 - height/15, 100, 40, "knight");
+		rogue = new GButton(this, 7*width/11, height - height/5 - height/15, 100, 40, "rogue");
 		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
 		lblOut.setText("Dungeons and Magnums");
@@ -81,7 +85,7 @@ public class Gui extends PApplet {
 	}
 
 	/**
-	 * Draws the Gui.
+	 * Draws the MainMenu.
 	 */
 	public void draw() {
 
@@ -118,7 +122,11 @@ public class Gui extends PApplet {
 		text("Dungeons and Magnums", width/6, height/5);
 		textSize(20);
 		text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2*width/7, 2*height/7);
-		
+		text("Instructions: Use wasd to move your character. \n "
+				+ "Use mouse button 2 to fire your weapon. \n "
+				+ "The goal of the game is to clear each level by \n killing all the enemies in each room. \n"
+				+ "You can choose your character from 3 classes:\n"
+				+ "knight, mage, or rogue.", 2*width/7, 3*height/8);
 		popStyle();
 		
    
@@ -204,17 +212,24 @@ public class Gui extends PApplet {
 		}
 	}
 	
+	
+	/**This handles any events that have to do with the buttons.
+	 * It takes into account mouse clicks on a specific button.
+	 * 
+	 * @param button Button used in interaction
+	 * @param event the event that happens.
+	 */
 	public void handleButtonEvents(GButton button, GEvent event) {
 		// Create the control window?
-		if (button == start && event == GEvent.CLICKED) {
+		if (button == mage && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
-			DrawingSurface drawing = new DrawingSurface();
+			LevelRunner drawing = new LevelRunner("mage");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 			JFrame window = (JFrame)canvas.getFrame();
 			surf.setSize(1024,768);
-			surf.setResizable(true);
+		//	surf.setResizable(true);
 		//	window.setSize(1024, 768);
 			window.setMinimumSize(new Dimension(1024,768));
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -224,9 +239,59 @@ public class Gui extends PApplet {
 			canvas.requestFocus();
 		} 
 		
+		else if (button == knight && event == GEvent.CLICKED) {
+			
+			LevelRunner drawing = new LevelRunner("knight");
+			PApplet.runSketch(new String[]{""}, drawing);
+			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
+			surf.setSize(1024,768);
+		//	surf.setResizable(true);
+		//	window.setSize(1024, 768);
+			window.setMinimumSize(new Dimension(1024,768));
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			window.setResizable(true);
+
+			window.setVisible(true);
+			canvas.requestFocus();
+		}
+		
+		else if (button == rogue && event == GEvent.CLICKED) {
+			
+			LevelRunner drawing = new LevelRunner("rogue");
+			PApplet.runSketch(new String[]{""}, drawing);
+			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
+			surf.setSize(1024,768);
+		//	surf.setResizable(true);
+		//	window.setSize(1024, 768);
+			window.setMinimumSize(new Dimension(1024,768));
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			window.setResizable(true);
+
+			window.setVisible(true);
+			canvas.requestFocus();
+		}
+		
 		else if (button == settings && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
+			DrawingSurface drawing = new DrawingSurface();
 			
+			PApplet.runSketch(new String[]{""}, drawing);
+			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
+			surf.setSize(1024,768);
+		//	surf.setResizable(true);
+		//	window.setSize(1024, 768);
+			window.setMinimumSize(new Dimension(1024,768));
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			window.setResizable(true);
+
+			window.setVisible(true);
+			canvas.requestFocus();
 
 		}
 
