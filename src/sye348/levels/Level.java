@@ -1,12 +1,13 @@
 package sye348.levels;
 
 import kchandra423.actors.MovingActors.Player;
+import kchandra423.actors.MovingActors.constants.ActorState;
+import kchandra423.actors.MovingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture.TextureBuilder;
 import kchandra423.levels.Room;
-
 import java.util.ArrayList;
 
 
@@ -102,7 +103,15 @@ public abstract class Level
      */
     public boolean isCompleted()
     {
-    	return (roomNumber == rooms.size() - 1) && currentRoom.getEnemies().size() == 0;
+    	return (roomNumber == rooms.size() - 1) && allEnemiesDead() ;
+    }
+    
+    private boolean allEnemiesDead() 
+    {
+    	
+    	for (Enemy e: currentRoom.getEnemies()) 	
+    		if (e.getState() != ActorState.DEAD) return false;
+    	return true;
     }
     
     /**
