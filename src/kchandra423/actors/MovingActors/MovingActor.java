@@ -240,7 +240,7 @@ public abstract class MovingActor extends Actor {
         if (Math.abs(vy) < 0.1) {
             vy = 0;
         }
-
+ 
         image.translate(0, vy);
     }
 

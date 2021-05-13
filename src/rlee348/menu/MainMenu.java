@@ -223,7 +223,7 @@ public class MainMenu extends PApplet {
 		// Create the control window?
 		if (button == mage && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
-			LevelRunner drawing = new LevelRunner("mage");
+			DrawingSurface drawing = new DrawingSurface("mage");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -277,21 +277,21 @@ public class MainMenu extends PApplet {
 		
 		else if (button == settings && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
-			DrawingSurface drawing = new DrawingSurface();
+	//		DrawingSurface drawing = new DrawingSurface();
 			
-			PApplet.runSketch(new String[]{""}, drawing);
-			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			surf.setSize(1024,768);
+	//		PApplet.runSketch(new String[]{""}, drawing);
+	//		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+	//		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+	//		JFrame window = (JFrame)canvas.getFrame();
+	//		surf.setSize(1024,768);
 		//	surf.setResizable(true);
 		//	window.setSize(1024, 768);
-			window.setMinimumSize(new Dimension(1024,768));
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	//		window.setMinimumSize(new Dimension(1024,768));
+	//		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //			window.setResizable(true);
 
-			window.setVisible(true);
-			canvas.requestFocus();
+	//		window.setVisible(true);
+	//		canvas.requestFocus();
 
 		}
 

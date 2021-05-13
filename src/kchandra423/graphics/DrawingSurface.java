@@ -2,6 +2,9 @@ package kchandra423.graphics;
 
 import kchandra423.levels.Room;
 import processing.core.PApplet;
+import sye348.levels.LevelOne;
+import sye348.levels.LevelThree;
+import sye348.levels.LevelTwo;
 
 /**
  * Represents a drawing surface, which is a type of PApplet
@@ -12,14 +15,20 @@ import processing.core.PApplet;
 public class DrawingSurface extends PApplet {
     private static boolean[] keys;
     private Room room;
-
+    private LevelOne levelOne;
+    private LevelTwo levelTwo;
+    private LevelThree levelThree;
+	private String classType;
+    
     /**
      * Creates a new Drawing surface, and initializes the key array
      */
-    public DrawingSurface() {
+    public DrawingSurface(String classType) {
         keys = new boolean[128];
         room = new Room();
-
+        levelOne = new LevelOne(classType);
+		levelTwo = new LevelTwo(classType);
+		levelThree = new LevelThree(classType);
     }
 
     /**
@@ -48,8 +57,8 @@ public class DrawingSurface extends PApplet {
         pushMatrix();
         int halfx = width / 2;
         int halfy = height / 2;
-        translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
-        room.draw(this);
+        translate(-levelOne.getRoom().getPlayer().getImage().getX() + halfx - levelOne.getRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getRoom().getPlayer().getImage().getY() + halfy - levelOne.getRoom().getPlayer().getImage().getHeight() / 2.0f);
+        levelOne.getRoom().draw(this);
         popMatrix();
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
