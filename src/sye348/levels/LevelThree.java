@@ -15,14 +15,18 @@ import kchandra423.levels.Room;
 /**
  * 
  * @author Spencer Ye
- * @version 1.0.0
- * Last Revised: 5/12/2021
+ * @version 1.1.0
+ * Last Revised: 5/13/2021
  */
 public class LevelThree extends Level
 {
+	
+	//private String player;
+	
 	public LevelThree(String character)
 	{
-		super(getRooms(character));
+		super(getRooms(character), getTeleporter());
+		//player = character;
 	}
 	
 	private static ArrayList<Room> getRooms(String player)
@@ -49,5 +53,19 @@ public class LevelThree extends Level
 		
 		
 		return arr;
+	}
+	
+	private static Obstacle getTeleporter()
+	{
+		KImage image = new KImage(TextureBuilder.getTexture("res/Images/Obstacles/teleporter.png"));
+		
+		image.moveTo(800, 800);
+		
+		return new Obstacle(image);
+	}
+
+	public Level getNextLevel() 
+	{
+		return null;
 	}
 }
