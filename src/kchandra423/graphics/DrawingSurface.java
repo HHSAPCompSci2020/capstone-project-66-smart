@@ -64,9 +64,9 @@ public class DrawingSurface extends PApplet {
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
         
-        //if (levelOne.isCompleted()) {
-        	levelOne.displayTeleporter(this);
-       // }
+        if (levelOne.isCompleted()) {
+        	levelOne.displayTeleporter();
+        }
     }
 
     /**
