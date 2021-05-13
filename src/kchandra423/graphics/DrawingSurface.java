@@ -23,6 +23,7 @@ public class DrawingSurface extends PApplet {
 	private boolean levelOneDone = true;
 	private boolean levelTwoDone = true;
 	private boolean levelThreeDone = true;
+	private boolean levelBonus = true;
     
     /**
      * Creates a new Drawing surface, and initializes the key array
@@ -79,6 +80,11 @@ public class DrawingSurface extends PApplet {
         	levelThree.getRoom().draw(this);
         }
         
+        else if (currentLevel == 4) {
+        	translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
+        	room.draw(this);
+        }
+        
         popMatrix();
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
@@ -98,8 +104,10 @@ public class DrawingSurface extends PApplet {
         if (levelThree.isCompleted() && levelThreeDone) {
         	levelThree.getNextLevel();
         	levelTwoDone = false;
-        	currentLevel = 3;
+        	currentLevel = 4;
         }
+        
+
         
     }
 
