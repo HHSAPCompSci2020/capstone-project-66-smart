@@ -267,7 +267,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			LevelRunner drawing = new LevelRunner("knight");
+			DrawingSurface drawing = new DrawingSurface("knight");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -287,7 +287,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			LevelRunner drawing = new LevelRunner("rogue");
+			DrawingSurface drawing = new DrawingSurface("rogue");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();

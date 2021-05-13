@@ -249,7 +249,7 @@ public abstract class MovingActor extends Actor {
         state = newState;
     }
 
-    protected ActorState getState() {
+    public ActorState getState() {
         return state;
     }
 
