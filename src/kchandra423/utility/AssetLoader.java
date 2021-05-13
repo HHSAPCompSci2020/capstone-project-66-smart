@@ -37,7 +37,8 @@ public class AssetLoader {
                 new KImage("res/Images/Weapons/Shotgun.png"),
                 new KImage("res/Images/Weapons/SMG.png"),
                 new KImage("res/Images/Weapons/SpellBook.png"),
-                new KImage("res/Images/Weapons/Sword.png")
+                new KImage("res/Images/Weapons/Sword.png"),
+                new KImage("res/Images/Obstacles/Teleporter.png")
         };
         long end = System.currentTimeMillis();
         System.out.println("Initializing assets took " + ((end - start) / 1000.0)+" seconds");
@@ -70,6 +71,7 @@ public class AssetLoader {
     public static final int SMG = 23;
     public static final int SPELLBOOK = 24;
     public static final int SWORD = 25;
+    public static final int TELEPORTER = 26;
 
     /**
      * Gets a clone of the KImage at the given index. All indexes are specified as a constant. For example, to get a Bat attack sprite,

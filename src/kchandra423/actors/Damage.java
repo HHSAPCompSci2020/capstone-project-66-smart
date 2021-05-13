@@ -1,6 +1,6 @@
 package kchandra423.actors;
 
-import kchandra423.actors.MovingActors.constants.DamageTypes;
+import kchandra423.actors.movingActors.constants.DamageTypes;
 
 /**
  * Represents a damage that can be given to an actor

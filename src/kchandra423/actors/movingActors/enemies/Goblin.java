@@ -1,4 +1,4 @@
-package kchandra423.actors.MovingActors.enemies;
+package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
@@ -11,12 +11,13 @@ import kchandra423.utility.AssetLoader;
 public class Goblin extends Enemy
 {
 
-	public Goblin(float maxV, float accel) 
+	public Goblin(float x, float y) 
 	{
 		super(new KImage[] {AssetLoader.getImage(AssetLoader.GOBLIN_IDLE),
 				AssetLoader.getImage(AssetLoader.GOBLIN_MOVING),
 				AssetLoader.getImage(AssetLoader.GOBLIN_ATTACK),
-				AssetLoader.getImage(AssetLoader.GOBLIN_DEATH)}, maxV, accel);
+				AssetLoader.getImage(AssetLoader.GOBLIN_DEATH)}, 5, 0.75f);
+		image.moveTo(x, y);
 	}
 
 }

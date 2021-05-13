@@ -1,7 +1,7 @@
 kchandra423.actors
-kchandra423.actors.MovingActors
-kchandra423.actors.MovingActors.constants
-kchandra423.actors.MovingActors.enemies
+kchandra423.actors.movingActors
+kchandra423.actors.movingActors.constants
+kchandra423.actors.movingActors.enemies
 kchandra423.actors.obstacles
 kchandra423.actors.weapons
 kchandra423.actors.weapons.projectiles
