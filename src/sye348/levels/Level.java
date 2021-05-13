@@ -12,8 +12,8 @@ import java.util.ArrayList;
 /**
  * 
  * @author Spencer Ye
- * @version 1.1.0
- * Last Revised: 5/12/2021
+ * @version 1.1.1
+ * Last Revised: 5/13/2021
  */
 public class Level 
 {
@@ -77,6 +77,15 @@ public class Level
     public int getRoomNumber()
     {
     	return roomNumber;
+    }
+    
+    /**
+     * Gets the room object that the player is in
+     * @return The room that the player is in
+     */
+    public Room getRoom()
+    {
+    	return currentRoom;
     }
     
     /**
