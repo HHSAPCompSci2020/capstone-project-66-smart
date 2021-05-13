@@ -33,7 +33,7 @@ public class LevelOne extends Level
 		ArrayList<Room> arr = new ArrayList<Room>();
 		
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		enemies.add(new Goblin(0.5f, 0.5f));
+		enemies.add(new Goblin(5f, 0.5f));
 
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
