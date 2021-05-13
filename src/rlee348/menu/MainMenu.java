@@ -32,7 +32,6 @@ public class MainMenu extends PApplet {
 //	boolean rectOver = false;
 //	boolean circleOver = false;
 	private PImage img;
-	private GButton start;
 	private GButton settings;
 	private GButton mage;
 	private GButton knight;
@@ -49,7 +48,7 @@ public class MainMenu extends PApplet {
 	}
 
 	/**
-	 * Runs on setup, initializes any fields needed.
+	 * Runs on setup, initializes any fields and other objects needed.
 	 */
 		public void setup() {
 
@@ -104,7 +103,7 @@ public class MainMenu extends PApplet {
 	}
 
 	/**
-	 * Draws the MainMenu.
+	 * Draws the MainMenu along with the instructions and credits text.
 	 */
 	public void draw() {
 
@@ -153,6 +152,9 @@ public class MainMenu extends PApplet {
 		
 	}
 
+	/**
+	 * Sets the initial size of the PApplet
+	 */
 	public void settings() {
 		size(1024,768);
 	}
@@ -235,7 +237,10 @@ public class MainMenu extends PApplet {
 	
 	
 	/**This handles any events that have to do with the buttons.
-	 * It takes into account mouse clicks on a specific button.
+	 * It takes into account mouse clicks on a specific button. 
+	 * The mage button will load you into the game as a mage.
+	 * The knight button will load you into the game as a knight.
+	 * The rogue button will load you into the game as a rogue.
 	 * 
 	 * @param button Button used in interaction
 	 * @param event the event that happens.

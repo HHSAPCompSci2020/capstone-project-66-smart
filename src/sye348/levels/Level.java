@@ -102,8 +102,8 @@ public abstract class Level
      * @return If the level has been completed
      */
     public boolean isCompleted()
-    {
-    	return (roomNumber == rooms.size() - 1) && allEnemiesDead() ;
+    {	
+    	return (roomNumber == rooms.size()) && allEnemiesDead() ;
     }
     
     private boolean allEnemiesDead() 
