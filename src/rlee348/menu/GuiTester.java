@@ -15,16 +15,16 @@ public class GuiTester {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MainMenu drawing = new MainMenu();
+		LevelRunner drawing = new LevelRunner("mage");
 		
 		PApplet.runSketch(new String[]{""}, drawing);
 		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 		JFrame window = (JFrame)canvas.getFrame();
-		surf.setSize(1024,768);
+		surf.setSize(1500, 1000);
 	//	surf.setResizable(true);
 	//	window.setSize(1024, 768);
-		window.setMinimumSize(new Dimension(1024,768));
+		window.setMinimumSize(new Dimension(1500, 1000));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		window.setResizable(true);
 

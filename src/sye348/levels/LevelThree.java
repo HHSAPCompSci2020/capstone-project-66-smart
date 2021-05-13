@@ -38,7 +38,7 @@ public class LevelThree extends Level
 		enemies.add(new Witch(0.5f, 0.5f));
 		
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
-		obstacles.add(new Obstacle(new KImage(100, 100, false, false, TextureBuilder.getTexture("res/Image/Obstacles/Box.png"))));
+		obstacles.add(new Obstacle(new KImage(100, 100, false, false, TextureBuilder.getTexture("res/Images/Obstacles/Box.png"))));
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
 				obstacles,
