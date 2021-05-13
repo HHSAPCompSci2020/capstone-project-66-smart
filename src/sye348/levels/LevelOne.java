@@ -49,9 +49,9 @@ public class LevelOne extends Level
 	
 	private static Obstacle getTeleporter()
 	{
-		KImage image = new KImage(TextureBuilder.getTexture("res/Images/Obstacles/teleporter.png"));
+		KImage image = new KImage(100, 100, false, false, TextureBuilder.getTexture("res/Images/Obstacles/teleporter.png"));
 		
-		image.moveTo(100, 100);
+		
 		
 		return new Obstacle(image);
 	}

@@ -57,9 +57,7 @@ public class LevelThree extends Level
 	
 	private static Obstacle getTeleporter()
 	{
-		KImage image = new KImage(TextureBuilder.getTexture("res/Images/Obstacles/teleporter.png"));
-		
-		image.moveTo(800, 800);
+		KImage image = new KImage(800, 800, false, false, TextureBuilder.getTexture("res/Images/Obstacles/teleporter.png"));
 		
 		return new Obstacle(image);
 	}
