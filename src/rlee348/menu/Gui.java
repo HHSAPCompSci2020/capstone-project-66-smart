@@ -3,6 +3,7 @@ package rlee348.menu;
 import processing.core.PApplet;
 import processing.core.PImage;
 import g4p_controls.*;
+import kchandra423.graphics.DrawingSurface;
 
 /**
  * Draws the menu screen for the program, along with some of the other menu
@@ -13,17 +14,17 @@ import g4p_controls.*;
 
 public class Gui extends PApplet {
 
-	int rectX, rectY; // Position of square button
-	int circleX, circleY; // Position of circle button
-	int rectSize = 90; // Diameter of rect
-	int circleSize = 93; // Diameter of circle
-	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
-	boolean rectOver = false;
-	boolean circleOver = false;
-	PImage img;
-	GButton start;
-	GButton settings;
-	GLabel lblOut;
+//	int rectX, rectY; // Position of square button
+	//int circleX, circleY; // Position of circle button
+//	int rectSize = 90; // Diameter of rect
+//	int circleSize = 93; // Diameter of circle
+//	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
+//	boolean rectOver = false;
+//	boolean circleOver = false;
+	private PImage img;
+	private GButton start;
+	private GButton settings;
+	private GLabel lblOut;
 	
 	/**
 	 * Creates a Gui object
@@ -51,7 +52,7 @@ public class Gui extends PApplet {
 		
 		background(img);
 		
-		rectColor = color(0);
+	/*	rectColor = color(0);
 		rectHighlight = color(51);
 		circleColor = color(255);
 		circleHighlight = color(204);
@@ -66,7 +67,7 @@ public class Gui extends PApplet {
 		start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
 		settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
 		
-		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
+		lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
 		lblOut.setText("Dungeons and Magnums");
 		*/
@@ -130,7 +131,7 @@ public class Gui extends PApplet {
 	 */
 	public void update(int x, int y) {
 
-		if (overCircle(circleX, circleY, circleSize)) {
+	/*	if (overCircle(circleX, circleY, circleSize)) {
 			circleOver = true;
 			rectOver = false;
 		} else if (overRect(rectX, rectY, rectSize, rectSize)) {
@@ -139,6 +140,7 @@ public class Gui extends PApplet {
 		} else {
 			circleOver = rectOver = false;
 		}
+	*/	
 
 	}
 
@@ -148,13 +150,14 @@ public class Gui extends PApplet {
 	 */
 	public void mousePressed() {
 
-		if (circleOver) {
+		/*if (circleOver) {
 			currentColor = circleColor;
 		}
 
 		if (rectOver) {
 			currentColor = rectColor;
 		}
+		*/
 
 	}
 
@@ -200,7 +203,8 @@ public class Gui extends PApplet {
 		// Create the control window?
 		if (button == start && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
-			
+			DrawingSurface drawing = new DrawingSurface();
+			PApplet.runSketch(new String[]{""}, drawing);
 		} 
 		
 		else if (button == settings && event == GEvent.CLICKED) {
