@@ -1,8 +1,15 @@
 package rlee348.menu;
 
+import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
 import g4p_controls.*;
+import kchandra423.graphics.DrawingSurface;
 
 /**
  * Draws the menu screen for the program, along with some of the other menu
@@ -13,13 +20,13 @@ import g4p_controls.*;
 
 public class Gui extends PApplet {
 
-	int rectX, rectY; // Position of square button
-	int circleX, circleY; // Position of circle button
-	int rectSize = 90; // Diameter of rect
-	int circleSize = 93; // Diameter of circle
-	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
-	boolean rectOver = false;
-	boolean circleOver = false;
+//	int rectX, rectY; // Position of square button
+//	int circleX, circleY; // Position of circle button
+//	int rectSize = 90; // Diameter of rect
+//	int circleSize = 93; // Diameter of circle
+//	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
+//	boolean rectOver = false;
+//	boolean circleOver = false;
 	PImage img;
 	GButton start;
 	GButton settings;
@@ -51,7 +58,7 @@ public class Gui extends PApplet {
 		
 		background(img);
 		
-		rectColor = color(0);
+	/*	rectColor = color(0);
 		rectHighlight = color(51);
 		circleColor = color(255);
 		circleHighlight = color(204);
@@ -62,7 +69,7 @@ public class Gui extends PApplet {
 		rectX = width / 2 - rectSize - 10;
 		rectY = height / 2 - rectSize / 2;
 		ellipseMode(CENTER);
-
+    */
 		start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
 		settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
 		
@@ -130,7 +137,7 @@ public class Gui extends PApplet {
 	 */
 	public void update(int x, int y) {
 
-		if (overCircle(circleX, circleY, circleSize)) {
+	/*	if (overCircle(circleX, circleY, circleSize)) {
 			circleOver = true;
 			rectOver = false;
 		} else if (overRect(rectX, rectY, rectSize, rectSize)) {
@@ -139,8 +146,9 @@ public class Gui extends PApplet {
 		} else {
 			circleOver = rectOver = false;
 		}
-
+     */
 	}
+	
 
 	/**
 	 * Changes the color of the background if the mouse button is used to press the
@@ -148,14 +156,14 @@ public class Gui extends PApplet {
 	 */
 	public void mousePressed() {
 
-		if (circleOver) {
+	/*	if (circleOver) {
 			currentColor = circleColor;
 		}
 
 		if (rectOver) {
 			currentColor = rectColor;
 		}
-
+     */
 	}
 
 	/**
@@ -200,7 +208,20 @@ public class Gui extends PApplet {
 		// Create the control window?
 		if (button == start && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
-			
+			DrawingSurface drawing = new DrawingSurface();
+			PApplet.runSketch(new String[]{""}, drawing);
+			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
+			surf.setSize(1024,768);
+			surf.setResizable(true);
+		//	window.setSize(1024, 768);
+			window.setMinimumSize(new Dimension(1024,768));
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			window.setResizable(true);
+
+			window.setVisible(true);
+			canvas.requestFocus();
 		} 
 		
 		else if (button == settings && event == GEvent.CLICKED) {
