@@ -1,5 +1,6 @@
 package rlee348.menu;
 
+import kchandra423.utility.AssetLoader;
 import processing.core.PApplet;
 import processing.core.PImage;
 import g4p_controls.*;
@@ -39,15 +40,11 @@ public class Gui extends PApplet {
 	public void setup() {
 		
 		
-		System.out.println(height);
-		System.out.println(width);
-		
+		AssetLoader.getImage(0);
 		
 		img = loadImage("res/Images/Backgrounds/MenuBackground.png");
 		img.resize(1024,768);
-		
-		System.out.println(img.height);
-		System.out.println(img.width);
+
 		
 		background(img);
 		
@@ -106,7 +103,7 @@ public class Gui extends PApplet {
    	*/
 		pushStyle();
 		
-		fill(0);
+		fill(255);
 		textSize(60);
 		text("Dungeons and Magnums", width/6, height/5);
 		textSize(20);
@@ -195,12 +192,11 @@ public class Gui extends PApplet {
 			return false;
 		}
 	}
-	
 	public void handleButtonEvents(GButton button, GEvent event) {
 		// Create the control window?
 		if (button == start && event == GEvent.CLICKED) {
-		//	lblOut.setText("Not Ready Yet");
-			
+//			lblOut.setText("Not Ready Yet");
+			System.out.println("deez");
 		} 
 		
 		else if (button == settings && event == GEvent.CLICKED) {
