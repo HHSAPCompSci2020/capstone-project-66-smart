@@ -69,7 +69,7 @@ public class LevelRunner extends DrawingSurface {
         int halfx = width / 2;
         int halfy = height / 2;
         translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
-        room.draw(this);
+        levelTwo.draw(this);
         popMatrix();
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
