@@ -13,9 +13,9 @@ public class Bat extends Enemy
 
 	public Bat(float maxV, float accel) 
 	{
-		super(new KImage[] {AssetLoader.getImage(AssetLoader.BAT_IDLE), 
-				AssetLoader.getImage(AssetLoader.BAT_ATTACK), 
-				AssetLoader.getImage(AssetLoader.BAT_MOVING), 
+		super(new KImage[] {AssetLoader.getImage(AssetLoader.BAT_IDLE),
+				AssetLoader.getImage(AssetLoader.BAT_MOVING),
+				AssetLoader.getImage(AssetLoader.BAT_ATTACK),
 				AssetLoader.getImage(AssetLoader.BAT_DEATH)}, maxV, accel);
 	}
 

@@ -13,9 +13,9 @@ public class Goblin extends Enemy
 
 	public Goblin(float maxV, float accel) 
 	{
-		super(new KImage[] {AssetLoader.getImage(AssetLoader.GOBLIN_IDLE), 
-				AssetLoader.getImage(AssetLoader.GOBLIN_ATTACK), 
-				AssetLoader.getImage(AssetLoader.GOBLIN_MOVING), 
+		super(new KImage[] {AssetLoader.getImage(AssetLoader.GOBLIN_IDLE),
+				AssetLoader.getImage(AssetLoader.GOBLIN_MOVING),
+				AssetLoader.getImage(AssetLoader.GOBLIN_ATTACK),
 				AssetLoader.getImage(AssetLoader.GOBLIN_DEATH)}, maxV, accel);
 	}
 
