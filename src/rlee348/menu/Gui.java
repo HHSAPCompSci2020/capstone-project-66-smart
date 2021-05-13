@@ -1,7 +1,13 @@
 package rlee348.menu;
 
+import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
+
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
 import g4p_controls.*;
 import kchandra423.graphics.DrawingSurface;
 
@@ -15,16 +21,16 @@ import kchandra423.graphics.DrawingSurface;
 public class Gui extends PApplet {
 
 //	int rectX, rectY; // Position of square button
-	//int circleX, circleY; // Position of circle button
+//	int circleX, circleY; // Position of circle button
 //	int rectSize = 90; // Diameter of rect
 //	int circleSize = 93; // Diameter of circle
 //	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
 //	boolean rectOver = false;
 //	boolean circleOver = false;
-	private PImage img;
-	private GButton start;
-	private GButton settings;
-	private GLabel lblOut;
+	PImage img;
+	GButton start;
+	GButton settings;
+	GLabel lblOut;
 	
 	/**
 	 * Creates a Gui object
@@ -63,11 +69,11 @@ public class Gui extends PApplet {
 		rectX = width / 2 - rectSize - 10;
 		rectY = height / 2 - rectSize / 2;
 		ellipseMode(CENTER);
-
+    */
 		start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
 		settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
 		
-		lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
+		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
 		lblOut.setText("Dungeons and Magnums");
 		*/
@@ -140,9 +146,9 @@ public class Gui extends PApplet {
 		} else {
 			circleOver = rectOver = false;
 		}
-	*/	
-
+     */
 	}
+	
 
 	/**
 	 * Changes the color of the background if the mouse button is used to press the
@@ -150,15 +156,14 @@ public class Gui extends PApplet {
 	 */
 	public void mousePressed() {
 
-		/*if (circleOver) {
+	/*	if (circleOver) {
 			currentColor = circleColor;
 		}
 
 		if (rectOver) {
 			currentColor = rectColor;
 		}
-		*/
-
+     */
 	}
 
 	/**
@@ -205,6 +210,18 @@ public class Gui extends PApplet {
 		//	lblOut.setText("Not Ready Yet");
 			DrawingSurface drawing = new DrawingSurface();
 			PApplet.runSketch(new String[]{""}, drawing);
+			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
+			surf.setSize(1024,768);
+			surf.setResizable(true);
+		//	window.setSize(1024, 768);
+			window.setMinimumSize(new Dimension(1024,768));
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			window.setResizable(true);
+
+			window.setVisible(true);
+			canvas.requestFocus();
 		} 
 		
 		else if (button == settings && event == GEvent.CLICKED) {
