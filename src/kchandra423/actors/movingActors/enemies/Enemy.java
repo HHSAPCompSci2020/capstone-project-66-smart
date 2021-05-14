@@ -20,7 +20,7 @@ import java.util.TimerTask;
  * @see MovingActor
  * @see EnemyAI
  */
-public class Enemy extends MovingActor {
+public abstract class Enemy extends MovingActor {
     private final KImage idle;
     private final KImage moving;
     private final KImage attack;
@@ -28,8 +28,8 @@ public class Enemy extends MovingActor {
     private final EnemyAI ai;
     protected Timer timer;
 
-    protected Enemy(KImage[] images, float maxV, float accel) {
-        super(images[0], maxV, accel);
+    protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health) {
+        super(images[0], maxV, accel, stats, health);
         ai = new EnemyAI(this);
         idle = images[0];
         moving = images[1];
@@ -94,41 +94,41 @@ public class Enemy extends MovingActor {
     }
 
 
-    /**
-     * Creates a random enemy at a given location. Currently just for testing
-     *
-     * @param x The x coord of the given location
-     * @param y The y coord of the given location
-     * @return A new Enemy at that location (currently only a bat, goblin, or witch)
-     */
-    public static Enemy createEnemy(float x, float y) {
-        KImage idle;
-        KImage moving;
-        KImage attacking;
-        KImage death;
-        double rand = Math.random();
-        if (rand >0.66) {
-            idle = AssetLoader.getImage(AssetLoader.GOBLIN_IDLE);
-            attacking = AssetLoader.getImage(AssetLoader.GOBLIN_ATTACK);
-            moving = AssetLoader.getImage(AssetLoader.GOBLIN_MOVING);
-            death = AssetLoader.getImage(AssetLoader.GOBLIN_DEATH);
-            idle.moveTo(x, y);
-        } else if (rand > 0.33) {
-            idle = AssetLoader.getImage(AssetLoader.WITCH_IDLE);
-            attacking = AssetLoader.getImage(AssetLoader.WITCH_ATTACK);
-            moving = AssetLoader.getImage(AssetLoader.WITCH_MOVING);
-            death = AssetLoader.getImage(AssetLoader.WITCH_DEATH);
-            idle.moveTo(x, y);
-            return new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
-        } else {
-            idle = AssetLoader.getImage(AssetLoader.BAT_IDLE);
-            attacking = AssetLoader.getImage(AssetLoader.BAT_ATTACK);
-            moving = AssetLoader.getImage(AssetLoader.BAT_MOVING);
-            death = AssetLoader.getImage(AssetLoader.BAT_DEATH);
-            idle.moveTo(x, y);
-        }
-        return new Enemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
-    }
+//    /**
+//     * Creates a random enemy at a given location. Currently just for testing
+//     *
+//     * @param x The x coord of the given location
+//     * @param y The y coord of the given location
+//     * @return A new Enemy at that location (currently only a bat, goblin, or witch)
+//     */
+//    public static Enemy createEnemy(float x, float y) {
+//        KImage idle;
+//        KImage moving;
+//        KImage attacking;
+//        KImage death;
+//        double rand = Math.random();
+//        if (rand >0.66) {
+//            idle = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_IDLE);
+//            attacking = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_ATTACK);
+//            moving = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_MOVING);
+//            death = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_DEATH);
+//            idle.moveTo(x, y);
+//        } else if (rand > 0.33) {
+//            idle = AssetLoader.getImage(AssetLoader.Sprite.WITCH_IDLE);
+//            attacking = AssetLoader.getImage(AssetLoader.Sprite.WITCH_ATTACK);
+//            moving = AssetLoader.getImage(AssetLoader.Sprite.WITCH_MOVING);
+//            death = AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH);
+//            idle.moveTo(x, y);
+//            return new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
+//        } else {
+//            idle = AssetLoader.getImage(AssetLoader.Sprite.BAT_IDLE);
+//            attacking = AssetLoader.getImage(AssetLoader.Sprite.BAT_ATTACK);
+//            moving = AssetLoader.getImage(AssetLoader.Sprite.BAT_MOVING);
+//            death = AssetLoader.getImage(AssetLoader.Sprite.BAT_DEATH);
+//            idle.moveTo(x, y);
+//        }
+//        return new Enemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
+//    }
 
     @Override
     protected void updateState(ActorState newState) {

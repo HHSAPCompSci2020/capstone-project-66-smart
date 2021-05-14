@@ -7,6 +7,7 @@ import kchandra423.actors.movingActors.enemies.Bat;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.Goblin;
 import kchandra423.actors.movingActors.enemies.Witch;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
@@ -24,13 +25,13 @@ public class LevelThree extends Level
 	
 	//private String player;
 	
-	public LevelThree(String character)
+	public LevelThree(Player player)
 	{
-		super(getRooms(character));
+		super(getRooms(player));
 		//player = character;
 	}
 	
-	private static ArrayList<Room> getRooms(String player)
+	private static ArrayList<Room> getRooms(Player player)
 	{
 		ArrayList<Room> arr = new ArrayList<Room>();
 		
@@ -45,14 +46,14 @@ public class LevelThree extends Level
 		enemies.add(new Witch((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
 		
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
-		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.BOX));
+		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
 		o.getImage().moveTo(300,600);
 		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
 				obstacles,
 				enemies, 
-				getPlayerType(player), 
+				player,
 				bounds);
 		arr.add(r);
 		

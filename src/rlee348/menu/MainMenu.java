@@ -1,5 +1,9 @@
 package rlee348.menu;
 
+import kchandra423.actors.movingActors.players.Knight;
+import kchandra423.actors.movingActors.players.Mage;
+import kchandra423.actors.movingActors.players.Rogue;
+import kchandra423.utility.AssetLoader;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -51,7 +55,13 @@ public class MainMenu extends PApplet {
 	 * Runs on setup, initializes any fields and other objects needed.
 	 */
 		public void setup() {
-
+		Thread t = new Thread(){
+			@Override
+			public void run(){
+				AssetLoader.getImage(AssetLoader.Sprite.BAT_ATTACK);
+			}
+		};
+		t.start();
 		String[] songs = new String[]{"MainMenuTheme.mp3"};
 		
 		
@@ -252,7 +262,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface("mage");
+			DrawingSurface drawing = new DrawingSurface( new Mage(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -272,40 +282,40 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface("knight");
+			DrawingSurface drawing = new DrawingSurface(new Knight(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
-			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			surf.setSize(1024,768);
-		//	surf.setResizable(true);
-		//	window.setSize(1024, 768);
-			window.setMinimumSize(new Dimension(1024,768));
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			window.setResizable(true);
-
-			window.setVisible(true);
-			canvas.requestFocus();
+//			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+//			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+//			JFrame window = (JFrame)canvas.getFrame();
+//			surf.setSize(1024,768);
+//		//	surf.setResizable(true);
+//		//	window.setSize(1024, 768);
+//			window.setMinimumSize(new Dimension(1024,768));
+//			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+////			window.setResizable(true);
+//
+//			window.setVisible(true);
+//			canvas.requestFocus();
 		}
 		
 		else if (button == rogue && event == GEvent.CLICKED) {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface("rogue");
+			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
-			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			surf.setSize(1024,768);
-		//	surf.setResizable(true);
-		//	window.setSize(1024, 768);
-			window.setMinimumSize(new Dimension(1024,768));
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			window.setResizable(true);
-
-			window.setVisible(true);
-			canvas.requestFocus();
+//			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+//			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+//			JFrame window = (JFrame)canvas.getFrame();
+//			surf.setSize(1024,768);
+//		//	surf.setResizable(true);
+//		//	window.setSize(1024, 768);
+//			window.setMinimumSize(new Dimension(1024,768));
+//			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+////			window.setResizable(true);
+//
+//			window.setVisible(true);
+//			canvas.requestFocus();
 		}
 		
 		else if (button == settings && event == GEvent.CLICKED) {

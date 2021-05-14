@@ -3,6 +3,7 @@ package sye348.levels;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.Goblin;
 import kchandra423.actors.movingActors.enemies.Witch;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
@@ -17,14 +18,14 @@ import java.util.ArrayList;
  */
 public class LevelTwo extends Level {
 
-    private String player;
+//    private String player;
 
-    public LevelTwo(String character) {
-        super(getRooms(character));
-        player = character;
+    public LevelTwo(Player player) {
+        super(getRooms(player));
+//        player = character;
     }
 
-    private static ArrayList<Room> getRooms(String player) {
+    private static ArrayList<Room> getRooms(Player player) {
         ArrayList<Room> arr = new ArrayList<Room>();
         Rectangle bounds = new Rectangle(1500, 1000);
 
@@ -40,7 +41,7 @@ public class LevelTwo extends Level {
         Room r = new Room(Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"),
                 new ArrayList<Obstacle>(),
                 enemies,
-                getPlayerType(player),
+                player,
                 bounds);
         arr.add(r);
 

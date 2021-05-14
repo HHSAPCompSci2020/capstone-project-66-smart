@@ -1,7 +1,6 @@
 package sye348.levels;
 
-import kchandra423.actors.movingActors.Player;
-import kchandra423.actors.obstacles.Obstacle;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture.TextureBuilder;
@@ -137,22 +136,22 @@ public abstract class Level {
 //    public abstract Level getNextLevel();
 
 
-    /**
-     * Gets a Player object based on the character type, which is the parameter
-     *
-     * @param characterName A string that represents a character type's name
-     * @return A player object of the given character type
-     */
-    protected static Player getPlayerType(String characterName) {
-        if ("mage".equalsIgnoreCase(characterName)) {
-            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/MageActive.gif")));
-        }
-        if ("knight".equalsIgnoreCase(characterName)) {
-            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/KnightIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/KnightIdle.gif")));
-        }
-        if ("rogue".equalsIgnoreCase(characterName)) {
-            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/RogueIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/RogueIdle.gif")));
-        }
-        return null;
-    }
+//    /**
+//     * Gets a Player object based on the character type, which is the parameter
+//     *
+//     * @param characterName A string that represents a character type's name
+//     * @return A player object of the given character type
+//     */
+//    protected static Player getPlayerType(String characterName) {
+//        if ("mage".equalsIgnoreCase(characterName)) {
+//            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/MageActive.gif")));
+//        }
+//        if ("knight".equalsIgnoreCase(characterName)) {
+//            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/KnightIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/KnightIdle.gif")));
+//        }
+//        if ("rogue".equalsIgnoreCase(characterName)) {
+//            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/RogueIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/RogueIdle.gif")));
+//        }
+//        return null;
+//    }
 }

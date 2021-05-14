@@ -27,28 +27,25 @@ public abstract class MovingActor extends Actor {
     protected final float[] statMultipliers;
     protected int health;
     protected final int maxHealth;
-    protected int shield;
-    protected final int maxShield;
 
     /**
      * Creates a new Moving actor with the specified image, acceleration and maximum velocity
-     *
-     * @param image The specified image
+     *  @param image The specified image
      * @param maxV  This actors maximum velocity
      * @param accel This actors acceleration
+     * @param statMultipliers
      */
-    protected MovingActor(KImage image, float maxV, float accel) {
+    protected MovingActor(KImage image, float maxV, float accel, float[] statMultipliers, int maxHealth) {
         super(image);
+        this.statMultipliers = statMultipliers;
         vx = 0;
         vy = 0;
         this.maxV = maxV;
         this.accel = accel;
         state = ActorState.IDLE;
-        maxHealth = 100;
-        health = maxHealth;
-        maxShield = 100;
-        shield = maxShield;
-        statMultipliers = new float[]{1, 1, 1, 1, 1, 1};
+        this.maxHealth = maxHealth;
+        health = this.maxHealth;
+//        statMultipliers = new float[]{1, 1, 1, 1, 1, 1};
     }
 
     /**
@@ -106,14 +103,14 @@ public abstract class MovingActor extends Actor {
 
     protected void onObstacleCollision(boolean isX, Obstacle obstacle) {
         if (isX) {
-            bounceBackX();
+//            bounceBackX();
             if (obstacle.getImage().getX() > image.getX()) {
                 vx -= 3;
             } else {
                 vx += 3;
             }
         } else {
-            bounceBackY();
+//            bounceBackY();
             if (obstacle.getImage().getY() > image.getY()) {
                 vy -= 3;
             } else {
@@ -308,15 +305,7 @@ public abstract class MovingActor extends Actor {
         return maxHealth;
     }
 
-    protected int getShield() {
-        return shield;
-    }
-
-    protected void setShield(int shield) {
-        this.shield = shield;
-    }
-
-    protected int getMaxShield() {
-        return maxShield;
+    public static float[] createStates(float rangedA, float magicA, float meleeA, float rangedD, float magicD, float meleeD){
+        return new float[]{rangedA,magicA,meleeA,rangedD,magicD,magicD};
     }
 }

@@ -18,7 +18,7 @@ import java.util.TimerTask;
  * @author Kumar Chandra
  */
 public class Gun extends Actor {
-    private final int projectileId;
+    private final AssetLoader.Sprite projectileId;
     private final float projectileVelocity;
     private final ArrayList<Projectile> projectiles;
     private final float fireRate;
@@ -38,9 +38,9 @@ public class Gun extends Actor {
      * @param x The x coordinate of the specified location to be created at.
      * @param y The y coordinate of the specified location to be created at.
      */
-    public Gun(float x, float y) {
-        super(new KImage(x, y, false, true, Texture.TextureBuilder.getTexture("res/Images/Weapons/SMG.png")));
-        projectileId = AssetLoader.BULLET;
+    public Gun(float x, float y, KImage sprite) {
+        super(sprite);
+        projectileId = AssetLoader.Sprite.BULLET;
         fireRate = 0.1f;
         reloadTime = 500;
         magazineSize = 30;

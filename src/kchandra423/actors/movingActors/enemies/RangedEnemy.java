@@ -1,7 +1,7 @@
 package kchandra423.actors.movingActors.enemies;
 
-import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
@@ -13,13 +13,13 @@ import processing.core.PApplet;
 import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.TimerTask;
+
 /**
- * Represents an enemy that attacks the player from a range  
- * 
- * @author Kumar Chandra
+ * Represents an enemy that attacks the player from a range
  *
+ * @author Kumar Chandra
  */
-public class RangedEnemy extends Enemy {
+public abstract class RangedEnemy extends Enemy {
     private final float projectileVelocity;
     private final float fireRate;
     private long lastTimeShot;
@@ -27,8 +27,8 @@ public class RangedEnemy extends Enemy {
     private final Area projectileArea;
     private ArrayList<Projectile> projectiles;
 
-    protected RangedEnemy(KImage[] images, float maxV, float accel) {
-        super(images, maxV, accel);
+    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health) {
+        super(images, maxV, accel, stats, health);
         projectiles = new ArrayList<>();
         projectile = Texture.TextureBuilder.getTexture("res/Images/Projectiles/Hex.gif");
         projectileArea = KImage.loadArea(projectile);

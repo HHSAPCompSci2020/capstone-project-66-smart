@@ -1,5 +1,9 @@
 package kchandra423.graphics;
 
+import kchandra423.actors.movingActors.players.Knight;
+import kchandra423.actors.movingActors.players.Mage;
+import kchandra423.actors.movingActors.players.Player;
+import kchandra423.actors.movingActors.players.Rogue;
 import kchandra423.levels.Room;
 import processing.core.PApplet;
 import sye348.levels.LevelOne;
@@ -25,12 +29,13 @@ public class DrawingSurface extends PApplet {
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(String classType) {
+    public DrawingSurface(Player p) {
         keys = new boolean[128];
         room = new Room();
-        levelOne = new LevelOne(classType);
-		levelTwo = new LevelTwo(classType);
-		levelThree = new LevelThree(classType);
+
+        levelOne = new LevelOne(p);
+		levelTwo = new LevelTwo(p);
+		levelThree = new LevelThree(p);
     }
 
     /**

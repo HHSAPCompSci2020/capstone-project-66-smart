@@ -1,5 +1,6 @@
 package kchandra423.graphics;
 
+import kchandra423.actors.movingActors.players.Rogue;
 import processing.core.PApplet;
 /**
  * Has the main method
@@ -14,7 +15,7 @@ public class DungeonsAndMagnums {
 	 * @param args The arguments passed in when called initially 
 	 */
 	public static void main(String args[]) {
-		DrawingSurface drawing = new DrawingSurface("mage");
+		DrawingSurface drawing = new DrawingSurface(new Rogue(700,500));
 		PApplet.runSketch(new String[]{""}, drawing);
 	}
 	

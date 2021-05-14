@@ -1,11 +1,14 @@
-package kchandra423.actors.movingActors;
+package kchandra423.actors.movingActors.players;
 
+import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.enemies.Enemy;
+import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.weapons.Gun;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
+import kchandra423.utility.AssetLoader;
 import kchandra423.utility.Calculator;
 import processing.core.PApplet;
 
@@ -13,26 +16,28 @@ import java.awt.event.KeyEvent;
 
 /**
  * A player represents the users Character avatar that moves and fights the enemies
+ *
  * @author Kumar Chandra
  * @see kchandra423.actors.Actor
  * @see kchandra423.actors.movingActors.MovingActor
  * @see kchandra423.actors.movingActors.enemies.Enemy
  */
-public class Player extends MovingActor {
+public abstract class Player extends MovingActor {
     private final KImage idleImage;
     private final KImage activeImage;
     private final Gun weapon;
 
     /**
      * Creates a player with the specified idle and active animations
-     * @param idle The idle sprite of this player
+     *
+     * @param idle   The idle sprite of this player
      * @param active The active sprite of this player
      */
-    public Player(KImage idle, KImage active) {
-        super(idle, 10, 1f);
+    public Player(KImage idle, KImage active, float maxV, float accel, float[] stats, int maxHealth) {
+        super(idle, maxV, accel, stats, maxHealth);
         this.idleImage = idle;
         this.activeImage = active;
-        weapon = new Gun(image.getWidth() / 2.0f, image.getHeight() / 2.0f);
+        weapon = new Gun(image.getWidth() / 2.0f, image.getHeight() / 2.0f, AssetLoader.getImage(AssetLoader.Sprite.SWORD));
     }
 
     @Override
@@ -103,7 +108,24 @@ public class Player extends MovingActor {
     protected void onOpponentInteraction(MovingActor opponent) {
         //pretend something thatll happen, idk it depends how we design it
     }
-
+    @Override
+    protected void onObstacleCollision(boolean isX, Obstacle obstacle) {
+        if (isX) {
+            bounceBackX();
+            if (obstacle.getImage().getX() > image.getX()) {
+                vx -= 3;
+            } else {
+                vx += 3;
+            }
+        } else {
+            bounceBackY();
+            if (obstacle.getImage().getY() > image.getY()) {
+                vy -= 3;
+            } else {
+                vy += 3;
+            }
+        }
+    }
 
     @Override
     protected void updateState(ActorState newState) {

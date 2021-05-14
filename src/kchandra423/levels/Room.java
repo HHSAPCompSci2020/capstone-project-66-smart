@@ -1,7 +1,8 @@
 package kchandra423.levels;
 
-import kchandra423.actors.movingActors.Player;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.actors.movingActors.enemies.Enemy;
+import kchandra423.actors.movingActors.players.Rogue;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
@@ -33,20 +34,20 @@ public class Room {
 
         background = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/froggy.jpg");
         obstacles = new ArrayList<>();
-        Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.BOX));
+        Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
         o.getImage().moveTo(800, 800);
         obstacles.add(o);
         enemies = new ArrayList<>();
         bounds = new Rectangle(50, 50, 2000, 2000);
-        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 10));
-        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 500));
-        portal = new Obstacle(AssetLoader.getImage(AssetLoader.TELEPORTER));
+//        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 10));
+//        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 500));
+        portal = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.TELEPORTER));
         portal.getImage().moveTo((float) bounds.getCenterX(), (float) bounds.getCenterY());
 
-        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 500));
-        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 10));
-        player = new Player(AssetLoader.getImage(AssetLoader.MAGE_IDLE), AssetLoader.getImage(AssetLoader.MAGE_ACTIVE));
-        player.getImage().moveTo(bounds.x + 50, bounds.y + 50);
+//        enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 500));
+//        enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 10));
+        player = new Rogue(bounds.x + 50, bounds.y + 50);
+//        player.getImage().moveTo(bounds.x + 50, bounds.y + 50);
         background.resize(bounds.width, bounds.height);
     }
 
@@ -66,7 +67,7 @@ public class Room {
         this.bounds = bounds;
         player = p;
 
-        portal = new Obstacle(AssetLoader.getImage(AssetLoader.TELEPORTER));
+        portal = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.TELEPORTER));
         portal.getImage().moveTo((float) bounds.getCenterX(), (float) bounds.getCenterY());
         background.resize(bounds.width, bounds.height);
     }

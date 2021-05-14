@@ -1,5 +1,6 @@
 package rlee348.menu;
 
+import kchandra423.actors.movingActors.players.Rogue;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -37,20 +38,20 @@ public class LevelRunner extends DrawingSurface {
 	 */
     
     public LevelRunner() {
-    	super("");
+    	super(new Rogue(700,500));
     	keys = new boolean[128];
 		room = new Room();
     }
     
 	public LevelRunner(String classType) {
 		
-		super("");
+		super(new Rogue(700,500));
 		this.classType = classType;
 		keys = new boolean[128];
 		room = new Room();
-		levelOne = new LevelOne(classType);
-		levelTwo = new LevelTwo(classType);
-		levelThree = new LevelThree(classType);
+//		levelOne = new LevelOne(classType);
+//		levelTwo = new LevelTwo(classType);
+//		levelThree = new LevelThree(classType);
 	
 	}
 	

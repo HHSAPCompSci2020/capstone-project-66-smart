@@ -31,13 +31,13 @@ public class AssetLoader {
                 new KImage("res/Images/Players/RogueIdle.gif"),
                 new KImage("res/Images/Projectiles/Bullet.png"),
                 new KImage("res/Images/Projectiles/Hex.gif"),
-                new KImage("res/Images/Weapons/MagicStaff.png"),
-                new KImage("res/Images/Weapons/Pistol.png"),
-                new KImage("res/Images/Weapons/RustySword.png"),
-                new KImage("res/Images/Weapons/Shotgun.png"),
-                new KImage("res/Images/Weapons/SMG.png"),
-                new KImage("res/Images/Weapons/SpellBook.png"),
-                new KImage("res/Images/Weapons/Sword.png"),
+                new KImage("res/Images/Weapons/MagicStaff.png",true),
+                new KImage("res/Images/Weapons/Pistol.png",true),
+                new KImage("res/Images/Weapons/RustySword.png",true),
+                new KImage("res/Images/Weapons/Shotgun.png",true),
+                new KImage("res/Images/Weapons/SMG.png",true),
+                new KImage("res/Images/Weapons/SpellBook.png",true),
+                new KImage("res/Images/Weapons/Sword.png",true),
                 new KImage("res/Images/Obstacles/Teleporter.gif")
         };
         long end = System.currentTimeMillis();
@@ -45,42 +45,63 @@ public class AssetLoader {
     }
 
     private static final KImage[] sprites;
-    public static final int BAT_ATTACK = 0;
-    public static final int GOBLIN_ATTACK = 1;
-    public static final int WITCH_ATTACK = 2;
-    public static final int BAT_DEATH = 3;
-    public static final int GOBLIN_DEATH = 4;
-    public static final int WITCH_DEATH = 5;
-    public static final int BAT_IDLE = 6;
-    public static final int GOBLIN_IDLE = 7;
-    public static final int WITCH_IDLE = 8;
-    public static final int BAT_MOVING = 9;
-    public static final int GOBLIN_MOVING = 10;
-    public static final int WITCH_MOVING = 11;
-    public static final int BOX = 12;
-    public static final int KNIGHT_IDLE = 13;
-    public static final int MAGE_ACTIVE = 14;
-    public static final int MAGE_IDLE = 15;
-    public static final int ROGUE_IDLE = 16;
-    public static final int BULLET = 17;
-    public static final int HEX = 18;
-    public static final int MAGIC_STAFF = 19;
-    public static final int PISTOL = 20;
-    public static final int RUSTY_SWORD = 21;
-    public static final int SHOTGUN = 22;
-    public static final int SMG = 23;
-    public static final int SPELLBOOK = 24;
-    public static final int SWORD = 25;
-    public static final int TELEPORTER = 26;
+
+    /**
+     * Represents which sprite you want to get from this class.
+     * @author Kumar Chandra
+     */
+    public enum Sprite{
+        BAT_ATTACK(0), GOBLIN_ATTACK(1), WITCH_ATTACK(2), BAT_DEATH(3),GOBLIN_DEATH(4),
+        WITCH_DEATH(5), BAT_IDLE(6), GOBLIN_IDLE(7), WITCH_IDLE(8), BAT_MOVING(9),
+        GOBLIN_MOVING(10),WITCH_MOVING(11), BOX(12), KNIGHT_IDLE(13), MAGE_ACTIVE(14),
+        MAGE_IDLE(15), ROGUE_IDLE(16), BULLET(17), HEX(18), MAGIC_STAFF(19), PISTOL(20),
+        RUSTY_SWORD(21), SHOTGUN(22), SMG(23), SPELLBOOK(24), SWORD(25), TELEPORTER(26);
+
+        private final int val;
+        Sprite(int value){
+            val =value;
+        }
+
+        private int getVal() {
+            return val;
+        }
+    }
+//    public static final int BAT_ATTACK = 0;
+//    public static final int GOBLIN_ATTACK = 1;
+//    public static final int WITCH_ATTACK = 2;
+//    public static final int BAT_DEATH = 3;
+//    public static final int GOBLIN_DEATH = 4;
+//    public static final int WITCH_DEATH = 5;
+//    public static final int BAT_IDLE = 6;
+//    public static final int GOBLIN_IDLE = 7;
+//    public static final int WITCH_IDLE = 8;
+//    public static final int BAT_MOVING = 9;
+//    public static final int GOBLIN_MOVING = 10;
+//    public static final int WITCH_MOVING = 11;
+//    public static final int BOX = 12;
+//    public static final int KNIGHT_IDLE = 13;
+//    public static final int MAGE_ACTIVE = 14;
+//    public static final int MAGE_IDLE = 15;
+//    public static final int ROGUE_IDLE = 16;
+//    public static final int BULLET = 17;
+//    public static final int HEX = 18;
+//    public static final int MAGIC_STAFF = 19;
+//    public static final int PISTOL = 20;
+//    public static final int RUSTY_SWORD = 21;
+//    public static final int SHOTGUN = 22;
+//    public static final int SMG = 23;
+//    public static final int SPELLBOOK = 24;
+//    public static final int SWORD = 25;
+//    public static final int TELEPORTER = 26;
 
     /**
      * Gets a clone of the KImage at the given index. All indexes are specified as a constant. For example, to get a Bat attack sprite,
      *  you would call getImage(BAT_ATTACK);
-     * @param index The index of which image you want
+     * @param sprite The sprite you want to retrieve
      * @return A clone of the original image.
      */
-    public static KImage getImage(int index){
-        return (KImage) AssetLoader.sprites[index].clone();
+    public static KImage getImage(Sprite sprite){
+        return (KImage) AssetLoader.sprites[sprite.getVal()].clone();
     }
 
 
