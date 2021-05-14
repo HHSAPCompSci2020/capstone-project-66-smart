@@ -1,7 +1,7 @@
-package kchandra423.actors.MovingActors.enemies;
+package kchandra423.actors.movingActors.enemies;
 
-import kchandra423.actors.MovingActors.constants.ActorState;
-import kchandra423.actors.MovingActors.MovingActor;
+import kchandra423.actors.movingActors.constants.ActorState;
+import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;

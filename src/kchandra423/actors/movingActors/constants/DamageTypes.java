@@ -1,9 +1,9 @@
-package kchandra423.actors.MovingActors.constants;
+package kchandra423.actors.movingActors.constants;
 
 /**
  * Constants for the type of damage something inflicts. Can be ranged, magic or melee.
  * @author Kumar Chandra
- * @see kchandra423.actors.MovingActors.constants.Stat
+ * @see kchandra423.actors.movingActors.constants.Stat
  */
 public enum DamageTypes implements Stat {
     RANGED(0), MAGIC(1), MELEE(2);

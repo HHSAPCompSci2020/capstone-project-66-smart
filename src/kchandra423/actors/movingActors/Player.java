@@ -1,7 +1,7 @@
-package kchandra423.actors.MovingActors;
+package kchandra423.actors.movingActors;
 
-import kchandra423.actors.MovingActors.constants.ActorState;
-import kchandra423.actors.MovingActors.enemies.Enemy;
+import kchandra423.actors.movingActors.constants.ActorState;
+import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.weapons.Gun;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
@@ -15,8 +15,8 @@ import java.awt.event.KeyEvent;
  * A player represents the users Character avatar that moves and fights the enemies
  * @author Kumar Chandra
  * @see kchandra423.actors.Actor
- * @see kchandra423.actors.MovingActors.MovingActor
- * @see kchandra423.actors.MovingActors.enemies.Enemy
+ * @see kchandra423.actors.movingActors.MovingActor
+ * @see kchandra423.actors.movingActors.enemies.Enemy
  */
 public class Player extends MovingActor {
     private final KImage idleImage;

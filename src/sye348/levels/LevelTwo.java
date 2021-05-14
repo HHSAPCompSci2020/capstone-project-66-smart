@@ -3,14 +3,14 @@ package sye348.levels;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import kchandra423.actors.MovingActors.enemies.Enemy;
-import kchandra423.actors.MovingActors.enemies.Goblin;
-import kchandra423.actors.MovingActors.enemies.Witch;
+import kchandra423.actors.movingActors.enemies.Enemy;
+import kchandra423.actors.movingActors.enemies.Goblin;
+import kchandra423.actors.movingActors.enemies.Witch;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
-import kchandra423.graphics.textures.Texture.TextureBuilder;
 import kchandra423.levels.Room;
+import kchandra423.utility.AssetLoader;
 
 /**
  * 
@@ -34,12 +34,12 @@ public class LevelTwo extends Level
 		ArrayList<Room> arr = new ArrayList<Room>();
 		
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		enemies.add(new Goblin(0.5f, 0.5f));
-		enemies.add(new Goblin(0.5f, 0.5f));
-		enemies.add(new Goblin(0.5f, 0.5f));
-		enemies.add(new Goblin(0.5f, 0.5f));
-		enemies.add(new Goblin(0.5f, 0.5f));
-		enemies.add(new Witch(0.5f, 0.5f));
+		enemies.add(new Goblin(5f, 0.5f));
+		enemies.add(new Goblin(5f, 0.5f));
+		enemies.add(new Goblin(5f, 0.5f));
+		enemies.add(new Goblin(5f, 0.5f));
+		enemies.add(new Goblin(5f, 0.5f));
+		enemies.add(new Witch(5f, 0.5f));
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
 				new ArrayList<Obstacle>(),
@@ -54,8 +54,9 @@ public class LevelTwo extends Level
 	
 	private static Obstacle getTeleporter()
 	{
-		KImage image = new KImage(100, 100, false, false, TextureBuilder.getTexture("res/Images/Obstacles/teleporter.png"));
-		
+//		KImage image = new KImage(100, 100, false, false, TextureBuilder.getTexture("res/Images/Obstacles/Teleporter.png"));
+		KImage image = AssetLoader.getImage(AssetLoader.TELEPORTER);
+		image.moveTo(200,200);
 		return new Obstacle(image);
 	}
 

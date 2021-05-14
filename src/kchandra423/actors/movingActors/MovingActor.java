@@ -1,9 +1,9 @@
-package kchandra423.actors.MovingActors;
+package kchandra423.actors.movingActors;
 
 import kchandra423.actors.Actor;
 import kchandra423.actors.Damage;
-import kchandra423.actors.MovingActors.constants.ActorState;
-import kchandra423.actors.MovingActors.constants.Stat;
+import kchandra423.actors.movingActors.constants.ActorState;
+import kchandra423.actors.movingActors.constants.Stat;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;

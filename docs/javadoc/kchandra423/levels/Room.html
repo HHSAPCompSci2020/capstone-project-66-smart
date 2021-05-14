@@ -106,8 +106,8 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-constructor-name odd-row-color"><code><span class="member-name-link"><a href="#%3Cinit%3E(kchandra423.graphics.textures.Texture,java.util.ArrayList,java.util.ArrayList,kchandra423.actors.MovingActors.Player,java.awt.Rectangle)">Room</a></span>&#8203;(<a href="../graphics/textures/Texture.html" title="class in kchandra423.graphics.textures">Texture</a>&nbsp;background,
  <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/obstacles/Obstacle.html" title="class in kchandra423.actors.obstacles">Obstacle</a>&gt;&nbsp;obstacles,
- <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.MovingActors.enemies">Enemy</a>&gt;&nbsp;enemies,
- <a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.MovingActors">Player</a>&nbsp;p,
+ <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a>&gt;&nbsp;enemies,
+ <a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.movingActors">Player</a>&nbsp;p,
  <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Rectangle.html" title="class or interface in java.awt" class="external-link">Rectangle</a>&nbsp;bounds)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Constructs a room with the given values</div>
@@ -131,13 +131,13 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Draws everything in this room onto the given drawing surface.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.MovingActors.enemies">Enemy</a></code></div>
+<div class="col-first odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a></code></div>
 <div class="col-second odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getClosestEnemy(float,float)">getClosestEnemy</a></span>&#8203;(float&nbsp;x,
  float&nbsp;y)</code></div>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Returns the closest enemy from a given point</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.MovingActors.enemies">Enemy</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getEnemies()">getEnemies</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Returns all the enemies within this room</div>
@@ -147,7 +147,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Returns all obstacles within this room</div>
 </div>
-<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.MovingActors">Player</a></code></div>
+<div class="col-first even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.movingActors">Player</a></code></div>
 <div class="col-second even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table"><code><span class="member-name-link"><a href="#getPlayer()">getPlayer</a></span>()</code></div>
 <div class="col-last even-row-color method-summary-table-tab2 method-summary-table-tab4 method-summary-table">
 <div class="block">Returns the player for this room</div>
@@ -193,8 +193,8 @@ loadScripts(document, 'script');</script>
 <h3>Room</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Room</span>&#8203;<span class="parameters">(<a href="../graphics/textures/Texture.html" title="class in kchandra423.graphics.textures">Texture</a>&nbsp;background,
  <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/obstacles/Obstacle.html" title="class in kchandra423.actors.obstacles">Obstacle</a>&gt;&nbsp;obstacles,
- <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.MovingActors.enemies">Enemy</a>&gt;&nbsp;enemies,
- <a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.MovingActors">Player</a>&nbsp;p,
+ <a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a>&gt;&nbsp;enemies,
+ <a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.movingActors">Player</a>&nbsp;p,
  <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Rectangle.html" title="class or interface in java.awt" class="external-link">Rectangle</a>&nbsp;bounds)</span></div>
 <div class="block">Constructs a room with the given values</div>
 <dl class="notes">
@@ -259,7 +259,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getPlayer()">
 <h3>getPlayer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.MovingActors">Player</a></span>&nbsp;<span class="element-name">getPlayer</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../actors/MovingActors/Player.html" title="class in kchandra423.actors.movingActors">Player</a></span>&nbsp;<span class="element-name">getPlayer</span>()</div>
 <div class="block">Returns the player for this room</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -270,7 +270,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getEnemies()">
 <h3>getEnemies</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.MovingActors.enemies">Enemy</a>&gt;</span>&nbsp;<span class="element-name">getEnemies</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a>&gt;</span>&nbsp;<span class="element-name">getEnemies</span>()</div>
 <div class="block">Returns all the enemies within this room</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -292,7 +292,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getClosestEnemy(float,float)">
 <h3>getClosestEnemy</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.MovingActors.enemies">Enemy</a></span>&nbsp;<span class="element-name">getClosestEnemy</span>&#8203;<span class="parameters">(float&nbsp;x,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../actors/MovingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a></span>&nbsp;<span class="element-name">getClosestEnemy</span>&#8203;<span class="parameters">(float&nbsp;x,
  float&nbsp;y)</span></div>
 <div class="block">Returns the closest enemy from a given point</div>
 <dl class="notes">

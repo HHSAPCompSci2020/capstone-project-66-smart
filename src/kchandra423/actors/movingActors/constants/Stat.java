@@ -1,7 +1,4 @@
-package kchandra423.actors.MovingActors.constants;
-
-import kchandra423.actors.MovingActors.constants.DamageTypes;
-import kchandra423.actors.MovingActors.constants.DefenseTypes;
+package kchandra423.actors.movingActors.constants;
 
 /**
  * A stat represents any constant that can be represented as an integer value
