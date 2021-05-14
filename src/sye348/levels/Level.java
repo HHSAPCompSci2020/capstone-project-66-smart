@@ -33,7 +33,7 @@ public abstract class Level {
      *
      * @param rooms The rooms defined for a level
      */
-    public Level(ArrayList<Room> rooms, Obstacle teleporter) {
+    public Level(ArrayList<Room> rooms) {
         this.rooms = rooms;
         roomNumber = 0;
 //        currentRoom = rooms.get(0);
@@ -122,11 +122,19 @@ public abstract class Level {
 //        return currentRoom.getPlayer().intersects(teleporter);
 //    }
 
+    /**
+     * Gives the current room that the level is on
+     * @return The current room the level is on
+     */
     public Room getCurrentRoom() {
         return rooms.get(roomNumber);
     }
 
-    public abstract Level getNextLevel();
+//    /**
+//     * Gives the next level after the current level
+//     * @return The next level to play
+//     */
+//    public abstract Level getNextLevel();
 
 
     /**

@@ -26,7 +26,7 @@ public class LevelThree extends Level
 	
 	public LevelThree(String character)
 	{
-		super(getRooms(character), getTeleporter());
+		super(getRooms(character));
 		//player = character;
 	}
 	
@@ -35,40 +35,41 @@ public class LevelThree extends Level
 		ArrayList<Room> arr = new ArrayList<Room>();
 		
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		enemies.add(new Goblin(5f, 0.5f));
-		enemies.add(new Goblin(5f, 0.5f));
-		enemies.add(new Goblin(5f, 0.5f));
-		enemies.add(new Goblin(5f, 0.5f));
-		enemies.add(new Goblin(5f, 0.5f));
-		enemies.add(new Bat(5f, 0.5f));
-		enemies.add(new Witch(5f, 0.5f));
+		Rectangle bounds = new Rectangle(1500, 1500);
+
+		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
+		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
+		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
+		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
+		enemies.add(new Bat((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
+		enemies.add(new Witch((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
 		
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.BOX));
-		o.getImage().moveTo(600,600);
+		o.getImage().moveTo(300,600);
 		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
 				obstacles,
 				enemies, 
 				getPlayerType(player), 
-				new Rectangle(1500, 1000));
+				bounds);
 		arr.add(r);
 		
 		
 		return arr;
 	}
 	
-	private static Obstacle getTeleporter()
-	{
-//		KImage image = new KImage(800, 800, false, false, TextureBuilder.getTexture("res/Images/Obstacles/Teleporter.png"));
-		KImage image = AssetLoader.getImage(AssetLoader.TELEPORTER);
-		image.moveTo(800,800);
-		return new Obstacle(image);
-	}
+//	private static Obstacle getTeleporter()
+//	{
+////		KImage image = new KImage(800, 800, false, false, TextureBuilder.getTexture("res/Images/Obstacles/Teleporter.png"));
+//		KImage image = AssetLoader.getImage(AssetLoader.TELEPORTER);
+//		image.moveTo(800,800);
+//		return new Obstacle(image);
+//	}
 
-	public Level getNextLevel() 
-	{
-		return null;
-	}
+//	public Level getNextLevel()
+//	{
+//		return null;
+//	}
 }
