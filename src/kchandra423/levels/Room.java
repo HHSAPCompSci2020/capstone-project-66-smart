@@ -176,6 +176,10 @@ public class Room {
         return enemies.size() == 0;
     }
 
+    /**
+     * Returns whether this room is completed. This occurs when all enemies are dead and the player is standing on the portal
+     * @return True if all enemies are dead and the player is standing on the portal. Returns false otherwise.
+     */
     public boolean isCompleted() {
         return allEnemiesDead() && player.intersects(portal);
 
