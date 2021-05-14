@@ -23,6 +23,7 @@ public class Room {
     private final ArrayList<Obstacle> obstacles;
     private final Player player;
     private final Rectangle bounds;
+    private final Obstacle portal;
     private final Texture background;
 
     /**
@@ -39,7 +40,8 @@ public class Room {
         bounds = new Rectangle(50, 50, 2000, 2000);
         enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 10));
         enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 500));
-
+        portal = new Obstacle(AssetLoader.getImage(AssetLoader.TELEPORTER));
+        portal.getImage().moveTo((float) bounds.getCenterX(), (float) bounds.getCenterY());
 
         enemies.add(Enemy.createEnemy(bounds.x + 10, bounds.y + 500));
         enemies.add(Enemy.createEnemy(bounds.x + 500, bounds.y + 10));
@@ -50,11 +52,12 @@ public class Room {
 
     /**
      * Constructs a room with the given values
+     *
      * @param background The background of this room
-     * @param obstacles The obstacles in this room
-     * @param enemies The enemies in this room
-     * @param p The Player in this room
-     * @param bounds The boundaries of this room
+     * @param obstacles  The obstacles in this room
+     * @param enemies    The enemies in this room
+     * @param p          The Player in this room
+     * @param bounds     The boundaries of this room
      */
     public Room(Texture background, ArrayList<Obstacle> obstacles, ArrayList<Enemy> enemies, Player p, Rectangle bounds) {
         this.background = background;
@@ -62,6 +65,9 @@ public class Room {
         this.enemies = enemies;
         this.bounds = bounds;
         player = p;
+
+        portal = new Obstacle(AssetLoader.getImage(AssetLoader.TELEPORTER));
+        portal.getImage().moveTo((float) bounds.getCenterX(), (float) bounds.getCenterY());
         background.resize(bounds.width, bounds.height);
     }
 
@@ -89,6 +95,9 @@ public class Room {
                 enemies.remove(i);
                 i--;
             }
+        }
+        if(allEnemiesDead()){
+            portal.draw(d);
         }
     }
 
@@ -161,5 +170,14 @@ public class Room {
             }
         }
         return min;
+    }
+
+    private boolean allEnemiesDead() {
+        return enemies.size() == 0;
+    }
+
+    public boolean isCompleted() {
+        return allEnemiesDead() && player.intersects(portal);
+
     }
 }

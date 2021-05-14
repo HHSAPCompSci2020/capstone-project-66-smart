@@ -19,13 +19,13 @@ public abstract class Level {
 
     private ArrayList<Room> rooms;
 
-    private Room currentRoom;
+//    private Room currentRoom;
 
     private int roomNumber;
 
-    private Obstacle teleporter;
+//    private Obstacle teleporter;
 
-    private boolean completed;
+//    private boolean completed;
 
 
     /**
@@ -35,9 +35,9 @@ public abstract class Level {
      */
     public Level(ArrayList<Room> rooms, Obstacle teleporter) {
         this.rooms = rooms;
-        roomNumber = 1;
-        currentRoom = rooms.get(0);
-        this.teleporter = teleporter;
+        roomNumber = 0;
+//        currentRoom = rooms.get(0);
+//        this.teleporter = teleporter;
     }
 
     /**
@@ -46,8 +46,8 @@ public abstract class Level {
      * @param window The DrawingSurface that is drawn on
      */
     public void draw(DrawingSurface window) {
-        currentRoom.draw(window);
-        if (completed) teleporter.draw(window);
+        getCurrentRoom().draw(window);
+//        if (allEnemiesDead()) teleporter.draw(window);
     }
 
     /**
@@ -58,7 +58,8 @@ public abstract class Level {
             System.out.println("NO MORE ROOMS TO GO FORWARD");
             return;
         }
-        currentRoom = rooms.get(roomNumber++);
+        roomNumber++;
+//        currentRoom = rooms.get(roomNumber++);
     }
 
     /**
@@ -69,7 +70,8 @@ public abstract class Level {
             System.out.println("NO MORE ROOMS TO GO BACK");
             return;
         }
-        currentRoom = rooms.get(--roomNumber);
+        roomNumber--;
+//        currentRoom = rooms.get(--roomNumber);
     }
 
     /**
@@ -78,17 +80,17 @@ public abstract class Level {
      * @return The room number that the player is currently in
      */
     public int getRoomNumber() {
-        return roomNumber;
+        return roomNumber + 1;
     }
 
-    /**
-     * Gets the room object that the player is in
-     *
-     * @return The room that the player is in
-     */
-    public Room getRoom() {
-        return currentRoom;
-    }
+//    /**
+//     * Gets the room object that the player is in
+//     *
+//     * @return The room that the player is in
+//     */
+//    public Room getRoom() {
+//        return currentRoom;
+//    }
 
     /**
      * Checks if the level has been completed
@@ -96,28 +98,32 @@ public abstract class Level {
      * @return If the level has been completed
      */
     public boolean isCompleted() {
-        return (roomNumber == rooms.size()) && allEnemiesDead();
+        return roomNumber >= rooms.size()-1 && getCurrentRoom().isCompleted();
     }
 
-    private boolean allEnemiesDead() {
+//    private boolean allEnemiesDead() {
+//
+//        return currentRoom.getEnemies().size() == 0;
+//    }
 
-        return currentRoom.getEnemies().size() == 0;
-    }
+//    /**
+//     * Tells the level to display the teleporter that moves to the next level
+//     */
+//    public void displayTeleporter() {
+//        completed = true;
+//    }
 
-    /**
-     * Tells the level to display the teleporter that moves to the next level
-     */
-    public void displayTeleporter() {
-        completed = true;
-    }
+//    /**
+//     * Checks if the player is touching the teleporter
+//     *
+//     * @return If the player is touching the teleporter
+//     */
+//    public boolean playerisOnTeleporter() {
+//        return currentRoom.getPlayer().intersects(teleporter);
+//    }
 
-    /**
-     * Checks if the player is touching the teleporter
-     *
-     * @return If the player is touching the teleporter
-     */
-    public boolean playerisOnTeleporter() {
-        return currentRoom.getPlayer().intersects(teleporter);
+    public Room getCurrentRoom() {
+        return rooms.get(roomNumber);
     }
 
     public abstract Level getNextLevel();

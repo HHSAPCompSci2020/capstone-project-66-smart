@@ -38,7 +38,7 @@ public class AssetLoader {
                 new KImage("res/Images/Weapons/SMG.png"),
                 new KImage("res/Images/Weapons/SpellBook.png"),
                 new KImage("res/Images/Weapons/Sword.png"),
-                new KImage("res/Images/Obstacles/Teleporter.png")
+                new KImage("res/Images/Obstacles/Teleporter.gif")
         };
         long end = System.currentTimeMillis();
         System.out.println("Initializing assets took " + ((end - start) / 1000.0)+" seconds");

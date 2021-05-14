@@ -18,12 +18,8 @@ public class DrawingSurface extends PApplet {
     private LevelOne levelOne;
     private LevelTwo levelTwo;
     private LevelThree levelThree;
-	private String classType;
+//	private String classType;
 	private int currentLevel = 1;
-	private boolean levelOneDone = true;
-	private boolean levelTwoDone = true;
-	private boolean levelThreeDone = true;
-	private boolean levelBonus = true;
     
     /**
      * Creates a new Drawing surface, and initializes the key array
@@ -66,18 +62,18 @@ public class DrawingSurface extends PApplet {
         int halfy = height / 2;
         
         if (currentLevel == 1) {
-        	translate(-levelOne.getRoom().getPlayer().getImage().getX() + halfx - levelOne.getRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getRoom().getPlayer().getImage().getY() + halfy - levelOne.getRoom().getPlayer().getImage().getHeight() / 2.0f);
-        	levelOne.getRoom().draw(this);
+        	translate(-levelOne.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelOne.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelOne.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
+        	levelOne.getCurrentRoom().draw(this);
         }
         
         else if (currentLevel == 2) {
-        	translate(-levelTwo.getRoom().getPlayer().getImage().getX() + halfx - levelTwo.getRoom().getPlayer().getImage().getWidth() / 2.0f, -levelTwo.getRoom().getPlayer().getImage().getY() + halfy - levelTwo.getRoom().getPlayer().getImage().getHeight() / 2.0f);
-        	levelTwo.getRoom().draw(this);
+        	translate(-levelTwo.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelTwo.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelTwo.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelTwo.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
+        	levelTwo.getCurrentRoom().draw(this);
         }
         
         else if (currentLevel == 3) {
-        	translate(-levelThree.getRoom().getPlayer().getImage().getX() + halfx - levelThree.getRoom().getPlayer().getImage().getWidth() / 2.0f, -levelThree.getRoom().getPlayer().getImage().getY() + halfy - levelThree.getRoom().getPlayer().getImage().getHeight() / 2.0f);
-        	levelThree.getRoom().draw(this);
+        	translate(-levelThree.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelThree.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelThree.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelThree.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
+        	levelThree.getCurrentRoom().draw(this);
         }
         
         else if (currentLevel == 4) {
@@ -89,21 +85,21 @@ public class DrawingSurface extends PApplet {
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
         
-        if (levelOne.isCompleted() && levelOneDone) {
-        	levelOne.getNextLevel();
-        	levelOneDone = false;
+        if (levelOne.isCompleted()) {
+//        	levelOne.getNextLevel();
+//        	levelOneDone = false;
         	currentLevel = 2;
         }
         
-        if (levelTwo.isCompleted() && levelTwoDone) {
-        	levelTwo.getNextLevel();
-        	levelTwoDone = false;
+        if (levelTwo.isCompleted()) {
+//        	levelTwo.getNextLevel();
+//        	levelTwoDone = false;
         	currentLevel = 3;
         }
         
-        if (levelThree.isCompleted() && levelThreeDone) {
-        	levelThree.getNextLevel();
-        	levelTwoDone = false;
+        if (levelThree.isCompleted()) {
+//        	levelThree.getNextLevel();
+//        	levelTwoDone = false;
         	currentLevel = 4;
         }
         
