@@ -264,18 +264,18 @@ public class MainMenu extends PApplet {
 			
 			DrawingSurface drawing = new DrawingSurface( new Mage(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
-			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			surf.setSize(1024,768);
-		//	surf.setResizable(true);
-		//	window.setSize(1024, 768);
-			window.setMinimumSize(new Dimension(1024,768));
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			window.setResizable(true);
-
-			window.setVisible(true);
-			canvas.requestFocus();
+//			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
+//			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+//			JFrame window = (JFrame)canvas.getFrame();
+//			surf.setSize(1024,768);
+//		//	surf.setResizable(true);
+//		//	window.setSize(1024, 768);
+//			window.setMinimumSize(new Dimension(1024,768));
+//			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+////			window.setResizable(true);
+//
+//			window.setVisible(true);
+//			canvas.requestFocus();
 		} 
 		
 		else if (button == knight && event == GEvent.CLICKED) {

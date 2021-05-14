@@ -5,6 +5,7 @@ import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.weapons.Gun;
+import kchandra423.actors.weapons.Weapon;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
@@ -25,7 +26,7 @@ import java.awt.event.KeyEvent;
 public abstract class Player extends MovingActor {
     private final KImage idleImage;
     private final KImage activeImage;
-    private final Gun weapon;
+    private final Weapon weapon;
 
     /**
      * Creates a player with the specified idle and active animations
@@ -33,11 +34,11 @@ public abstract class Player extends MovingActor {
      * @param idle   The idle sprite of this player
      * @param active The active sprite of this player
      */
-    public Player(KImage idle, KImage active, float maxV, float accel, float[] stats, int maxHealth) {
+    public Player(KImage idle, KImage active, float maxV, float accel, float[] stats, int maxHealth, Weapon weapon) {
         super(idle, maxV, accel, stats, maxHealth);
         this.idleImage = idle;
         this.activeImage = active;
-        weapon = new Gun(image.getWidth() / 2.0f, image.getHeight() / 2.0f, AssetLoader.getImage(AssetLoader.Sprite.SWORD));
+        this.weapon = weapon;
     }
 
     @Override

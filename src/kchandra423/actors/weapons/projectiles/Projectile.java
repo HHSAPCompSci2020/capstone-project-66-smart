@@ -30,16 +30,16 @@ public class Projectile extends Actor {
      * @param image The specified image
      * @param v     The initial velocity of this projectile
      * @param angle The initial angle of this projectile
-     * @param ally Whether or not this projectile belongs to an ally
+     * @param ally  Whether or not this projectile belongs to an ally
      */
-    public Projectile(KImage image, float v, float angle, boolean ally) {
+    public Projectile(KImage image, float v, float angle, boolean ally, float[] stats, DamageTypes type) {
         super(image);
         this.ally = ally;
         image.setAngle(angle);
         this.v = v;
-        stats = new float[]{1, 1, 1};
+        this.stats = stats;
 
-        type = DamageTypes.RANGED;
+        this.type = type;
     }
 
     /**

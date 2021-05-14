@@ -1,6 +1,7 @@
 package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 
@@ -17,7 +18,7 @@ public class Witch extends RangedEnemy
 		super(new KImage[] {AssetLoader.getImage(AssetLoader.Sprite.WITCH_IDLE),
 				AssetLoader.getImage(AssetLoader.Sprite.WITCH_MOVING),
 				AssetLoader.getImage(AssetLoader.Sprite.WITCH_ATTACK),
-				AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH)}, 4f, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f), 50);
+				AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH)}, 4f, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f), 50, DamageTypes.MAGIC, AssetLoader.Sprite.HEX);
 		image.moveTo(x, y);
 	}
 

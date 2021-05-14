@@ -2,15 +2,15 @@ package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.ActorState;
+import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
-import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
+import kchandra423.utility.AssetLoader;
 import kchandra423.utility.Calculator;
 import processing.core.PApplet;
 
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -22,16 +22,16 @@ import java.util.TimerTask;
 public abstract class RangedEnemy extends Enemy {
     private final float projectileVelocity;
     private final float fireRate;
+    private final DamageTypes type;
     private long lastTimeShot;
-    private final Texture projectile;
-    private final Area projectileArea;
+    private final AssetLoader.Sprite projectile;
     private ArrayList<Projectile> projectiles;
 
-    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health) {
+    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health, DamageTypes type, AssetLoader.Sprite projectile) {
         super(images, maxV, accel, stats, health);
+        this.type = type;
+        this.projectile = projectile;
         projectiles = new ArrayList<>();
-        projectile = Texture.TextureBuilder.getTexture("res/Images/Projectiles/Hex.gif");
-        projectileArea = KImage.loadArea(projectile);
         projectileVelocity = 7;
         fireRate = 1f;
         lastTimeShot = System.currentTimeMillis();
@@ -65,10 +65,12 @@ public abstract class RangedEnemy extends Enemy {
         float tempAngle = (float) Calculator.calculateAngle(image.getX(), image.getY(), opponent.getImage().getBounds().getCenterX(), opponent.getImage().getBounds().getCenterY());
         tempAngle += Math.random() * Math.PI / 8;
         tempAngle -= Math.PI / 8 / 2;
-        projectiles.add(new Projectile(
-                new KImage((float) (image.getBounds().getCenterX()), (float) (image.getBounds().getCenterY())
-                        , false, false, projectile, projectileArea)
-                , projectileVelocity, tempAngle, false));
+        Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, statMultipliers, type);
+        p.getImage().moveTo((float) (image.getBounds().getCenterX()), (float) (image.getBounds().getCenterY()));
+//        projectiles.add(new Projectile(
+//                new KImage((float) (image.getBounds().getCenterX()), (float) (image.getBounds().getCenterY())
+//                        , false, false, projectile, projectileArea,st)
+//                , projectileVelocity, tempAngle, false));
         lastTimeShot = System.currentTimeMillis();
     }
 

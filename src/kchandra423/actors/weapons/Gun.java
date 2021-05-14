@@ -1,10 +1,9 @@
 package kchandra423.actors.weapons;
 
-import kchandra423.actors.Actor;
+import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
-import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
 import kchandra423.utility.AssetLoader;
 
@@ -17,13 +16,16 @@ import java.util.TimerTask;
  *
  * @author Kumar Chandra
  */
-public class Gun extends Actor {
-    private final AssetLoader.Sprite projectileId;
+public class Gun extends Weapon {
+    private final AssetLoader.Sprite projectile;
     private final float projectileVelocity;
     private final ArrayList<Projectile> projectiles;
     private final float fireRate;
     private final int reloadTime;///1000ths
     private int magazine;
+    private final float[] stats;
+    private final DamageTypes type;
+    private final int pellets;
     private final int magazineSize;
     private TimerTask reloadTask;
     private Timer reloadTimer;
@@ -32,23 +34,20 @@ public class Gun extends Actor {
     private final float spread;
     private long timeSinceReloaded;
 
-    /**
-     * Creates a new gun at the specified location. Currently all other values are hardcoded
-     *
-     * @param x The x coordinate of the specified location to be created at.
-     * @param y The y coordinate of the specified location to be created at.
-     */
-    public Gun(float x, float y, KImage sprite) {
+    public Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets) {
         super(sprite);
-        projectileId = AssetLoader.Sprite.BULLET;
-        fireRate = 0.1f;
+        this.projectile = projectile;
+        this.fireRate = fireRate;
+        this.stats = stats;
+        this.type = type;
+        this.pellets = pellets;
         reloadTime = 500;
         magazineSize = 30;
         magazine = magazineSize;
         reloadTimer = new Timer();
-        spread = (float) (Math.PI / 10);
+        this.spread = spread;
         timeSinceReloaded = System.currentTimeMillis();
-        projectileVelocity = 20;
+        this.projectileVelocity = projectileVelocity;
         projectiles = new ArrayList<>();
         reloading = false;
     }
@@ -93,12 +92,14 @@ public class Gun extends Actor {
      */
     public void fire() {
         if (canFire()) {
-            float tempAngle = image.getAngle();
-            tempAngle += Math.random() * spread;
-            tempAngle -= spread / 2;
-            Projectile p = new Projectile(AssetLoader.getImage(projectileId), projectileVelocity, tempAngle, true);
-            p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth()/2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight()/2 * Math.sin(image.getAngle())));
-            projectiles.add(p);
+            for (int i = 0; i < pellets; i++) {
+                float tempAngle = image.getAngle();
+                tempAngle += Math.random() * spread;
+                tempAngle -= spread / 2;
+                Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, stats, type);
+                p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight() / 2 * Math.sin(image.getAngle())));
+                projectiles.add(p);
+            }
             lastTimeShot = System.currentTimeMillis();
         }
     }
