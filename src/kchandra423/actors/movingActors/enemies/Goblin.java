@@ -17,7 +17,7 @@ public class Goblin extends Enemy
 		super(new KImage[] {AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_IDLE),
 				AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_MOVING),
 				AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_ATTACK),
-				AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_DEATH)}, 5, 0.75f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f),75);
+				AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_DEATH)}, 5, 0.75f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f),75, 18 * 100L);
 		image.moveTo(x, y);
 	}
 

@@ -15,7 +15,7 @@ public class Bat extends Enemy {
         super(new KImage[]{AssetLoader.getImage(AssetLoader.Sprite.BAT_IDLE),
                 AssetLoader.getImage(AssetLoader.Sprite.BAT_MOVING),
                 AssetLoader.getImage(AssetLoader.Sprite.BAT_ATTACK),
-                AssetLoader.getImage(AssetLoader.Sprite.BAT_DEATH)}, 10, 2, MovingActor.createStates(1,1,1.5f,0.5f, 0.25f, 0.75f),30);
+                AssetLoader.getImage(AssetLoader.Sprite.BAT_DEATH)}, 10, 2, MovingActor.createStates(1,1,1.5f,0.5f, 0.25f, 0.75f),30, 6*100L);
 
         image.moveTo(x, y);
     }

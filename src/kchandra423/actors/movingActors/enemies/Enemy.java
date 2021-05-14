@@ -7,7 +7,6 @@ import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
-import kchandra423.utility.AssetLoader;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,10 +25,12 @@ public abstract class Enemy extends MovingActor {
     private final KImage attack;
     private final KImage death;
     private final EnemyAI ai;
+    private final long deathTime;
     protected Timer timer;
 
-    protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health) {
+    protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health, long deathTime) {
         super(images[0], maxV, accel, stats, health);
+        this.deathTime = deathTime;
         ai = new EnemyAI(this);
         idle = images[0];
         moving = images[1];
@@ -175,7 +176,7 @@ public abstract class Enemy extends MovingActor {
                 public void run() {
                     Enemy.super.setActive(false);
                 }
-            }, 18 * 100L);
+            }, deathTime);
         }
     }
 

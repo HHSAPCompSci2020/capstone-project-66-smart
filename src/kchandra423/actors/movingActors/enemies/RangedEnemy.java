@@ -27,8 +27,8 @@ public abstract class RangedEnemy extends Enemy {
     private final AssetLoader.Sprite projectile;
     private ArrayList<Projectile> projectiles;
 
-    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health, DamageTypes type, AssetLoader.Sprite projectile) {
-        super(images, maxV, accel, stats, health);
+    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health, DamageTypes type, AssetLoader.Sprite projectile, long deathTime) {
+        super(images, maxV, accel, stats, health, deathTime);
         this.type = type;
         this.projectile = projectile;
         projectiles = new ArrayList<>();
