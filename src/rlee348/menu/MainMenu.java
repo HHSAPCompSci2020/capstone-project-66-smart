@@ -18,6 +18,7 @@ import jay.jaysound.JayLayer;
 import jay.jaysound.JayLayerListener;
 
 import kchandra423.graphics.DrawingSurface;
+import processing.opengl.PSurfaceJOGL;
 
 /**
  * Draws the menu screen for the program, Displays credits 
@@ -304,6 +305,7 @@ public class MainMenu extends PApplet {
 			
 			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
+
 //			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
 //			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 //			JFrame window = (JFrame)canvas.getFrame();

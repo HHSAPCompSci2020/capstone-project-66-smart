@@ -22,6 +22,7 @@ public class Projectile extends Actor {
     protected final float v;
     private final float[] stats;
     private final DamageTypes type;
+    private final int damage;
 
 
     /**
@@ -32,13 +33,13 @@ public class Projectile extends Actor {
      * @param angle The initial angle of this projectile
      * @param ally  Whether or not this projectile belongs to an ally
      */
-    public Projectile(KImage image, float v, float angle, boolean ally, float[] stats, DamageTypes type) {
+    public Projectile(KImage image, float v, float angle, boolean ally, float[] stats, DamageTypes type, int damage) {
         super(image);
         this.ally = ally;
         image.setAngle(angle);
         this.v = v;
         this.stats = stats;
-
+        this.damage= damage;
         this.type = type;
     }
 
@@ -88,7 +89,7 @@ public class Projectile extends Actor {
                 for (Enemy e : enemies) {
                     if (intersects(e)) {
                         active = false;
-                        e.interceptHitBox(new Damage(10, stats, type));
+                        e.interceptHitBox(new Damage(damage, stats, type));
                         return;
                     }
                 }
@@ -97,7 +98,7 @@ public class Projectile extends Actor {
 
                 if (intersects(room.getPlayer())) {
                     active = false;
-                    room.getPlayer().interceptHitBox(new Damage(10, stats, type));
+                    room.getPlayer().interceptHitBox(new Damage(damage, stats, type));
 
                 }
             }

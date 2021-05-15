@@ -4,12 +4,10 @@ import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
-import kchandra423.actors.weapons.Gun;
 import kchandra423.actors.weapons.Weapon;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
-import kchandra423.utility.AssetLoader;
 import kchandra423.utility.Calculator;
 import processing.core.PApplet;
 
@@ -75,8 +73,9 @@ public abstract class Player extends MovingActor {
         } else {
             updateState(ActorState.MOVING);
         }
-        weapon.act(d, r);
+
         weapon.getImage().moveTo(image.getX() + image.getWidth() / 2.0f, image.getY() + image.getHeight() / 2.0f);
+        weapon.act(d, r);
 
     }
 
@@ -109,6 +108,7 @@ public abstract class Player extends MovingActor {
     protected void onOpponentInteraction(MovingActor opponent) {
         //pretend something thatll happen, idk it depends how we design it
     }
+
     @Override
     protected void onObstacleCollision(boolean isX, Obstacle obstacle) {
         if (isX) {

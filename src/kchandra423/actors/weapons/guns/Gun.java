@@ -1,6 +1,8 @@
-package kchandra423.actors.weapons;
+package kchandra423.actors.weapons.guns;
 
+import kchandra423.actors.Damage;
 import kchandra423.actors.movingActors.constants.DamageTypes;
+import kchandra423.actors.weapons.Weapon;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
@@ -23,7 +25,8 @@ public class Gun extends Weapon {
     private final float fireRate;
     private final int reloadTime;///1000ths
     private int magazine;
-    private final float[] stats;
+    private float[] stats;
+    private int damage;
     private final DamageTypes type;
     private final int pellets;
     private final int magazineSize;
@@ -34,7 +37,7 @@ public class Gun extends Weapon {
     private final float spread;
     private long timeSinceReloaded;
 
-    public Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets) {
+    public Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets, int damage) {
         super(sprite);
         this.projectile = projectile;
         this.fireRate = fireRate;
@@ -45,6 +48,7 @@ public class Gun extends Weapon {
         magazineSize = 30;
         magazine = magazineSize;
         reloadTimer = new Timer();
+        this.damage = damage;
         this.spread = spread;
         timeSinceReloaded = System.currentTimeMillis();
         this.projectileVelocity = projectileVelocity;
@@ -96,7 +100,7 @@ public class Gun extends Weapon {
                 float tempAngle = image.getAngle();
                 tempAngle += Math.random() * spread;
                 tempAngle -= spread / 2;
-                Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, stats, type);
+                Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, stats, type, damage);
                 p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight() / 2 * Math.sin(image.getAngle())));
                 projectiles.add(p);
             }
@@ -111,5 +115,9 @@ public class Gun extends Weapon {
             }
         }
         return false;
+    }
+
+    public void setStats(float[] stats) {
+        this.stats = stats;
     }
 }

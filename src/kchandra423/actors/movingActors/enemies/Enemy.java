@@ -41,6 +41,7 @@ public abstract class Enemy extends MovingActor {
 
     @Override
     public void act(DrawingSurface d, Room r) {
+//        System.out.println(health);
         if (getState() != ActorState.ATTACKING && getState() != ActorState.DEAD) {
             super.act(d, r);
             if (getState() != ActorState.ATTACKING && getState() != ActorState.DEAD) {
