@@ -1,6 +1,6 @@
 package sye348.levels;
 
-import kchandra423.actors.movingActors.players.Player;
+import kchandra423.actors.MovingActors.players.Player;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture.TextureBuilder;

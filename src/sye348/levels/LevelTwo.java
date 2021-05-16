@@ -1,9 +1,9 @@
 package sye348.levels;
 
-import kchandra423.actors.movingActors.enemies.Enemy;
-import kchandra423.actors.movingActors.enemies.Goblin;
-import kchandra423.actors.movingActors.enemies.Witch;
-import kchandra423.actors.movingActors.players.Player;
+import kchandra423.actors.MovingActors.enemies.Enemy;
+import kchandra423.actors.MovingActors.enemies.Goblin;
+import kchandra423.actors.MovingActors.enemies.Witch;
+import kchandra423.actors.MovingActors.players.Player;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;

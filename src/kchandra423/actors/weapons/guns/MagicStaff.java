@@ -1,7 +1,7 @@
 package kchandra423.actors.weapons.guns;
 
-import kchandra423.actors.movingActors.MovingActor;
-import kchandra423.actors.movingActors.constants.DamageTypes;
+import kchandra423.actors.MovingActors.MovingActor;
+import kchandra423.actors.MovingActors.constants.DamageTypes;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 

@@ -1,4 +1,4 @@
-package kchandra423.actors.movingActors.constants;
+package kchandra423.actors.MovingActors.constants;
 
 /**
  * Represents the current state of an actor, which can be idle, moving, attacking, or dead
