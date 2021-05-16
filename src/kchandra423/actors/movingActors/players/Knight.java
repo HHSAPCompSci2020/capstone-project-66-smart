@@ -1,6 +1,6 @@
-package kchandra423.actors.movingActors.players;
+package kchandra423.actors.MovingActors.players;
 
-import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.MovingActors.MovingActor;
 import kchandra423.actors.weapons.MeleeWeapon;
 import kchandra423.utility.AssetLoader;
 
