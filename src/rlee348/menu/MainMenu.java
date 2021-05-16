@@ -260,7 +260,6 @@ public class MainMenu extends PApplet {
 		// Create the control window?
 		if (button == mage && event == GEvent.CLICKED) {
 		//	lblOut.setText("Not Ready Yet");
-			
 			music.stopSong();
 			
 			DrawingSurface drawing = new DrawingSurface( new Mage(700,500));

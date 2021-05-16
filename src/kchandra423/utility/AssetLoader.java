@@ -58,7 +58,8 @@ public class AssetLoader {
         WITCH_DEATH(5), BAT_IDLE(6), GOBLIN_IDLE(7), WITCH_IDLE(8), BAT_MOVING(9),
         GOBLIN_MOVING(10), WITCH_MOVING(11), BOX(12), KNIGHT_IDLE(13), MAGE_ACTIVE(14),
         MAGE_IDLE(15), ROGUE_IDLE(16), BULLET(17), HEX(18), MAGIC_STAFF(19), PISTOL(20),
-        RUSTY_SWORD(21), SHOTGUN(22), SMG(23), SPELLBOOK(24), SWORD(25), TELEPORTER(26), MAGIC_BALL(27);
+        RUSTY_SWORD(21), SHOTGUN(22), SMG(23), SPELLBOOK(24), SWORD(25), TELEPORTER(26),
+        MAGIC_BALL(27);
 
         private final int val;
 
@@ -70,33 +71,7 @@ public class AssetLoader {
             return val;
         }
     }
-//    public static final int BAT_ATTACK = 0;
-//    public static final int GOBLIN_ATTACK = 1;
-//    public static final int WITCH_ATTACK = 2;
-//    public static final int BAT_DEATH = 3;
-//    public static final int GOBLIN_DEATH = 4;
-//    public static final int WITCH_DEATH = 5;
-//    public static final int BAT_IDLE = 6;
-//    public static final int GOBLIN_IDLE = 7;
-//    public static final int WITCH_IDLE = 8;
-//    public static final int BAT_MOVING = 9;
-//    public static final int GOBLIN_MOVING = 10;
-//    public static final int WITCH_MOVING = 11;
-//    public static final int BOX = 12;
-//    public static final int KNIGHT_IDLE = 13;
-//    public static final int MAGE_ACTIVE = 14;
-//    public static final int MAGE_IDLE = 15;
-//    public static final int ROGUE_IDLE = 16;
-//    public static final int BULLET = 17;
-//    public static final int HEX = 18;
-//    public static final int MAGIC_STAFF = 19;
-//    public static final int PISTOL = 20;
-//    public static final int RUSTY_SWORD = 21;
-//    public static final int SHOTGUN = 22;
-//    public static final int SMG = 23;
-//    public static final int SPELLBOOK = 24;
-//    public static final int SWORD = 25;
-//    public static final int TELEPORTER = 26;
+
 
     /**
      * Gets a clone of the KImage at the given index. All indexes are specified as a constant. For example, to get a Bat attack sprite,
