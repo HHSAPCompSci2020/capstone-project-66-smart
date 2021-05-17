@@ -91,20 +91,11 @@ public class MainMenu extends PApplet {
 		music.addPlayList();
 		music.addSongs(0,songs);
 		music.changePlayList(0);
-		music.setVolume(10f);
+		music.setVolume(-10f);
 		music.nextSong();
-		Player p = music.getPlayerFromMP3();
 
-	/*	try {
-        File f = new File("res/Sounds/MainMenuTheme.mp3");
-        Player player = new Player(new FileInputStream(f));
-        player.setGain(-10f);
-        player.play();
-		} 
-		catch (JavaLayerException | FileNotFoundException ex) {
-        ex.printStackTrace();
-		}
-		*/
+
+
 		
 	/*	rectColor = color(0);
 		rectHighlight = color(51);
