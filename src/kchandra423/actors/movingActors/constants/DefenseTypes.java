@@ -1,4 +1,4 @@
-package kchandra423.actors.movingActors.constants;
+package kchandra423.actors.MovingActors.constants;
 
 /**
  * Constants for the type of defense something has. Can be ranged, magic or melee.

@@ -1,6 +1,6 @@
-package kchandra423.actors.movingActors.enemies;
+package kchandra423.actors.MovingActors.enemies;
 
-import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.MovingActors.MovingActor;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 

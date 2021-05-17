@@ -1,20 +1,29 @@
 package rlee348.menu;
 
-import kchandra423.actors.movingActors.players.Knight;
-import kchandra423.actors.movingActors.players.Mage;
-import kchandra423.actors.movingActors.players.Rogue;
+import kchandra423.actors.MovingActors.players.Knight;
+import kchandra423.actors.MovingActors.players.Mage;
+import kchandra423.actors.MovingActors.players.Rogue;
 import kchandra423.utility.AssetLoader;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
+//import processing.sound.*;
+
+import java.awt.Dimension;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
 
 import g4p_controls.*;
-
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 import jay.jaysound.JayLayer;
+import jay.jaysound.JayLayerListener;
 
 import kchandra423.graphics.DrawingSurface;
+import processing.opengl.PSurfaceJOGL;
 
 /**
  * Draws the menu screen for the program, Displays credits 
@@ -84,7 +93,16 @@ public class MainMenu extends PApplet {
 		music.changePlayList(0);
 		music.nextSong();
 
-		//music.addJayLayerListener(this);
+	/*	try {
+        File f = new File("res/Sounds/MainMenuTheme.mp3");
+        Player player = new Player(new FileInputStream(f));
+        player.setGain(-10f);
+        player.play();
+		} 
+		catch (JavaLayerException | FileNotFoundException ex) {
+        ex.printStackTrace();
+		}
+		*/
 		
 	/*	rectColor = color(0);
 		rectHighlight = color(51);
