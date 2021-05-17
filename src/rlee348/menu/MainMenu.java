@@ -264,9 +264,9 @@ public class MainMenu extends PApplet {
 			
 			DrawingSurface drawing = new DrawingSurface( new Mage(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
-//			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-//			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-//			JFrame window = (JFrame)canvas.getFrame();
+			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
 //			surf.setSize(1024,768);
 //		//	surf.setResizable(true);
 //		//	window.setSize(1024, 768);
@@ -274,7 +274,7 @@ public class MainMenu extends PApplet {
 //			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 ////			window.setResizable(true);
 //
-//			window.setVisible(true);
+			window.setVisible(false);
 //			canvas.requestFocus();
 		} 
 		
@@ -284,9 +284,9 @@ public class MainMenu extends PApplet {
 			
 			DrawingSurface drawing = new DrawingSurface(new Knight(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
-//			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-//			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-//			JFrame window = (JFrame)canvas.getFrame();
+			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
 //			surf.setSize(1024,768);
 //		//	surf.setResizable(true);
 //		//	window.setSize(1024, 768);
@@ -294,7 +294,7 @@ public class MainMenu extends PApplet {
 //			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 ////			window.setResizable(true);
 //
-//			window.setVisible(true);
+			window.setVisible(false);
 //			canvas.requestFocus();
 		}
 		
@@ -305,9 +305,9 @@ public class MainMenu extends PApplet {
 			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500));
 			PApplet.runSketch(new String[]{""}, drawing);
 
-//			PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-//			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-//			JFrame window = (JFrame)canvas.getFrame();
+			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+			JFrame window = (JFrame)canvas.getFrame();
 //			surf.setSize(1024,768);
 //		//	surf.setResizable(true);
 //		//	window.setSize(1024, 768);
@@ -315,7 +315,7 @@ public class MainMenu extends PApplet {
 //			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 ////			window.setResizable(true);
 //
-//			window.setVisible(true);
+			window.setVisible(false);
 //			canvas.requestFocus();
 		}
 		
