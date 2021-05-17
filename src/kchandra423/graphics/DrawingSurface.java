@@ -54,6 +54,7 @@ public class DrawingSurface extends PApplet {
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
         
+        
         String[] songs = new String[]{"LevelTheme.mp3"};
         sounds = new JayLayer("res/Sounds/","res/Sounds/",false);
 		sounds.addPlayList();
@@ -61,6 +62,8 @@ public class DrawingSurface extends PApplet {
 		sounds.changePlayList(0);
 		sounds.setVolume(volume);
 		sounds.nextSong();
+		
+		
     }
 
 
