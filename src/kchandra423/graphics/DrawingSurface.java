@@ -101,7 +101,7 @@ public class DrawingSurface extends PApplet {
         int halfx = width / 2;
         int halfy = height / 2;
         
-   /*     if (mousePressed) {
+     /*   if (mousePressed) {
         	effects.nextSong();
    	//     	sounds.playSoundEffect(0);
    		 
@@ -111,7 +111,7 @@ public class DrawingSurface extends PApplet {
         if (!mousePressed) {
         	effects.stopSong();
         }
-     */   
+       */ 
         if (currentLevel == 1) {
         	translate(-levelOne.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelOne.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelOne.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
         	levelOne.getCurrentRoom().draw(this);
@@ -169,9 +169,13 @@ public class DrawingSurface extends PApplet {
 
     }
     
-    public void mouseClicked(){
-    	
+    public void mousePressed(){
+    	effects.nextSong();
     	 
+    }
+    
+    public void mouseReleased() {
+    	effects.stopSong();
     }
 
     /**
