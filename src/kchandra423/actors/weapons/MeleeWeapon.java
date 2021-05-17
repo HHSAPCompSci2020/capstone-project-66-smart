@@ -1,5 +1,6 @@
 package kchandra423.actors.weapons;
 
+import jay.jaysound.JayLayer;
 import kchandra423.actors.Damage;
 import kchandra423.actors.MovingActors.constants.DamageTypes;
 import kchandra423.actors.MovingActors.enemies.Enemy;
@@ -10,6 +11,7 @@ import kchandra423.levels.Room;
 public class MeleeWeapon extends Weapon {
     private final float swingTime = 0.5f;
     private long swingStartTime = System.currentTimeMillis();
+
 
     /**
      * Creates an actor with the specified image

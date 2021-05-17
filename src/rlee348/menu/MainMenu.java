@@ -277,7 +277,7 @@ public class MainMenu extends PApplet {
 		//	lblOut.setText("Not Ready Yet");
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel);
+			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, "mage");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -297,7 +297,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel);
+			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, "knight");
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -317,7 +317,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel);
+			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, "rogue");
 			PApplet.runSketch(new String[]{""}, drawing);
 
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();

@@ -20,19 +20,22 @@ public class DrawingSurface extends PApplet {
     private LevelOne levelOne;
     private LevelTwo levelTwo;
     private LevelThree levelThree;
-//	private String classType;
+	private String classType;
     private JayLayer sounds;
+    private JayLayer effects;
 	private int currentLevel = 1;
 	private float volume;
+	private String[] soundEffects;
     
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p, float volume) {
+    public DrawingSurface(Player p, float volume, String classType) {
         keys = new boolean[128];
         room = new Room();
         this.volume = volume;
+        this.classType = classType;
         levelOne = new LevelOne(p);
 		levelTwo = new LevelTwo(p);
 		levelThree = new LevelThree(p);
@@ -54,14 +57,35 @@ public class DrawingSurface extends PApplet {
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
         
+        soundEffects = new String[] {"SwordAttack.mp3"};
+        
+        if (classType == "knight") {
+        	soundEffects = new String[] {"SwordAttack.mp3"};
+        }
+        
+        if (classType == "mage") {
+        	soundEffects = new String[] {"MagicAttack.mp3"};     			
+        	
+        }
+        
+        if (classType == "rogue") {
+        	soundEffects = new String[] {"Gunshot.mp3"};
+        }
         
         String[] songs = new String[]{"LevelTheme.mp3"};
         sounds = new JayLayer("res/Sounds/","res/Sounds/",false);
 		sounds.addPlayList();
 		sounds.addSongs(0,songs);
+		sounds.addSoundEffects(soundEffects);
 		sounds.changePlayList(0);
 		sounds.setVolume(volume);
 		sounds.nextSong();
+		
+		effects = new JayLayer("res/Sounds/", "res/Sounds/", false);
+		effects.addPlayList();
+		effects.addSongs(0,soundEffects);
+		effects.changePlayList(0);
+		effects.setVolume(volume);
 		
 		
     }
@@ -77,6 +101,17 @@ public class DrawingSurface extends PApplet {
         int halfx = width / 2;
         int halfy = height / 2;
         
+   /*     if (mousePressed) {
+        	effects.nextSong();
+   	//     	sounds.playSoundEffect(0);
+   		 
+   	        
+   	 	}
+        
+        if (!mousePressed) {
+        	effects.stopSong();
+        }
+     */   
         if (currentLevel == 1) {
         	translate(-levelOne.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelOne.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelOne.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
         	levelOne.getCurrentRoom().draw(this);
@@ -132,6 +167,11 @@ public class DrawingSurface extends PApplet {
         }
 
 
+    }
+    
+    public void mouseClicked(){
+    	
+    	 
     }
 
     /**
