@@ -1,24 +1,20 @@
 package rlee348.menu;
 
-import kchandra423.actors.MovingActors.players.Knight;
-import kchandra423.actors.MovingActors.players.Mage;
-import kchandra423.actors.MovingActors.players.Rogue;
+import kchandra423.actors.movingActors.players.Knight;
+import kchandra423.actors.movingActors.players.Mage;
+import kchandra423.actors.movingActors.players.Rogue;
 import kchandra423.utility.AssetLoader;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PImage;
-
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 import g4p_controls.*;
 
 import jay.jaysound.JayLayer;
-import jay.jaysound.JayLayerListener;
 
 import kchandra423.graphics.DrawingSurface;
-import processing.opengl.PSurfaceJOGL;
 
 /**
  * Draws the menu screen for the program, Displays credits 

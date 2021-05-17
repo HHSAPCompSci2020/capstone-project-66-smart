@@ -1,6 +1,6 @@
 package kchandra423.graphics;
 
-import kchandra423.actors.MovingActors.players.Rogue;
+import kchandra423.actors.movingActors.players.Rogue;
 import processing.core.PApplet;
 /**
  * Has the main method

@@ -1,8 +1,8 @@
-package kchandra423.actors.MovingActors.players;
+package kchandra423.actors.movingActors.players;
 
-import kchandra423.actors.MovingActors.MovingActor;
-import kchandra423.actors.MovingActors.constants.ActorState;
-import kchandra423.actors.MovingActors.enemies.Enemy;
+import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.constants.ActorState;
+import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.weapons.Weapon;
 import kchandra423.graphics.DrawingSurface;
