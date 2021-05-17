@@ -87,6 +87,7 @@ public class MainMenu extends PApplet {
 		music.addSongs(0,songs);
 		music.changePlayList(0);
 		music.nextSong();
+
 		//music.addJayLayerListener(this);
 		
 	/*	rectColor = color(0);
@@ -146,7 +147,7 @@ public class MainMenu extends PApplet {
    	*/
 		pushStyle();
 		
-		fill(0);
+		fill(255);
 		textSize(60);
 		text("Dungeons and Magnums", width/6, height/5);
 		textSize(20);
