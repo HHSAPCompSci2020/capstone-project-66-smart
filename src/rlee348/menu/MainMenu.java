@@ -48,7 +48,8 @@ public class MainMenu extends PApplet {
 	private GButton rogue;
 	private GLabel lblOut;
 	private JayLayer music;
-	
+	private GCustomSlider volume;
+	private float volumeLevel;
 	
 	/**
 	 * Creates a MainMenu object
@@ -91,7 +92,6 @@ public class MainMenu extends PApplet {
 		music.addPlayList();
 		music.addSongs(0,songs);
 		music.changePlayList(0);
-		music.setVolume(-10f);
 		music.nextSong();
 
 
@@ -110,10 +110,17 @@ public class MainMenu extends PApplet {
 		ellipseMode(CENTER);
     */
 	//	start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
-		settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
+	//	settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
 		mage = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "mage");
 		knight = new GButton(this, 3*width/11, height - height/5 - height/15, 100, 40, "knight");
 		rogue = new GButton(this, 7*width/11, height - height/5 - height/15, 100, 40, "rogue");
+		
+		volume = new GCustomSlider(this, 4*width/12, 5*height/8, 4*width/12, 5*height/8, "blue18px");
+		// show          opaque  ticks value limits
+		volume.setShowDecor(false, true, true, true);
+		volume.setNbrTicks(5);
+		volume.setNumberFormat(G4P.DECIMAL, 3);
+		volume.setLimits(0, -20, 20);
 		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
 		lblOut.setText("Dungeons and Magnums");
@@ -350,6 +357,17 @@ public class MainMenu extends PApplet {
 	//		canvas.requestFocus();
 
 		}
+		
+		
 
+	}
+	
+	public void handleSliderEvents(GValueControl slider, GEvent event) { 
+		
+		music.stopSong();
+		volumeLevel = slider.getValueF();
+		music.setVolume(volumeLevel);
+		music.nextSong();
+		
 	}
 }
