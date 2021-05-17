@@ -1,5 +1,6 @@
 package kchandra423.graphics;
 
+import jay.jaysound.JayLayer;
 import kchandra423.actors.MovingActors.players.Player;
 import kchandra423.levels.Room;
 import processing.core.PApplet;
@@ -20,16 +21,18 @@ public class DrawingSurface extends PApplet {
     private LevelTwo levelTwo;
     private LevelThree levelThree;
 //	private String classType;
+    private JayLayer sounds;
 	private int currentLevel = 1;
+	private float volume;
     
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p) {
+    public DrawingSurface(Player p, float volume) {
         keys = new boolean[128];
         room = new Room();
-
+        this.volume = volume;
         levelOne = new LevelOne(p);
 		levelTwo = new LevelTwo(p);
 		levelThree = new LevelThree(p);
@@ -50,6 +53,14 @@ public class DrawingSurface extends PApplet {
         frameRate(60);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
+        
+        String[] songs = new String[]{"LevelTheme.mp3"};
+        sounds = new JayLayer("res/Sounds/","res/Sounds/",false);
+		sounds.addPlayList();
+		sounds.addSongs(0,songs);
+		sounds.changePlayList(0);
+		sounds.setVolume(volume);
+		sounds.nextSong();
     }
 
 
