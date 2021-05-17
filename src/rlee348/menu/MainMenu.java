@@ -91,7 +91,9 @@ public class MainMenu extends PApplet {
 		music.addPlayList();
 		music.addSongs(0,songs);
 		music.changePlayList(0);
+		music.setVolume(10f);
 		music.nextSong();
+		Player p = music.getPlayerFromMP3();
 
 	/*	try {
         File f = new File("res/Sounds/MainMenuTheme.mp3");
