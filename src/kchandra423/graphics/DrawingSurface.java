@@ -171,6 +171,8 @@ public class DrawingSurface extends PApplet {
     
     public void mousePressed(){
     	effects.nextSong();
+    	
+    //	sounds.playSoundEffect(0);
     	 
     }
     
