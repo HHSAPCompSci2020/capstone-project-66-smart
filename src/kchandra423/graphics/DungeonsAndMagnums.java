@@ -15,7 +15,7 @@ public class DungeonsAndMagnums {
 	 * @param args The arguments passed in when called initially 
 	 */
 	public static void main(String args[]) {
-		DrawingSurface drawing = new DrawingSurface(new Rogue(700,500),0, "rogue");
+		DrawingSurface drawing = new DrawingSurface(new Rogue(700,500),100);
 		PApplet.runSketch(new String[]{""}, drawing);
 	}
 	

@@ -68,8 +68,8 @@ public class LevelThree extends Level
 //		return new Obstacle(image);
 //	}
 
-//	public Level getNextLevel()
-//	{
-//		return null;
-//	}
+	public Level getNextLevel()
+	{
+		return null;
+	}
 }

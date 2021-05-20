@@ -2,43 +2,34 @@ package kchandra423.graphics;
 
 import jay.jaysound.JayLayer;
 import kchandra423.actors.movingActors.players.Player;
-import kchandra423.levels.Room;
 import processing.core.PApplet;
+import sye348.levels.Level;
 import sye348.levels.LevelOne;
-import sye348.levels.LevelThree;
-import sye348.levels.LevelTwo;
 
 /**
  * Represents a drawing surface, which is a type of PApplet
  *
- * @see processing.core.PApplet
  * @author Kumar Chandra
+ * @see processing.core.PApplet
  */
 public class DrawingSurface extends PApplet {
     private static boolean[] keys;
-    private Room room;
-    private LevelOne levelOne;
-    private LevelTwo levelTwo;
-    private LevelThree levelThree;
-	private String classType;
+    private Level level;
     private JayLayer sounds;
     private JayLayer effects;
-	private int currentLevel = 1;
-	private float volume;
-	private String[] soundEffects;
-    
+    private HUD hud;
+    private float volume;
+    private String[] soundEffects;
+
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p, float volume, String classType) {
+    public DrawingSurface(Player p, float volume) {
         keys = new boolean[128];
-        room = new Room();
         this.volume = volume;
-        this.classType = classType;
-        levelOne = new LevelOne(p);
-		levelTwo = new LevelTwo(p);
-		levelThree = new LevelThree(p);
+        level = new LevelOne(p);
+        hud = new HUD(p);
     }
 
     /**
@@ -56,38 +47,25 @@ public class DrawingSurface extends PApplet {
         frameRate(60);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
-        
-        soundEffects = new String[] {"SwordAttack.mp3"};
-        
-        if (classType == "knight") {
-        	soundEffects = new String[] {"SwordAttack.mp3"};
-        }
-        
-        if (classType == "mage") {
-        	soundEffects = new String[] {"MagicAttack.mp3"};     			
-        	
-        }
-        
-        if (classType == "rogue") {
-        	soundEffects = new String[] {"Gunshot.mp3"};
-        }
-        
+
+        soundEffects = new String[]{"SwordAttack.mp3"};
+
         String[] songs = new String[]{"LevelTheme.mp3"};
-        sounds = new JayLayer("res/Sounds/","res/Sounds/",false);
-		sounds.addPlayList();
-		sounds.addSongs(0,songs);
-		sounds.addSoundEffects(soundEffects);
-		sounds.changePlayList(0);
-		sounds.setVolume(volume);
-		sounds.nextSong();
-		
-		effects = new JayLayer("res/Sounds/", "res/Sounds/", false);
-		effects.addPlayList();
-		effects.addSongs(0,soundEffects);
-		effects.changePlayList(0);
-		effects.setVolume(volume);
-		
-		
+        sounds = new JayLayer("res/Sounds/", "res/Sounds/", false);
+        sounds.addPlayList();
+        sounds.addSongs(0, songs);
+        sounds.addSoundEffects(soundEffects);
+        sounds.changePlayList(0);
+        sounds.setVolume(volume);
+        sounds.nextSong();
+
+        effects = new JayLayer("res/Sounds/", "res/Sounds/", false);
+        effects.addPlayList();
+        effects.addSongs(0, soundEffects);
+        effects.changePlayList(0);
+        effects.setVolume(volume);
+
+
     }
 
 
@@ -95,67 +73,26 @@ public class DrawingSurface extends PApplet {
      * Draws the current room and everything in it
      */
     public void draw() {
-    	
+
         background(255);
         pushMatrix();
         int halfx = width / 2;
         int halfy = height / 2;
-        
-     /*   if (mousePressed) {
-        	effects.nextSong();
-   	//     	sounds.playSoundEffect(0);
-   		 
-   	        
-   	 	}
-        
-        if (!mousePressed) {
-        	effects.stopSong();
+
+        if (level.isCompleted()) {
+            level = level.getNextLevel();
         }
-       */ 
-        if (currentLevel == 1) {
-        	translate(-levelOne.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelOne.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelOne.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelOne.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
-        	levelOne.getCurrentRoom().draw(this);
+        if (level == null) {
+            this.surface.stopThread();
+            System.exit(0);
         }
-        
-        else if (currentLevel == 2) {
-        	translate(-levelTwo.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelTwo.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelTwo.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelTwo.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
-        	levelTwo.getCurrentRoom().draw(this);
-        }
-        
-        else if (currentLevel == 3) {
-        	translate(-levelThree.getCurrentRoom().getPlayer().getImage().getX() + halfx - levelThree.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -levelThree.getCurrentRoom().getPlayer().getImage().getY() + halfy - levelThree.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
-        	levelThree.getCurrentRoom().draw(this);
-        }
-        
-        else if (currentLevel == 4) {
-        	translate(-room.getPlayer().getImage().getX() + halfx - room.getPlayer().getImage().getWidth() / 2.0f, -room.getPlayer().getImage().getY() + halfy - room.getPlayer().getImage().getHeight() / 2.0f);
-        	room.draw(this);
-        }
-        
+        translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
+        level.draw(this);
         popMatrix();
+        hud.draw(this);
         fill(0);
         text((frameRate) + " : fps", width - 100, height - 100);
-        
-        if (levelOne.isCompleted()) {
-//        	levelOne.getNextLevel();
-//        	levelOneDone = false;
-        	currentLevel = 2;
-        }
-        
-        if (levelTwo.isCompleted()) {
-//        	levelTwo.getNextLevel();
-//        	levelTwoDone = false;
-        	currentLevel = 3;
-        }
-        
-        if (levelThree.isCompleted()) {
-//        	levelThree.getNextLevel();
-//        	levelTwoDone = false;
-        	currentLevel = 4;
-        }
-        
 
-        
     }
 
     /**
@@ -168,16 +105,13 @@ public class DrawingSurface extends PApplet {
 
 
     }
-    
-    public void mousePressed(){
-    	effects.nextSong();
-    	
-    //	sounds.playSoundEffect(0);
-    	 
+
+    public void mousePressed() {
+        effects.nextSong();
     }
-    
+
     public void mouseReleased() {
-    	effects.stopSong();
+        effects.stopSong();
     }
 
     /**

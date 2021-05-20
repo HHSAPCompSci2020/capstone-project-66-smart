@@ -126,11 +126,11 @@ public abstract class Level {
         return rooms.get(roomNumber);
     }
 
-//    /**
-//     * Gives the next level after the current level
-//     * @return The next level to play
-//     */
-//    public abstract Level getNextLevel();
+    /**
+     * Gives the next level after the current level
+     * @return The next level to play
+     */
+    public abstract Level getNextLevel();
 
 
 //    /**

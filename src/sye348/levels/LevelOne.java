@@ -51,8 +51,8 @@ public class LevelOne extends Level {
 //
 //		return new Obstacle(image);
 //	}
-//    @Override
-//    public Level getNextLevel() {
-//        return new LevelTwo(player);
-//    }
+    @Override
+    public Level getNextLevel() {
+        return new LevelTwo(getCurrentRoom().getPlayer());
+    }
 }
