@@ -1,6 +1,6 @@
 package kchandra423.actors.weapons.guns;
 
-import kchandra423.actors.MovingActors.constants.DamageTypes;
+import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.weapons.Weapon;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;

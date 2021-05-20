@@ -1,4 +1,4 @@
-package kchandra423.actors.MovingActors.constants;
+package kchandra423.actors.movingActors.constants;
 
 /**
  * A stat represents any constant that can be represented as an integer value

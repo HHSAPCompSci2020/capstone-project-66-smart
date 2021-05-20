@@ -1,8 +1,8 @@
 package rlee348.menu;
 
-import kchandra423.actors.MovingActors.players.Knight;
-import kchandra423.actors.MovingActors.players.Mage;
-import kchandra423.actors.MovingActors.players.Rogue;
+import kchandra423.actors.movingActors.players.Knight;
+import kchandra423.actors.movingActors.players.Mage;
+import kchandra423.actors.movingActors.players.Rogue;
 import kchandra423.utility.AssetLoader;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;

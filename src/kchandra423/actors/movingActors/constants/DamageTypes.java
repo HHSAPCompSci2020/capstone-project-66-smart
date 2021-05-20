@@ -1,4 +1,4 @@
-package kchandra423.actors.MovingActors.constants;
+package kchandra423.actors.movingActors.constants;
 
 /**
  * Constants for the type of damage something inflicts. Can be ranged, magic or melee.

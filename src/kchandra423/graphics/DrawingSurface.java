@@ -1,7 +1,7 @@
 package kchandra423.graphics;
 
 import jay.jaysound.JayLayer;
-import kchandra423.actors.MovingActors.players.Player;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.levels.Room;
 import processing.core.PApplet;
 import sye348.levels.LevelOne;
