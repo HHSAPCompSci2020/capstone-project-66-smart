@@ -173,6 +173,7 @@ public class MainMenu extends PApplet {
 				+ "Try to avoid dying, as you will lose the game if you do. \n"
 				+ "You can choose your character from 3 classes:\n"
 				+ "knight, mage, or rogue.", 2*width/7, 3*height/8);
+		text("Volume", 7*width/15, 7*height/8);
 		popStyle();
 		
 		
