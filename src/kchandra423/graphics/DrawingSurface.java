@@ -18,7 +18,7 @@ public class DrawingSurface extends PApplet {
     private JayLayer sounds;
     private JayLayer effects;
     private final HUD hud;
-    private float volume;
+    private float volume, fps;
     private String[] soundEffects;
     private int frameRate;
     private String renderer;

@@ -40,8 +40,9 @@ public class MainMenu extends PApplet {
 	private GButton rogue;
 	private GLabel lblOut;
 	private JayLayer music;
-	private GCustomSlider volume;
+	private GCustomSlider volume, framerate;
 	private float volumeLevel;
+	private int fps;
 	
 	/**
 	 * Creates a MainMenu object
@@ -107,12 +108,20 @@ public class MainMenu extends PApplet {
 		knight = new GButton(this, 3*width/11, height - height/5 - height/15, 100, 40, "knight");
 		rogue = new GButton(this, 7*width/11, height - height/5 - height/15, 100, 40, "rogue");
 		
-		volume = new GCustomSlider(this, 4*width/12, 5*height/8, 4*width/12, 5*height/8, "blue18px");
+		volume = new GCustomSlider(this, 7*width/12, 5*height/8, 4*width/12, 5*height/8, "blue18px");
+		
+		framerate = new GCustomSlider(this, 1*width/12, 5*height/8, 4*width/12, 5*height/8, "blue18px");
 		// show          opaque  ticks value limits
 		volume.setShowDecor(false, true, true, true);
 		volume.setNbrTicks(5);
 		volume.setNumberFormat(G4P.DECIMAL, 3);
 		volume.setLimits(0, -20, 20);
+		
+		framerate.setShowDecor(false, true, true, true);
+		framerate.setNbrTicks(5);
+		framerate.setNumberFormat(G4P.DECIMAL, 3);
+		framerate.setLimits(60, 30, 240);
+		fps = 60;
 		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
 		lblOut.setText("Dungeons and Magnums");
@@ -165,7 +174,8 @@ public class MainMenu extends PApplet {
 				+ "Try to avoid dying, as you will lose the game if you do. \n"
 				+ "You can choose your character from 3 classes:\n"
 				+ "knight, mage, or rogue.", 2*width/7, 3*height/8);
-		text("Volume", 7*width/15, 7*height/8);
+		text("Volume", 10*width/14, 7*height/8);
+		text("Max FPS", 3*width/14, 7*height/8);
 		popStyle();
 		
 		
@@ -311,10 +321,17 @@ public class MainMenu extends PApplet {
 	
 	public void handleSliderEvents(GValueControl slider, GEvent event) { 
 		
-		music.stopSong();
-		volumeLevel = slider.getValueF();
-		music.setVolume(volumeLevel);
-		music.nextSong();
+		if (slider == volume) {
+			music.stopSong();
+			volumeLevel = slider.getValueF();
+			music.setVolume(volumeLevel);
+			music.nextSong();
+		}
 		
+		else if (slider == framerate) {
+			
+			fps = (int) slider.getValueF();
+			
+		}
 	}
 }
