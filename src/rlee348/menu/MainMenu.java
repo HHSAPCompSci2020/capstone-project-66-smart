@@ -68,10 +68,17 @@ public class MainMenu extends PApplet {
 	//	System.out.println(height);
 	//	System.out.println(width);
 		
+		double rand = Math.random();
 		
-		img = loadImage("res/Images/Backgrounds/MenuBackground.png");
-		img.resize(1024,768);
+		if (rand > 0.5) {
+			img = loadImage("res/Images/Backgrounds/MenuBackground.png");
+			img.resize(1024,768);
+		}
 		
+		else {
+			img = loadImage("res/Images/Backgrounds/MenuBackground2.gif");
+			img.resize(1024,768);
+		}
 	//	System.out.println(img.height);
 	//	System.out.println(img.width);
 		
