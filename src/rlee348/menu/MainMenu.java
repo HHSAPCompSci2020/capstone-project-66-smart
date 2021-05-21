@@ -6,24 +6,16 @@ import kchandra423.actors.movingActors.players.Rogue;
 import kchandra423.utility.AssetLoader;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 //import processing.sound.*;
-
-import java.awt.Dimension;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
 
 import g4p_controls.*;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
 import jay.jaysound.JayLayer;
-import jay.jaysound.JayLayerListener;
 
 import kchandra423.graphics.DrawingSurface;
-import processing.opengl.PSurfaceJOGL;
 
 /**
  * Draws the menu screen for the program, Displays credits 
@@ -275,92 +267,46 @@ public class MainMenu extends PApplet {
 	public void handleButtonEvents(GButton button, GEvent event) {
 		// Create the control window?
 		if (button == mage && event == GEvent.CLICKED) {
-		//	lblOut.setText("Not Ready Yet");
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel);
+			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, 60, PConstants.P2D);
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 			JFrame window = (JFrame)canvas.getFrame();
-//			surf.setSize(1024,768);
-//		//	surf.setResizable(true);
-//		//	window.setSize(1024, 768);
-//			window.setMinimumSize(new Dimension(1024,768));
-//			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-////			window.setResizable(true);
-//
 			window.setVisible(false);
-//			canvas.requestFocus();
 		} 
 		
 		else if (button == knight && event == GEvent.CLICKED) {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel);
+			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, 60, PConstants.P2D);
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 			JFrame window = (JFrame)canvas.getFrame();
-//			surf.setSize(1024,768);
-//		//	surf.setResizable(true);
-//		//	window.setSize(1024, 768);
-//			window.setMinimumSize(new Dimension(1024,768));
-//			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-////			window.setResizable(true);
-//
 			window.setVisible(false);
-//			canvas.requestFocus();
 		}
 		
 		else if (button == rogue && event == GEvent.CLICKED) {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel);
+			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, 60, PConstants.P2D);
 			PApplet.runSketch(new String[]{""}, drawing);
 
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 			JFrame window = (JFrame)canvas.getFrame();
-//			surf.setSize(1024,768);
-//		//	surf.setResizable(true);
-//		//	window.setSize(1024, 768);
-//			window.setMinimumSize(new Dimension(1024,768));
-//			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-////			window.setResizable(true);
-//
 			window.setVisible(false);
-//			canvas.requestFocus();
 		}
 		
 		else if (button == settings && event == GEvent.CLICKED) {
 			
 			music.stopSong();
 
-			
-		//	lblOut.setText("Not Ready Yet");
-	//		DrawingSurface drawing = new DrawingSurface();
-			
-	//		PApplet.runSketch(new String[]{""}, drawing);
-	//		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-	//		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-	//		JFrame window = (JFrame)canvas.getFrame();
-	//		surf.setSize(1024,768);
-		//	surf.setResizable(true);
-		//	window.setSize(1024, 768);
-	//		window.setMinimumSize(new Dimension(1024,768));
-	//		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//			window.setResizable(true);
-
-	//		window.setVisible(true);
-	//		canvas.requestFocus();
-
 		}
-		
-		
-
 	}
 	
 	public void handleSliderEvents(GValueControl slider, GEvent event) { 

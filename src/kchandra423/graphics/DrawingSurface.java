@@ -17,15 +17,19 @@ public class DrawingSurface extends PApplet {
     private Level level;
     private JayLayer sounds;
     private JayLayer effects;
-    private HUD hud;
+    private final HUD hud;
     private float volume;
     private String[] soundEffects;
+    private int frameRate;
+    private String renderer;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p, float volume) {
+    public DrawingSurface(Player p, float volume, int frameRate, String renderer) {
+        this.frameRate = frameRate;
+        this.renderer = renderer;
         keys = new boolean[128];
         this.volume = volume;
         level = new LevelOne(p);
@@ -36,7 +40,7 @@ public class DrawingSurface extends PApplet {
      * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
-        size(1500, 1000, P2D);
+        size(1500, 1000, renderer);
 //        fullScreen();
     }
 
@@ -44,7 +48,7 @@ public class DrawingSurface extends PApplet {
      * Sets the framerate, the title of the applet, the icon of the applet, and makes the applet resizable
      */
     public void setup() {
-        frameRate(60);
+        frameRate(frameRate);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
 
