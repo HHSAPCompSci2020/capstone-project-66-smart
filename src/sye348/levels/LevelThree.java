@@ -16,8 +16,8 @@ import kchandra423.utility.AssetLoader;
 /**
  * 
  * @author Spencer Ye
- * @version 1.1.0
- * Last Revised: 5/13/2021
+ * @version 1.2.0
+ * Last Revised: 5/20/2021
  */
 public class LevelThree extends Level
 {
@@ -34,12 +34,12 @@ public class LevelThree extends Level
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		Rectangle bounds = new Rectangle(1500, 1500);
 
-		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
-		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
-		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
-		enemies.add(new Goblin((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
-		enemies.add(new Bat((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
-		enemies.add(new Witch((float) (Math.random() * (bounds.width - 200) + bounds.x), (float) (Math.random() * (bounds.height - 200) + bounds.y)));
+		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+		enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+		enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
 		
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));

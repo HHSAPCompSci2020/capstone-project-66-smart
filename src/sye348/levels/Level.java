@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 /**
  * @author Spencer Ye
- * @version 1.1.1
- * Last Revised: 5/13/2021
+ * @version 1.2.0
+ * Last Revised: 5/20/2021
  */
 public abstract class Level {
 
@@ -97,7 +97,27 @@ public abstract class Level {
      */
     public abstract Level getNextLevel();
     
-
+    /**
+     * Gets a random x-coordinate of a random location given a boundary and the padding wanted
+     * @param bounds The boundaries where the x-coordinate should correlate with
+     * @param margin The absolute distance from the edge of the boundaries where the coordinate given
+     * @return The x-coordinate of a random location
+     */
+    protected static float getRandXCoord(Rectangle bounds, int margin)
+    {
+    	return (float) (Math.random() * (bounds.width - margin) + bounds.x);
+    }
+    
+    /**
+     * Gets a random y-coordinate of a random location given a boundary and the padding wanted
+     * @param bounds The boundaries where the y-coordinate should correlate with
+     * @param margin The absolute distance from the edge of the boundaries where the coordinate given
+     * @return The y-coordinate of a random location
+     */
+    protected static float getRandYCoord (Rectangle bounds, int margin)
+    {
+    	return (float) (Math.random() * (bounds.height - margin) + bounds.y);
+    }
 }
 
 
