@@ -14,7 +14,7 @@ import java.awt.*;
  * @author Ryan Lee
  *
  */
-public class GuiTester {
+public class DungeonsAndMagnums {
 
 	public static void main(String[] args) {
 		MainMenu drawing = new MainMenu();
