@@ -27,8 +27,9 @@ public abstract class Enemy extends MovingActor {
     private final EnemyAI ai;
     private final long deathTime;
     protected Timer timer;
+    private final int damage;
 
-    protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health, long deathTime) {
+    protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health, long deathTime, int damage) {
         super(images[0], maxV, accel, stats, health);
         this.deathTime = deathTime;
         ai = new EnemyAI(this);
@@ -37,6 +38,7 @@ public abstract class Enemy extends MovingActor {
         attack = images[2];
         death = images[3];
         timer = new Timer();
+        this.damage = damage;
     }
 
     @Override
@@ -83,7 +85,7 @@ public abstract class Enemy extends MovingActor {
     protected void onOpponentInteraction(MovingActor opponent) {
         if (getState() != ActorState.DEAD) {
             updateState(ActorState.ATTACKING);
-            opponent.interceptHitBox(new Damage(40, statMultipliers, DamageTypes.MELEE));
+            opponent.interceptHitBox(new Damage(damage, statMultipliers, DamageTypes.MELEE));
             vx = 0;
             vy = 0;
             timer.schedule(new TimerTask() {
@@ -95,42 +97,6 @@ public abstract class Enemy extends MovingActor {
         }
     }
 
-
-//    /**
-//     * Creates a random enemy at a given location. Currently just for testing
-//     *
-//     * @param x The x coord of the given location
-//     * @param y The y coord of the given location
-//     * @return A new Enemy at that location (currently only a bat, goblin, or witch)
-//     */
-//    public static Enemy createEnemy(float x, float y) {
-//        KImage idle;
-//        KImage moving;
-//        KImage attacking;
-//        KImage death;
-//        double rand = Math.random();
-//        if (rand >0.66) {
-//            idle = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_IDLE);
-//            attacking = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_ATTACK);
-//            moving = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_MOVING);
-//            death = AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_DEATH);
-//            idle.moveTo(x, y);
-//        } else if (rand > 0.33) {
-//            idle = AssetLoader.getImage(AssetLoader.Sprite.WITCH_IDLE);
-//            attacking = AssetLoader.getImage(AssetLoader.Sprite.WITCH_ATTACK);
-//            moving = AssetLoader.getImage(AssetLoader.Sprite.WITCH_MOVING);
-//            death = AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH);
-//            idle.moveTo(x, y);
-//            return new RangedEnemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
-//        } else {
-//            idle = AssetLoader.getImage(AssetLoader.Sprite.BAT_IDLE);
-//            attacking = AssetLoader.getImage(AssetLoader.Sprite.BAT_ATTACK);
-//            moving = AssetLoader.getImage(AssetLoader.Sprite.BAT_MOVING);
-//            death = AssetLoader.getImage(AssetLoader.Sprite.BAT_DEATH);
-//            idle.moveTo(x, y);
-//        }
-//        return new Enemy(new KImage[]{idle, moving, attacking, death}, 5, 0.7f);
-//    }
 
     @Override
     protected void updateState(ActorState newState) {

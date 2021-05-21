@@ -4,6 +4,8 @@ import jay.jaysound.JayLayer;
 import kchandra423.actors.Damage;
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.movingActors.enemies.Enemy;
+import kchandra423.actors.movingActors.enemies.RangedEnemy;
+import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
@@ -32,6 +34,14 @@ public class MeleeWeapon extends Weapon {
                     room.getEnemies()) {
                 if (intersects(e)) {
                     e.interceptHitBox(new Damage(40,new float[]{1,1,1,1,1,1}, DamageTypes.MELEE));
+                }
+                if(e instanceof RangedEnemy) {
+                    for (Projectile p :
+                            ((RangedEnemy) e).getProjectiles()) {
+                        if(intersects(p)){
+                            p.setActive(false);
+                        }
+                    }
                 }
             }
         }

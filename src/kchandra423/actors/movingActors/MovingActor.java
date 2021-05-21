@@ -301,7 +301,11 @@ public abstract class MovingActor extends Actor {
         this.health = health;
     }
 
-    protected int getMaxHealth() {
+    /**
+     * Returns the maximum health of this current actor
+     * @return The maximum health of this actor
+     */
+    public int getMaxHealth() {
         return maxHealth;
     }
 

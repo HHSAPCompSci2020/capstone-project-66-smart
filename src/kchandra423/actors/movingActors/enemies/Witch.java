@@ -18,7 +18,7 @@ public class Witch extends RangedEnemy
 		super(new KImage[] {AssetLoader.getImage(AssetLoader.Sprite.WITCH_IDLE),
 				AssetLoader.getImage(AssetLoader.Sprite.WITCH_MOVING),
 				AssetLoader.getImage(AssetLoader.Sprite.WITCH_ATTACK),
-				AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH)}, 4f, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f), 50, DamageTypes.MAGIC, AssetLoader.Sprite.HEX,9 * 100L, 20);
+				AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH)}, 4f, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f), 50, DamageTypes.MAGIC, AssetLoader.Sprite.HEX,9 * 100L, 10);
 		image.moveTo(x, y);
 	}
 

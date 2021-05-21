@@ -22,20 +22,20 @@ import java.util.TimerTask;
 public abstract class RangedEnemy extends Enemy {
     private final float projectileVelocity;
     private final float fireRate;
-    private final int damage;
+    private final int rangedDamage;
     private final DamageTypes type;
     private long lastTimeShot;
     private final AssetLoader.Sprite projectile;
     private ArrayList<Projectile> projectiles;
 
     protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health, DamageTypes type, AssetLoader.Sprite projectile, long deathTime, int damage) {
-        super(images, maxV, accel, stats, health, deathTime);
+        super(images, maxV, accel, stats, health, deathTime,0);
         this.type = type;
         this.projectile = projectile;
         projectiles = new ArrayList<>();
         projectileVelocity = 7;
         fireRate = 1f;
-        this.damage = damage;
+        this.rangedDamage = damage;
         lastTimeShot = System.currentTimeMillis();
     }
 
@@ -67,12 +67,9 @@ public abstract class RangedEnemy extends Enemy {
         float tempAngle = (float) Calculator.calculateAngle(image.getX(), image.getY(), opponent.getImage().getBounds().getCenterX(), opponent.getImage().getBounds().getCenterY());
         tempAngle += Math.random() * Math.PI / 8;
         tempAngle -= Math.PI / 8 / 2;
-        Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, statMultipliers, type, damage);
+        Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, false, statMultipliers, type, rangedDamage);
         p.getImage().moveTo((float) (image.getBounds().getCenterX()), (float) (image.getBounds().getCenterY()));
-//        projectiles.add(new Projectile(
-//                new KImage((float) (image.getBounds().getCenterX()), (float) (image.getBounds().getCenterY())
-//                        , false, false, projectile, projectileArea,st)
-//                , projectileVelocity, tempAngle, false));
+        projectiles.add(p);
         lastTimeShot = System.currentTimeMillis();
     }
 
@@ -97,4 +94,11 @@ public abstract class RangedEnemy extends Enemy {
         return System.currentTimeMillis() - lastTimeShot >= fireRate * 1000;
     }
 
+    /**
+     * Returns all the projectiles that this ranged enemy has
+     * @return this enemies projectiles
+     */
+    public ArrayList<Projectile> getProjectiles() {
+        return projectiles;
+    }
 }
