@@ -3,6 +3,7 @@ package sye348.levels;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.levels.Room;
 
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 
@@ -15,13 +16,8 @@ public abstract class Level {
 
     private ArrayList<Room> rooms;
 
-//    private Room currentRoom;
-
     private int roomNumber;
 
-//    private Obstacle teleporter;
-
-//    private boolean completed;
 
 
     /**
@@ -29,11 +25,10 @@ public abstract class Level {
      *
      * @param rooms The rooms defined for a level
      */
-    public Level(ArrayList<Room> rooms) {
+    public Level(ArrayList<Room> rooms) 
+    {
         this.rooms = rooms;
         roomNumber = 0;
-//        currentRoom = rooms.get(0);
-//        this.teleporter = teleporter;
     }
 
     /**
@@ -43,7 +38,6 @@ public abstract class Level {
      */
     public void draw(DrawingSurface window) {
         getCurrentRoom().draw(window);
-//        if (allEnemiesDead()) teleporter.draw(window);
     }
 
     /**
@@ -55,7 +49,6 @@ public abstract class Level {
             return;
         }
         roomNumber++;
-//        currentRoom = rooms.get(roomNumber++);
     }
 
     /**
@@ -67,7 +60,6 @@ public abstract class Level {
             return;
         }
         roomNumber--;
-//        currentRoom = rooms.get(--roomNumber);
     }
 
     /**
@@ -79,14 +71,7 @@ public abstract class Level {
         return roomNumber + 1;
     }
 
-//    /**
-//     * Gets the room object that the player is in
-//     *
-//     * @return The room that the player is in
-//     */
-//    public Room getRoom() {
-//        return currentRoom;
-//    }
+
 
     /**
      * Checks if the level has been completed
@@ -97,26 +82,6 @@ public abstract class Level {
         return roomNumber >= rooms.size()-1 && getCurrentRoom().isCompleted();
     }
 
-//    private boolean allEnemiesDead() {
-//
-//        return currentRoom.getEnemies().size() == 0;
-//    }
-
-//    /**
-//     * Tells the level to display the teleporter that moves to the next level
-//     */
-//    public void displayTeleporter() {
-//        completed = true;
-//    }
-
-//    /**
-//     * Checks if the player is touching the teleporter
-//     *
-//     * @return If the player is touching the teleporter
-//     */
-//    public boolean playerisOnTeleporter() {
-//        return currentRoom.getPlayer().intersects(teleporter);
-//    }
 
     /**
      * Gives the current room that the level is on
@@ -131,24 +96,9 @@ public abstract class Level {
      * @return The next level to play
      */
     public abstract Level getNextLevel();
+    
 
-
-//    /**
-//     * Gets a Player object based on the character type, which is the parameter
-//     *
-//     * @param characterName A string that represents a character type's name
-//     * @return A player object of the given character type
-//     */
-//    protected static Player getPlayerType(String characterName) {
-//        if ("mage".equalsIgnoreCase(characterName)) {
-//            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/MageIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/MageActive.gif")));
-//        }
-//        if ("knight".equalsIgnoreCase(characterName)) {
-//            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/KnightIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/KnightIdle.gif")));
-//        }
-//        if ("rogue".equalsIgnoreCase(characterName)) {
-//            return new Player(new KImage(TextureBuilder.getTexture("res/Images/Players/RogueIdle.gif")), new KImage(TextureBuilder.getTexture("res/Images/Players/RogueIdle.gif")));
-//        }
-//        return null;
-//    }
 }
+
+
+

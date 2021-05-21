@@ -49,13 +49,6 @@ public class LevelTwo extends Level {
         return arr;
     }
 
-//	private static Obstacle getTeleporter()
-//	{
-////		KImage image = new KImage(100, 100, false, false, TextureBuilder.getTexture("res/Images/Obstacles/Teleporter.png"));
-//		KImage image = AssetLoader.getImage(AssetLoader.TELEPORTER);
-//		image.moveTo(200,200);
-//		return new Obstacle(image);
-//	}
 
 	public Level getNextLevel()
 	{

@@ -22,12 +22,9 @@ import kchandra423.utility.AssetLoader;
 public class LevelThree extends Level
 {
 	
-	//private String player;
-	
 	public LevelThree(Player player)
 	{
 		super(getRooms(player));
-		//player = character;
 	}
 	
 	private static ArrayList<Room> getRooms(Player player)
@@ -59,14 +56,6 @@ public class LevelThree extends Level
 		
 		return arr;
 	}
-	
-//	private static Obstacle getTeleporter()
-//	{
-////		KImage image = new KImage(800, 800, false, false, TextureBuilder.getTexture("res/Images/Obstacles/Teleporter.png"));
-//		KImage image = AssetLoader.getImage(AssetLoader.TELEPORTER);
-//		image.moveTo(800,800);
-//		return new Obstacle(image);
-//	}
 
 	public Level getNextLevel()
 	{
