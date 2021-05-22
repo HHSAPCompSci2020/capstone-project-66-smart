@@ -110,7 +110,7 @@ public class DrawingSurface extends PApplet {
         	background(0);
         	textSize(100);
         	fill(255);
-        	text("gg go next", width/3, height/2);
+        	text("gg go next \n time to exit program kiddo", width/3, height/2);
         }
 
     }
