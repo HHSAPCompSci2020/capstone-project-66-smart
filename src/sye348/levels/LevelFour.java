@@ -11,18 +11,17 @@ import kchandra423.actors.movingActors.players.Player;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
-import kchandra423.utility.AssetLoader;
 
 /**
  * 
  * @author Spencer Ye
- * @version 1.2.1
+ * @version 1.0.0
  * Last Revised: 5/22/2021
  */
-public class LevelThree extends Level
+public class LevelFour extends Level
 {
 	
-	public LevelThree(Player player)
+	public LevelFour(Player player)
 	{
 		super(getRooms(player));
 	}
@@ -34,17 +33,15 @@ public class LevelThree extends Level
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		Rectangle bounds = new Rectangle(1500, 1500);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 0; i++)
         	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 0; i++)
         	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 8; i++)
         	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
 		
+		
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
-		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(300,600);
-		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
 				obstacles,
@@ -59,6 +56,6 @@ public class LevelThree extends Level
 
 	public Level getNextLevel()
 	{
-		return new LevelFour(getCurrentRoom().getPlayer());
+		return new LevelFive(getCurrentRoom().getPlayer());
 	}
 }
