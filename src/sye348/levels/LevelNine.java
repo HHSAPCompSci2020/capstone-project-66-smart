@@ -19,10 +19,10 @@ import kchandra423.utility.AssetLoader;
  * @version 1.0.0
  * Last Revised: 5/22/2021
  */
-public class LevelSeven extends Level
+public class LevelNine extends Level
 {
 	
-	public LevelSeven(Player player)
+	public LevelNine(Player player)
 	{
 		super(getRooms(player));
 	}
@@ -34,11 +34,11 @@ public class LevelSeven extends Level
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		Rectangle bounds = new Rectangle(1500, 1500);
 
-        for (int i = 0; i < 12; i++)
-        	enemies.add(new Goblin(getRandXCoord(bounds, 100), getRandYCoord(bounds, 100)));
         for (int i = 0; i < 0; i++)
+        	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 20; i++)
         	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 0; i++)
         	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
 		
 		
@@ -46,13 +46,11 @@ public class LevelSeven extends Level
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(300, 300);
+		o.getImage().moveTo(500, 500);
 		obstacles.add(o);
 		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(400, 300);
+		o.getImage().moveTo(600, 500);
 		obstacles.add(o);
-		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(500, 300);
 		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
@@ -68,6 +66,6 @@ public class LevelSeven extends Level
 
 	public Level getNextLevel()
 	{
-		return new LevelEight(getCurrentRoom().getPlayer());
+		return new LevelTen(getCurrentRoom().getPlayer());
 	}
 }
