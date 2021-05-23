@@ -19,8 +19,9 @@ import kchandra423.graphics.DrawingSurface;
 
 /**
  * Draws the menu screen for the program, Displays credits 
- * and instructions to the game, has working start button.
- *
+ * and instructions to the game, has different buttons to indicate class choice.
+ * Also has volume slider and max fps slider.
+ * 
  * @author Ryan Lee
  */
 

@@ -165,7 +165,7 @@ public class JayLayer {
 		return sound.getPlayer();
 	}
 	
-	/**
+	/** Sets the volume gain with the inputteted float value.
 	 * 
 	 * @param f volume increase or decrease with positive or negative numbers
 	 */
