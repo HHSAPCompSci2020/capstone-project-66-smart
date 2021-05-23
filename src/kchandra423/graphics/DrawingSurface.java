@@ -1,6 +1,6 @@
 package kchandra423.graphics;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import jay.jaysound.JayLayer;
 import kchandra423.actors.movingActors.players.Mage;
@@ -105,12 +105,22 @@ public class DrawingSurface extends PApplet {
         fill(0);
         text(super.frameRate + " : fps", width - 100, height - 100);
 
-        if (hud.getPlayer().getHealth() < 0) {
+        if (!level.getCurrentRoom().getPlayer().isActive()) {
 
         	background(0);
-        	textSize(100);
+        	textSize(50);
         	fill(255);
-        	text("gg go next \n time to exit program kiddo", width/3, height/2);
+        	text("Game Over \n You Lost!", width/3, height/2);
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            surface.stopThread();
+                            System.exit(0);
+                        }
+                    },
+                    5000
+            );
         }
 
     }
