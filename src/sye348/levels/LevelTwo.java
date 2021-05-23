@@ -1,5 +1,6 @@
 package sye348.levels;
 
+import kchandra423.actors.movingActors.enemies.Bat;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.Goblin;
 import kchandra423.actors.movingActors.enemies.Witch;
@@ -28,13 +29,12 @@ public class LevelTwo extends Level {
         Rectangle bounds = new Rectangle(1500, 1000);
 
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-        enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-
-        enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 5; i++)
+        	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 0; i++)
+        	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 0; i++)
+        	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
 
         Room r = new Room(Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"),
                 new ArrayList<Obstacle>(),

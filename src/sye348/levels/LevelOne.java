@@ -1,7 +1,9 @@
 package sye348.levels;
 
+import kchandra423.actors.movingActors.enemies.Bat;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.Goblin;
+import kchandra423.actors.movingActors.enemies.Witch;
 import kchandra423.actors.movingActors.players.Player;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.Texture;
@@ -12,8 +14,8 @@ import java.util.ArrayList;
 
 /**
  * @author Spencer Ye
- * @version 1.2.0
- * Last Revised: 5/20/2021
+ * @version 1.2.1
+ * Last Revised: 5/22/2021
  */
 public class LevelOne extends Level {
 
@@ -27,7 +29,13 @@ public class LevelOne extends Level {
         ArrayList<Room> arr = new ArrayList<>();
         Rectangle bounds = new Rectangle(1500, 1000);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-        enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+
+        for (int i = 0; i < 1; i++)
+        	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 0; i++)
+        	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 0; i++)
+        	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
 
 
         Room r = new Room(Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"),

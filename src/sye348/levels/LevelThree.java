@@ -16,8 +16,8 @@ import kchandra423.utility.AssetLoader;
 /**
  * 
  * @author Spencer Ye
- * @version 1.2.0
- * Last Revised: 5/20/2021
+ * @version 1.2.1
+ * Last Revised: 5/22/2021
  */
 public class LevelThree extends Level
 {
@@ -34,12 +34,12 @@ public class LevelThree extends Level
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		Rectangle bounds = new Rectangle(1500, 1500);
 
-		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-		enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-		enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-		enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 5; i++)
+        	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 1; i++)
+        	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
+        for (int i = 0; i < 1; i++)
+        	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
 		
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
@@ -59,6 +59,6 @@ public class LevelThree extends Level
 
 	public Level getNextLevel()
 	{
-		return null;
+		return new LevelFour(getCurrentRoom().getPlayer());
 	}
 }
