@@ -14,7 +14,7 @@ public class MeleeWeapon extends Weapon {
     private int damage;
     private float[] stats;
     private float range;
-    private final float swingTime = 0.5f;
+    private final float swingTime;
     private long swingStartTime = System.currentTimeMillis();
 
 
@@ -26,11 +26,12 @@ public class MeleeWeapon extends Weapon {
      * @param stats
      * @param range
      */
-    public MeleeWeapon(KImage image, int damage, float[] stats, float range) {
+    public MeleeWeapon(KImage image, int damage, float[] stats, float range, float swingTime) {
         super(image);
         this.damage = damage;
         this.stats = stats;
         this.range = range;
+        this.swingTime=swingTime;
     }
 
     @Override

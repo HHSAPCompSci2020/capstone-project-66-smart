@@ -10,6 +10,6 @@ public class BroadSword extends MeleeWeapon{
      * @param stats
      */
     public BroadSword( float[] stats) {
-        super(AssetLoader.getImage(AssetLoader.Sprite.SWORD), 40, stats, (float) (Math.PI/4));
+        super(AssetLoader.getImage(AssetLoader.Sprite.SWORD), 40, stats, (float) (Math.PI/4),0.5f);
     }
 }

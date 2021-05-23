@@ -143,9 +143,5 @@ public abstract class Player extends MovingActor {
         }
     }
 
-    @Override
-    public void setActive(boolean b) {
-        //idk how this will work for now, but itll trigger so end of the game
-    }
 
 }

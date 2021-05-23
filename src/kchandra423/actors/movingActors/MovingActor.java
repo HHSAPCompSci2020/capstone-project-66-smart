@@ -126,8 +126,8 @@ public abstract class MovingActor extends Actor {
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackX() {
-
-        image.translate(-vx, 0);
+        float tempVx = vx* (60f/DrawingSurface.frameRate);
+        image.translate(-tempVx, 0);
     }
 
     /**
@@ -135,7 +135,8 @@ public abstract class MovingActor extends Actor {
      */
     protected void bounceBackY() {
 
-        image.translate(0, -vy);
+        float tempVy = vy* (60f/DrawingSurface.frameRate);
+        image.translate(0, -tempVy);
     }
 
 
@@ -158,7 +159,8 @@ public abstract class MovingActor extends Actor {
             vx = 0;
         }
 
-        image.translate(vx, 0);
+        float tempVx = vx* (60f/DrawingSurface.frameRate);
+        image.translate(tempVx, 0);
     }
 
     /**
@@ -179,7 +181,9 @@ public abstract class MovingActor extends Actor {
         if (Math.abs(vy) < 0.1) {
             vy = 0;
         }
-        image.translate(0, vy);
+
+        float tempVy = vy* (60f/DrawingSurface.frameRate);
+        image.translate(0, tempVy);
     }
 
     /**
@@ -209,7 +213,8 @@ public abstract class MovingActor extends Actor {
         }
 
         vx *= 0.9f;
-        image.translate(vx, 0);
+        float tempVx = vx* (60f/DrawingSurface.frameRate);
+        image.translate(tempVx, 0);
     }
 
     /**
@@ -237,8 +242,8 @@ public abstract class MovingActor extends Actor {
         if (Math.abs(vy) < 0.1) {
             vy = 0;
         }
- 
-        image.translate(0, vy);
+        float tempVy = vy* (60f/DrawingSurface.frameRate);
+        image.translate(0, tempVy);
     }
 
 

@@ -127,7 +127,7 @@ public class MainMenu extends PApplet {
 		framerate.setShowDecor(false, true, true, true);
 		framerate.setNbrTicks(5);
 		framerate.setNumberFormat(G4P.DECIMAL, 3);
-		framerate.setLimits(60, 30, 240);
+		framerate.setLimits(60, 30, 90);
 		fps = 60;
 		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
@@ -286,7 +286,8 @@ public class MainMenu extends PApplet {
 		if (button == mage && event == GEvent.CLICKED) {
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, 60, PConstants.P2D);
+			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, fps, PConstants.P2D);
+			this.redraw=false;
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -298,7 +299,9 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, 60, PConstants.P2D);
+			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, fps, PConstants.P2D);
+
+			this.redraw=false;
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
@@ -310,9 +313,10 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, 60, PConstants.P2D);
+			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, fps, PConstants.P2D);
 			PApplet.runSketch(new String[]{""}, drawing);
 
+			this.redraw=false;
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
 			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
 			JFrame window = (JFrame)canvas.getFrame();
