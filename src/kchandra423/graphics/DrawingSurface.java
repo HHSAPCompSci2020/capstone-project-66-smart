@@ -2,6 +2,11 @@ package kchandra423.graphics;
 
 import javax.swing.*;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.print.DocFlavor.URL;
+import javax.sound.sampled.*;
 import jay.jaysound.JayLayer;
 import kchandra423.actors.movingActors.players.Mage;
 import kchandra423.actors.movingActors.players.Player;
@@ -28,18 +33,21 @@ public class DrawingSurface extends PApplet {
     private String[] soundEffects;
     public static int frameRate;
     private final String renderer;
+    private String classType;
+    private Clip clip;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p, float volume, int frameRate, String renderer) {
+    public DrawingSurface(Player p, float volume, int frameRate, String renderer, String type) {
         DrawingSurface.frameRate = frameRate;
         this.renderer = renderer;
         keys = new boolean[128];
         this.volume = volume;
         level = new LevelOne(p);
         hud = new HUD(p);
+        classType = type;
     }
 
     /**
@@ -75,8 +83,74 @@ public class DrawingSurface extends PApplet {
         effects.changePlayList(0);
         effects.setVolume(volume);
 
+        if (classType.equals("knight")){
+	        try {
+	            // Open an audio input stream.
+	            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("res/Sounds/Swing.wav"));
+	            // Get a sound clip resource.
+	            clip = AudioSystem.getClip();
+	            // Open audio clip and load samples from the audio input stream.
+	            clip.open(audioIn);
+	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            gainControl.setValue(volume);
+	         }
+	        catch (UnsupportedAudioFileException e) {
+	            e.printStackTrace();
+	         } 
+	        catch (IOException e) {
+	            e.printStackTrace();
+	         } 
+	        catch (LineUnavailableException e) {
+	            e.printStackTrace();
+	         }
 
+        }
+        
+        else if (classType.equals("mage")){
+	        try {
+	            // Open an audio input stream.
+	            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("res/Sounds/Magic.wav"));
+	            // Get a sound clip resource.
+	            clip = AudioSystem.getClip();
+	            // Open audio clip and load samples from the audio input stream.
+	            clip.open(audioIn);
+	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            gainControl.setValue(volume);
+	         }
+	        catch (UnsupportedAudioFileException e) {
+	            e.printStackTrace();
+	         } 
+	        catch (IOException e) {
+	            e.printStackTrace();
+	         } 
+	        catch (LineUnavailableException e) {
+	            e.printStackTrace();
+	         }
 
+        }
+        
+        else {
+	        try {
+	            // Open an audio input stream.
+	            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("res/Sounds/Gunshot.wav"));
+	            // Get a sound clip resource.
+	            clip = AudioSystem.getClip();
+	            // Open audio clip and load samples from the audio input stream.
+	            clip.open(audioIn);
+	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            gainControl.setValue(volume);
+	         }
+	        catch (UnsupportedAudioFileException e) {
+	            e.printStackTrace();
+	         } 
+	        catch (IOException e) {
+	            e.printStackTrace();
+	         } 
+	        catch (LineUnavailableException e) {
+	            e.printStackTrace();
+	         }
+
+        }
 
     }
 
@@ -137,11 +211,14 @@ public class DrawingSurface extends PApplet {
     }
 
     public void mousePressed() {
-        effects.nextSong();
+    //    effects.nextSong();
+    	clip.loop(Clip.LOOP_CONTINUOUSLY); 
+    	
     }
 
     public void mouseReleased() {
-        effects.stopSong();
+    //    effects.stopSong();
+    	clip.stop();
     }
 
     /**
