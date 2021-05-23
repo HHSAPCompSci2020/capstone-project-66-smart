@@ -25,4 +25,14 @@ public class HUD {
         p.popStyle();
 
     }
+    
+    public int getHealth() {
+    	
+    	return player.getHealth();
+    }
+    
+    public Player getPlayer() {
+    	
+    	return player;
+    }
 }

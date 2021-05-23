@@ -1,8 +1,14 @@
 package kchandra423.graphics;
 
+import javax.swing.JFrame;
+
 import jay.jaysound.JayLayer;
+import kchandra423.actors.movingActors.players.Mage;
 import kchandra423.actors.movingActors.players.Player;
+import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
+import processing.core.PConstants;
+import rlee348.menu.MainMenu;
 import sye348.levels.Level;
 import sye348.levels.LevelOne;
 
@@ -70,6 +76,8 @@ public class DrawingSurface extends PApplet {
         effects.setVolume(volume);
 
 
+
+
     }
 
 
@@ -96,6 +104,14 @@ public class DrawingSurface extends PApplet {
         hud.draw(this);
         fill(0);
         text(super.frameRate + " : fps", width - 100, height - 100);
+
+        if (hud.getPlayer().getHealth() < 0) {
+
+        	background(0);
+        	textSize(100);
+        	fill(255);
+        	text("gg go next \n time to exit program kiddo", width/3, height/2);
+        }
 
     }
 
