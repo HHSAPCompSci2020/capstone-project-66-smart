@@ -68,6 +68,6 @@ public class LevelSeven extends Level
 
 	public Level getNextLevel()
 	{
-		return null;
+		return new LevelEight(getCurrentRoom().getPlayer());
 	}
 }
