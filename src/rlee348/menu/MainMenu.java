@@ -286,7 +286,7 @@ public class MainMenu extends PApplet {
 		if (button == mage && event == GEvent.CLICKED) {
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, fps, PConstants.P2D);
+			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, fps, PConstants.P2D, "mage");
 			this.redraw=false;
 			PApplet.runSketch(new String[]{""}, drawing);
 			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
@@ -299,7 +299,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, fps, PConstants.P2D);
+			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, fps, PConstants.P2D, "knight");
 
 			this.redraw=false;
 			PApplet.runSketch(new String[]{""}, drawing);
@@ -313,7 +313,7 @@ public class MainMenu extends PApplet {
 			
 			music.stopSong();
 			
-			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, fps, PConstants.P2D);
+			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, fps, PConstants.P2D, "rogue");
 			PApplet.runSketch(new String[]{""}, drawing);
 
 			this.redraw=false;
