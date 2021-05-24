@@ -18,21 +18,21 @@ Once in the game, players can use any controls in any order they wish to control
 
 Features List (THE ONLY SECTION THAT CANNOT CHANGE LATER):
 Must-have Features:
-GUI to start the game, and change settings. Users should be able to choose their character and other aspects of the game, such as the music or volume.
-Menu has a basic instruction manual, which just explains how to play the game. Should explain how to fight against enemies, how to progress through levels, Until they eventually finish or die.
-Playable game - Users should be able to move, fire weapons, and collide with objects. Players should also be able to move through and navigate each level, and progress onto the next one
-Multiple levels - Multiple unique levels, each with different obstacle and enemy layouts
-2 dimensional graphics - The entire game should be shown through images and all graphics should have color. 
+GUI to start the game, and change settings. Users should be able to choose their character and other aspects of the game, such as the music or volume.(DONE)
+Menu has a basic instruction manual, which just explains how to play the game. Should explain how to fight against enemies, how to progress through levels, Until they eventually finish or die.(DONE)
+Playable game - Users should be able to move, fire weapons, and collide with objects. Players should also be able to move through and navigate each level, and progress onto the next one(DONE)
+Multiple levels - Multiple unique levels, each with different obstacle and enemy layouts(DONE)
+2 dimensional graphics - The entire game should be shown through images and all graphics should have color. (DONE)
 
 
 Want-to-have Features:
-Consistently hold 60 fps - Throughout the entire runtime, the program should be able to hold at least 60 fps, to ensure that movement is smooth and consistent. Any optimizations to the code to increase performance should be sought after.
- Enemy AI - Enemy AI will make enemies behave in a somewhat intelligent manner (move towards player, circle player, fire towards player, etc), which will make the game able to be actually fun. 
+Consistently hold 60 fps - Throughout the entire runtime, the program should be able to hold at least 60 fps, to ensure that movement is smooth and consistent. Any optimizations to the code to increase performance should be sought after.(DONE)
+ Enemy AI - Enemy AI will make enemies behave in a somewhat intelligent manner (move towards player, circle player, fire towards player, etc), which will make the game able to be actually fun. (DONE)
 Store player information on a database - Players stats, such as level, username, password, xp, etc. Players will be able to log on from any device and log into their account using their username and password, and all relevant stats will be saved.
 Players can save game progress - Games that are in progress will also be stored on the database or in a local file. Players will be able to restart a level from a certain point with these saves. 
-Multiple characters - Players should be able to choose from multiple characters, all with different stats and appearances
-Full screen support - Users should be able to toggle in and out of a full screen mode with no changes to gameplay, or significant differences in performance. 
-Music + sounds effects - Some sort of music should play, and sound effects should be played on certain actions. For example, some background music would play the entire game, but when you take damage or are below a certain health, a sound effect would play on top of the music.
+Multiple characters - Players should be able to choose from multiple characters, all with different stats and appearances(DONE)
+Full screen support - Users should be able to toggle in and out of a full screen mode with no changes to gameplay, or significant differences in performance. (DONE)
+Music + sounds effects - Some sort of music should play, and sound effects should be played on certain actions. For example, some background music would play the entire game, but when you take damage or are below a certain health, a sound effect would play on top of the music.(DONE)
 Stretch Features:
 Fancy neural net for enemy ai - This feature is not for gameplay purposes, but rather more for a learning experience. The AI should be able to play against the person, and should be able to do basic activities to attempt to defeat the player, even if it is weird/ too bad/ too good.
 Multiple difficulty settings - There should be multiple difficulty levels, (easy, medium, hard) which provide different levels of challenge to the player. These changes could be shifts in the ai’s behavior, and / or changing the stats and multipliers for enemies. 
@@ -46,18 +46,30 @@ Class List:
 
 Actor
 An actor is an entity that can move and has physics that bounce it back when it collides with another object, extends Entity class
+MovingActor
+An actor with built in acceleration physics
 Enemy
 Extends Actor, the enemy that attempts to damage and kill the user
+RangedEnemy
+Represents a enemy that can attack from range
+Bat
+Represents an enemy with a bat sprite
+Witch
+Represents an enemy with a witch sprite
+Goblin
+Represents an enemy with a goblin sprite
+Damage
+Represents the damage that can be given to an actor
 EnemyAI
 The program that controls the enemies to attack the player
 Player
 Extends Actor, the player is the user and can interact with the game environment with abilities, weapons, and different classes
 Knight
-Extends Player, has class specific abilities, knight is more tanky than the other classes 
+Extends Player, knight is more tanky than the other classes 
 Mage
-Extends Player, has class specific abilities, mage is less tanky than the other classes, but can deal more damage
+Extends Player, mage is less tanky than the other classes, but can deal more damage
 Rogue
-Extends Player, has class specific abilities, rouge is more tanky than mage, but less tanky that the knight, Rouge has better movement than the other classes
+Extends Player, rouge is more tanky than mage, but less tanky that the knight, Rouge has better movement than the other classes
 Obstacle
 Extends Entity and implements Collideable, blocks the Player and other Actors from movement and bounces them back when they collide
 Room
@@ -66,24 +78,48 @@ DrawingSurface
 Extends PApplet, this is used to draw all the entities and take care of graphical processing
 KImage
 Has a texture and displays on screen as a sprite, and can be moved around and collided with other KImages.
+PGif
+Allows for use of .gif files in processing
 Texture
-Like a PImage, but also supports GIfs
+Represents an image that can be moved around and resized. Supports Gif, jpeg, and png images.
+TextureImage
+Takes in a PImage to be used as a texture
 Weapon
 The object a player can use in order to attack the enemies in the room, it can come in different forms such as a gun or sword
 RangedWeapon
 Has a sprite and a projectile texture, used by Player and Enemy as a weapon
+Gun
+Represents a gun with firing and a bullet spread
+MagicStaff
+Represents a magic staff that fires magic projectiles
+Shotgun
+Represents a shotgun that shoots multiple projectiles
+Smg
+Represents a gun that shoots projectiles
 MeleeWeapon
 Used by Player and Enemy as a weapon, has a set swing duration and length
+BroadSword
+Represents a sword that can be swung
 Projectile
 Projectile used by any form of a ranged RangedWeapon, has its own sprite, and determines if it comes into contact with an enemy or player, and whether they are killed or not
+Calculator
+Represents a basic calculator to do basic calculations with things like damage, and it also calculates the angle between points
+AssetLoader
+ Loads all assets needed initially and held statically so that it does not need to be loaded during runtime.
 JayLayer
-Modded JayLayer class from the Shelby code demos that allows for the control of volume
+Modded JayLayer class from the Shelby code demos that allows for the control of volume, allows use of mp3 files through Player
+JavaSoundAudioDevice
+Modded JavaSoundAudioDevice that uses java sound api, allows you to change volume, from Shelby coding demos
+Player
+Modded Player that uses JavaSoundAudioDevice for playback of sound files, from Shelby coding demos
 Level
 Basic construction for a level, containing an array of rooms that you progress through to complete the level
 HUD
 Displays the player’s health during gameplay
 MainMenu
 Draws the main menu, which lets you choose your character, set volume level, and set the max framerate during the actual game.
+DungeonsAndMagnums
+Runs the main menu, which allows you to play the game.
 
 Credits:
 Kumar
