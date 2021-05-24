@@ -46,13 +46,13 @@ public class LevelSeven extends Level
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(300, 300);
-		obstacles.add(o);
-		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(400, 300);
-		obstacles.add(o);
-		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
 		o.getImage().moveTo(500, 300);
+		obstacles.add(o);
+		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
+		o.getImage().moveTo(1000, 1000);
+		obstacles.add(o);
+		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
+		o.getImage().moveTo(200, 1000);
 		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 

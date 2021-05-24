@@ -51,13 +51,15 @@ public abstract class RangedEnemy extends Enemy {
 
     @Override
     public void act(DrawingSurface d, Room r) {
-        super.act(d, r);
-        for (int i = 0; i < projectiles.size(); i++) {
-            Projectile p = projectiles.get(i);
-            p.act(d, r);
-            if (!p.isActive()) {
-                projectiles.remove(i);
-                i--;
+        if(!spawning) {
+            super.act(d, r);
+            for (int i = 0; i < projectiles.size(); i++) {
+                Projectile p = projectiles.get(i);
+                p.act(d, r);
+                if (!p.isActive()) {
+                    projectiles.remove(i);
+                    i--;
+                }
             }
         }
     }

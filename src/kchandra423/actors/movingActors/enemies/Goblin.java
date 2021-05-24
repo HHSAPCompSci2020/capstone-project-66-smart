@@ -11,7 +11,11 @@ import kchandra423.utility.AssetLoader;
  */
 public class Goblin extends Enemy
 {
-
+	/**
+	 * Creates a goblin at the given location
+	 * @param x The x coord
+	 * @param y The y coord
+	 */
 	public Goblin(float x, float y) 
 	{
 		super(new KImage[] {AssetLoader.getImage(AssetLoader.Sprite.GOBLIN_IDLE),

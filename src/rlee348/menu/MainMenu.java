@@ -1,98 +1,94 @@
 package rlee348.menu;
 
+import g4p_controls.*;
+import jay.jaysound.JayLayer;
 import kchandra423.actors.movingActors.players.Knight;
 import kchandra423.actors.movingActors.players.Mage;
 import kchandra423.actors.movingActors.players.Rogue;
+import kchandra423.graphics.DrawingSurface;
 import kchandra423.utility.AssetLoader;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
-//import processing.sound.*;
 
-import javax.swing.JFrame;
-
-import g4p_controls.*;
-import jay.jaysound.JayLayer;
-
-import kchandra423.graphics.DrawingSurface;
+import javax.swing.*;
 
 /**
- * Draws the menu screen for the program, Displays credits 
- * and instructions to the game, has working start button.
+ * Draws the menu screen for the program, Displays credits
+ * and instructions to the game, has different buttons to indicate class choice.
+ * Also has volume slider and max fps slider.
  *
  * @author Ryan Lee
  */
 
 public class MainMenu extends PApplet {
 
-//	int rectX, rectY; // Position of square button
+    //	int rectX, rectY; // Position of square button
 //	int circleX, circleY; // Position of circle button
 //	int rectSize = 90; // Diameter of rect
 //	int circleSize = 93; // Diameter of circle
 //	int circleColor, baseColor, rectColor, rectHighlight, circleHighlight, currentColor;
 //	boolean rectOver = false;
 //	boolean circleOver = false;
-	private PImage img;
-	private GButton settings;
-	private GButton mage;
-	private GButton knight;
-	private GButton rogue;
-	private GLabel lblOut;
-	private JayLayer music;
-	private GCustomSlider volume, framerate;
-	private float volumeLevel;
-	private int fps;
-	
-	/**
-	 * Creates a MainMenu object
-	 */
-	public MainMenu() {
+    private PImage img;
+    private GButton settings;
+    private GButton mage;
+    private GButton knight;
+    private GButton rogue;
+    private GLabel lblOut;
+    private JayLayer music;
+    private GCustomSlider volume, framerate;
+    private float volumeLevel;
+    private int fps;
 
-	}
+    /**
+     * Creates a MainMenu object
+     */
+    public MainMenu() {
 
-	/**
-	 * Runs on setup, initializes any fields and other objects needed.
-	 */
-		public void setup() {
-		Thread t = new Thread(){
-			@Override
-			public void run(){
-				AssetLoader.getImage(AssetLoader.Sprite.BAT_ATTACK);
-			}
-		};
-		t.start();
-		String[] songs = new String[]{"MainMenuTheme.mp3"};
-		
-		
-	//	System.out.println(height);
-	//	System.out.println(width);
-		
-		double rand = Math.random();
-		
-		if (rand > 0.5) {
-			img = loadImage("res/Images/Backgrounds/MenuBackground.png");
-			img.resize(1024,768);
-		}
-		
-		else {
-			img = loadImage("res/Images/Backgrounds/MenuBackground2.gif");
-			img.resize(1024,768);
-		}
-	//	System.out.println(img.height);
-	//	System.out.println(img.width);
-		
-		background(img);
+    }
+
+    /**
+     * Runs on setup, initializes any fields and other objects needed.
+     */
+    public void setup() {
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                AssetLoader.getImage(AssetLoader.Sprite.BAT_ATTACK);
+            }
+        };
+        t.start();
+        String[] songs = new String[]{"MainMenuTheme.mp3"};
+
+
+        //	System.out.println(height);
+        //	System.out.println(width);
+
+        double rand = Math.random();
+
+        if (rand > 0.5) {
+            img = loadImage("res/Images/Backgrounds/MenuBackground.png");
+            img.resize(1024, 768);
+        } else {
+            img = loadImage("res/Images/Backgrounds/MenuBackground2.gif");
+            img.resize(1024, 768);
+        }
+        //	System.out.println(img.height);
+        //	System.out.println(img.width);
+
+        background(img);
 //		music = new JayLayer("res/","res/",false);
 //		music.addSoundEffect("Sounds/MainMenuTheme.mp3");
-		//System.out.println(music.getNumberOfSoundEffect());
+        //System.out.println(music.getNumberOfSoundEffect());
 //		music.playSoundEffect(0);
 
-		music=new JayLayer("res/Sounds/","res/Sounds/",false);
-		music.addPlayList();
-		music.addSongs(0,songs);
-		music.changePlayList(0);
-		music.nextSong();
+        music = new JayLayer("res/Sounds/", "res/Sounds/", false);
+        music.addPlayList();
+        music.addSongs(0, songs);
+        music.changePlayList(0);
+        music.nextSong();
 
 
 
@@ -109,40 +105,40 @@ public class MainMenu extends PApplet {
 		rectY = height / 2 - rectSize / 2;
 		ellipseMode(CENTER);
     */
-	//	start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
-	//	settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
-		mage = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "mage");
-		knight = new GButton(this, 3*width/11, height - height/5 - height/15, 100, 40, "knight");
-		rogue = new GButton(this, 7*width/11, height - height/5 - height/15, 100, 40, "rogue");
-		
-		volume = new GCustomSlider(this, 7*width/12, 5*height/8, 4*width/12, 5*height/8, "blue18px");
-		
-		framerate = new GCustomSlider(this, 1*width/12, 5*height/8, 4*width/12, 5*height/8, "blue18px");
-		// show          opaque  ticks value limits
-		volume.setShowDecor(false, true, true, true);
-		volume.setNbrTicks(5);
-		volume.setNumberFormat(G4P.DECIMAL, 3);
-		volume.setLimits(0, -20, 20);
-		
-		framerate.setShowDecor(false, true, true, true);
-		framerate.setNbrTicks(5);
-		framerate.setNumberFormat(G4P.DECIMAL, 3);
-		framerate.setLimits(60, 30, 90);
-		fps = 60;
+        //	start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
+        //	settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
+        mage = new GButton(this, 5 * width / 11, height - height / 5 - height / 15, 100, 40, "mage");
+        knight = new GButton(this, 3 * width / 11, height - height / 5 - height / 15, 100, 40, "knight");
+        rogue = new GButton(this, 7 * width / 11, height - height / 5 - height / 15, 100, 40, "rogue");
+
+        volume = new GCustomSlider(this, 7 * width / 12, 5 * height / 8, 4 * width / 12, 5 * height / 8, "blue18px");
+
+        framerate = new GCustomSlider(this, 1 * width / 12, 5 * height / 8, 4 * width / 12, 5 * height / 8, "blue18px");
+        // show          opaque  ticks value limits
+        volume.setShowDecor(false, true, true, true);
+        volume.setNbrTicks(5);
+        volume.setNumberFormat(G4P.DECIMAL, 3);
+        volume.setLimits(0, -20, 20);
+
+        framerate.setShowDecor(false, true, true, true);
+        framerate.setNbrTicks(5);
+        framerate.setNumberFormat(G4P.DECIMAL, 3);
+        framerate.setLimits(60, 30, 90);
+        fps = 60;
 		/*lblOut = new GLabel(this, 10, 190, 560, 20, "Dungeons and Magnums");
 		lblOut.setTextAlign(GAlign.CENTER, null);
 		lblOut.setText("Dungeons and Magnums");
 		*/
-		
-	}
 
-	/**
-	 * Draws the MainMenu along with the instructions and credits text.
-	 */
-	public void draw() {
+    }
+
+    /**
+     * Draws the MainMenu along with the instructions and credits text.
+     */
+    public void draw() {
 
 //		img.resize(width,height);
-		background(img);
+        background(img);
 		
 		
 	/*	update(mouseX, mouseY);
@@ -167,42 +163,42 @@ public class MainMenu extends PApplet {
 		ellipse(circleX, circleY, circleSize, circleSize);
    
    	*/
-		pushStyle();
-		
-		fill(255);
-		textSize(60);
-		text("Dungeons and Magnums", width/6, height/5);
-		textSize(20);
-		text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2*width/7, 2*height/7);
-		text("Instructions: Use wasd to move your character. \n "
-				+ "Use mouse button 2 to fire your weapon. \n "
-				+ "The goal of the game is to clear each level by \n "
-				+ "killing all the enemies in each room. \n"
-				+ "Try to avoid dying, as you will lose the game if you do. \n"
-				+ "You can choose your character from 3 classes:\n"
-				+ "knight, mage, or rogue.", 2*width/7, 3*height/8);
-		text("Volume", 10*width/14, 7*height/8);
-		text("Max FPS", 3*width/14, 7*height/8);
-		popStyle();
-		
-		
-	}
+        pushStyle();
 
-	/**
-	 * Sets the initial size of the PApplet
-	 */
-	public void settings() {
-		size(1024,768);
-	}
-	
-	/**
-	 * Executes the code using the specific point of the mouse, changes the color of
-	 * the button depending on the mouse position.
-	 * 
-	 * @param x x coordinate of the mouse.
-	 * @param y y coordinate of the mouse.
-	 */
-	public void update(int x, int y) {
+        fill(255);
+        textSize(60);
+        text("Dungeons and Magnums", width / 6, height / 5);
+        textSize(20);
+        text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2 * width / 7, 2 * height / 7);
+        text("Instructions: Use wasd to move your character. \n "
+                + "Use mouse button 2 to fire your weapon. \n "
+                + "The goal of the game is to clear each level by \n "
+                + "killing all the enemies in each room. \n"
+                + "Try to avoid dying, as you will lose the game if you do. \n"
+                + "You can choose your character from 3 classes:\n"
+                + "knight, mage, or rogue.", 2 * width / 7, 3 * height / 8);
+        text("Volume", 10 * width / 14, 7 * height / 8);
+        text("Max FPS", 3 * width / 14, 7 * height / 8);
+        popStyle();
+
+
+    }
+
+    /**
+     * Sets the initial size of the PApplet
+     */
+    public void settings() {
+        size(1024, 768);
+    }
+
+    /**
+     * Executes the code using the specific point of the mouse, changes the color of
+     * the button depending on the mouse position.
+     *
+     * @param x x coordinate of the mouse.
+     * @param y y coordinate of the mouse.
+     */
+    public void update(int x, int y) {
 
 	/*	if (overCircle(circleX, circleY, circleSize)) {
 			circleOver = true;
@@ -214,14 +210,14 @@ public class MainMenu extends PApplet {
 			circleOver = rectOver = false;
 		}
      */
-	}
-	
+    }
 
-	/**
-	 * Changes the color of the background if the mouse button is used to press the
-	 * button.
-	 */
-	public void mousePressed() {
+
+    /**
+     * Changes the color of the background if the mouse button is used to press the
+     * button.
+     */
+    public void mousePressed() {
 
 	/*	if (circleOver) {
 			currentColor = circleColor;
@@ -231,118 +227,106 @@ public class MainMenu extends PApplet {
 			currentColor = rectColor;
 		}
      */
-	}
+    }
 
-	/**
-	 * 
-	 * @param x  x coordinate of the top left of rectangle.
-	 * @param y  y coordinate of the top left of rectangle.
-	 * @param width width of the rectangle.
-	 * @param height height of the rectangle.
-	 * @return true or false depending on if the given mouse coordinates are within the are of the rectangle.
-	 */
-	boolean overRect(int x, int y, int width, int height) {
+    /**
+     * @param x      x coordinate of the top left of rectangle.
+     * @param y      y coordinate of the top left of rectangle.
+     * @param width  width of the rectangle.
+     * @param height height of the rectangle.
+     * @return true or false depending on if the given mouse coordinates are within the are of the rectangle.
+     */
+    boolean overRect(int x, int y, int width, int height) {
 
-		if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height) {
-			return true;
-		}
+        if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-		else {
-			return false;
-		}
-	}
+    /**
+     * @param x        x coordinate of the center of the circle.
+     * @param y        y coordinate of the center of the circle.
+     * @param diameter diameter of the circle.
+     * @return true or false depending on if the coordinates of the mouse are within the area of the circle
+     */
+    boolean overCircle(int x, int y, int diameter) {
 
-	/**
-	 * 
-	 * @param x x coordinate of the center of the circle.
-	 * @param y y coordinate of the center of the circle.
-	 * @param diameter diameter of the circle.
-	 * @return true or false depending on if the coordinates of the mouse are within the area of the circle
-	 */
-	boolean overCircle(int x, int y, int diameter) {
+        float disX = x - mouseX;
+        float disY = y - mouseY;
+        if (sqrt(sq(disX) + sq(disY)) < diameter / 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-		float disX = x - mouseX;
-		float disY = y - mouseY;
-		if (sqrt(sq(disX) + sq(disY)) < diameter / 2) {
-			return true;
-		} 
-		else {
-			return false;
-		}
-	}
-	
-	
-	/**This handles any events that have to do with the buttons.
-	 * It takes into account mouse clicks on a specific button. 
-	 * The mage button will load you into the game as a mage.
-	 * The knight button will load you into the game as a knight.
-	 * The rogue button will load you into the game as a rogue.
-	 * 
-	 * @param button Button used in interaction
-	 * @param event the event that happens.
-	 */
-	public void handleButtonEvents(GButton button, GEvent event) {
-		// Create the control window?
-		if (button == mage && event == GEvent.CLICKED) {
-			music.stopSong();
-			
-			DrawingSurface drawing = new DrawingSurface( new Mage(700,500), volumeLevel, fps, PConstants.P2D, "mage");
-			this.redraw=false;
-			PApplet.runSketch(new String[]{""}, drawing);
-			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			window.setVisible(false);
-		} 
-		
-		else if (button == knight && event == GEvent.CLICKED) {
-			
-			music.stopSong();
-			
-			DrawingSurface drawing = new DrawingSurface(new Knight(700,500), volumeLevel, fps, PConstants.P2D, "knight");
 
-			this.redraw=false;
-			PApplet.runSketch(new String[]{""}, drawing);
-			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			window.setVisible(false);
-		}
-		
-		else if (button == rogue && event == GEvent.CLICKED) {
-			
-			music.stopSong();
-			
-			DrawingSurface drawing = new DrawingSurface(new Rogue(700,500), volumeLevel, fps, PConstants.P2D, "rogue");
-			PApplet.runSketch(new String[]{""}, drawing);
+    /**
+     * This handles any events that have to do with the buttons.
+     * It takes into account mouse clicks on a specific button.
+     * The mage button will load you into the game as a mage.
+     * The knight button will load you into the game as a knight.
+     * The rogue button will load you into the game as a rogue.
+     *
+     * @param button Button used in interaction
+     * @param event  the event that happens.
+     */
+    public void handleButtonEvents(GButton button, GEvent event) {
+        // Create the control window?
+        if (button == mage && event == GEvent.CLICKED) {
+            music.stopSong();
 
-			this.redraw=false;
-			PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
-			PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-			JFrame window = (JFrame)canvas.getFrame();
-			window.setVisible(false);
-		}
-		
-		else if (button == settings && event == GEvent.CLICKED) {
-			
-			music.stopSong();
+            DrawingSurface drawing = new DrawingSurface(new Mage(700, 500), volumeLevel, fps, PConstants.P2D, "mage");
+            this.redraw = false;
+            PApplet.runSketch(new String[]{""}, drawing);
+            PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+            PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+            JFrame window = (JFrame) canvas.getFrame();
+            window.setVisible(false);
+        } else if (button == knight && event == GEvent.CLICKED) {
 
-		}
-	}
-	
-	public void handleSliderEvents(GValueControl slider, GEvent event) { 
-		
-		if (slider == volume) {
-			music.stopSong();
-			volumeLevel = slider.getValueF();
-			music.setVolume(volumeLevel);
-			music.nextSong();
-		}
-		
-		else if (slider == framerate) {
-			
-			fps = (int) slider.getValueF();
-			
-		}
-	}
+            music.stopSong();
+
+            DrawingSurface drawing = new DrawingSurface(new Knight(700, 500), volumeLevel, fps, PConstants.P2D, "knight");
+
+            this.redraw = false;
+            PApplet.runSketch(new String[]{""}, drawing);
+            PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+            PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+            JFrame window = (JFrame) canvas.getFrame();
+            window.setVisible(false);
+        } else if (button == rogue && event == GEvent.CLICKED) {
+
+            music.stopSong();
+
+            DrawingSurface drawing = new DrawingSurface(new Rogue(700, 500), volumeLevel, fps, PConstants.P2D, "rogue");
+            PApplet.runSketch(new String[]{""}, drawing);
+
+            this.redraw = false;
+            PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+            PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+            JFrame window = (JFrame) canvas.getFrame();
+            window.setVisible(false);
+        } else if (button == settings && event == GEvent.CLICKED) {
+
+            music.stopSong();
+
+        }
+    }
+
+    public void handleSliderEvents(GValueControl slider, GEvent event) {
+
+        if (slider == volume) {
+            music.stopSong();
+            volumeLevel = slider.getValueF();
+            music.setVolume(volumeLevel);
+            music.nextSong();
+        } else if (slider == framerate) {
+
+            fps = (int) slider.getValueF();
+
+        }
+    }
 }

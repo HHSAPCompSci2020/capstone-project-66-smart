@@ -46,7 +46,7 @@ public class LevelEleven extends Level
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(800, 600);
+		o.getImage().moveTo(100, 600);
 		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 

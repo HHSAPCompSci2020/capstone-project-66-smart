@@ -9,7 +9,7 @@ import kchandra423.utility.Calculator;
  *
  * @author Kumar Chandra
  */
-public class EnemyAI {
+class EnemyAI {
     private Enemy e;
 
     /**
@@ -17,7 +17,7 @@ public class EnemyAI {
      *
      * @param enemy The enemy that this Enemy Ai will make decisions for
      */
-    public EnemyAI(Enemy enemy) {
+    EnemyAI(Enemy enemy) {
         e = enemy;
     }
 

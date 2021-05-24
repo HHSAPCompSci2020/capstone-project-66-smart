@@ -15,7 +15,10 @@ import java.awt.*;
  *
  */
 public class DungeonsAndMagnums {
-
+	/**
+	 * Runs the program
+	 * @param args The arguments to be passed
+	 */
 	public static void main(String[] args) {
 		MainMenu drawing = new MainMenu();
 		PApplet.runSketch(new String[]{""}, drawing);

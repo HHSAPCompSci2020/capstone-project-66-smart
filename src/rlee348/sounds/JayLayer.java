@@ -24,7 +24,6 @@ import jay.jaysound.JayLayerListener;
  * This player is based off of playlists and sound effects. Playlists are designed for background music, which constantly plays, while sound effects are one-time-only sounds, that can be called when needed.
  * 
  * @author Jay Kamat, highly modified by Shelby without regard to Jay's "licenses", also modified by Ryan Lee
- * @Version 2.1
  * Manages a Playlists for MP3 files
  * 
  * A very tiny bit of this was made by shaines...thank you!
@@ -32,7 +31,7 @@ import jay.jaysound.JayLayerListener;
  * Released under the Lesser GNU Lesser General Public License V3.0
  * 
  * This program uses an unmodified version of the JLayer library (1.0.1), it is just bundled inside for convenience.
- * Find the unmodified JLayer library at <http://www.javazoom.net/javalayer/javalayer.html>
+ * Find the unmodified JLayer library at http://www.javazoom.net/javalayer/javalayer.html
  * 
  * 
  * Copyright Jay Kamat, 2013
@@ -165,7 +164,7 @@ public class JayLayer {
 		return sound.getPlayer();
 	}
 	
-	/**
+	/** Sets the volume gain with the inputteted float value.
 	 * 
 	 * @param f volume increase or decrease with positive or negative numbers
 	 */

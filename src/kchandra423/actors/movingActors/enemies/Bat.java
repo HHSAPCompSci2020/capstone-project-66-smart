@@ -10,7 +10,11 @@ import kchandra423.utility.AssetLoader;
  * @author Spencer Ye Last Revised: 5/12/2021
  */
 public class Bat extends Enemy {
-
+    /**
+     * Creates a new bat at the specific locatioin
+     * @param x The x coord
+     * @param y The y coord
+     */
     public Bat(float x, float y) {
         super(new KImage[]{AssetLoader.getImage(AssetLoader.Sprite.BAT_IDLE),
                 AssetLoader.getImage(AssetLoader.Sprite.BAT_MOVING),

@@ -46,10 +46,10 @@ public class LevelNine extends Level
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(500, 500);
+		o.getImage().moveTo(200, 500);
 		obstacles.add(o);
 		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(600, 500);
+		o.getImage().moveTo(1100, 500);
 		obstacles.add(o);
 		obstacles.add(o);
 		

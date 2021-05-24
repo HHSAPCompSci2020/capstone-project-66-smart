@@ -46,11 +46,10 @@ public class LevelTen extends Level
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(500, 500);
+		o.getImage().moveTo(500, 1000);
 		obstacles.add(o);
 		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(600, 500);
-		obstacles.add(o);
+		o.getImage().moveTo(800, 300);
 		obstacles.add(o);
 		
 		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 

@@ -38,7 +38,7 @@ import javazoom.jl.player.AudioDeviceBase;
 
 /**
  * The <code>JavaSoundAudioDevice</code> implements an audio device by using the
- * JavaSound API.
+ * JavaSound API. Allows you to change volume.
  *
  * @since 0.0.8
  * @author Mat McGowan, Modified by Ryan Lee
@@ -75,7 +75,7 @@ public class JavaSoundAudioDevice extends AudioDeviceBase {
 		}
 	}
 
-	/**Sets the gain for the volume.
+	/**Sets the gain for the volume to make it louder or quieter.
 	 * 
 	 * @param gain Increase or decrease of volume
 	 * @return true or false 
