@@ -32,15 +32,14 @@ public class MainMenu extends PApplet {
 //	boolean rectOver = false;
 //	boolean circleOver = false;
     private PImage img;
-    private GButton settings;
     private GButton mage;
     private GButton knight;
     private GButton rogue;
-    private GLabel lblOut;
     private JayLayer music;
     private GCustomSlider volume, framerate;
     private float volumeLevel;
     private int fps;
+    private boolean started = false;
 
     /**
      * Creates a MainMenu object
@@ -275,44 +274,46 @@ public class MainMenu extends PApplet {
      */
     public void handleButtonEvents(GButton button, GEvent event) {
         // Create the control window?
-        if (button == mage && event == GEvent.CLICKED) {
-            music.stopSong();
+        if (!started) {
+            if (button == mage && event == GEvent.CLICKED) {
 
-            DrawingSurface drawing = new DrawingSurface(new Mage(700, 500), volumeLevel, fps, PConstants.P2D, "mage");
-            this.redraw = false;
-            PApplet.runSketch(new String[]{""}, drawing);
-            PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
-            PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-            JFrame window = (JFrame) canvas.getFrame();
-            window.setVisible(false);
-        } else if (button == knight && event == GEvent.CLICKED) {
+                started = true;
+                music.stopSong();
 
-            music.stopSong();
+                DrawingSurface drawing = new DrawingSurface(new Mage(700, 700), volumeLevel, fps, PConstants.P2D, "mage");
+                this.redraw = false;
+                PApplet.runSketch(new String[]{""}, drawing);
+                PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+                PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+                JFrame window = (JFrame) canvas.getFrame();
+                window.setVisible(false);
+            } else if (button == knight && event == GEvent.CLICKED) {
 
-            DrawingSurface drawing = new DrawingSurface(new Knight(700, 500), volumeLevel, fps, PConstants.P2D, "knight");
+                started = true;
+                music.stopSong();
 
-            this.redraw = false;
-            PApplet.runSketch(new String[]{""}, drawing);
-            PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
-            PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-            JFrame window = (JFrame) canvas.getFrame();
-            window.setVisible(false);
-        } else if (button == rogue && event == GEvent.CLICKED) {
+                DrawingSurface drawing = new DrawingSurface(new Knight(700, 700), volumeLevel, fps, PConstants.P2D, "knight");
 
-            music.stopSong();
+                this.redraw = false;
+                PApplet.runSketch(new String[]{""}, drawing);
+                PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+                PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+                JFrame window = (JFrame) canvas.getFrame();
+                window.setVisible(false);
+            } else if (button == rogue && event == GEvent.CLICKED) {
 
-            DrawingSurface drawing = new DrawingSurface(new Rogue(700, 500), volumeLevel, fps, PConstants.P2D, "rogue");
-            PApplet.runSketch(new String[]{""}, drawing);
+                started = true;
+                music.stopSong();
 
-            this.redraw = false;
-            PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
-            PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
-            JFrame window = (JFrame) canvas.getFrame();
-            window.setVisible(false);
-        } else if (button == settings && event == GEvent.CLICKED) {
+                DrawingSurface drawing = new DrawingSurface(new Rogue(700, 700), volumeLevel, fps, PConstants.P2D, "rogue");
+                PApplet.runSketch(new String[]{""}, drawing);
 
-            music.stopSong();
-
+                this.redraw = false;
+                PSurfaceAWT surf = (PSurfaceAWT) this.getSurface();
+                PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+                JFrame window = (JFrame) canvas.getFrame();
+                window.setVisible(false);
+            }
         }
     }
 

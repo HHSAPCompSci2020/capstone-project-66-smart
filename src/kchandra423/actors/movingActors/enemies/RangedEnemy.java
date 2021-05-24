@@ -24,17 +24,19 @@ public abstract class RangedEnemy extends Enemy {
     private final float fireRate;
     private final int rangedDamage;
     private final DamageTypes type;
+    private final int range;
     private long lastTimeShot;
     private final AssetLoader.Sprite projectile;
     private ArrayList<Projectile> projectiles;
 
-    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health, DamageTypes type, AssetLoader.Sprite projectile, long deathTime, int damage) {
+    protected RangedEnemy(KImage[] images, float maxV, float accel, float[] stats, int health, DamageTypes type, AssetLoader.Sprite projectile, long deathTime, int damage, float fireRate, float projectileVelocity, int range) {
         super(images, maxV, accel, stats, health, deathTime,0);
         this.type = type;
         this.projectile = projectile;
         projectiles = new ArrayList<>();
-        projectileVelocity = 7;
-        fireRate = 1f;
+        this.projectileVelocity = projectileVelocity;
+        this.fireRate = fireRate;
+        this.range = range;
         this.rangedDamage = damage;
         lastTimeShot = System.currentTimeMillis();
     }
@@ -77,7 +79,7 @@ public abstract class RangedEnemy extends Enemy {
 
     @Override
     protected MovingActor interactsWOppponent(Room room) {
-        if ((PApplet.dist(image.getX(), image.getY(), (float) room.getPlayer().getImage().getBounds().getCenterX(), (float) room.getPlayer().getImage().getBounds().getCenterY()) < 500) && canFire() && getState() != ActorState.DEAD) {
+        if ((PApplet.dist(image.getX(), image.getY(), (float) room.getPlayer().getImage().getBounds().getCenterX(), (float) room.getPlayer().getImage().getBounds().getCenterY()) < range) && canFire() && getState() != ActorState.DEAD) {
             updateState(ActorState.ATTACKING);
             vx = 0;
             vy = 0;

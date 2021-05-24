@@ -12,6 +12,6 @@ public class MagicStaff extends Gun {
      * @param stats The given stats
      */
     public MagicStaff(float[] stats) {
-        super(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_STAFF), 0.3f, (float) (Math.PI / 8), AssetLoader.Sprite.MAGIC_BALL, 7, stats, DamageTypes.MAGIC, 1,30);
+        super(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_STAFF), 0.3f, (float) (Math.PI / 8), AssetLoader.Sprite.MAGIC_BALL, 7, stats, DamageTypes.MAGIC, 1,15);
     }
 }

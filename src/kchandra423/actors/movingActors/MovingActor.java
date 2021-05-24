@@ -301,8 +301,10 @@ public abstract class MovingActor extends Actor {
     public int getHealth() {
         return health;
     }
-
-    protected void setHealth(int health) {
+    /**
+     * Sets this actors health to the given value
+     */
+    public void setHealth(int health) {
         this.health = health;
     }
 

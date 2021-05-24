@@ -2,12 +2,14 @@ package sye348.levels;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import kchandra423.actors.movingActors.enemies.Bat;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.Goblin;
 import kchandra423.actors.movingActors.enemies.Witch;
 import kchandra423.actors.movingActors.players.Player;
+import kchandra423.actors.obstacles.Crate;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
@@ -29,36 +31,22 @@ public class LevelThree extends Level
 	
 	private static ArrayList<Room> getRooms(Player player)
 	{
-		ArrayList<Room> arr = new ArrayList<Room>();
-		
-		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		Rectangle bounds = new Rectangle(1500, 1500);
+		ArrayList<Room> arr = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++)
-        	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 1; i++)
-        	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 1; i++)
-        	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-		
-		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
-		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(300,600);
-		obstacles.add(o);
-		
-		Room r = new Room (Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"), 
-				obstacles,
-				enemies, 
-				player,
-				bounds);
-		arr.add(r);
-		
-		
+
+		arr.add(Level.getRoom(20, 0, 0, 0, 0, new ArrayList<Obstacle>(Arrays.asList(new Crate(900, 900))), player));
+		arr.add(Level.getRoom(4, 4, 7, 4, 1, new ArrayList<Obstacle>(Arrays.asList(new Crate(400, 1000))), player));
+		arr.add(Level.getRoom(6, 5, 1, 2, 2, new ArrayList<Obstacle>(Arrays.asList(new Crate(1000, 1000), new Crate(400, 400))), player));
+		arr.add(Level.getRoom(5, 5, 10, 5, 5, new ArrayList<Obstacle>(Arrays.asList(new Crate(300, 500), new Crate(1000,300), new Crate(1000, 1000))), player));
 		return arr;
 	}
-
+	@Override
 	public Level getNextLevel()
 	{
-		return new LevelFour(getCurrentRoom().getPlayer());
+		return null;
+	}
+	@Override
+	public String toString() {
+		return "3 - " + getRoomNumber();
 	}
 }

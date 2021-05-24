@@ -5,12 +5,14 @@ import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.Goblin;
 import kchandra423.actors.movingActors.enemies.Witch;
 import kchandra423.actors.movingActors.players.Player;
+import kchandra423.actors.obstacles.Crate;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Spencer Ye
@@ -25,31 +27,24 @@ public class LevelTwo extends Level {
     }
 
     private static ArrayList<Room> getRooms(Player player) {
-        ArrayList<Room> arr = new ArrayList<Room>();
-        Rectangle bounds = new Rectangle(1500, 1000);
-
-        ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-        for (int i = 0; i < 5; i++)
-        	enemies.add(new Goblin(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 0; i++)
-        	enemies.add(new Bat(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-        for (int i = 0; i < 0; i++)
-        	enemies.add(new Witch(getRandXCoord(bounds, 200), getRandYCoord(bounds, 200)));
-
-        Room r = new Room(Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"),
-                new ArrayList<Obstacle>(),
-                enemies,
-                player,
-                bounds);
-        arr.add(r);
+        ArrayList<Room> arr = new ArrayList<>();
 
 
+        arr.add(Level.getRoom(10, 0, 0, 0, 0, new ArrayList<Obstacle>(), player));
+        arr.add(Level.getRoom(4, 4, 4, 1, 0, new ArrayList<Obstacle>(Arrays.asList(new Crate(0, 500), new Crate(900,900))), player));
+        arr.add(Level.getRoom(2, 2, 3, 2, 0, new ArrayList<Obstacle>(Arrays.asList(new Crate(500, 1000), new Crate(1000, 1000))), player));
+        arr.add(Level.getRoom(5, 0, 3, 5, 0, new ArrayList<Obstacle>(Arrays.asList(new Crate(200, 500), new Crate(400,1000), new Crate(1000,300))), player));
         return arr;
     }
 
 
 	public Level getNextLevel()
 	{
+        getCurrentRoom().getPlayer().setHealth(getCurrentRoom().getPlayer().getMaxHealth());
 		return new LevelThree(getCurrentRoom().getPlayer());
 	}
+    @Override
+    public String toString() {
+        return "2 - " + getRoomNumber();
+    }
 }

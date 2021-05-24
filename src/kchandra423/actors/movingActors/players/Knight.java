@@ -21,7 +21,7 @@ public class Knight extends Player {
         super(AssetLoader.getImage(AssetLoader.Sprite.KNIGHT_IDLE),
                 AssetLoader.getImage(AssetLoader.Sprite.KNIGHT_IDLE),
                 7, 0.7f, stats,
-                300,
+                400,
                 new BroadSword(stats)
         );
         image.moveTo(x, y);

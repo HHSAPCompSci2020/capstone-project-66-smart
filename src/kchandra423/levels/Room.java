@@ -68,7 +68,7 @@ public class Room {
         player = p;
 
         portal = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.TELEPORTER));
-        portal.getImage().moveTo((float) bounds.getCenterX(), (float) bounds.getCenterY());
+        portal.getImage().moveTo((float) bounds.getCenterX()-portal.getImage().getWidth()/2f, (float) bounds.getCenterY()-portal.getImage().getHeight()/2f);
         background.resize(bounds.width, bounds.height);
     }
 

@@ -12,6 +12,6 @@ public class Shotgun extends Gun {
      * @param stats The given stats
      */
     public Shotgun(float[] stats) {
-        super(AssetLoader.getImage(AssetLoader.Sprite.SHOTGUN), 0.5f, (float)Math.PI/5, AssetLoader.Sprite.BULLET, 20f, stats, DamageTypes.RANGED, 6, 15);
+        super(AssetLoader.getImage(AssetLoader.Sprite.SHOTGUN), 0.5f, (float)Math.PI/5, AssetLoader.Sprite.BULLET, 20f, stats, DamageTypes.RANGED, 6, 5);
     }
 }

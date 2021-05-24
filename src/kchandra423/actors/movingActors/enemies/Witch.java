@@ -12,13 +12,18 @@ import kchandra423.utility.AssetLoader;
  */
 public class Witch extends RangedEnemy
 {
-
+	/**
+	 * Creates a new witch at the specific location
+	 * @param x The x coord
+	 * @param y The y coord
+	 */
 	public Witch(float x, float y) 
 	{
 		super(new KImage[] {AssetLoader.getImage(AssetLoader.Sprite.WITCH_IDLE),
 				AssetLoader.getImage(AssetLoader.Sprite.WITCH_MOVING),
 				AssetLoader.getImage(AssetLoader.Sprite.WITCH_ATTACK),
-				AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH)}, 4f, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f), 50, DamageTypes.MAGIC, AssetLoader.Sprite.HEX,9 * 100L, 10);
+				AssetLoader.getImage(AssetLoader.Sprite.WITCH_DEATH)}, 4f, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.5f, 1.5f), 50, DamageTypes.MAGIC, AssetLoader.Sprite.HEX,9 * 100L, 10
+		,1,7,500);
 		image.moveTo(x, y);
 	}
 

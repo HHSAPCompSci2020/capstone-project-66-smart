@@ -30,6 +30,7 @@ public abstract class Enemy extends MovingActor {
     protected boolean spawning;
     private static final Texture beamIn = Texture.TextureBuilder.getTexture("res/Images/Enemies/BeamIn.png");;
     protected Timer timer;
+    private boolean firstDraw;
     private final int damage;
 
     protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health, long deathTime, int damage) {
@@ -42,17 +43,22 @@ public abstract class Enemy extends MovingActor {
         death = images[3];
         timer = new Timer();
         this.damage = damage;
+        firstDraw = true;
         spawning = true;
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                spawning = false;
-            }
-        }, 50*100);
+
     }
 
     @Override
     public void draw(DrawingSurface d) {
+        if(firstDraw){
+            firstDraw=false;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    spawning = false;
+                }
+            }, 50*100);
+        }
         if (spawning) {
             beamIn.draw(d, (int) image.getX(), (int) image.getY());
         } else {

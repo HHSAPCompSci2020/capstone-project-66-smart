@@ -40,7 +40,17 @@ public class AssetLoader {
                 new KImage("res/Images/Weapons/SpellBook.png", true),
                 new KImage("res/Images/Weapons/Sword.png", true),
                 new KImage("res/Images/Obstacles/Teleporter.gif"),
-                new KImage("res/Images/Projectiles/MagicBall.gif")
+                new KImage("res/Images/Projectiles/MagicBall.gif"),
+                new KImage("res/Images/Enemies/Attack/Minotaur.gif"),
+                new KImage("res/Images/Enemies/Death/Minotaur.gif"),
+                new KImage("res/Images/Enemies/Idle/Minotaur.gif"),
+                new KImage("res/Images/Enemies/Moving/Minotaur.gif"),
+                new KImage("res/Images/Enemies/Attack/Cyclops.gif"),
+                new KImage("res/Images/Enemies/Death/Cyclops.gif"),
+                new KImage("res/Images/Enemies/Idle/Cyclops.gif"),
+                new KImage("res/Images/Enemies/Moving/Cyclops.gif"),
+                new KImage("res/Images/Projectiles/Rock.gif")
+
         };
         long end = System.currentTimeMillis();
         System.out.println("Initializing assets took " + ((end - start) / 1000.0) + " seconds");
@@ -59,7 +69,8 @@ public class AssetLoader {
         GOBLIN_MOVING(10), WITCH_MOVING(11), BOX(12), KNIGHT_IDLE(13), MAGE_ACTIVE(14),
         MAGE_IDLE(15), ROGUE_IDLE(16), BULLET(17), HEX(18), MAGIC_STAFF(19), PISTOL(20),
         RUSTY_SWORD(21), SHOTGUN(22), SMG(23), SPELLBOOK(24), SWORD(25), TELEPORTER(26),
-        MAGIC_BALL(27);
+        MAGIC_BALL(27),MINOTAUR_ATTACK(28),MINOTAUR_DEATH(29),MINOTAUR_IDLE(30),MINOTAUR_MOVING(31)
+        ,CYCLOPS_ATTACK(32),CYCLOPS_DEATH(33),CYCLOPS_IDLE(34),CYCLOPS_MOVING(35),ROCK(36);
 
         private final int val;
 

@@ -46,7 +46,7 @@ public class DrawingSurface extends PApplet {
         keys = new boolean[128];
         this.volume = volume-10;
         level = new LevelOne(p);
-        hud = new HUD(p);
+        hud = new HUD();
         classType = type;
     }
 
@@ -175,7 +175,7 @@ public class DrawingSurface extends PApplet {
         translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
         level.draw(this);
         popMatrix();
-        hud.draw(this);
+        hud.draw(this, level);
         fill(0);
         text(super.frameRate + " : fps", width - 100, height - 100);
 
