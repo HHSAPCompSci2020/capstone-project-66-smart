@@ -17,7 +17,7 @@ import java.util.TimerTask;
  *
  * @author Kumar Chandra
  */
-public class Gun extends Weapon {
+class Gun extends Weapon {
     private final AssetLoader.Sprite projectile;
     private final float projectileVelocity;
     private final ArrayList<Projectile> projectiles;
@@ -36,7 +36,7 @@ public class Gun extends Weapon {
     private final float spread;
     private long timeSinceReloaded;
 
-    public Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets, int damage) {
+    Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets, int damage) {
         super(sprite);
         this.projectile = projectile;
         this.fireRate = fireRate;
@@ -116,7 +116,5 @@ public class Gun extends Weapon {
         return false;
     }
 
-    public void setStats(float[] stats) {
-        this.stats = stats;
-    }
+
 }

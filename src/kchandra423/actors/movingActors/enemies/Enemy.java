@@ -1,11 +1,12 @@
 package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.Damage;
+import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.constants.DamageTypes;
-import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
+import kchandra423.graphics.textures.Texture;
 import kchandra423.levels.Room;
 
 import java.util.Timer;
@@ -26,6 +27,8 @@ public abstract class Enemy extends MovingActor {
     private final KImage death;
     private final EnemyAI ai;
     private final long deathTime;
+    protected boolean spawning;
+    private static final Texture beamIn = Texture.TextureBuilder.getTexture("res/Images/Enemies/BeamIn.png");;
     protected Timer timer;
     private final int damage;
 
@@ -39,24 +42,42 @@ public abstract class Enemy extends MovingActor {
         death = images[3];
         timer = new Timer();
         this.damage = damage;
+        spawning = true;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                spawning = false;
+            }
+        }, 50*100);
+    }
+
+    @Override
+    public void draw(DrawingSurface d) {
+        if (spawning) {
+            beamIn.draw(d, (int) image.getX(), (int) image.getY());
+        } else {
+            super.draw(d);
+        }
     }
 
     @Override
     public void act(DrawingSurface d, Room r) {
 //        System.out.println(health);
-        if (getState() != ActorState.ATTACKING && getState() != ActorState.DEAD) {
-            super.act(d, r);
+        if (!spawning) {
             if (getState() != ActorState.ATTACKING && getState() != ActorState.DEAD) {
-                if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
-                    updateState(ActorState.IDLE);
-                } else {
-                    updateState(ActorState.MOVING);
+                super.act(d, r);
+                if (getState() != ActorState.ATTACKING && getState() != ActorState.DEAD) {
+                    if (Math.abs(vx) < 0.1f && Math.abs(vy) < 0.1f) {
+                        updateState(ActorState.IDLE);
+                    } else {
+                        updateState(ActorState.MOVING);
+                    }
                 }
             }
-        }
-        if (getState() != ActorState.DEAD) {
-            float decision = ai.makeMovementDecision(r);
-            image.setReflected(Math.abs(decision) > Math.PI / 2);
+            if (getState() != ActorState.DEAD) {
+                float decision = ai.makeMovementDecision(r);
+                image.setReflected(Math.abs(decision) > Math.PI / 2);
+            }
         }
     }
 
@@ -144,6 +165,14 @@ public abstract class Enemy extends MovingActor {
                     Enemy.super.setActive(false);
                 }
             }, deathTime);
+        }
+    }
+
+    @Override
+    public void interceptHitBox(Damage d)
+    {
+        if(!spawning){
+            super.interceptHitBox(d);
         }
     }
 

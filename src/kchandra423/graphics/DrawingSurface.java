@@ -44,7 +44,7 @@ public class DrawingSurface extends PApplet {
         DrawingSurface.frameRate = frameRate;
         this.renderer = renderer;
         keys = new boolean[128];
-        this.volume = volume;
+        this.volume = volume-10;
         level = new LevelOne(p);
         hud = new HUD(p);
         classType = type;

@@ -10,7 +10,7 @@ import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 
-public class MeleeWeapon extends Weapon {
+class MeleeWeapon extends Weapon {
     private int damage;
     private float[] stats;
     private float range;
@@ -18,15 +18,8 @@ public class MeleeWeapon extends Weapon {
     private long swingStartTime = System.currentTimeMillis();
 
 
-    /**
-     * Creates an actor with the specified image
-     *
-     * @param image The specified image
-     * @param damage
-     * @param stats
-     * @param range
-     */
-    public MeleeWeapon(KImage image, int damage, float[] stats, float range, float swingTime) {
+
+    MeleeWeapon(KImage image, int damage, float[] stats, float range, float swingTime) {
         super(image);
         this.damage = damage;
         this.stats = stats;

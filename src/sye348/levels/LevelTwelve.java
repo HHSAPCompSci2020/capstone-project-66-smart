@@ -46,7 +46,7 @@ public class LevelTwelve extends Level
 		ArrayList<Obstacle> obstacles = new ArrayList<Obstacle>();
 		
 		Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
-		o.getImage().moveTo(750, 750);
+		o.getImage().moveTo(1050, 750);
 		obstacles.add(o);
 		o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
 		o.getImage().moveTo(350, 350);
