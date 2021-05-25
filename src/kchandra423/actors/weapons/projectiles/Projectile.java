@@ -2,6 +2,7 @@ package kchandra423.actors.weapons.projectiles;
 
 import kchandra423.actors.Actor;
 import kchandra423.actors.Damage;
+import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
@@ -39,7 +40,7 @@ public class Projectile extends Actor {
         image.setAngle(angle);
         this.v = v;
         this.stats = stats;
-        this.damage= damage;
+        this.damage = damage;
         this.type = type;
     }
 
@@ -87,7 +88,7 @@ public class Projectile extends Actor {
 
                 ArrayList<Enemy> enemies = room.getEnemies();
                 for (Enemy e : enemies) {
-                    if (intersects(e)) {
+                    if (intersects(e) && e.getState() != ActorState.DEAD) {
                         active = false;
                         e.interceptHitBox(new Damage(damage, stats, type));
                         return;
@@ -104,7 +105,6 @@ public class Projectile extends Actor {
             }
         }
     }
-
 
 
 }

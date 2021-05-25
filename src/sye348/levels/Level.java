@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 
 /**
+ * Represents a level with mutliple rooms
  * @author Spencer Ye
  * @version 1.2.0
  * Last Revised: 5/20/2021
@@ -125,7 +126,7 @@ public abstract class Level {
         return (float) (Math.random() * (bounds.height - margin) + bounds.y);
     }
 
-    protected static Room getRoom(int bats, int goblins, int witches, int minoutaurs, int cyclops, ArrayList<Obstacle> obstacles, Player player) {
+    protected static Room getRoom(int bats, int goblins, int witches, int minoutaurs, int cyclops, ArrayList<Obstacle> obstacles, Player player, Texture t) {
         Rectangle bounds = new Rectangle(1500, 1500);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
@@ -141,7 +142,7 @@ public abstract class Level {
             enemies.add(new Cyclops(getRandXCoord(bounds, 250), getRandYCoord(bounds, 250)));
 
 
-        return new Room(Texture.TextureBuilder.getTexture("res/Images/Backgrounds/tiles(manually resized).jpg"),
+        return new Room(t,
                 obstacles,
                 enemies,
                 player,

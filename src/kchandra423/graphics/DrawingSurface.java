@@ -2,8 +2,8 @@ package kchandra423.graphics;
 
 import javax.swing.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 import javax.print.DocFlavor.URL;
 import javax.sound.sampled.*;
@@ -16,6 +16,8 @@ import processing.core.PConstants;
 import rlee348.menu.MainMenu;
 import sye348.levels.Level;
 import sye348.levels.LevelOne;
+import sye348.levels.LevelThree;
+import sye348.levels.LevelTwo;
 
 /**
  * Represents a drawing surface, which is a type of PApplet
@@ -169,8 +171,20 @@ public class DrawingSurface extends PApplet {
             level = level.getNextLevel();
         }
         if (level == null) {
-            this.surface.stopThread();
-            System.exit(0);
+            background(0);
+            textSize(50);
+            fill(255);
+            text("Congrats \n You won!", width/3, height/2);
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            surface.stopThread();
+                            System.exit(0);
+                        }
+                    },
+                    5000
+            );
         }
         translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
         level.draw(this);
