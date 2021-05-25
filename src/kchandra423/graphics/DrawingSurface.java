@@ -13,7 +13,6 @@ import kchandra423.actors.movingActors.players.Player;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 import processing.core.PConstants;
-import rlee348.menu.MainMenu;
 import sye348.levels.Level;
 import sye348.levels.LevelOne;
 import sye348.levels.LevelThree;
@@ -28,35 +27,27 @@ import sye348.levels.LevelTwo;
 public class DrawingSurface extends PApplet {
     private static boolean[] keys;
     private Level level;
-    private JayLayer sounds;
-    private JayLayer effects;
     private final HUD hud;
-    private float volume;
-    private String[] soundEffects;
     public static int frameRate;
     private final String renderer;
-    private String classType;
-    private Clip clip;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p, float volume, int frameRate, String renderer, String type) {
-        DrawingSurface.frameRate = frameRate;
-        this.renderer = renderer;
+    public DrawingSurface(Player p) {
+        DrawingSurface.frameRate = 60;
+        this.renderer = P2D;
         keys = new boolean[128];
-        this.volume = volume-10;
-        level = new LevelOne(p);
+        level = new LevelThree(p);
         hud = new HUD();
-        classType = type;
     }
 
     /**
      * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
-        size(1500, 1000, renderer);
+        size(displayWidth/2, displayHeight/2, renderer);
 //        fullScreen();
     }
 
@@ -68,91 +59,7 @@ public class DrawingSurface extends PApplet {
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
 
-        soundEffects = new String[]{"SwordAttack.mp3"};
 
-        String[] songs = new String[]{"LevelTheme.mp3"};
-        sounds = new JayLayer("res/Sounds/", "res/Sounds/", false);
-        sounds.addPlayList();
-        sounds.addSongs(0, songs);
-        sounds.addSoundEffects(soundEffects);
-        sounds.changePlayList(0);
-        sounds.setVolume(volume);
-        sounds.nextSong();
-
-        effects = new JayLayer("res/Sounds/", "res/Sounds/", false);
-        effects.addPlayList();
-        effects.addSongs(0, soundEffects);
-        effects.changePlayList(0);
-        effects.setVolume(volume);
-
-        if (classType.equals("knight")){
-	        try {
-	            // Open an audio input stream.
-	            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("res/Sounds/Swing.wav"));
-	            // Get a sound clip resource.
-	            clip = AudioSystem.getClip();
-	            // Open audio clip and load samples from the audio input stream.
-	            clip.open(audioIn);
-	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-	            gainControl.setValue(volume);
-	         }
-	        catch (UnsupportedAudioFileException e) {
-	            e.printStackTrace();
-	         } 
-	        catch (IOException e) {
-	            e.printStackTrace();
-	         } 
-	        catch (LineUnavailableException e) {
-	            e.printStackTrace();
-	         }
-
-        }
-        
-        else if (classType.equals("mage")){
-	        try {
-	            // Open an audio input stream.
-	            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("res/Sounds/Magic.wav"));
-	            // Get a sound clip resource.
-	            clip = AudioSystem.getClip();
-	            // Open audio clip and load samples from the audio input stream.
-	            clip.open(audioIn);
-	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-	            gainControl.setValue(volume);
-	         }
-	        catch (UnsupportedAudioFileException e) {
-	            e.printStackTrace();
-	         } 
-	        catch (IOException e) {
-	            e.printStackTrace();
-	         } 
-	        catch (LineUnavailableException e) {
-	            e.printStackTrace();
-	         }
-
-        }
-        
-        else {
-	        try {
-	            // Open an audio input stream.
-	            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File("res/Sounds/Gunshot.wav"));
-	            // Get a sound clip resource.
-	            clip = AudioSystem.getClip();
-	            // Open audio clip and load samples from the audio input stream.
-	            clip.open(audioIn);
-	            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-	            gainControl.setValue(volume);
-	         }
-	        catch (UnsupportedAudioFileException e) {
-	            e.printStackTrace();
-	         } 
-	        catch (IOException e) {
-	            e.printStackTrace();
-	         } 
-	        catch (LineUnavailableException e) {
-	            e.printStackTrace();
-	         }
-
-        }
 
     }
 
@@ -166,10 +73,6 @@ public class DrawingSurface extends PApplet {
         pushMatrix();
         int halfx = width / 2;
         int halfy = height / 2;
-
-        if (level.isCompleted()) {
-            level = level.getNextLevel();
-        }
         if (level == null) {
             background(0);
             textSize(50);
@@ -185,7 +88,12 @@ public class DrawingSurface extends PApplet {
                     },
                     5000
             );
+            return;
         }
+        if (level.isCompleted()) {
+            level = level.getNextLevel();
+        }
+
         translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
         level.draw(this);
         popMatrix();
@@ -224,16 +132,7 @@ public class DrawingSurface extends PApplet {
 
     }
 
-    public void mousePressed() {
-    //    effects.nextSong();
-    	clip.loop(Clip.LOOP_CONTINUOUSLY); 
-    	
-    }
 
-    public void mouseReleased() {
-    //    effects.stopSong();
-    	clip.stop();
-    }
 
     /**
      * Sets the key that was pressed in the key array to false

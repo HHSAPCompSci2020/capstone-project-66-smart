@@ -18,15 +18,12 @@ import java.util.TimerTask;
  * @author Kumar Chandra
  */
 class Gun extends Weapon {
-    private final AssetLoader.Sprite projectile;
-    private final float projectileVelocity;
+    private final Projectile projectile;
     private final ArrayList<Projectile> projectiles;
     private final float fireRate;
     private final int reloadTime;///1000ths
     private int magazine;
-    private float[] stats;
     private int damage;
-    private final DamageTypes type;
     private final int pellets;
     private final int magazineSize;
     private TimerTask reloadTask;
@@ -36,21 +33,17 @@ class Gun extends Weapon {
     private final float spread;
     private long timeSinceReloaded;
 
-    Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets, int damage) {
+    Gun(KImage sprite, float fireRate, float spread, Projectile projectile, int pellets) {
         super(sprite);
         this.projectile = projectile;
         this.fireRate = fireRate;
-        this.stats = stats;
-        this.type = type;
         this.pellets = pellets;
         reloadTime = 500;
         magazineSize = 30;
         magazine = magazineSize;
         reloadTimer = new Timer();
-        this.damage = damage;
         this.spread = spread;
         timeSinceReloaded = System.currentTimeMillis();
-        this.projectileVelocity = projectileVelocity;
         projectiles = new ArrayList<>();
         reloading = false;
     }
@@ -99,7 +92,8 @@ class Gun extends Weapon {
                 float tempAngle = image.getAngle();
                 tempAngle += Math.random() * spread;
                 tempAngle -= spread / 2;
-                Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, stats, type, damage);
+                Projectile p = (Projectile) projectile.clone(tempAngle);
+
                 p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight() / 2 * Math.sin(image.getAngle())));
                 projectiles.add(p);
             }

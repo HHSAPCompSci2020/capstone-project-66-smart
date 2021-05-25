@@ -34,8 +34,8 @@ public class LevelThree extends Level
 		ArrayList<Room> arr = new ArrayList<>();
 		Texture t = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/Lava.png");
 		arr.add(Level.getRoom(20, 0, 0, 0, 0, new ArrayList<Obstacle>(Arrays.asList(new Crate(900, 900))), player,t));
-		arr.add(Level.getRoom(4, 4, 7, 4, 1, new ArrayList<Obstacle>(Arrays.asList(new Crate(400, 1000))), player,t));
-		arr.add(Level.getRoom(6, 5, 1, 2, 2, new ArrayList<Obstacle>(Arrays.asList(new Crate(1000, 1000), new Crate(400, 400))), player,t));
+		arr.add(Level.getRoom(4, 4, 7, 4, 1, new ArrayList<Obstacle>(Arrays.asList(new Crate(1000, 1000))), player,t));
+		arr.add(Level.getRoom(6, 5, 1, 2, 2, new ArrayList<Obstacle>(Arrays.asList(new Crate(1000, 1000), new Crate(200, 0))), player,t));
 		arr.add(Level.getRoom(5, 5, 10, 5, 5, new ArrayList<Obstacle>(Arrays.asList(new Crate(300, 300), new Crate(1000,300), new Crate(1000, 1000))), player,t));
 		return arr;
 	}

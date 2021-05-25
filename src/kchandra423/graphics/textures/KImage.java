@@ -6,6 +6,7 @@ import processing.core.PImage;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
+import java.util.Scanner;
 
 /**
  * The KImage class represent an Image that supports several transformations as

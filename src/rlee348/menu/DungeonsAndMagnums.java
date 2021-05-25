@@ -1,5 +1,7 @@
 package rlee348.menu;
 
+import kchandra423.actors.movingActors.players.Mage;
+import kchandra423.actors.movingActors.players.Rogue;
 import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 
@@ -20,7 +22,7 @@ public class DungeonsAndMagnums {
 	 * @param args The arguments to be passed
 	 */
 	public static void main(String[] args) {
-		MainMenu drawing = new MainMenu();
+		DrawingSurface drawing = new DrawingSurface(new Mage(700,700));
 		PApplet.runSketch(new String[]{""}, drawing);
 
 	}

@@ -19,11 +19,11 @@ import java.util.ArrayList;
  * @see kchandra423.actors.Actor
  */
 public class Projectile extends Actor {
-    private final boolean ally;
+    protected final boolean ally;
     protected final float v;
-    private final float[] stats;
-    private final DamageTypes type;
-    private final int damage;
+    protected final float[] stats;
+    protected final DamageTypes type;
+    protected final int damage;
 
 
     /**
@@ -52,25 +52,6 @@ public class Projectile extends Actor {
      */
     public void act(DrawingSurface d, Room room) {
         if (active) {
-
-
-//            Enemy closest = r.getClosestEnemy(image.getX(), image.getY());
-//            if (closest != null) {
-//                Rectangle ours = image.getBounds();
-//                Rectangle other = closest.getImage().getBounds();
-//                float thisx = (float) ours.getCenterX(), thisy = (float) ours.getCenterY();
-//                float otherx = (float) other.getCenterX(), othery = (float) other.getCenterY();
-//                float target = (float) Calculator.calculateAngle(thisx, thisy, otherx, othery);
-//                float currentAngle = image.getAngle();
-//                System.out.println(currentAngle);
-//                if ((initialAngle < Math.PI/2 && initialAngle > -Math.PI/2) || initialAngle > 3*Math.PI/2 || initialAngle < -3*Math.PI/2) {
-//                    if (target < 0) {
-//                        target += Math.PI * 2;
-//                    }
-//                }
-//                float diff = target - currentAngle;
-//                image.rotate(diff / 4);
-//            }
             image.translate((float) (v * Math.cos(image.getAngle())), (float) (v * Math.sin(image.getAngle())));
             if (!room.inBounds(image)) {
                 active = false;
@@ -84,8 +65,6 @@ public class Projectile extends Actor {
                 }
             }
             if (ally) {
-
-
                 ArrayList<Enemy> enemies = room.getEnemies();
                 for (Enemy e : enemies) {
                     if (intersects(e) && e.getState() != ActorState.DEAD) {
@@ -104,6 +83,10 @@ public class Projectile extends Actor {
                 }
             }
         }
+    }
+
+    public Object clone(float angle) {
+        return new Projectile((KImage) image.clone(), v, angle, ally, stats, type, damage);
     }
 
 

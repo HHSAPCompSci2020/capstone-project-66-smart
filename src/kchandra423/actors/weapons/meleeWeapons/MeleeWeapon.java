@@ -10,7 +10,7 @@ import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 
-class MeleeWeapon extends Weapon {
+abstract class MeleeWeapon extends Weapon {
     private int damage;
     private float[] stats;
     private float range;

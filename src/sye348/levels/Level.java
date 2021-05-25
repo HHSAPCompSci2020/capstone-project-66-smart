@@ -127,7 +127,7 @@ public abstract class Level {
     }
 
     protected static Room getRoom(int bats, int goblins, int witches, int minoutaurs, int cyclops, ArrayList<Obstacle> obstacles, Player player, Texture t) {
-        Rectangle bounds = new Rectangle(1500, 1500);
+        Rectangle bounds = new Rectangle(2500, 2500);
         ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
         for (int i = 0; i < goblins; i++)
