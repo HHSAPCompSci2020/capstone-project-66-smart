@@ -57,6 +57,31 @@ class MeleeWeapon extends Weapon {
         }
     }
 
+    @Override
+    public void reload() {
+
+    }
+
+    @Override
+    public int getMagazine() {
+        return 1;
+    }
+
+    @Override
+    public int getMagazineSize() {
+        return 1;
+    }
+
+    @Override
+    public float getTimeSinceReloaded() {
+        return Float.NaN;
+    }
+
+    @Override
+    public float getReloadTime() {
+        return Float.NaN;
+    }
+
     private boolean canFire() {
         return (System.currentTimeMillis() - swingStartTime) >= swingTime * 1000;
     }

@@ -169,8 +169,10 @@ public class MainMenu extends PApplet {
         text("Dungeons and Magnums", width / 6, height / 5);
         textSize(20);
         text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2 * width / 7, 2 * height / 7);
+        textSize(19);
         text("Instructions: Use wasd to move your character. \n "
-                + "Use mouse button 2 to fire your weapon. \n "
+                + "Left click to fire your weapon. \n "
+                + "Press r to reload your weapon \n "
                 + "The goal of the game is to clear each level by \n "
                 + "killing all the enemies in each room. \n"
                 + "Try to avoid dying, as you will lose the game if you do. \n"

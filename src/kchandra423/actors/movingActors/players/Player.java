@@ -75,6 +75,9 @@ public abstract class Player extends MovingActor {
         }
 
         weapon.getImage().moveTo(image.getX() + image.getWidth() / 2.0f, image.getY() + image.getHeight() / 2.0f);
+        if(DrawingSurface.getKey(KeyEvent.VK_R)){
+            weapon.reload();
+        }
         weapon.act(d, r);
 
     }
@@ -143,5 +146,7 @@ public abstract class Player extends MovingActor {
         }
     }
 
-
+    public Weapon getWeapon() {
+        return weapon;
+    }
 }

@@ -1,12 +1,10 @@
 package kchandra423.actors.weapons.guns;
 
-import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.weapons.Weapon;
 import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
-import kchandra423.utility.AssetLoader;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -18,39 +16,31 @@ import java.util.TimerTask;
  * @author Kumar Chandra
  */
 class Gun extends Weapon {
-    private final AssetLoader.Sprite projectile;
-    private final float projectileVelocity;
+    private final Projectile projectile;
     private final ArrayList<Projectile> projectiles;
     private final float fireRate;
-    private final int reloadTime;///1000ths
+    private final float reloadTime;///1000ths
     private int magazine;
-    private float[] stats;
-    private int damage;
-    private final DamageTypes type;
     private final int pellets;
     private final int magazineSize;
-    private TimerTask reloadTask;
-    private Timer reloadTimer;
     private boolean reloading;
+    private TimerTask task;
+    private static Timer t;
     private long lastTimeShot;
     private final float spread;
-    private long timeSinceReloaded;
+    private long lastTimeReloaded;
 
-    Gun(KImage sprite, float fireRate, float spread, AssetLoader.Sprite projectile, float projectileVelocity, float[] stats, DamageTypes type, int pellets, int damage) {
+    Gun(KImage sprite, float fireRate, float spread, Projectile projectile, int pellets, float reloadTime, int magazineSize) {
         super(sprite);
         this.projectile = projectile;
         this.fireRate = fireRate;
-        this.stats = stats;
-        this.type = type;
         this.pellets = pellets;
-        reloadTime = 500;
-        magazineSize = 30;
-        magazine = magazineSize;
-        reloadTimer = new Timer();
-        this.damage = damage;
+        this.reloadTime = reloadTime;
+        this.magazineSize = magazineSize;
+        magazine = this.magazineSize;
+        t = new Timer();
         this.spread = spread;
-        timeSinceReloaded = System.currentTimeMillis();
-        this.projectileVelocity = projectileVelocity;
+        lastTimeReloaded = System.currentTimeMillis();
         projectiles = new ArrayList<>();
         reloading = false;
     }
@@ -94,27 +84,68 @@ class Gun extends Weapon {
      * Creates a new projectile using this images current angle. Applies all effects such as the spread, and velocity and pellets
      */
     public void fire() {
+
         if (canFire()) {
+            if (reloading) {
+                reloading = false;
+                task.cancel();
+                t.purge();
+            }
+            magazine--;
             for (int i = 0; i < pellets; i++) {
                 float tempAngle = image.getAngle();
                 tempAngle += Math.random() * spread;
                 tempAngle -= spread / 2;
-                Projectile p = new Projectile(AssetLoader.getImage(projectile), projectileVelocity, tempAngle, true, stats, type, damage);
+                Projectile p = (Projectile) projectile.clone(tempAngle);
+
                 p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight() / 2 * Math.sin(image.getAngle())));
                 projectiles.add(p);
             }
             lastTimeShot = System.currentTimeMillis();
+        } else if (magazine <= 0) {
+            reload();
         }
     }
 
     private boolean canFire() {
-        if (magazine > 0) {
-            if (System.currentTimeMillis() - lastTimeShot >= fireRate * 1000) {
-                return !reloading;
-            }
-        }
-        return false;
+        return System.currentTimeMillis() - lastTimeShot >= fireRate * 1000 && magazine > 0;
     }
 
+    public void reload() {
+        if (magazine < magazineSize && !reloading) {
+            lastTimeReloaded = System.currentTimeMillis();
+            reloading = true;
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    if (reloading) {
+                        magazine = magazineSize;
+                        reloading = false;
+                    }
+                }
+
+            };
+            t.schedule(task, (long) (reloadTime * 1000));
+        }
+    }
+
+    public int getMagazine() {
+        return magazine;
+    }
+
+    public int getMagazineSize() {
+        return magazineSize;
+    }
+
+    public float getTimeSinceReloaded() {
+        if (reloading) {
+            return (System.currentTimeMillis() - lastTimeReloaded) / 1000f;
+        }
+        return Float.NaN;
+    }
+
+    public float getReloadTime() {
+        return reloadTime;
+    }
 
 }

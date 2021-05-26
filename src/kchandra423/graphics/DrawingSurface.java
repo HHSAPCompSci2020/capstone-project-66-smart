@@ -166,10 +166,6 @@ public class DrawingSurface extends PApplet {
         pushMatrix();
         int halfx = width / 2;
         int halfy = height / 2;
-
-        if (level.isCompleted()) {
-            level = level.getNextLevel();
-        }
         if (level == null) {
             background(0);
             textSize(50);
@@ -185,7 +181,12 @@ public class DrawingSurface extends PApplet {
                     },
                     5000
             );
+            return;
         }
+        if (level.isCompleted()) {
+            level = level.getNextLevel();
+        }
+
         translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
         level.draw(this);
         popMatrix();
