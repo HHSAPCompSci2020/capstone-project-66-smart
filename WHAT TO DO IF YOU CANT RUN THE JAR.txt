@@ -1,0 +1,7 @@
+﻿1. Go to terminal and type “java -version”
+   a. If the version is older than java 8, you need to either manually find the path of your java 8 jre (that you should have since it was required for the class) and find the executable, and copy that path and then type “-jar DungeonsAndMagnums.jar”
+   b. If you are on mac and are running osx, and the version is past “1.8 242”, you cannot run the jar. This is not our fault, its literally just a bug in processing
+2. If either of the above methods do not work, you could also try just running the code normally by finding the main method and running that. If you decide to do this, and it still doesn’t work, go check your build path and change the jre version you have so that it is 1.8 242 or lower. If you don’t know how to do that, google it.
+3. If you still can’t figure it out then just ask Kumar.
+4. Ok but why is this so finicky?
+   a. We used the processing 2d renderer to achieve the necessary performance (if we had used the default java renderer we would have maxed out our fps at maybe 10 at best). However, this renderer has known bugs for versions past java 8, and Kumar discovered it has bugs when using the latest mac osx versions with java 8 versions past release 242.
