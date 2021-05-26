@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class PiercingProjectile extends Projectile {
     private final ArrayList<MovingActor> hits;
-    private int pierce;
+    private final int pierce;
 
     /**
      * Creates a new Projectile with the specified image, and initial velocity and angle
@@ -34,12 +34,6 @@ public class PiercingProjectile extends Projectile {
     }
 
     @Override
-    /**
-     * Moves this projectile and does collision detection and handling
-     *
-     * @param d    The drawing surface to be acted upon
-     * @param room The room the actor is currently in
-     */
     public void act(DrawingSurface d, Room room) {
         if (active) {
             image.translate((float) (v * Math.cos(image.getAngle())), (float) (v * Math.sin(image.getAngle())));

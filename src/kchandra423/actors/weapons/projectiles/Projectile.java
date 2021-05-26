@@ -85,6 +85,11 @@ public class Projectile extends Actor {
         }
     }
 
+    /**
+     * Clones this projectile with all the correct attributes in the speciifed direction
+     * @param angle The specified direction in radians
+     * @return A projectile with all the same attributes except angle.
+     */
     public Object clone(float angle) {
         return new Projectile((KImage) image.clone(), v, angle, ally, stats, type, damage);
     }

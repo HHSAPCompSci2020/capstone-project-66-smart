@@ -6,7 +6,6 @@ import processing.core.PImage;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
-import java.util.Scanner;
 
 /**
  * The KImage class represent an Image that supports several transformations as
@@ -39,7 +38,11 @@ import java.util.Scanner;
  * @see Area
  */
 public class KImage implements Cloneable {
-    private static final int areaDensity=4;
+    static {
+        areaDensity = 4;
+    }
+
+    private static int areaDensity;
     private final Texture image;
     private final Area area;
     private Area mostRecentArea;
@@ -176,10 +179,10 @@ public class KImage implements Cloneable {
     public static Area loadArea(Texture texture) {
         Area area = new Area();
         PImage img = texture.getImage();
-        for (int x = 0; x < img.width; x+=areaDensity) {
-            for (int y = 0; y < img.height; y+=areaDensity) {
+        for (int x = 0; x < img.width; x += areaDensity) {
+            for (int y = 0; y < img.height; y += areaDensity) {
                 if (img.pixels[y * img.width + x] != 0) {
-                    area.add(new Area(new Rectangle(x, y, areaDensity* img.pixelDensity, areaDensity* img.pixelDensity)));
+                    area.add(new Area(new Rectangle(x, y, areaDensity * img.pixelDensity, areaDensity * img.pixelDensity)));
                 }
             }
 
@@ -425,6 +428,30 @@ public class KImage implements Cloneable {
                 transform.rotate(angle);
             }
             mostRecentArea = area.createTransformedArea(transform);
+        }
+    }
+
+    /**
+     * Alters the precision of areas created by this class. An area density of 1 indicates that areas will be precise to the pixel.
+     * An area density will indicate that areas could be up to 3 pixels off, as the area will be 4 pixels.
+     * Ex)
+     * * *
+     *  **
+     * (Pixel density of 1 approximates as)
+     * * *
+     *  **
+     * (Pixel density of 2 approximates as)
+     * **
+     * ****
+     *   **
+     * While increasing this value decreases the precision of the KImage at a squared rate,
+     * doing so also reduces time to load images at a squard rate.
+     * @pre density >= 1
+     * @param density The new density of any KImage created
+     */
+    public static void setAreaDensity(int density) {
+        if (density >= 1) {
+            areaDensity = density;
         }
     }
 

@@ -22,7 +22,7 @@ public class DungeonsAndMagnums {
 	 * @param args The arguments to be passed
 	 */
 	public static void main(String[] args) {
-		DrawingSurface drawing = new DrawingSurface(new Mage(700,700));
+		DrawingSurface drawing = new DrawingSurface(new Rogue(700,700));
 		PApplet.runSketch(new String[]{""}, drawing);
 
 	}

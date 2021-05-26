@@ -10,7 +10,7 @@ import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 
-abstract class MeleeWeapon extends Weapon {
+class MeleeWeapon extends Weapon {
     private int damage;
     private float[] stats;
     private float range;
@@ -55,6 +55,31 @@ abstract class MeleeWeapon extends Weapon {
         if (canFire()) {
             swingStartTime = System.currentTimeMillis();
         }
+    }
+
+    @Override
+    public void reload() {
+
+    }
+
+    @Override
+    public int getMagazine() {
+        return 1;
+    }
+
+    @Override
+    public int getMagazineSize() {
+        return 1;
+    }
+
+    @Override
+    public float getTimeSinceReloaded() {
+        return Float.NaN;
+    }
+
+    @Override
+    public float getReloadTime() {
+        return Float.NaN;
     }
 
     private boolean canFire() {

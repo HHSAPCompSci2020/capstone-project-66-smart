@@ -39,7 +39,7 @@ public class DrawingSurface extends PApplet {
         DrawingSurface.frameRate = 60;
         this.renderer = PConstants.P2D;
         keys = new boolean[128];
-        level = new LevelThree(p);
+        level = new LevelOne(p);
         hud = new HUD();
     }
 
