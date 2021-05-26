@@ -174,10 +174,10 @@ public class KImage implements Cloneable {
     public static Area loadArea(Texture texture) {
         Area area = new Area();
         PImage img = texture.getImage();
-        for (int x = 0; x < img.width; x++) {
-            for (int y = 0; y < img.height; y++) {
+        for (int x = 0; x < img.width; x+=4) {
+            for (int y = 0; y < img.height; y+=4) {
                 if (img.pixels[y * img.width + x] != 0) {
-                    area.add(new Area(new Rectangle(x, y, img.pixelDensity, img.pixelDensity)));
+                    area.add(new Area(new Rectangle(x, y, 4* img.pixelDensity, 4 *img.pixelDensity)));
                 }
             }
 
