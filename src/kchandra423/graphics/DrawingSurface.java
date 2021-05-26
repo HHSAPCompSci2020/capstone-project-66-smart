@@ -37,7 +37,7 @@ public class DrawingSurface extends PApplet {
      */
     public DrawingSurface(Player p) {
         DrawingSurface.frameRate = 60;
-        this.renderer = P2D;
+        this.renderer = PConstants.P2D;
         keys = new boolean[128];
         level = new LevelThree(p);
         hud = new HUD();
@@ -47,7 +47,7 @@ public class DrawingSurface extends PApplet {
      * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
-        size(displayWidth/2, displayHeight/2, renderer);
+        size(displayWidth, displayHeight, renderer);
 //        fullScreen();
     }
 

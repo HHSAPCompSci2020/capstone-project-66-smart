@@ -39,6 +39,7 @@ import java.util.Scanner;
  * @see Area
  */
 public class KImage implements Cloneable {
+    private static final int areaDensity=4;
     private final Texture image;
     private final Area area;
     private Area mostRecentArea;
@@ -175,10 +176,10 @@ public class KImage implements Cloneable {
     public static Area loadArea(Texture texture) {
         Area area = new Area();
         PImage img = texture.getImage();
-        for (int x = 0; x < img.width; x++) {
-            for (int y = 0; y < img.height; y++) {
+        for (int x = 0; x < img.width; x+=areaDensity) {
+            for (int y = 0; y < img.height; y+=areaDensity) {
                 if (img.pixels[y * img.width + x] != 0) {
-                    area.add(new Area(new Rectangle(x, y, img.pixelDensity, img.pixelDensity)));
+                    area.add(new Area(new Rectangle(x, y, areaDensity* img.pixelDensity, areaDensity* img.pixelDensity)));
                 }
             }
 
