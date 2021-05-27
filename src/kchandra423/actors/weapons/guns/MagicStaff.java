@@ -2,7 +2,6 @@ package kchandra423.actors.weapons.guns;
 
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.weapons.projectiles.PiercingProjectile;
-import kchandra423.actors.weapons.projectiles.Projectile;
 import kchandra423.utility.AssetLoader;
 
 /**

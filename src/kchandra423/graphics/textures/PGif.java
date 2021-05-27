@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-class PGif extends Texture {
+class PGif implements Texture {
     private Frame[] frames;
     private int curFrame;
     private long lastTime;
@@ -80,7 +80,7 @@ class PGif extends Texture {
         return frames[curFrame].getImage().height;
     }
 
-//    @Override
+    //    @Override
 //    public void fadeOut() {
 //        fader = new Fader(255, 0, 0.2f);
 //        fader.start();
@@ -92,7 +92,7 @@ class PGif extends Texture {
 //        fader.start();
 //    }
 
-    private class Frame {
+    private static class Frame {
         private final PImage image;
         private final int delay;
 

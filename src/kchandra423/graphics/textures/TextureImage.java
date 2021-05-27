@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-class TextureImage extends Texture {
+class TextureImage implements Texture {
     private final PImage image;
 
     TextureImage(String pathName) {
@@ -30,6 +30,7 @@ class TextureImage extends Texture {
     public PImage getImage() {
         return image;
     }
+
 
     @Override
     public void resize(int w, int h) {

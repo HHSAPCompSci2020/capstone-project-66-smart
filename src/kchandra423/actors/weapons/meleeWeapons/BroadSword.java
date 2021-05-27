@@ -1,6 +1,5 @@
 package kchandra423.actors.weapons.meleeWeapons;
 
-import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 
 public class BroadSword extends MeleeWeapon{

@@ -32,9 +32,9 @@ class HUD {
             int halfx = p.width / 2;
             int halfy = p.height / 2;
             p.pushMatrix();
-            p.translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
-            float x = player.getImage().getX() + player.getImage().getWidth() / 2f, y = player.getImage().getY() + player.getImage().getHeight() / 2f,
-                    radius = Math.max(player.getImage().getWidth(), player.getImage().getHeight()) + 20, angle = (float) Math.PI * 2 * reloadPercentage;
+
+            p.translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getTexture().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getTexture().getHeight() / 2.0f);            float x = player.getCenterX(), y = player.getCenterY(),
+                    radius = Math.max(player.getImage().getTexture().getWidth(), player.getImage().getTexture().getHeight()) + 20, angle = (float) Math.PI * 2 * reloadPercentage;
             p.arc(x, y, radius, radius, 0, angle);
             p.popMatrix();
         }

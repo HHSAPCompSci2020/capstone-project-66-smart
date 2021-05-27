@@ -74,7 +74,7 @@ public abstract class Player extends MovingActor {
             updateState(ActorState.MOVING);
         }
 
-        weapon.getImage().moveTo(image.getX() + image.getWidth() / 2.0f, image.getY() + image.getHeight() / 2.0f);
+        weapon.getImage().moveTo(getCenterX(), getCenterY());
         if(DrawingSurface.getKey(KeyEvent.VK_R)){
             weapon.reload();
         }

@@ -21,7 +21,7 @@ public class Cyclops extends RangedEnemy{
                 AssetLoader.getImage(AssetLoader.Sprite.CYCLOPS_MOVING),
                 AssetLoader.getImage(AssetLoader.Sprite.CYCLOPS_ATTACK),
                 AssetLoader.getImage(AssetLoader.Sprite.CYCLOPS_DEATH)}, 5f, 0.3f, MovingActor.createStates(1.25f,1,1.5f,0.75f, 0.5f, 1.5f), 300,
-                DamageTypes.RANGED, AssetLoader.Sprite.ROCK,9 * 100L, 30
+                DamageTypes.RANGED, AssetLoader.Sprite.ROCK,8 * 100L, 30
         ,13/5f,10, 600);
         image.moveTo(x, y);
     }

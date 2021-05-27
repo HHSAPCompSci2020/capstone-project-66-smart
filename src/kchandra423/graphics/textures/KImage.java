@@ -221,6 +221,14 @@ public class KImage implements Cloneable {
     }
 
     /**
+     * Gets the current texture. PLEASE NOTE THAT RESIZING THIS TEXTURE WILL NOT ALTER COLLISION DETECTION. This can be a good or bad thing depending on context.
+     * @return The texture that is drawn by this image
+     */
+    public Texture getTexture() {
+        return image;
+    }
+
+    /**
      * Translates the KImage by the specified amounts
      *
      * @param delx The amount to translate in the x direction
@@ -320,6 +328,7 @@ public class KImage implements Cloneable {
         return y;
     }
 
+
     /**
      * Returns the current angle
      *
@@ -330,23 +339,9 @@ public class KImage implements Cloneable {
     }
 
     /**
-     * Returns the width of the current image
-     *
-     * @return The width of the texture
+     * Copys the attributes of the other image onto this image. Different to a clone in that it only copys geometric properties such as rotation and translation
+     * @param other Copys the attributes of the other object
      */
-    public int getWidth() {
-        return image.getWidth();
-    }
-
-    /**
-     * Returns the current height of the image
-     *
-     * @return The height of the texture
-     */
-    public int getHeight() {
-        return image.getHeight();
-    }
-
     public void copyInformation(KImage other) {
         moveTo(other.x, other.y);
         setAngle(other.angle);

@@ -98,7 +98,7 @@ class Gun extends Weapon {
                 tempAngle -= spread / 2;
                 Projectile p = (Projectile) projectile.clone(tempAngle);
 
-                p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getHeight() / 2 * Math.sin(image.getAngle())));
+                p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getTexture().getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getTexture().getHeight() / 2 * Math.sin(image.getAngle())));
                 projectiles.add(p);
             }
             lastTimeShot = System.currentTimeMillis();

@@ -10,28 +10,28 @@ import processing.core.PImage;
  * @see PImage
  * @author Kumar Chandra
  */
-public abstract class Texture  {
+public interface Texture  {
     /**
      * Resizes the textures image to the given width and height
      *
      * @param w new width of texture
      * @param h new height of texture
      */
-    public abstract void resize(int w, int h);
+    void resize(int w, int h);
 
     /**
      * Returns the current width of the image
      *
      * @return Current width of the image
      */
-    public abstract int getWidth();
+    int getWidth();
 
     /**
      * Returns the current height of the image
      *
      * @return Current height of the image
      */
-    public abstract int getHeight();
+    int getHeight();
 
     /**
      * Draws the texture onto the given PApplet
@@ -40,14 +40,15 @@ public abstract class Texture  {
      * @param x The x coordinate to be drawn from
      * @param y The y coordinate to be drawn from
      */
-    public abstract void draw(PApplet p, int x, int y);
+    void draw(PApplet p, int x, int y);
 
     /**
      * Returns the current image being displayed
      *
      * @return The current image being displayed
      */
-    public abstract PImage getImage();
+    PImage getImage();
+
 
     /**
      * Used to create a Texture given its pathname
@@ -55,7 +56,7 @@ public abstract class Texture  {
      *
      * @author Kumar Chandra
      */
-    public static class TextureBuilder {
+    class TextureBuilder {
         /**
          * Creates a Texture from the image at the given path name
          *

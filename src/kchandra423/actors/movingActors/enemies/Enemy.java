@@ -130,31 +130,19 @@ public abstract class Enemy extends MovingActor {
         super.updateState(newState);
         switch (newState) {
             case IDLE:
-                idle.setAngle(image.getAngle());
-                idle.setReflected(image.isReflected());
-                idle.setReversed(image.isReversed());
-                idle.moveTo(image.getX(), image.getY());
+                idle.copyInformation(image);
                 image = idle;
                 break;
             case MOVING:
-                moving.setAngle(image.getAngle());
-                moving.setReflected(image.isReflected());
-                moving.setReversed(image.isReversed());
-                moving.moveTo(image.getX(), image.getY());
+                moving.copyInformation(image);
                 image = moving;
                 break;
             case ATTACKING:
-                attack.setAngle(image.getAngle());
-                attack.setReflected(image.isReflected());
-                attack.setReversed(image.isReversed());
-                attack.moveTo(image.getX(), image.getY());
+                attack.copyInformation(image);
                 image = attack;
                 break;
             case DEAD:
-                death.setAngle(image.getAngle());
-                death.setReflected(image.isReflected());
-                death.setReversed(image.isReversed());
-                death.moveTo(image.getX(), image.getY());
+                death.copyInformation(image);
                 image = death;
                 break;
         }

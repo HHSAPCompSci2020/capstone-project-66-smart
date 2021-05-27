@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * @see kchandra423.actors.Actor
  */
 public class Room {
+    private final int[][] grid;
     private final ArrayList<Enemy> enemies;
     private final ArrayList<Obstacle> obstacles;
     private final Player player;
@@ -31,7 +32,7 @@ public class Room {
      * Currently just creates a room with some random default enemies and obstacles
      */
     public Room() {
-
+        grid  = new int[8][8];
         background = Texture.TextureBuilder.getTexture("res/Images/Backgrounds/froggy.jpg");
         obstacles = new ArrayList<>();
         Obstacle o = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.BOX));
@@ -61,6 +62,7 @@ public class Room {
      * @param bounds     The boundaries of this room
      */
     public Room(Texture background, ArrayList<Obstacle> obstacles, ArrayList<Enemy> enemies, Player p, Rectangle bounds) {
+        grid  = new int[8][8];
         this.background = background;
         this.obstacles = obstacles;
         this.enemies = enemies;
@@ -68,7 +70,7 @@ public class Room {
         player = p;
 
         portal = new Obstacle(AssetLoader.getImage(AssetLoader.Sprite.TELEPORTER));
-        portal.getImage().moveTo((float) bounds.getCenterX()-portal.getImage().getWidth()/2f, (float) bounds.getCenterY()-portal.getImage().getHeight()/2f);
+        portal.getImage().moveTo((float) bounds.getCenterX()-portal.getImage().getTexture().getWidth()/2f, (float) bounds.getCenterY()-portal.getImage().getTexture().getHeight()/2f);
         background.resize(bounds.width, bounds.height);
     }
 

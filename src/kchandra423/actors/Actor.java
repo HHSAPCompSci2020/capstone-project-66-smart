@@ -75,4 +75,12 @@ public abstract class Actor {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public float getCenterX(){
+        return image.getX()+image.getTexture().getWidth()/2f;
+    }
+    public float getCenterY(){
+        return image.getY()+image.getTexture().getHeight()/2f;
+    }
+
 }

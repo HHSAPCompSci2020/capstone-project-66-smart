@@ -47,7 +47,7 @@ public class DrawingSurface extends PApplet {
      * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
-        size(displayWidth, displayHeight, renderer);
+        size(displayWidth/2, displayHeight/2, renderer);
 //        fullScreen();
     }
 
@@ -94,7 +94,7 @@ public class DrawingSurface extends PApplet {
             level = level.getNextLevel();
         }
 
-        translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getHeight() / 2.0f);
+        translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getTexture().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getTexture().getHeight() / 2.0f);
         level.draw(this);
         popMatrix();
         hud.draw(this, level);

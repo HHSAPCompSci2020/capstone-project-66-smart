@@ -1,7 +1,5 @@
 package kchandra423.actors.obstacles;
 
-import kchandra423.actors.movingActors.MovingActor;
-import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 /**
  * Represents a crate obstacle

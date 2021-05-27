@@ -22,9 +22,7 @@ class EnemyAI {
     }
 
     float makeMovementDecision(Room r) {
-        return (float) Calculator.calculateAngle(e.getImage().getX(), e.getImage().getY(), r.getPlayer().getImage().getBounds().getCenterX(), r.getPlayer().getImage().getBounds().getCenterY());
-
-
+        return (float) Calculator.calculateAngle(e.getCenterX(), e.getCenterY(), r.getPlayer().getCenterX(), r.getPlayer().getCenterY());
     }
 
     private boolean[] getDirectionTowardsPlayer(Room room) {
