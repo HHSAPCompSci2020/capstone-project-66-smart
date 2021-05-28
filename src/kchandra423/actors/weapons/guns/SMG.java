@@ -10,14 +10,12 @@ import kchandra423.utility.AssetLoader;
 public class SMG extends Gun {
     /**
      * Creates a new SMG with the given stats
-     *
-     * @param stats The given stats
      */
-    public SMG(float[] stats) {
+    public SMG() {
         super(AssetLoader.getImage(AssetLoader.Sprite.SMG), 0.1f,
                 (float) Math.PI / 8,
                 new Projectile(AssetLoader.getImage(AssetLoader.Sprite.BULLET),
-                        20f, 0, true, stats,
+                        20f, 0, true, new float[0],
                         DamageTypes.RANGED, 5), 1,
                 0.5f, 30);
     }

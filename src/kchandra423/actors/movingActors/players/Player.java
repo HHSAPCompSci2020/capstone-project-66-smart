@@ -24,7 +24,8 @@ import java.awt.event.KeyEvent;
 public abstract class Player extends MovingActor {
     private final KImage idleImage;
     private final KImage activeImage;
-    private final Weapon weapon;
+    private Weapon weapon;
+    public static int earnedCoins;
 
     /**
      * Creates a player with the specified idle and active animations
@@ -58,7 +59,7 @@ public abstract class Player extends MovingActor {
         }
         if (d.mousePressed) {
             if (d.mouseButton == PApplet.LEFT) {
-                weapon.fire();
+                weapon.fire(statMultipliers);
             }
         }
         if (angle > Math.PI / 2 && angle < 3 * Math.PI / 2) {
@@ -148,5 +149,13 @@ public abstract class Player extends MovingActor {
 
     public Weapon getWeapon() {
         return weapon;
+    }
+    public void setWeapon(Weapon w){
+        this.weapon = w;
+    }
+
+    @Override
+    public void onDeath() {
+
     }
 }

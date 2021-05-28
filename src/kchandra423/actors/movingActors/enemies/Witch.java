@@ -2,6 +2,7 @@ package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 
@@ -27,4 +28,9 @@ public class Witch extends RangedEnemy
 		image.moveTo(x, y);
 	}
 
+	@Override
+	public void onDeath() {
+		if(Math.random()<0.5)
+		Player.earnedCoins++;
+	}
 }

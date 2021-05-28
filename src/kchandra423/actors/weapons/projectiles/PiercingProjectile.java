@@ -71,7 +71,7 @@ public class PiercingProjectile extends Projectile {
         }
     }
     @Override
-    public Object clone(float angle) {
+    public Object clone(float angle, float[] stats) {
         return new PiercingProjectile((KImage) image.clone(), v, angle, ally, stats, type, damage, pierce);
     }
 }

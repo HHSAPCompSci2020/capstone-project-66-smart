@@ -83,6 +83,7 @@ public abstract class MovingActor extends Actor {
         }
 
     }
+    public abstract void onDeath();
 
     protected abstract void makeMoveX(DrawingSurface drawingSurface, Room room);
 
@@ -126,7 +127,7 @@ public abstract class MovingActor extends Actor {
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackX() {
-        float tempVx = vx* (60f/DrawingSurface.frameRate);
+        float tempVx = vx* (60f/DrawingSurface.goalFrameRate);
         image.translate(-tempVx, 0);
     }
 
@@ -135,7 +136,7 @@ public abstract class MovingActor extends Actor {
      */
     protected void bounceBackY() {
 
-        float tempVy = vy* (60f/DrawingSurface.frameRate);
+        float tempVy = vy* (60f/DrawingSurface.goalFrameRate);
         image.translate(0, -tempVy);
     }
 
@@ -159,7 +160,7 @@ public abstract class MovingActor extends Actor {
             vx = 0;
         }
 
-        float tempVx = vx* (60f/DrawingSurface.frameRate);
+        float tempVx = vx* (60f/DrawingSurface.goalFrameRate);
         image.translate(tempVx, 0);
     }
 
@@ -182,7 +183,7 @@ public abstract class MovingActor extends Actor {
             vy = 0;
         }
 
-        float tempVy = vy* (60f/DrawingSurface.frameRate);
+        float tempVy = vy* (60f/DrawingSurface.goalFrameRate);
         image.translate(0, tempVy);
     }
 
@@ -213,7 +214,7 @@ public abstract class MovingActor extends Actor {
         }
 
         vx *= 0.9f;
-        float tempVx = vx* (60f/DrawingSurface.frameRate);
+        float tempVx = vx* (60f/DrawingSurface.goalFrameRate);
         image.translate(tempVx, 0);
     }
 
@@ -242,7 +243,7 @@ public abstract class MovingActor extends Actor {
         if (Math.abs(vy) < 0.1) {
             vy = 0;
         }
-        float tempVy = vy* (60f/DrawingSurface.frameRate);
+        float tempVy = vy* (60f/DrawingSurface.goalFrameRate);
         image.translate(0, tempVy);
     }
 

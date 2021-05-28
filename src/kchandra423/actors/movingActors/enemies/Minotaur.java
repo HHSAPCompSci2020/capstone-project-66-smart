@@ -1,6 +1,7 @@
 package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 /**
@@ -18,8 +19,13 @@ public class Minotaur extends Enemy{
         super(new KImage[]{AssetLoader.getImage(AssetLoader.Sprite.MINOTAUR_IDLE),
                 AssetLoader.getImage(AssetLoader.Sprite.MINOTAUR_MOVING),
                 AssetLoader.getImage(AssetLoader.Sprite.MINOTAUR_ATTACK),
-                AssetLoader.getImage(AssetLoader.Sprite.MINOTAUR_DEATH)}, 6, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.4f, 1f),200, 6*100L, 10);
+                AssetLoader.getImage(AssetLoader.Sprite.MINOTAUR_DEATH)}, 6, 0.5f, MovingActor.createStates(1,1,1.5f,0.75f, 0.4f, 1f),200, 5*100L, 10);
 
         image.moveTo(x, y);
+    }
+
+    @Override
+    public void onDeath() {
+        Player.earnedCoins++;
     }
 }

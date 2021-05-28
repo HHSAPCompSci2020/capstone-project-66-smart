@@ -10,9 +10,8 @@ import kchandra423.utility.AssetLoader;
 public class MagicStaff extends Gun {
     /**
      * Creates a new magic staff with the given stats
-     * @param stats The given stats
      */
-    public MagicStaff(float[] stats) {
-        super(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_STAFF), 0.3f, (float) Math.PI / 8, new PiercingProjectile(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_BALL), 7f, 0, true, stats, DamageTypes.MAGIC, 15,5), 1, 1, 5);
+    public MagicStaff() {
+        super(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_STAFF), 0.3f, (float) Math.PI / 8, new PiercingProjectile(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_BALL), 7f, 0, true, new float[0], DamageTypes.MAGIC, 15,5), 1, 1, 5);
     }
 }

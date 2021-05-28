@@ -1,6 +1,10 @@
 package kchandra423.utility;
 
 import kchandra423.graphics.textures.KImage;
+import kchandra423.graphics.textures.Texture;
+
+import java.awt.*;
+import java.awt.geom.Area;
 
 /**
  * Loads all assets needed initially and held statically.
@@ -25,7 +29,7 @@ public class AssetLoader {
                 new KImage("res/Images/Enemies/Moving/Bat.gif"),
                 new KImage("res/Images/Enemies/Moving/Goblin.gif"),
                 new KImage("res/Images/Enemies/Moving/Witch.gif"),
-                new KImage("res/Images/Obstacles/Box.png"),
+                new KImage(0, 0, Texture.TextureBuilder.getTexture("res/Images/Obstacles/Box.png"), new Area(new Rectangle(200, 200))),
                 new KImage("res/Images/Players/KnightIdle.gif"),
                 new KImage("res/Images/Players/MageActive.gif"),
                 new KImage("res/Images/Players/MageIdle.gif"),
@@ -69,8 +73,7 @@ public class AssetLoader {
         GOBLIN_MOVING(10), WITCH_MOVING(11), BOX(12), KNIGHT_IDLE(13), MAGE_ACTIVE(14),
         MAGE_IDLE(15), ROGUE_IDLE(16), BULLET(17), HEX(18), MAGIC_STAFF(19), PISTOL(20),
         RUSTY_SWORD(21), SHOTGUN(22), SMG(23), SPELLBOOK(24), SWORD(25), TELEPORTER(26),
-        MAGIC_BALL(27),MINOTAUR_ATTACK(28),MINOTAUR_DEATH(29),MINOTAUR_IDLE(30),MINOTAUR_MOVING(31)
-        ,CYCLOPS_ATTACK(32),CYCLOPS_DEATH(33),CYCLOPS_IDLE(34),CYCLOPS_MOVING(35),ROCK(36);
+        MAGIC_BALL(27), MINOTAUR_ATTACK(28), MINOTAUR_DEATH(29), MINOTAUR_IDLE(30), MINOTAUR_MOVING(31), CYCLOPS_ATTACK(32), CYCLOPS_DEATH(33), CYCLOPS_IDLE(34), CYCLOPS_MOVING(35), ROCK(36);
 
         private final int val;
 

@@ -1,6 +1,7 @@
 package kchandra423.actors.movingActors.players;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.weapons.Weapon;
 import kchandra423.actors.weapons.guns.SMG;
 import kchandra423.actors.weapons.guns.Shotgun;
 import kchandra423.utility.AssetLoader;
@@ -24,7 +25,10 @@ public class Rogue extends Player {
                 AssetLoader.getImage(AssetLoader.Sprite.ROGUE_IDLE),
                 13.5f, 1.5f, stats,
                 200
-                , Math.random() > 0.5 ? new Shotgun(stats) : new SMG(stats));
+                , getInitialWeapon());
         image.moveTo(x, y);
+    }
+    private static Weapon getInitialWeapon(){
+        return new Shotgun();
     }
 }

@@ -2,6 +2,7 @@ package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.DamageTypes;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 /**
@@ -24,5 +25,9 @@ public class Cyclops extends RangedEnemy{
                 DamageTypes.RANGED, AssetLoader.Sprite.ROCK,8 * 100L, 30
         ,13/5f,10, 600);
         image.moveTo(x, y);
+    }
+    @Override
+    public void onDeath() {
+        Player.earnedCoins+=2;
     }
 }

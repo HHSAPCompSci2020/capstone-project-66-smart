@@ -1,6 +1,8 @@
 package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.players.Player;
+import kchandra423.graphics.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 
@@ -25,4 +27,10 @@ public class Goblin extends Enemy
 		image.moveTo(x, y);
 	}
 
+	@Override
+	public void onDeath() {
+		if(Math.random()<0.3){
+			Player.earnedCoins++;
+		}
+	}
 }

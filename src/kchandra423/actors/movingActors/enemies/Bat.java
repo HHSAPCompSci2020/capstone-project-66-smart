@@ -1,6 +1,7 @@
 package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
 
@@ -22,6 +23,12 @@ public class Bat extends Enemy {
                 AssetLoader.getImage(AssetLoader.Sprite.BAT_DEATH)}, 10, 2, MovingActor.createStates(1,1,1.5f,0.5f, 0.25f, 0.75f),30, 6*100L, 5);
 
         image.moveTo(x, y);
+    }
+    @Override
+    public void onDeath() {
+        if(Math.random()<0.1){
+            Player.earnedCoins++;
+        }
     }
 
 }

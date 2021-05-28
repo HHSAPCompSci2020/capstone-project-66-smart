@@ -22,7 +22,7 @@ public abstract class Weapon extends Actor {
     /**
      * Fires this weapon if it can
      */
-    public abstract void fire();
+    public abstract void fire(float[] stats);
 
     public abstract void reload();
 

@@ -1,6 +1,8 @@
 package kchandra423.actors.movingActors.players;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.weapons.Weapon;
+import kchandra423.actors.weapons.guns.Shotgun;
 import kchandra423.actors.weapons.meleeWeapons.BroadSword;
 import kchandra423.utility.AssetLoader;
 
@@ -22,8 +24,11 @@ public class Knight extends Player {
                 AssetLoader.getImage(AssetLoader.Sprite.KNIGHT_IDLE),
                 7, 0.7f, stats,
                 400,
-                new BroadSword(stats)
+                getInitialWeapon()
         );
         image.moveTo(x, y);
+    }
+    private static Weapon getInitialWeapon(){
+        return new BroadSword();
     }
 }

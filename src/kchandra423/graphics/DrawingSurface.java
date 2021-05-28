@@ -1,22 +1,8 @@
 package kchandra423.graphics;
 
-import javax.swing.*;
-
-import java.io.*;
-import java.util.Scanner;
-
-import javax.print.DocFlavor.URL;
-import javax.sound.sampled.*;
-import jay.jaysound.JayLayer;
-import kchandra423.actors.movingActors.players.Mage;
-import kchandra423.actors.movingActors.players.Player;
-import processing.awt.PSurfaceAWT;
+import kchandra423.actors.movingActors.players.Rogue;
 import processing.core.PApplet;
 import processing.core.PConstants;
-import sye348.levels.Level;
-import sye348.levels.LevelOne;
-import sye348.levels.LevelThree;
-import sye348.levels.LevelTwo;
 
 /**
  * Represents a drawing surface, which is a type of PApplet
@@ -26,21 +12,19 @@ import sye348.levels.LevelTwo;
  */
 public class DrawingSurface extends PApplet {
     private static boolean[] keys;
-    private Level level;
-    private final HUD hud;
-    public static int frameRate;
+    public static int goalFrameRate;
     private final String renderer;
+    private BattleScreen battle;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
      * Creates each level and the bonus level
      */
-    public DrawingSurface(Player p) {
-        DrawingSurface.frameRate = 60;
+    public DrawingSurface() {
+        DrawingSurface.goalFrameRate = 60;
         this.renderer = PConstants.P2D;
         keys = new boolean[128];
-        level = new LevelOne(p);
-        hud = new HUD();
+        battle = new BattleScreen(new Rogue( 700,700));
     }
 
     /**
@@ -55,7 +39,7 @@ public class DrawingSurface extends PApplet {
      * Sets the framerate, the title of the applet, the icon of the applet, and makes the applet resizable
      */
     public void setup() {
-        frameRate(DrawingSurface.frameRate);
+        frameRate(DrawingSurface.goalFrameRate);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(true);
 
@@ -64,62 +48,7 @@ public class DrawingSurface extends PApplet {
     }
 
 
-    /**
-     * Draws the current room and everything in it
-     */
-    public void draw() {
 
-        background(255);
-        pushMatrix();
-        int halfx = width / 2;
-        int halfy = height / 2;
-        if (level == null) {
-            background(0);
-            textSize(50);
-            fill(255);
-            text("Congrats \n You won!", width/3, height/2);
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
-                        @Override
-                        public void run() {
-                            surface.stopThread();
-                            System.exit(0);
-                        }
-                    },
-                    5000
-            );
-            return;
-        }
-        if (level.isCompleted()) {
-            level = level.getNextLevel();
-        }
-
-        translate(-level.getCurrentRoom().getPlayer().getImage().getX() + halfx - level.getCurrentRoom().getPlayer().getImage().getTexture().getWidth() / 2.0f, -level.getCurrentRoom().getPlayer().getImage().getY() + halfy - level.getCurrentRoom().getPlayer().getImage().getTexture().getHeight() / 2.0f);
-        level.draw(this);
-        popMatrix();
-        hud.draw(this, level);
-        fill(0);
-        text(super.frameRate + " : fps", width - 100, height - 100);
-
-        if (!level.getCurrentRoom().getPlayer().isActive()) {
-
-        	background(0);
-        	textSize(50);
-        	fill(255);
-        	text("Game Over \n You Lost!", width/3, height/2);
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
-                        @Override
-                        public void run() {
-                            surface.stopThread();
-                            System.exit(0);
-                        }
-                    },
-                    5000
-            );
-        }
-
-    }
 
     /**
      * Sets the key that was pressed in the key array to true
@@ -131,7 +60,10 @@ public class DrawingSurface extends PApplet {
 
 
     }
-
+    @Override
+    public void draw(){
+        battle.draw(this);
+    }
 
 
     /**
@@ -166,6 +98,8 @@ public class DrawingSurface extends PApplet {
         return keys[keyCode];
 
     }
+
+
 
 }
 

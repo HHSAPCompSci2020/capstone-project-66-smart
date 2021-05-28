@@ -11,18 +11,18 @@ import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 
 class MeleeWeapon extends Weapon {
-    private int damage;
+    private final int damage;
     private float[] stats;
-    private float range;
+    private final float range;
     private final float swingTime;
     private long swingStartTime = System.currentTimeMillis();
 
 
 
-    MeleeWeapon(KImage image, int damage, float[] stats, float range, float swingTime) {
+    MeleeWeapon(KImage image, int damage, float range, float swingTime) {
         super(image);
         this.damage = damage;
-        this.stats = stats;
+        this.stats = new float[0];
         this.range = range;
         this.swingTime=swingTime;
     }
@@ -51,8 +51,9 @@ class MeleeWeapon extends Weapon {
     }
 
     @Override
-    public void fire() {
+    public void fire(float[] stats) {
         if (canFire()) {
+            this.stats=stats;
             swingStartTime = System.currentTimeMillis();
         }
     }

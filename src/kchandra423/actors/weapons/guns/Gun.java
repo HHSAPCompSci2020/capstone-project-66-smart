@@ -83,7 +83,7 @@ class Gun extends Weapon {
     /**
      * Creates a new projectile using this images current angle. Applies all effects such as the spread, and velocity and pellets
      */
-    public void fire() {
+    public void fire(float[] stats) {
 
         if (canFire()) {
             if (reloading) {
@@ -96,7 +96,7 @@ class Gun extends Weapon {
                 float tempAngle = image.getAngle();
                 tempAngle += Math.random() * spread;
                 tempAngle -= spread / 2;
-                Projectile p = (Projectile) projectile.clone(tempAngle);
+                Projectile p = (Projectile) projectile.clone(tempAngle,stats);
 
                 p.getImage().moveTo((float) (image.getBounds().getCenterX() + image.getTexture().getWidth() / 2 * Math.cos(image.getAngle())), (float) (image.getBounds().getCenterY() + image.getTexture().getHeight() / 2 * Math.sin(image.getAngle())));
                 projectiles.add(p);

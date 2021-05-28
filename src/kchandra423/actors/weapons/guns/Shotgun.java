@@ -10,13 +10,12 @@ import kchandra423.utility.AssetLoader;
 public class Shotgun extends Gun {
     /**
      * Creates a new shotgun with the given stats
-     * @param stats The given stats
      */
-    public Shotgun(float[] stats) {
+    public Shotgun() {
         super(AssetLoader.getImage(AssetLoader.Sprite.SHOTGUN), 0.5f,
                 (float) Math.PI / 6,
                 new PiercingProjectile(AssetLoader.getImage(AssetLoader.Sprite.BULLET),
-                        20f, 0, true, stats,
+                        20f, 0, true, new float[0],
                         DamageTypes.MAGIC, 5,2),
                 5, 0.75f, 6);
     }

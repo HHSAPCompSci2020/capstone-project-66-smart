@@ -156,6 +156,7 @@ public abstract class Enemy extends MovingActor {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
+                    onDeath();
                     Enemy.super.setActive(false);
                 }
             }, deathTime);

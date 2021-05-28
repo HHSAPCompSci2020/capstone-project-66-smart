@@ -1,7 +1,9 @@
 package kchandra423.actors.movingActors.players;
 
 import kchandra423.actors.movingActors.MovingActor;
+import kchandra423.actors.weapons.Weapon;
 import kchandra423.actors.weapons.guns.MagicStaff;
+import kchandra423.actors.weapons.guns.Shotgun;
 import kchandra423.utility.AssetLoader;
 
 /**
@@ -20,7 +22,10 @@ public class Mage extends Player {
         super(AssetLoader.getImage(AssetLoader.Sprite.MAGE_IDLE), AssetLoader.getImage(AssetLoader.Sprite.MAGE_ACTIVE),
                 9, 1f,stats,
                 150,
-                new MagicStaff(stats));
+                getInitialWeapon());
         image.moveTo(x, y);
+    }
+    private static Weapon getInitialWeapon(){
+        return new MagicStaff();
     }
 }
