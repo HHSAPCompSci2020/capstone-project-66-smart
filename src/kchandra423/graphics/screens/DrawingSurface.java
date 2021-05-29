@@ -1,7 +1,7 @@
 package kchandra423.graphics.screens;
 
 import g4p_controls.G4P;
-import g4p_controls.GButton;
+import g4p_controls.GAbstractControl;
 import g4p_controls.GCScheme;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -14,10 +14,11 @@ import processing.core.PConstants;
  */
 public class DrawingSurface extends PApplet {
     private static boolean[] keys;
+    private boolean alreadySetup = false;
     static int goalFrameRate;
     private final String renderer;
-    private static Screen[] screens = new Screen[]{ new HomeScreen(), new BattleScreen()};
-    private static int current=0;
+    private static Screen[] screens = new Screen[]{new HomeScreen(), new BattleScreen(), new PerformanceScreen()};
+    private static int current = 0;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
@@ -42,15 +43,22 @@ public class DrawingSurface extends PApplet {
      */
     public void setup() {
         frameRate(DrawingSurface.goalFrameRate);
+        if(!alreadySetup){
+            screenSetup();
+        }
+
+
+    }
+    private void screenSetup(){
+        alreadySetup = true;
         G4P.setGlobalColorScheme(GCScheme.RED_SCHEME);
+        G4P.setCursor(ARROW);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(false);
         for (Screen s :
                 screens) {
             s.setup(this);
         }
-
-
     }
 
 
@@ -67,6 +75,7 @@ public class DrawingSurface extends PApplet {
 
     @Override
     public void draw() {
+        System.out.println(getGoalFrameRate());
         screens[current].draw(this);
 //        battle.draw(this);
     }
@@ -111,21 +120,18 @@ public class DrawingSurface extends PApplet {
 
     public static void setScreen(Window w) {
         int index = w.index;
-        current = index;
         for (int i = 0; i < screens.length; i++) {
-            if (i != index) {
-                for (GButton b :
-                        screens[i].getButtons()) {
-                    b.setVisible(false);
-                }
-            } else {
-                for (GButton b :
-                        screens[i].getButtons()) {
-                    b.setVisible(true);
-                }
+            for (GAbstractControl b :
+                    screens[i].getUI()) {
+                b.setVisible(i == index);
             }
         }
+        current = index;
 
+    }
+    public void changeFrameRate(int fr){
+        DrawingSurface.goalFrameRate = fr;
+        setup();
     }
 
 

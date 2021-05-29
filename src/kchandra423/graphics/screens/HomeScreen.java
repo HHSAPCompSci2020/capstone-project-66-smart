@@ -1,5 +1,6 @@
 package kchandra423.graphics.screens;
 
+import g4p_controls.GAbstractControl;
 import g4p_controls.GButton;
 import g4p_controls.GEvent;
 import kchandra423.actors.movingActors.players.Knight;
@@ -21,6 +22,7 @@ public class HomeScreen implements Screen {
     public void draw(DrawingSurface d) {
         d.pushStyle();
 
+        d.background(100);
         d.fill(255);
         d.textSize(60);
 
@@ -41,32 +43,39 @@ public class HomeScreen implements Screen {
 
     @Override
     public void setup(DrawingSurface d) {
-        mage = new GButton(d, d.width / 4f - 100, d.height - d.height / 3f -40, 200, 80, "Mage");
-        knight = new GButton(d, d.width / 2f - 100, d.height - d.height / 3f-40, 200, 80, "Knight");
-        rogue = new GButton(d, 3 * d.width / 4f - 100, d.height - d.height / 3f-40, 200, 80, "Rogue");
-        music= new GButton(d, d.width / 4f - 200, d.height - d.height / 6f -40, 400, 100, "Music");
-        shop = new GButton(d, d.width / 2f - 200, d.height - d.height / 6f-40, 400, 100, "Shop");
-        performance = new GButton(d, 3 * d.width / 4f - 200, d.height - d.height / 6f-40, 400, 100, "Performance");
+        mage = new GButton(d, d.width / 4f - 100, d.height - d.height / 3f - 40, 200, 80, "Mage");
+        knight = new GButton(d, d.width / 2f - 100, d.height - d.height / 3f - 40, 200, 80, "Knight");
+        rogue = new GButton(d, 3 * d.width / 4f - 100, d.height - d.height / 3f - 40, 200, 80, "Rogue");
+        music = new GButton(d, d.width / 4f - 200, d.height - d.height / 6f - 40, 400, 100, "Music");
+        shop = new GButton(d, d.width / 2f - 200, d.height - d.height / 6f - 40, 400, 100, "Shop");
+        performance = new GButton(d, 3 * d.width / 4f - 200, d.height - d.height / 6f - 40, 400, 100, "Performance");
         mage.addEventHandler(this, "startGame");
         knight.addEventHandler(this, "startGame");
         rogue.addEventHandler(this, "startGame");
+        performance.addEventHandler(this, "moveToPerformance");
     }
 
     @Override
-    public GButton[] getButtons() {
-        return new GButton[]{mage, knight, rogue,music,shop,performance};
+    public GAbstractControl[] getUI() {
+        return new GButton[]{mage, knight, rogue, music, shop, performance};
     }
 
     public void startGame(GButton b, GEvent event) {
 //        if (event == GEvent.PRESSED) {
-            if (b == mage) {
-                BattleScreen.init(new Mage(700, 700));
-            } else if (b == knight) {
-                BattleScreen.init(new Knight(700, 700));
-            } else if (b == rogue) {
-                BattleScreen.init(new Rogue(700, 700));
-            }
+        if (b == mage) {
+            BattleScreen.init(new Mage(700, 700));
+        } else if (b == knight) {
+            BattleScreen.init(new Knight(700, 700));
+        } else if (b == rogue) {
+            BattleScreen.init(new Rogue(700, 700));
+        }
 //        }
         DrawingSurface.setScreen(Window.BATTLE);
+    }
+
+    public void moveToPerformance(GButton b, GEvent event) {
+
+            DrawingSurface.setScreen(Window.PERFORMANCE);
+
     }
 }

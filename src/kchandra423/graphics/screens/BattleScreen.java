@@ -1,5 +1,6 @@
 package kchandra423.graphics.screens;
 
+import g4p_controls.GAbstractControl;
 import g4p_controls.GButton;
 import kchandra423.actors.movingActors.players.Player;
 import sye348.levels.Level;
@@ -26,7 +27,7 @@ public class BattleScreen implements Screen {
      */
     public void draw(DrawingSurface p) {
         if (ready) {
-            p.background(255);
+            p.background(100);
             p.pushMatrix();
             int halfx = p.width / 2;
             int halfy = p.height / 2;
@@ -86,7 +87,7 @@ public class BattleScreen implements Screen {
     }
 
     @Override
-    public GButton[] getButtons() {
+    public GAbstractControl[] getUI() {
         return new GButton[0];
     }
 
