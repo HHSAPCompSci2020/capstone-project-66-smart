@@ -5,7 +5,7 @@ import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.obstacles.Obstacle;
 import kchandra423.actors.weapons.Weapon;
-import kchandra423.graphics.DrawingSurface;
+import kchandra423.graphics.screens.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 import kchandra423.utility.Calculator;

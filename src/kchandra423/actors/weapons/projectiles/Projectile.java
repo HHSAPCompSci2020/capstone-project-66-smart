@@ -6,7 +6,7 @@ import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.obstacles.Obstacle;
-import kchandra423.graphics.DrawingSurface;
+import kchandra423.graphics.screens.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 

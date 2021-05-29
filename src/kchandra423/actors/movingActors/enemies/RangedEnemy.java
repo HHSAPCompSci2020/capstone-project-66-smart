@@ -4,7 +4,7 @@ import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.weapons.projectiles.Projectile;
-import kchandra423.graphics.DrawingSurface;
+import kchandra423.graphics.screens.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 import kchandra423.utility.AssetLoader;

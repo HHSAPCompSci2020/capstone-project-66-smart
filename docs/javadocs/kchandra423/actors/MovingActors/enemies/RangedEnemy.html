@@ -155,14 +155,14 @@ extends <a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html"
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../kchandra423/actors/movingActors/enemies/RangedEnemy.html#act-kchandra423.graphics.DrawingSurface-kchandra423.levels.Room-">act</a></span>(<a href="../../../../kchandra423/graphics/DrawingSurface.html" title="class in kchandra423.graphics">DrawingSurface</a>&nbsp;d,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../kchandra423/actors/movingActors/enemies/RangedEnemy.html#act-kchandra423.graphics.screens.DrawingSurface-kchandra423.levels.Room-">act</a></span>(<a href="../../../../kchandra423/graphics/DrawingSurface.html" title="class in kchandra423.graphics">DrawingSurface</a>&nbsp;d,
    <a href="../../../../kchandra423/levels/Room.html" title="class in kchandra423.levels">Room</a>&nbsp;r)</code>
 <div class="block">Acts based on a few conditions.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../kchandra423/actors/movingActors/enemies/RangedEnemy.html#draw-kchandra423.graphics.DrawingSurface-">draw</a></span>(<a href="../../../../kchandra423/graphics/DrawingSurface.html" title="class in kchandra423.graphics">DrawingSurface</a>&nbsp;drawingSurface)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../kchandra423/actors/movingActors/enemies/RangedEnemy.html#draw-kchandra423.graphics.screens.DrawingSurface-">draw</a></span>(<a href="../../../../kchandra423/graphics/DrawingSurface.html" title="class in kchandra423.graphics">DrawingSurface</a>&nbsp;drawingSurface)</code>
 <div class="block">Draws the actor's Kimage</div>
 </td>
 </tr>
@@ -226,7 +226,7 @@ extends <a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html"
 <div class="block">Draws the actor's Kimage</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html#draw-kchandra423.graphics.DrawingSurface-">draw</a></code>&nbsp;in class&nbsp;<code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a></code></dd>
+<dd><code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html#draw-kchandra423.graphics.screens.DrawingSurface-">draw</a></code>&nbsp;in class&nbsp;<code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>drawingSurface</code> - The drawing surface to be drawed onto</dd>
 </dl>
@@ -240,14 +240,14 @@ extends <a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html"
 <h4>act</h4>
 <pre>public&nbsp;void&nbsp;act(<a href="../../../../kchandra423/graphics/DrawingSurface.html" title="class in kchandra423.graphics">DrawingSurface</a>&nbsp;d,
                 <a href="../../../../kchandra423/levels/Room.html" title="class in kchandra423.levels">Room</a>&nbsp;r)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../kchandra423/actors/movingActors/MovingActor.html#act-kchandra423.graphics.DrawingSurface-kchandra423.levels.Room-">MovingActor</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../kchandra423/actors/movingActors/MovingActor.html#act-kchandra423.graphics.screens.DrawingSurface-kchandra423.levels.Room-">MovingActor</a></code></span></div>
 <div class="block">Acts based on a few conditions. If this actors health is less than 0, it sets itself as inactive.
  Then it moves in the x direction. If it collides with an obstacle, it calls the onObstacleCollision method. If it is out
  of bounds, it immediately moves back into the room. This process is repeated in the y direction. Finally, if this actor
  interacts with its opponent, it calls the onOpponentInteraction method.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html#act-kchandra423.graphics.DrawingSurface-kchandra423.levels.Room-">act</a></code>&nbsp;in class&nbsp;<code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a></code></dd>
+<dd><code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html#act-kchandra423.graphics.screens.DrawingSurface-kchandra423.levels.Room-">act</a></code>&nbsp;in class&nbsp;<code><a href="../../../../kchandra423/actors/movingActors/enemies/Enemy.html" title="class in kchandra423.actors.movingActors.enemies">Enemy</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>d</code> - The drawing surface to be acted upon</dd>
 <dd><code>r</code> - The room the actor is currently in</dd>

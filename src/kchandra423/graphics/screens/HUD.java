@@ -1,4 +1,4 @@
-package kchandra423.graphics;
+package kchandra423.graphics.screens;
 
 import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.Texture;

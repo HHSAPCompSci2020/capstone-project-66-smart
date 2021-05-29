@@ -5,7 +5,7 @@ import kchandra423.actors.Damage;
 import kchandra423.actors.movingActors.constants.ActorState;
 import kchandra423.actors.movingActors.constants.Stat;
 import kchandra423.actors.obstacles.Obstacle;
-import kchandra423.graphics.DrawingSurface;
+import kchandra423.graphics.screens.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 import kchandra423.utility.Calculator;
@@ -127,7 +127,7 @@ public abstract class MovingActor extends Actor {
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackX() {
-        float tempVx = vx* (60f/DrawingSurface.goalFrameRate);
+        float tempVx = vx* (60f/DrawingSurface.getGoalFrameRate());
         image.translate(-tempVx, 0);
     }
 
@@ -136,7 +136,7 @@ public abstract class MovingActor extends Actor {
      */
     protected void bounceBackY() {
 
-        float tempVy = vy* (60f/DrawingSurface.goalFrameRate);
+        float tempVy = vy* (60f/DrawingSurface.getGoalFrameRate());
         image.translate(0, -tempVy);
     }
 
@@ -160,7 +160,7 @@ public abstract class MovingActor extends Actor {
             vx = 0;
         }
 
-        float tempVx = vx* (60f/DrawingSurface.goalFrameRate);
+        float tempVx = vx* (60f/DrawingSurface.getGoalFrameRate());
         image.translate(tempVx, 0);
     }
 
@@ -183,7 +183,7 @@ public abstract class MovingActor extends Actor {
             vy = 0;
         }
 
-        float tempVy = vy* (60f/DrawingSurface.goalFrameRate);
+        float tempVy = vy* (60f/DrawingSurface.getGoalFrameRate());
         image.translate(0, tempVy);
     }
 
@@ -214,7 +214,7 @@ public abstract class MovingActor extends Actor {
         }
 
         vx *= 0.9f;
-        float tempVx = vx* (60f/DrawingSurface.goalFrameRate);
+        float tempVx = vx* (60f/DrawingSurface.getGoalFrameRate());
         image.translate(tempVx, 0);
     }
 
@@ -243,7 +243,7 @@ public abstract class MovingActor extends Actor {
         if (Math.abs(vy) < 0.1) {
             vy = 0;
         }
-        float tempVy = vy* (60f/DrawingSurface.goalFrameRate);
+        float tempVy = vy* (60f/DrawingSurface.getGoalFrameRate());
         image.translate(0, tempVy);
     }
 

@@ -1,6 +1,8 @@
-package kchandra423.graphics;
+package kchandra423.graphics.screens;
 
-import kchandra423.actors.movingActors.players.Rogue;
+import g4p_controls.G4P;
+import g4p_controls.GButton;
+import g4p_controls.GCScheme;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -12,9 +14,10 @@ import processing.core.PConstants;
  */
 public class DrawingSurface extends PApplet {
     private static boolean[] keys;
-    public static int goalFrameRate;
+    static int goalFrameRate;
     private final String renderer;
-    private BattleScreen battle;
+    private static Screen[] screens = new Screen[]{ new HomeScreen(), new BattleScreen()};
+    private static int current=0;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
@@ -24,14 +27,13 @@ public class DrawingSurface extends PApplet {
         DrawingSurface.goalFrameRate = 60;
         this.renderer = PConstants.P2D;
         keys = new boolean[128];
-        battle = new BattleScreen(new Rogue( 700,700));
     }
 
     /**
      * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
-        size(displayWidth/2, displayHeight/2, renderer);
+        size(displayWidth / 2, displayHeight / 2, renderer);
 //        fullScreen();
     }
 
@@ -40,14 +42,16 @@ public class DrawingSurface extends PApplet {
      */
     public void setup() {
         frameRate(DrawingSurface.goalFrameRate);
+        G4P.setGlobalColorScheme(GCScheme.RED_SCHEME);
         surface.setTitle("Dungeons and Magnums");
-        surface.setResizable(true);
-
+        surface.setResizable(false);
+        for (Screen s :
+                screens) {
+            s.setup(this);
+        }
 
 
     }
-
-
 
 
     /**
@@ -60,9 +64,11 @@ public class DrawingSurface extends PApplet {
 
 
     }
+
     @Override
-    public void draw(){
-        battle.draw(this);
+    public void draw() {
+        screens[current].draw(this);
+//        battle.draw(this);
     }
 
 
@@ -99,6 +105,28 @@ public class DrawingSurface extends PApplet {
 
     }
 
+    public static int getGoalFrameRate() {
+        return goalFrameRate;
+    }
+
+    public static void setScreen(Window w) {
+        int index = w.index;
+        current = index;
+        for (int i = 0; i < screens.length; i++) {
+            if (i != index) {
+                for (GButton b :
+                        screens[i].getButtons()) {
+                    b.setVisible(false);
+                }
+            } else {
+                for (GButton b :
+                        screens[i].getButtons()) {
+                    b.setVisible(true);
+                }
+            }
+        }
+
+    }
 
 
 }

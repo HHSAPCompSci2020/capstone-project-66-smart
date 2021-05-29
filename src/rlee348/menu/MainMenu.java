@@ -5,7 +5,7 @@
 //import kchandra423.actors.movingActors.players.Knight;
 //import kchandra423.actors.movingActors.players.Mage;
 //import kchandra423.actors.movingActors.players.Rogue;
-//import kchandra423.graphics.DrawingSurface;
+//import kchandra423.graphics.screens.DrawingSurface;
 //import kchandra423.utility.AssetLoader;
 //import processing.awt.PSurfaceAWT;
 //import processing.core.PApplet;
@@ -32,9 +32,6 @@
 ////	boolean rectOver = false;
 ////	boolean circleOver = false;
 //    private PImage img;
-//    private GButton mage;
-//    private GButton knight;
-//    private GButton rogue;
 //    private JayLayer music;
 //    private GCustomSlider volume, framerate;
 //    private float volumeLevel;
@@ -106,9 +103,7 @@
 //    */
 //        //	start = new GButton(this, 5*width/11, height - height/5 - height/15, 100, 40, "Start");
 //        //	settings = new GButton(this, 5*width/11 , height - height/5, 100, 40, "Settings");
-//        mage = new GButton(this, 5 * width / 11, height - height / 5 - height / 15, 100, 40, "mage");
-//        knight = new GButton(this, 3 * width / 11, height - height / 5 - height / 15, 100, 40, "knight");
-//        rogue = new GButton(this, 7 * width / 11, height - height / 5 - height / 15, 100, 40, "rogue");
+//
 //
 //        volume = new GCustomSlider(this, 7 * width / 12, 5 * height / 8, 4 * width / 12, 5 * height / 8, "blue18px");
 //
@@ -162,23 +157,7 @@
 //		ellipse(circleX, circleY, circleSize, circleSize);
 //
 //   	*/
-//        pushStyle();
 //
-//        fill(255);
-//        textSize(60);
-//        text("Dungeons and Magnums", width / 6, height / 5);
-//        textSize(20);
-//        text("By Kumar Chandra, Spencer Ye, and Ryan Lee", 2 * width / 7, 2 * height / 7);
-//        text("Instructions: Use wasd to move your character. \n "
-//                + "Use mouse button 2 to fire your weapon. \n "
-//                + "The goal of the game is to clear each level by \n "
-//                + "killing all the enemies in each room. \n"
-//                + "Try to avoid dying, as you will lose the game if you do. \n"
-//                + "You can choose your character from 3 classes:\n"
-//                + "knight, mage, or rogue.", 2 * width / 7, 3 * height / 8);
-//        text("Volume", 10 * width / 14, 7 * height / 8);
-//        text("Max FPS", 3 * width / 14, 7 * height / 8);
-//        popStyle();
 //
 //
 //    }

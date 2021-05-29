@@ -2,7 +2,7 @@ package kchandra423.actors.obstacles;
 
 import kchandra423.actors.Actor;
 import kchandra423.levels.Room;
-import kchandra423.graphics.DrawingSurface;
+import kchandra423.graphics.screens.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 
 /**

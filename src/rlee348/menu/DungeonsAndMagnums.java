@@ -1,15 +1,8 @@
 package rlee348.menu;
 
-import kchandra423.actors.movingActors.players.Mage;
-import kchandra423.actors.movingActors.players.Rogue;
-import processing.awt.PSurfaceAWT;
 import processing.core.PApplet;
 
-import javax.swing.*;
-
-import kchandra423.graphics.DrawingSurface;
-
-import java.awt.*;
+import kchandra423.graphics.screens.DrawingSurface;
 
 /**
  * Main method that tests the gui
