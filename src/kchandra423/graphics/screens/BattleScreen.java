@@ -2,7 +2,11 @@ package kchandra423.graphics.screens;
 
 import g4p_controls.GAbstractControl;
 import g4p_controls.GButton;
+import kchandra423.actors.movingActors.players.Knight;
+import kchandra423.actors.movingActors.players.Mage;
 import kchandra423.actors.movingActors.players.Player;
+import kchandra423.actors.movingActors.players.Rogue;
+import kchandra423.utility.AssetLoader;
 import sye348.levels.Level;
 import sye348.levels.LevelOne;
 
@@ -12,12 +16,23 @@ public class BattleScreen implements Screen {
     private static Level level;
     private final HUD hud;
     private static boolean ready = false;
-
+    enum PlayerType{
+        MAGE,KNIGHT,ROGUE;
+    }
     public BattleScreen() {
         hud = new HUD();
     }
 
-    static void init(Player player) {
+    static void init(PlayerType p) {
+        AssetLoader.loadKImages();
+        Player player;
+        if(p==PlayerType.MAGE){
+            player = new Mage(700,700);
+        }else if(p == PlayerType.KNIGHT){
+            player = new Knight(700,700);
+        }else{
+            player = new Rogue(700,700);
+        }
         BattleScreen.level = new LevelOne(player);
         ready = true;
     }

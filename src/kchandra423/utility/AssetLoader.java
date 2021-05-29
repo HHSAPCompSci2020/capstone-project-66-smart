@@ -14,7 +14,54 @@ import java.awt.geom.Area;
  * @author Kumar Chandra
  */
 public class AssetLoader {
-    static {
+//    static {
+//        long start = System.currentTimeMillis();
+//        sprites = new KImage[]{
+//                new KImage("res/Images/Enemies/Attack/Bat.gif"),
+//                new KImage("res/Images/Enemies/Attack/Goblin.gif"),
+//                new KImage("res/Images/Enemies/Attack/Witch.gif"),
+//                new KImage("res/Images/Enemies/Death/Bat.gif"),
+//                new KImage("res/Images/Enemies/Death/Goblin.gif"),
+//                new KImage("res/Images/Enemies/Death/Witch.gif"),
+//                new KImage("res/Images/Enemies/Idle/Bat.gif"),
+//                new KImage("res/Images/Enemies/Idle/Goblin.gif"),
+//                new KImage("res/Images/Enemies/Idle/Witch.gif"),
+//                new KImage("res/Images/Enemies/Moving/Bat.gif"),
+//                new KImage("res/Images/Enemies/Moving/Goblin.gif"),
+//                new KImage("res/Images/Enemies/Moving/Witch.gif"),
+//                new KImage(0, 0, Texture.TextureBuilder.getTexture("res/Images/Obstacles/Box.png"), new Area(new Rectangle(200, 200))),
+//                new KImage("res/Images/Players/KnightIdle.gif"),
+//                new KImage("res/Images/Players/MageActive.gif"),
+//                new KImage("res/Images/Players/MageIdle.gif"),
+//                new KImage("res/Images/Players/RogueIdle.gif"),
+//                new KImage("res/Images/Projectiles/Bullet.png"),
+//                new KImage("res/Images/Projectiles/Hex.gif"),
+//                new KImage("res/Images/Weapons/MagicStaff.png", true),
+//                new KImage("res/Images/Weapons/Pistol.png", true),
+//                new KImage("res/Images/Weapons/RustySword.png", true),
+//                new KImage("res/Images/Weapons/Shotgun.png", true),
+//                new KImage("res/Images/Weapons/SMG.png", true),
+//                new KImage("res/Images/Weapons/SpellBook.png", true),
+//                new KImage("res/Images/Weapons/Sword.png", true),
+//                new KImage("res/Images/Obstacles/Teleporter.gif"),
+//                new KImage("res/Images/Projectiles/MagicBall.gif"),
+//                new KImage("res/Images/Enemies/Attack/Minotaur.gif"),
+//                new KImage("res/Images/Enemies/Death/Minotaur.gif"),
+//                new KImage("res/Images/Enemies/Idle/Minotaur.gif"),
+//                new KImage("res/Images/Enemies/Moving/Minotaur.gif"),
+//                new KImage("res/Images/Enemies/Attack/Cyclops.gif"),
+//                new KImage("res/Images/Enemies/Death/Cyclops.gif"),
+//                new KImage("res/Images/Enemies/Idle/Cyclops.gif"),
+//                new KImage("res/Images/Enemies/Moving/Cyclops.gif"),
+//                new KImage("res/Images/Projectiles/Rock.gif")
+//
+//        };
+//        long end = System.currentTimeMillis();
+//        System.out.println("Initializing assets took " + ((end - start) / 1000.0) + " seconds");
+//    }
+
+    private static  KImage[] sprites;
+    public static float loadKImages(){
         long start = System.currentTimeMillis();
         sprites = new KImage[]{
                 new KImage("res/Images/Enemies/Attack/Bat.gif"),
@@ -54,13 +101,10 @@ public class AssetLoader {
                 new KImage("res/Images/Enemies/Idle/Cyclops.gif"),
                 new KImage("res/Images/Enemies/Moving/Cyclops.gif"),
                 new KImage("res/Images/Projectiles/Rock.gif")
-
         };
         long end = System.currentTimeMillis();
-        System.out.println("Initializing assets took " + ((end - start) / 1000.0) + " seconds");
+        return (end-start)/1000f;
     }
-
-    private static final KImage[] sprites;
 
     /**
      * Represents which sprite you want to get from this class.

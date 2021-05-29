@@ -64,11 +64,11 @@ public class HomeScreen implements Screen {
     public void startGame(GButton b, GEvent event) {
 //        if (event == GEvent.PRESSED) {
         if (b == mage) {
-            BattleScreen.init(new Mage(700, 700));
+            BattleScreen.init(BattleScreen.PlayerType.MAGE);
         } else if (b == knight) {
-            BattleScreen.init(new Knight(700, 700));
+            BattleScreen.init(BattleScreen.PlayerType.KNIGHT);
         } else if (b == rogue) {
-            BattleScreen.init(new Rogue(700, 700));
+            BattleScreen.init(BattleScreen.PlayerType.ROGUE);
         }
 //        }
         DrawingSurface.setScreen(Window.BATTLE);
