@@ -4,6 +4,7 @@ import g4p_controls.GAbstractControl;
 import g4p_controls.GButton;
 import g4p_controls.GEvent;
 import g4p_controls.GSlider;
+import processing.core.PConstants;
 
 public class PerformanceScreen implements Screen{
     private int goalFrameRate=60;
@@ -13,6 +14,15 @@ public class PerformanceScreen implements Screen{
     public void draw(DrawingSurface d) {
 
         d.background(100);
+        d.pushStyle();
+
+        d.fill(255);
+        d.textSize(60);
+
+        d.textAlign(PConstants.CENTER, PConstants.BOTTOM);
+        d.textSize(20);
+        d.text("Framerate\n" +goalFrameRate, d.width / 2f, d.height / 2f-50);
+        d.popStyle();
     }
 
     @Override

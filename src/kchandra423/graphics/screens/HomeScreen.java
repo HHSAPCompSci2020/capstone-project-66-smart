@@ -20,9 +20,10 @@ public class HomeScreen implements Screen {
 
     @Override
     public void draw(DrawingSurface d) {
-        d.pushStyle();
 
         d.background(100);
+        d.pushStyle();
+
         d.fill(255);
         d.textSize(60);
 

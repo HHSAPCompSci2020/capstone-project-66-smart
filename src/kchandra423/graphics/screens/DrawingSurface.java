@@ -75,7 +75,6 @@ public class DrawingSurface extends PApplet {
 
     @Override
     public void draw() {
-        System.out.println(getGoalFrameRate());
         screens[current].draw(this);
 //        battle.draw(this);
     }
