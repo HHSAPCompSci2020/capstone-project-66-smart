@@ -38,7 +38,7 @@ public class DrawingSurface extends PApplet {
      */
     public void settings() {
 //        fontMultiplier = ((displayHeight+displayWidth)/2f)/3000;
-        size(1920, 1080, P2D);
+        size(1680, 1050, P2D);
 //        fullScreen();
     }
 

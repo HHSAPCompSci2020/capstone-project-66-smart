@@ -6,17 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/api-common-1.7.0.jar"/>
-	<classpathentry kind="lib" path="libs/auto-value-1.4.jar"/>
-	<classpathentry kind="lib" path="libs/commons-codec-1.10.jar"/>
-	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="libs/core.jar"/>
-	<classpathentry kind="lib" path="libs/error_prone_annotations-2.1.2.jar"/>
-	<classpathentry kind="lib" path="libs/files.jar"/>
-	<classpathentry kind="lib" path="libs/firebase-admin-6.8.1.jar"/>
-	<classpathentry kind="lib" path="libs/gax-1.30.0.jar"/>
-	<classpathentry kind="lib" path="libs/gax-grpc-1.30.0.jar"/>
-	<classpathentry kind="lib" path="libs/gax-httpjson-0.47.0.jar"/>
 	<classpathentry kind="lib" path="libs/gif-decoder.jar"/>
 	<classpathentry kind="lib" path="libs/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="libs/gluegen-rt-natives-linux-aarch64.jar"/>
@@ -26,37 +15,6 @@
 	<classpathentry kind="lib" path="libs/gluegen-rt-natives-macosx-universal.jar"/>
 	<classpathentry kind="lib" path="libs/gluegen-rt-natives-windows-amd64.jar"/>
 	<classpathentry kind="lib" path="libs/gluegen-rt-natives-windows-i586.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-1.25.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-client-gson-1.25.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-api-services-storage-v1-rev135-1.24.1.jar"/>
-	<classpathentry kind="lib" path="libs/google-auth-library-credentials-0.11.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-auth-library-oauth2-http-0.11.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-cloud-core-1.43.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-cloud-core-grpc-1.43.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-cloud-core-http-1.43.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-cloud-firestore-0.61.0-beta.jar"/>
-	<classpathentry kind="lib" path="libs/google-cloud-storage-1.43.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-1.25.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-appengine-1.24.1.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-gson-1.25.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-jackson-1.24.1.jar"/>
-	<classpathentry kind="lib" path="libs/google-http-client-jackson2-1.25.0.jar"/>
-	<classpathentry kind="lib" path="libs/google-oauth-client-1.25.0.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-auth-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-context-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-core-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-netty-shaded-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-protobuf-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-protobuf-lite-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/grpc-stub-1.13.1.jar"/>
-	<classpathentry kind="lib" path="libs/gson-2.1.jar"/>
-	<classpathentry kind="lib" path="libs/guava-20.0.jar"/>
-	<classpathentry kind="lib" path="libs/httpclient-4.5.5.jar"/>
-	<classpathentry kind="lib" path="libs/httpcore-4.4.9.jar"/>
-	<classpathentry kind="lib" path="libs/j2objc-annotations-1.1.jar"/>
-	<classpathentry kind="lib" path="libs/jackson-core-2.9.6.jar"/>
-	<classpathentry kind="lib" path="libs/jackson-core-asl-1.9.11.jar"/>
-	<classpathentry kind="lib" path="libs/joda-time-2.9.2.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all-natives-linux-aarch64.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all-natives-linux-amd64.jar"/>
@@ -65,27 +23,7 @@
 	<classpathentry kind="lib" path="libs/jogl-all-natives-macosx-universal.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all-natives-windows-amd64.jar"/>
 	<classpathentry kind="lib" path="libs/jogl-all-natives-windows-i586.jar"/>
-	<classpathentry kind="lib" path="libs/jsr305-3.0.2.jar"/>
-	<classpathentry kind="lib" path="libs/netty-buffer-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/netty-codec-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/netty-codec-http-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/netty-common-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/netty-handler-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/netty-resolver-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/netty-transport-4.1.22.Final.jar"/>
-	<classpathentry kind="lib" path="libs/opencensus-api-0.15.0.jar"/>
-	<classpathentry kind="lib" path="libs/opencensus-contrib-grpc-metrics-0.12.3.jar"/>
-	<classpathentry kind="lib" path="libs/opencensus-contrib-grpc-util-0.15.0.jar"/>
-	<classpathentry kind="lib" path="libs/opencensus-contrib-http-util-0.15.0.jar"/>
 	<classpathentry kind="lib" path="libs/processing_core.jar"/>
-	<classpathentry kind="lib" path="libs/protobuf-java-3.6.0.jar"/>
-	<classpathentry kind="lib" path="libs/protobuf-java-util-3.6.0.jar"/>
-	<classpathentry kind="lib" path="libs/proto-google-cloud-firestore-v1beta1-0.26.0.jar"/>
-	<classpathentry kind="lib" path="libs/proto-google-common-protos-1.12.0.jar"/>
-	<classpathentry kind="lib" path="libs/proto-google-iam-v1-0.12.0.jar"/>
-	<classpathentry kind="lib" path="libs/slf4j-api-1.7.25.jar"/>
-	<classpathentry kind="lib" path="libs/slf4j-simple-1.7.25.jar"/>
-	<classpathentry kind="lib" path="libs/threetenbp-1.3.3.jar"/>
 	<classpathentry kind="lib" path="libs/G4P.jar"/>
 	<classpathentry kind="lib" path="libs/JaysEasierSoundModdedByRyan.jar"/>
 	<classpathentry kind="output" path="bin"/>
