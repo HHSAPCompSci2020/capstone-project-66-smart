@@ -3,8 +3,9 @@ package kchandra423.actors.movingActors.players;
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.weapons.Weapon;
 import kchandra423.actors.weapons.guns.MagicStaff;
-import kchandra423.actors.weapons.guns.Shotgun;
+import kchandra423.actors.weapons.guns.SpellBook;
 import kchandra423.utility.AssetLoader;
+import kchandra423.utility.PlayerData;
 
 /**
  * Represents a mage
@@ -26,6 +27,10 @@ public class Mage extends Player {
         image.moveTo(x, y);
     }
     private static Weapon getInitialWeapon(){
-        return new MagicStaff();
+        if(PlayerData.getInitialMageWeapon().equals("SpellBook")){
+            return new SpellBook();
+        }else{
+            return new MagicStaff();
+        }
     }
 }

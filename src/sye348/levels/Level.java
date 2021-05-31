@@ -13,13 +13,14 @@ import java.util.ArrayList;
 
 /**
  * Represents a level with mutliple rooms
+ *
  * @author Spencer Ye
  * @version 1.2.0
  * Last Revised: 5/20/2021
  */
 public abstract class Level {
 
-    private ArrayList<Room> rooms;
+    private final ArrayList<Room> rooms;
 
     private int roomNumber;
 
@@ -31,7 +32,7 @@ public abstract class Level {
      */
     public Level(ArrayList<Room> rooms) {
         this.rooms = rooms;
-        roomNumber = 0;
+        roomNumber = 1;
     }
 
     /**
@@ -41,7 +42,7 @@ public abstract class Level {
      */
     public void draw(DrawingSurface window) {
         getCurrentRoom().draw(window);
-        if (getCurrentRoom().isCompleted() && roomNumber < rooms.size() - 1) {
+        if (getCurrentRoom().isCompleted()&&rooms.size()>1) {
             goForwardRoom();
         }
     }
@@ -50,23 +51,20 @@ public abstract class Level {
      * Advances the room that the player is in
      */
     public void goForwardRoom() {
-        if (rooms.size() == roomNumber) {
-            System.out.println("NO MORE ROOMS TO GO FORWARD");
-            return;
-        }
+        rooms.remove(0);
         roomNumber++;
     }
 
-    /**
-     * Moves the room that the player is in backwards
-     */
-    public void goBackwardRoom() {
-        if (roomNumber == 0) {
-            System.out.println("NO MORE ROOMS TO GO BACK");
-            return;
-        }
-        roomNumber--;
-    }
+//    /**
+//     * Moves the room that the player is in backwards
+//     */
+//    public void goBackwardRoom() {
+//        if (roomNumber == 0) {
+//            System.out.println("NO MORE ROOMS TO GO BACK");
+//            return;
+//        }
+//        roomNumber--;
+//    }
 
     /**
      * Gets the room number that the player is currently in
@@ -74,7 +72,7 @@ public abstract class Level {
      * @return The room number that the player is currently in
      */
     public int getRoomNumber() {
-        return roomNumber + 1;
+        return roomNumber;
     }
 
 
@@ -84,7 +82,7 @@ public abstract class Level {
      * @return If the level has been completed
      */
     public boolean isCompleted() {
-        return roomNumber >= rooms.size() - 1 && getCurrentRoom().isCompleted();
+        return rooms.size() <= 1 && getCurrentRoom().isCompleted();
     }
 
 
@@ -94,7 +92,7 @@ public abstract class Level {
      * @return The current room the level is on
      */
     public Room getCurrentRoom() {
-        return rooms.get(roomNumber);
+        return rooms.get(0);
     }
 
     /**

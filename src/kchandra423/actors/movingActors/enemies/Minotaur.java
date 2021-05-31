@@ -1,9 +1,10 @@
 package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
-import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
+import kchandra423.utility.PlayerData;
+
 /**
  * A Enemy which represents a minotaur
  *
@@ -26,6 +27,6 @@ public class Minotaur extends Enemy{
 
     @Override
     public void onDeath() {
-        Player.earnedCoins++;
+        PlayerData.setCoins(PlayerData.getCoins()+1);
     }
 }

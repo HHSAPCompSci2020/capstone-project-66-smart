@@ -17,6 +17,6 @@ public class SMG extends Gun {
                 new Projectile(AssetLoader.getImage(AssetLoader.Sprite.BULLET),
                         20f, 0, true, new float[0],
                         DamageTypes.RANGED, 5), 1,
-                0.5f, 30);
+                1f, 30);
     }
 }

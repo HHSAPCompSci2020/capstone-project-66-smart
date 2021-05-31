@@ -25,7 +25,6 @@ public abstract class Player extends MovingActor {
     private final KImage idleImage;
     private final KImage activeImage;
     private Weapon weapon;
-    public static int earnedCoins;
 
     /**
      * Creates a player with the specified idle and active animations
@@ -34,7 +33,7 @@ public abstract class Player extends MovingActor {
      * @param active The active sprite of this player
      */
     public Player(KImage idle, KImage active, float maxV, float accel, float[] stats, int maxHealth, Weapon weapon) {
-        super(idle, maxV, accel, stats, maxHealth);
+        super(idle, maxV, accel, stats, maxHealth,0.2f);
         this.idleImage = idle;
         this.activeImage = active;
         this.weapon = weapon;

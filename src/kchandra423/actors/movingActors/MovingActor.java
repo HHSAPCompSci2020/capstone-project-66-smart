@@ -10,6 +10,9 @@ import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 import kchandra423.utility.Calculator;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Moving actors differ from actors in that they have acceleration based physics already built into them.
  * They have a maximum velocity, and an x and y velocity, and an acceleration. All movement is done separately on the x and y axis.
@@ -21,6 +24,9 @@ import kchandra423.utility.Calculator;
  */
 public abstract class MovingActor extends Actor {
     private ActorState state;
+    protected Timer timer;
+    private boolean invulnerable;
+    private float invulnerabilityTime;
     protected float vx, vy;
     protected float maxV;
     protected float accel;
@@ -30,13 +36,15 @@ public abstract class MovingActor extends Actor {
 
     /**
      * Creates a new Moving actor with the specified image, acceleration and maximum velocity
-     *  @param image The specified image
-     * @param maxV  This actors maximum velocity
-     * @param accel This actors acceleration
+     *
+     * @param image           The specified image
+     * @param maxV            This actors maximum velocity
+     * @param accel           This actors acceleration
      * @param statMultipliers
      */
-    protected MovingActor(KImage image, float maxV, float accel, float[] statMultipliers, int maxHealth) {
+    protected MovingActor(KImage image, float maxV, float accel, float[] statMultipliers, int maxHealth, float invulnerabilityTime) {
         super(image);
+        this.invulnerabilityTime = invulnerabilityTime;
         this.statMultipliers = statMultipliers;
         vx = 0;
         vy = 0;
@@ -45,7 +53,18 @@ public abstract class MovingActor extends Actor {
         state = ActorState.IDLE;
         this.maxHealth = maxHealth;
         health = this.maxHealth;
+        this.timer = new Timer();
 //        statMultipliers = new float[]{1, 1, 1, 1, 1, 1};
+    }
+
+    @Override
+    public void draw(DrawingSurface d) {
+        d.pushStyle();
+        if(invulnerable){
+            d.tint(150f);
+        }
+        super.draw(d);
+        d.popStyle();
     }
 
     /**
@@ -53,7 +72,8 @@ public abstract class MovingActor extends Actor {
      * Then it moves in the x direction. If it collides with an obstacle, it calls the onObstacleCollision method. If it is out
      * of bounds, it immediately moves back into the room. This process is repeated in the y direction. Finally, if this actor
      * interacts with its opponent, it calls the onOpponentInteraction method.
-     * @param d The drawing surface to be acted upon
+     *
+     * @param d    The drawing surface to be acted upon
      * @param room The room the actor is currently in
      */
     @Override
@@ -83,6 +103,7 @@ public abstract class MovingActor extends Actor {
         }
 
     }
+
     public abstract void onDeath();
 
     protected abstract void makeMoveX(DrawingSurface drawingSurface, Room room);
@@ -127,7 +148,7 @@ public abstract class MovingActor extends Actor {
      * Bounces this actor back, moves it to its previous location and decreases its velocity in the opposite direction to 1/3 of its original
      */
     protected void bounceBackX() {
-        float tempVx = vx* (60f/DrawingSurface.getGoalFrameRate());
+        float tempVx = vx * (60f / DrawingSurface.getGoalFrameRate());
         image.translate(-tempVx, 0);
     }
 
@@ -136,7 +157,7 @@ public abstract class MovingActor extends Actor {
      */
     protected void bounceBackY() {
 
-        float tempVy = vy* (60f/DrawingSurface.getGoalFrameRate());
+        float tempVy = vy * (60f / DrawingSurface.getGoalFrameRate());
         image.translate(0, -tempVy);
     }
 
@@ -160,7 +181,7 @@ public abstract class MovingActor extends Actor {
             vx = 0;
         }
 
-        float tempVx = vx* (60f/DrawingSurface.getGoalFrameRate());
+        float tempVx = vx * (60f / DrawingSurface.getGoalFrameRate());
         image.translate(tempVx, 0);
     }
 
@@ -183,7 +204,7 @@ public abstract class MovingActor extends Actor {
             vy = 0;
         }
 
-        float tempVy = vy* (60f/DrawingSurface.getGoalFrameRate());
+        float tempVy = vy * (60f / DrawingSurface.getGoalFrameRate());
         image.translate(0, tempVy);
     }
 
@@ -214,7 +235,7 @@ public abstract class MovingActor extends Actor {
         }
 
         vx *= 0.9f;
-        float tempVx = vx* (60f/DrawingSurface.getGoalFrameRate());
+        float tempVx = vx * (60f / DrawingSurface.getGoalFrameRate());
         image.translate(tempVx, 0);
     }
 
@@ -243,7 +264,7 @@ public abstract class MovingActor extends Actor {
         if (Math.abs(vy) < 0.1) {
             vy = 0;
         }
-        float tempVy = vy* (60f/DrawingSurface.getGoalFrameRate());
+        float tempVy = vy * (60f / DrawingSurface.getGoalFrameRate());
         image.translate(0, tempVy);
     }
 
@@ -258,10 +279,20 @@ public abstract class MovingActor extends Actor {
 
     /**
      * Takes damage from the effects of the specific damage.
+     *
      * @param damage The given damage
      */
     public void interceptHitBox(Damage damage) {
-        health -= Calculator.calculateDamage(damage, statMultipliers);
+        if (!invulnerable) {
+            health -= Calculator.calculateDamage(damage, statMultipliers);
+            invulnerable = true;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    invulnerable = false;
+                }
+            }, 200);
+        }
     }
 
 
@@ -297,11 +328,13 @@ public abstract class MovingActor extends Actor {
 
     /**
      * Returns the health of this current actor
+     *
      * @return The health of this actor
      */
     public int getHealth() {
         return health;
     }
+
     /**
      * Sets this actors health to the given value
      */
@@ -311,13 +344,14 @@ public abstract class MovingActor extends Actor {
 
     /**
      * Returns the maximum health of this current actor
+     *
      * @return The maximum health of this actor
      */
     public int getMaxHealth() {
         return maxHealth;
     }
 
-    public static float[] createStates(float rangedA, float magicA, float meleeA, float rangedD, float magicD, float meleeD){
-        return new float[]{rangedA,magicA,meleeA,rangedD,magicD,magicD};
+    public static float[] createStates(float rangedA, float magicA, float meleeA, float rangedD, float magicD, float meleeD) {
+        return new float[]{rangedA, magicA, meleeA, rangedD, magicD, magicD};
     }
 }

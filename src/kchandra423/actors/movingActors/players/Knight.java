@@ -2,9 +2,10 @@ package kchandra423.actors.movingActors.players;
 
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.weapons.Weapon;
-import kchandra423.actors.weapons.guns.Shotgun;
 import kchandra423.actors.weapons.meleeWeapons.BroadSword;
+import kchandra423.actors.weapons.meleeWeapons.RustySword;
 import kchandra423.utility.AssetLoader;
+import kchandra423.utility.PlayerData;
 
 /**
  * Represents a Knight
@@ -29,6 +30,11 @@ public class Knight extends Player {
         image.moveTo(x, y);
     }
     private static Weapon getInitialWeapon(){
-        return new BroadSword();
+        if(PlayerData.getInitialKnightWeapon().equals("Broadsword")){
+            return new BroadSword();
+        }else{
+            return new RustySword();
+        }
     }
+
 }

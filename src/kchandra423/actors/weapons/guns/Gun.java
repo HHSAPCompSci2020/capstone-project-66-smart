@@ -91,7 +91,9 @@ class Gun extends Weapon {
                 task.cancel();
                 t.purge();
             }
-            magazine--;
+            if(reloadTime!=0) {
+                magazine--;
+            }
             for (int i = 0; i < pellets; i++) {
                 float tempAngle = image.getAngle();
                 tempAngle += Math.random() * spread;
@@ -115,17 +117,18 @@ class Gun extends Weapon {
         if (magazine < magazineSize && !reloading) {
             lastTimeReloaded = System.currentTimeMillis();
             reloading = true;
-            task = new TimerTask() {
-                @Override
-                public void run() {
-                    if (reloading) {
-                        magazine = magazineSize;
-                        reloading = false;
+                task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (reloading) {
+                            magazine = magazineSize;
+                            reloading = false;
+                        }
                     }
-                }
 
-            };
-            t.schedule(task, (long) (reloadTime * 1000));
+                };
+                t.schedule(task, (long) (reloadTime * 1000));
+
         }
     }
 

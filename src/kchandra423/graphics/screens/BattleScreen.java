@@ -24,6 +24,7 @@ public class BattleScreen implements Screen {
     }
 
     static void init(PlayerType p) {
+        DrawingSurface.setScreen(Window.LOADING);
         AssetLoader.loadKImages();
         Player player;
         if(p==PlayerType.MAGE){
@@ -35,6 +36,8 @@ public class BattleScreen implements Screen {
         }
         BattleScreen.level = new LevelOne(player);
         ready = true;
+
+        DrawingSurface.setScreen(Window.BATTLE);
     }
 
     /**

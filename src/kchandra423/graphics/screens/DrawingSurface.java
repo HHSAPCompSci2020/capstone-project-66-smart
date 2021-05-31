@@ -4,7 +4,6 @@ import g4p_controls.G4P;
 import g4p_controls.GAbstractControl;
 import g4p_controls.GCScheme;
 import processing.core.PApplet;
-import processing.core.PConstants;
 
 /**
  * Represents a drawing surface, which is a type of PApplet
@@ -13,11 +12,11 @@ import processing.core.PConstants;
  * @see processing.core.PApplet
  */
 public class DrawingSurface extends PApplet {
+//    static float fontMultiplier;
     private static boolean[] keys;
     private boolean alreadySetup = false;
     static int goalFrameRate;
-    private final String renderer;
-    private static Screen[] screens = new Screen[]{new HomeScreen(), new BattleScreen(), new PerformanceScreen()};
+    private static Screen[] screens = new Screen[]{new HomeScreen(), new BattleScreen(), new PerformanceScreen(), new LoadingScreen(), new LoadOutScreen()};
     private static int current = 0;
 
     /**
@@ -26,7 +25,6 @@ public class DrawingSurface extends PApplet {
      */
     public DrawingSurface() {
         DrawingSurface.goalFrameRate = 60;
-        this.renderer = PConstants.P2D;
         keys = new boolean[128];
     }
 
@@ -34,7 +32,8 @@ public class DrawingSurface extends PApplet {
      * Sets the size of the screen, as well as the renderer
      */
     public void settings() {
-        size(displayWidth / 2, displayHeight / 2, renderer);
+//        fontMultiplier = ((displayHeight+displayWidth)/2f)/3000;
+        size(1920, 1080, P2D);
 //        fullScreen();
     }
 
@@ -43,15 +42,16 @@ public class DrawingSurface extends PApplet {
      */
     public void setup() {
         frameRate(DrawingSurface.goalFrameRate);
-        if(!alreadySetup){
+        if (!alreadySetup) {
             screenSetup();
         }
 
 
     }
-    private void screenSetup(){
+
+    private void screenSetup() {
         alreadySetup = true;
-        G4P.setGlobalColorScheme(GCScheme.RED_SCHEME);
+        G4P.setGlobalColorScheme(GCScheme.CYAN_SCHEME);
         G4P.setCursor(ARROW);
         surface.setTitle("Dungeons and Magnums");
         surface.setResizable(false);
@@ -76,8 +76,9 @@ public class DrawingSurface extends PApplet {
     @Override
     public void draw() {
         screens[current].draw(this);
-//        battle.draw(this);
+//        screens[3].draw(this);
     }
+
 
 
     /**
@@ -128,7 +129,8 @@ public class DrawingSurface extends PApplet {
         current = index;
 
     }
-    public void changeFrameRate(int fr){
+
+    public void changeFrameRate(int fr) {
         DrawingSurface.goalFrameRate = fr;
         setup();
     }

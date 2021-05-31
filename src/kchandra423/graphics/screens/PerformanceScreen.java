@@ -11,7 +11,7 @@ public class PerformanceScreen implements Screen{
     private int goalFrameRate=60;
     private GSlider frameRate;
     private GSlider pixelDensity;
-    private int density= 3;
+    private int density= 1;
     private GButton save;
     @Override
     public void draw(DrawingSurface d) {
@@ -38,7 +38,7 @@ public class PerformanceScreen implements Screen{
         frameRate.setShowTicks(true);
         frameRate.addEventHandler(this,"setFrameRate");
         pixelDensity = new GSlider(d, d.width/2f - d.width/4f,3*d.height/4f-30,d.width/2f, 60, 50);
-        pixelDensity.setLimits(3,1,16);
+        pixelDensity.setLimits(1,1,16);
         pixelDensity.setVisible(false);
         pixelDensity.setShowTicks(true);
         pixelDensity.addEventHandler(this,"setPixelDensity");

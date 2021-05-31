@@ -41,10 +41,6 @@ public class PiercingProjectile extends Projectile {
                 active = false;
                 return;
             }
-            if (hits.size() == pierce) {
-                active = false;
-                return;
-            }
             ArrayList<Obstacle> obstacles = room.getObstacles();
             for (Obstacle o : obstacles) {
                 if (intersects(o)) {
@@ -58,6 +54,10 @@ public class PiercingProjectile extends Projectile {
                     if (intersects(e) && e.getState() != ActorState.DEAD && !hits.contains(e)) {
                         e.interceptHitBox(new Damage(damage, stats, type));
                         hits.add(e);
+                        if (hits.size() > pierce) {
+                            active = false;
+                            return;
+                        }
                     }
                 }
 

@@ -2,9 +2,10 @@ package kchandra423.actors.movingActors.enemies;
 
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.DamageTypes;
-import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.utility.AssetLoader;
+import kchandra423.utility.PlayerData;
+
 /**
  * A Enemy which represents a cyclops
  *
@@ -28,6 +29,6 @@ public class Cyclops extends RangedEnemy{
     }
     @Override
     public void onDeath() {
-        Player.earnedCoins+=2;
+        PlayerData.setCoins(PlayerData.getCoins()+2);
     }
 }

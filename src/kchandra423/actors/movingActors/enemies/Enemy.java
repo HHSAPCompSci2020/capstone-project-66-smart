@@ -29,12 +29,12 @@ public abstract class Enemy extends MovingActor {
     private final long deathTime;
     protected boolean spawning;
     private static final Texture beamIn = Texture.TextureBuilder.getTexture("res/Images/Enemies/BeamIn.png");;
-    protected Timer timer;
+
     private boolean firstDraw;
     private final int damage;
 
     protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health, long deathTime, int damage) {
-        super(images[0], maxV, accel, stats, health);
+        super(images[0], maxV, accel, stats, health,0.5f);
         this.deathTime = deathTime;
         ai = new EnemyAI(this);
         idle = images[0];
@@ -170,5 +170,7 @@ public abstract class Enemy extends MovingActor {
             super.interceptHitBox(d);
         }
     }
+
+
 
 }
