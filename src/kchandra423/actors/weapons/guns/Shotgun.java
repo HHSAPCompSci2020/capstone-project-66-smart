@@ -16,7 +16,7 @@ public class Shotgun extends Gun {
                 (float) Math.PI / 6,
                 new PiercingProjectile(AssetLoader.getImage(AssetLoader.Sprite.BULLET),
                         20f, 0, true, new float[0],
-                        DamageTypes.MAGIC, 15,3),
+                        DamageTypes.MAGIC, 7,2),
                 6, 0.5f, 2);
     }
 }

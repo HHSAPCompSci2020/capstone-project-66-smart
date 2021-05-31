@@ -60,8 +60,9 @@ public class AssetLoader {
 //        System.out.println("Initializing assets took " + ((end - start) / 1000.0) + " seconds");
 //    }
 
-    private static  KImage[] sprites;
-    public static float loadKImages(){
+    private static KImage[] sprites;
+
+    public static float loadKImages() {
         long start = System.currentTimeMillis();
         sprites = new KImage[]{
                 new KImage("res/Images/Enemies/Attack/Bat.gif"),
@@ -101,10 +102,14 @@ public class AssetLoader {
                 new KImage("res/Images/Enemies/Idle/Cyclops.gif"),
                 new KImage("res/Images/Enemies/Moving/Cyclops.gif"),
                 new KImage("res/Images/Projectiles/Rock.gif"),
-                new KImage("res/Images/Projectiles/Fireball.gif")
+                new KImage("res/Images/Projectiles/Fireball.gif"),
+                new KImage("res/Images/Weapons/MagicGloves.png", true),
+                new KImage("res/Images/Projectiles/Lightning.gif"),
+                new KImage("res/Images/Weapons/Axe.png", true)
         };
         long end = System.currentTimeMillis();
-        return (end-start)/1000f;
+        System.out.println((end - start) / 1000f);
+        return (end - start) / 1000f;
     }
 
     /**
@@ -120,7 +125,7 @@ public class AssetLoader {
         RUSTY_SWORD(21), SHOTGUN(22), SMG(23), SPELLBOOK(24), SWORD(25), TELEPORTER(26),
         MAGIC_BALL(27), MINOTAUR_ATTACK(28), MINOTAUR_DEATH(29), MINOTAUR_IDLE(30), MINOTAUR_MOVING(31),
         CYCLOPS_ATTACK(32), CYCLOPS_DEATH(33), CYCLOPS_IDLE(34), CYCLOPS_MOVING(35), ROCK(36),
-        FIREBALL(37);
+        FIREBALL(37), MAGIC_GLOVES(38), LIGHTNING(39), AXE(40);
 
         private final int val;
 

@@ -1,6 +1,7 @@
 package kchandra423.actors.weapons.meleeWeapons;
 
 import kchandra423.actors.Damage;
+import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.movingActors.constants.DamageTypes;
 import kchandra423.actors.movingActors.enemies.Enemy;
 import kchandra423.actors.movingActors.enemies.RangedEnemy;
@@ -10,13 +11,15 @@ import kchandra423.graphics.screens.DrawingSurface;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.levels.Room;
 
-class MeleeWeapon extends Weapon {
-    private final int damage;
-    private float[] stats;
-    private final float range;
-    private final float swingTime;
-    private long swingStartTime = System.currentTimeMillis();
+import java.util.ArrayList;
 
+class MeleeWeapon extends Weapon {
+    protected ArrayList<MovingActor> hits = new ArrayList<>();
+    protected final int damage;
+    protected float[] stats;
+    protected final float range;
+    protected final float swingTime;
+    protected long swingStartTime = System.currentTimeMillis();
 
 
     MeleeWeapon(KImage image, int damage, float range, float swingTime) {
@@ -24,24 +27,26 @@ class MeleeWeapon extends Weapon {
         this.damage = damage;
         this.stats = new float[0];
         this.range = range;
-        this.swingTime=swingTime;
+        this.swingTime = swingTime;
     }
 
     @Override
     public void act(DrawingSurface d, Room room) {
         //if you cannot fire, it means that you are firing
+        float differential = (float) (((System.currentTimeMillis() - swingStartTime) / (swingTime * 1000)) * Math.PI / 2 * 3 + Math.PI);
+
         if (!canFire()) {
-            float differential = (float) (((System.currentTimeMillis() - swingStartTime) /  (swingTime * 1000)) * Math.PI /2* 3 +Math.PI);
             image.rotate((float) (range * Math.cos(differential)));
             for (Enemy e :
                     room.getEnemies()) {
-                if (intersects(e)) {
-                    e.interceptHitBox(new Damage(damage,stats, DamageTypes.MELEE));
+                if (intersects(e) && !hits.contains(e)) {
+                    hits.add(e);
+                    e.interceptHitBox(new Damage(damage, stats, DamageTypes.MELEE));
                 }
-                if(e instanceof RangedEnemy) {
+                if (e instanceof RangedEnemy) {
                     for (Projectile p :
                             ((RangedEnemy) e).getProjectiles()) {
-                        if(intersects(p)){
+                        if (intersects(p)) {
                             p.setActive(false);
                         }
                     }
@@ -53,7 +58,8 @@ class MeleeWeapon extends Weapon {
     @Override
     public void fire(float[] stats) {
         if (canFire()) {
-            this.stats=stats;
+            hits.clear();
+            this.stats = stats;
             swingStartTime = System.currentTimeMillis();
         }
     }
@@ -83,7 +89,7 @@ class MeleeWeapon extends Weapon {
         return Float.NaN;
     }
 
-    private boolean canFire() {
+    protected boolean canFire() {
         return (System.currentTimeMillis() - swingStartTime) >= swingTime * 1000;
     }
 }

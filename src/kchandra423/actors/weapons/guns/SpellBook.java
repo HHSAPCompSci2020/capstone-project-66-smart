@@ -14,7 +14,7 @@ public class SpellBook extends Gun{
                 (float) Math.PI / 10,
                 new Projectile(AssetLoader.getImage(AssetLoader.Sprite.MAGIC_BALL),
                         20f, 0, true, new float[0],
-                        DamageTypes.MAGIC, 7),
+                        DamageTypes.MAGIC, 10),
                 1, 0, 1);
     }
 }

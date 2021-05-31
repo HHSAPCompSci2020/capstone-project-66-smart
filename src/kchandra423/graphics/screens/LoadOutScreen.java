@@ -4,6 +4,7 @@ import g4p_controls.GAbstractControl;
 import g4p_controls.GButton;
 import g4p_controls.GDropList;
 import g4p_controls.GEvent;
+import kchandra423.actors.weapons.guns.MagicGloves;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.utility.PlayerData;
@@ -24,6 +25,8 @@ public class LoadOutScreen implements Screen {
     Texture broadSword;
     Texture magicStaff;
     Texture spellBook;
+    Texture magicGloves;
+    Texture axe;
 
     @Override
     public void draw(DrawingSurface d) {
@@ -55,16 +58,18 @@ public class LoadOutScreen implements Screen {
         pistol = Texture.TextureBuilder.getTexture("res/Images/Weapons/Pistol.png");
         smg = Texture.TextureBuilder.getTexture("res/Images/Weapons/SMG.png");
         shotgun = Texture.TextureBuilder.getTexture("res/Images/Weapons/Shotgun.png");
+        magicGloves = Texture.TextureBuilder.getTexture("res/Images/Weapons/MagicGloves.png");
         rustySword = Texture.TextureBuilder.getTexture("res/Images/Weapons/RustySword.png");
         broadSword = Texture.TextureBuilder.getTexture("res/Images/Weapons/Sword.png");
         magicStaff = Texture.TextureBuilder.getTexture("res/Images/Weapons/MagicStaff.png");
         spellBook = Texture.TextureBuilder.getTexture("res/Images/Weapons/SpellBook.png");
-        mageWeapons = new GDropList(d, d.width / 4, d.height - d.height / 4, mage.getWidth(), 100, 2);
-        mageWeapons.setItems(new String[]{"MagicStaff", "SpellBook"}, 0);
+        axe = Texture.TextureBuilder.getTexture("res/Images/Weapons/Axe.png");
+        mageWeapons = new GDropList(d, d.width / 4, d.height - d.height / 4, mage.getWidth(), 100, 3);
+        mageWeapons.setItems(new String[]{"MagicStaff", "SpellBook", "MagicGloves"}, 0);
         mageWeapons.addEventHandler(this, "changeWeapon");
         mageWeapons.setVisible(false);
-        knightWeapons = new GDropList(d, d.width / 2, d.height - d.height / 4, knight.getWidth(), 100, 2);
-        knightWeapons.setItems(new String[]{"RustySword", "Broadsword"}, 0);
+        knightWeapons = new GDropList(d, d.width / 2, d.height - d.height / 4, knight.getWidth(), 100, 3);
+        knightWeapons.setItems(new String[]{"RustySword", "Broadsword","Axe"}, 0);
         knightWeapons.addEventHandler(this, "changeWeapon");
         knightWeapons.setVisible(false);
         rogueWeapons = new GDropList(d, d.width / 4 * 3, d.height - d.height / 4, rogue.getWidth(), 100, 3);
@@ -92,6 +97,10 @@ public class LoadOutScreen implements Screen {
                 return magicStaff;
             case "SpellBook":
                 return spellBook;
+            case "MagicGloves":
+                return magicGloves;
+            case "Axe":
+                return axe;
         }
         return null;
     }

@@ -34,7 +34,7 @@ public abstract class Enemy extends MovingActor {
     private final int damage;
 
     protected Enemy(KImage[] images, float maxV, float accel, float[] stats, int health, long deathTime, int damage) {
-        super(images[0], maxV, accel, stats, health,0.1f);
+        super(images[0], maxV, accel, stats, health,0f);
         this.deathTime = deathTime;
         ai = new EnemyAI(this);
         idle = images[0];

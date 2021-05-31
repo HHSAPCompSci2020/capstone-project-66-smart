@@ -2,6 +2,7 @@ package kchandra423.actors.movingActors.players;
 
 import kchandra423.actors.movingActors.MovingActor;
 import kchandra423.actors.weapons.Weapon;
+import kchandra423.actors.weapons.meleeWeapons.Axe;
 import kchandra423.actors.weapons.meleeWeapons.BroadSword;
 import kchandra423.actors.weapons.meleeWeapons.RustySword;
 import kchandra423.utility.AssetLoader;
@@ -32,7 +33,10 @@ public class Knight extends Player {
     private static Weapon getInitialWeapon(){
         if(PlayerData.getInitialKnightWeapon().equals("Broadsword")){
             return new BroadSword();
-        }else{
+        }else if(PlayerData.getInitialKnightWeapon().equals("Axe")){
+            return new Axe();
+        }
+        else{
             return new RustySword();
         }
     }
