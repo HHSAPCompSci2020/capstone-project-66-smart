@@ -38,7 +38,8 @@ public class Projectile extends Actor {
         super(image);
         this.ally = ally;
         image.setAngle(angle);
-        this.v = v;
+
+        this.v = v * (60f / DrawingSurface.getGoalFrameRate());
         this.stats = stats;
         this.damage = damage;
         this.type = type;
@@ -87,6 +88,7 @@ public class Projectile extends Actor {
 
     /**
      * Clones this projectile with all the correct attributes in the speciifed direction
+     *
      * @param angle The specified direction in radians
      * @return A projectile with all the same attributes except angle.
      */
