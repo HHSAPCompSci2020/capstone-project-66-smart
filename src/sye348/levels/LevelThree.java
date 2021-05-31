@@ -11,7 +11,7 @@ import kchandra423.levels.Room;
 
 /**
  * Level 3
- * @author Spencer Ye
+ * @author Spencer Ye modified by Kumar Chandra
  * @version 1.2.1
  * Last Revised: 5/22/2021
  */

@@ -1,4 +1,4 @@
-package rlee348.menu;
+package main;
 
 import processing.core.PApplet;
 
