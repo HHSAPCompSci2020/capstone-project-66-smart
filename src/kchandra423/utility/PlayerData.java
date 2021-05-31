@@ -1,6 +1,7 @@
 package kchandra423.utility;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -11,11 +12,16 @@ public class PlayerData {
         intialRogueWeapon = "Pistol";
         initialMageWeapon = "MagicStaff";
         initalKnightWeapon = "RustySword";
+
+        Scanner dataReader= null;
         try {
-            Scanner dataReader = new Scanner(new BufferedReader(new FileReader("res/Data/Coins")));
+            dataReader = new Scanner(new File("res/Data/Coins.txt"));
             coins = dataReader.nextInt();
+            dataReader.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            dataReader.close();
         }
 //        ArrayList<String> knightWeapons1 = new ArrayList<>();
 //        knightWeapons1.add("RustySword");
@@ -65,7 +71,7 @@ public class PlayerData {
         PlayerData.coins = coins;
     }
 
-//    static ArrayList<String> getKnightWeapons() {
+    //    static ArrayList<String> getKnightWeapons() {
 //        return knightWeapons;
 //    }
 //

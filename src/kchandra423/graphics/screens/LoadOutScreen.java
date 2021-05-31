@@ -7,6 +7,7 @@ import g4p_controls.GEvent;
 import kchandra423.graphics.textures.KImage;
 import kchandra423.graphics.textures.Texture;
 import kchandra423.utility.PlayerData;
+import processing.core.PConstants;
 
 public class LoadOutScreen implements Screen {
     private GDropList mageWeapons;
@@ -27,7 +28,12 @@ public class LoadOutScreen implements Screen {
     @Override
     public void draw(DrawingSurface d) {
         d.background(100);
-        d.text("Coins: " + PlayerData.getCoins(), 20, 40);
+        d.pushStyle();
+
+        d.fill(255);
+        d.textSize(60);
+        d.textAlign(PConstants.CENTER, PConstants.TOP);
+        d.text("Player Loadouts", d.width / 2f, 0);
         mage.draw(d, d.width / 4, d.height / 2 - 200);
 
         knight.draw(d, d.width / 2, d.height / 2 - 200);
@@ -37,6 +43,8 @@ public class LoadOutScreen implements Screen {
         getWeapon(PlayerData.getInitialKnightWeapon()).draw(d, d.width / 2, d.height / 2+100);
 
         getWeapon(PlayerData.getInitialRogueWeapon()).draw(d, d.width / 4*3, d.height / 2+100);
+
+        d.popStyle();
     }
 
     @Override
@@ -63,7 +71,7 @@ public class LoadOutScreen implements Screen {
         rogueWeapons.setItems(new String[]{"Pistol", "SMG", "Shotgun"}, 0);
         rogueWeapons.addEventHandler(this, "changeWeapon");
         rogueWeapons.setVisible(false);
-        save = new GButton(d, 20, d.height - d.height / 6f - 40, 200, 80, "Save");
+        save = new GButton(d, 20, d.height -100, 200, 80, "Save");
         save.addEventHandler(this, "save");
         save.setVisible(false);
     }

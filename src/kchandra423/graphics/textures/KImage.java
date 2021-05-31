@@ -39,7 +39,7 @@ import java.awt.geom.Area;
  */
 public class KImage implements Cloneable {
     static {
-        areaDensity = 1;
+        areaDensity = 2;
     }
 
     private static int areaDensity;

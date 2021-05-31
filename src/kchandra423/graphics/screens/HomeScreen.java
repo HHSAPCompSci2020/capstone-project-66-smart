@@ -47,10 +47,17 @@ public class HomeScreen implements Screen {
         loadout = new GButton(d, d.width / 2f - 200, d.height - d.height / 6f - 40, 400, 100, "Loadout");
         performance = new GButton(d, 3 * d.width / 4f - 200, d.height - d.height / 6f - 40, 400, 100, "Performance");
         mage.addEventHandler(this, "startGame");
+        mage.setVisible(false);
         knight.addEventHandler(this, "startGame");
+        knight.setVisible(false);
         rogue.addEventHandler(this, "startGame");
+        rogue.setVisible(false);
         performance.addEventHandler(this, "moveToPerformance");
+        performance.setVisible(false);
         loadout.addEventHandler(this,"moveToLoadOut");
+        loadout.setVisible(false);
+        music.setVisible(false);
+        music.addEventHandler(this,"moveToMusic");
     }
 
     @Override
@@ -86,6 +93,11 @@ public class HomeScreen implements Screen {
     public void moveToLoadOut(GButton b, GEvent event) {
 
         DrawingSurface.setScreen(Window.LOADOUT);
+
+    }
+    public void moveToMusic(GButton b, GEvent event) {
+
+        DrawingSurface.setScreen(Window.MUSIC);
 
     }
 }

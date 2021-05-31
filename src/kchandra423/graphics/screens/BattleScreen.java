@@ -2,17 +2,23 @@ package kchandra423.graphics.screens;
 
 import g4p_controls.GAbstractControl;
 import g4p_controls.GButton;
+import g4p_controls.GEvent;
 import kchandra423.actors.movingActors.players.Knight;
 import kchandra423.actors.movingActors.players.Mage;
 import kchandra423.actors.movingActors.players.Player;
 import kchandra423.actors.movingActors.players.Rogue;
 import kchandra423.utility.AssetLoader;
+import kchandra423.utility.PlayerData;
+import main.DungeonsAndMagnums;
 import sye348.levels.Level;
 import sye348.levels.LevelOne;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class BattleScreen implements Screen {
 
-    private GButton pause;
+    private GButton home;
     private static Level level;
     private final HUD hud;
     private static boolean ready = false;
@@ -53,20 +59,7 @@ public class BattleScreen implements Screen {
                 level = level.getNextLevel();
             }
             if (level == null) {
-                p.background(0);
-                p.textSize(50);
-                p.fill(255);
-                p.text("Congrats \n You won!", p.width / 3, p.height / 2);
-                new java.util.Timer().schedule(
-                        new java.util.TimerTask() {
-                            @Override
-                            public void run() {
-                                p.exit();
-                                System.exit(0);
-                            }
-                        },
-                        5000
-                );
+                DrawingSurface.setScreen(Window.HOME);
                 return;
             }
 
@@ -75,25 +68,10 @@ public class BattleScreen implements Screen {
             level.draw(p);
             p.popMatrix();
             hud.draw(p, level);
-            p.fill(0);
-            p.text(p.frameRate + " : fps", p.width - 100, p.height - 100);
 
             if (!level.getCurrentRoom().getPlayer().isActive()) {
-
-                p.background(0);
-                p.textSize(50);
-                p.fill(255);
-                p.text("Game Over \n You Lost!", p.width / 3, p.height / 2);
-                new java.util.Timer().schedule(
-                        new java.util.TimerTask() {
-                            @Override
-                            public void run() {
-                                p.exit();
-                                System.exit(0);
-                            }
-                        },
-                        5000
-                );
+                DrawingSurface.setScreen(Window.HOME);
+                return;
             }
         }
 
@@ -101,16 +79,23 @@ public class BattleScreen implements Screen {
 
     @Override
     public void setup(DrawingSurface d) {
-
+        home = new GButton(d, 20, d.height - 100, 200, 80, "Return to home screen");
+        home.addEventHandler(this, "goHome");
+        home.setVisible(false);
     }
 
     @Override
     public GAbstractControl[] getUI() {
-        return new GButton[0];
+        return new GButton[]{home};
     }
 
     public static Level getCurrentlevel() {
         return level;
+    }
+    public void goHome(GButton b, GEvent event) {
+
+        DrawingSurface.setScreen(Window.HOME);
+
     }
 }
 

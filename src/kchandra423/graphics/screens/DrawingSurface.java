@@ -3,7 +3,12 @@ package kchandra423.graphics.screens;
 import g4p_controls.G4P;
 import g4p_controls.GAbstractControl;
 import g4p_controls.GCScheme;
+import kchandra423.utility.PlayerData;
 import processing.core.PApplet;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Represents a drawing surface, which is a type of PApplet
@@ -12,12 +17,12 @@ import processing.core.PApplet;
  * @see processing.core.PApplet
  */
 public class DrawingSurface extends PApplet {
-//    static float fontMultiplier;
+    //    static float fontMultiplier;
     private static boolean[] keys;
     private boolean alreadySetup = false;
     static int goalFrameRate;
-    private static Screen[] screens = new Screen[]{new HomeScreen(), new BattleScreen(), new PerformanceScreen(), new LoadingScreen(), new LoadOutScreen()};
-    private static int current = 0;
+    private static Screen[] screens = new Screen[]{new HomeScreen(), new BattleScreen(), new PerformanceScreen(), new LoadingScreen(), new LoadOutScreen(), new MusicScreen()};
+    private static int current;
 
     /**
      * Creates a new Drawing surface, and initializes the key array
@@ -45,12 +50,15 @@ public class DrawingSurface extends PApplet {
         if (!alreadySetup) {
             screenSetup();
         }
-
+        prepareExitHandler();
+        setScreen(Window.HOME);
 
     }
 
     private void screenSetup() {
         alreadySetup = true;
+        PlayerData.getCoins();
+        G4P.messagesEnabled(false);
         G4P.setGlobalColorScheme(GCScheme.CYAN_SCHEME);
         G4P.setCursor(ARROW);
         surface.setTitle("Dungeons and Magnums");
@@ -80,7 +88,6 @@ public class DrawingSurface extends PApplet {
     }
 
 
-
     /**
      * Sets the key that was pressed in the key array to false
      */
@@ -92,6 +99,16 @@ public class DrawingSurface extends PApplet {
 
 
     }
+//    public void dispose(){
+//        FileWriter w = null;
+//        try {
+//            w = new FileWriter("res/Data/Coins.txt");
+//            w.write(PlayerData.getCoins());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        super.dispose();
+//    }
 
     /**
      * Returns the values of the first 128 keys
@@ -135,6 +152,25 @@ public class DrawingSurface extends PApplet {
         setup();
     }
 
+    private void prepareExitHandler() {
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                try {
+                    PrintWriter p = new PrintWriter(new FileWriter("res/Data/Coins.txt"));
+                    p.print(PlayerData.getCoins());
+                    p.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    stop();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+            }
+        }));
+    }
 
 }
 

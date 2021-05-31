@@ -2,6 +2,7 @@ package kchandra423.graphics.screens;
 
 import kchandra423.actors.movingActors.players.Player;
 import kchandra423.graphics.textures.Texture;
+import kchandra423.utility.PlayerData;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import sye348.levels.Level;
@@ -42,6 +43,10 @@ class HUD {
         p.textSize(24);
         p.textAlign(PConstants.LEFT, PConstants.CENTER);
         p.text("" + player.getWeapon().getMagazine() + " | " + player.getWeapon().getMagazineSize(), 10, 80);
+
+        p.text("Coins: "+PlayerData.getCoins(), 10,130);
+
+        p.text((int)p.frameRate + " : fps", p.width - 200, p.height - 100);
         p.textSize(18);
         p.textAlign(PConstants.CENTER, PConstants.BOTTOM);
         p.text(level.toString(), p.width / 2f, p.height - 50);
